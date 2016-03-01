@@ -1,0 +1,27 @@
+﻿@model MVC.Models.SendRequestModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Html Report</h2>    
+    <table>
+        <tr>
+            <td>User Name</td>
+            <td>Description</td>
+            <td>Lucky Number</td>
+        </tr>
+       
+            <tr>
+                <td>@Model.Type</td>
+                <td>@Model.StartDate</td>
+                <td>@Model.EndDate</td>
+            </tr>
+        
+    </table>
+</body>
+</html>

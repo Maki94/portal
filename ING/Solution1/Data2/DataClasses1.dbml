@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LeaveDays" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-H9APR58\SQLEXPRESS;Initial Catalog=LeaveDays;Integrated Security=True" SettingsObjectName="Data2.Properties.Settings" SettingsPropertyName="LeaveDaysConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Addresses" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="addressID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="address" Member="address1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_Address" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Telephones" Member="Telephones">
+    <Type Name="Telephone">
+      <Column Name="telephoneID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="telephoneNumber" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_Telephone" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BonusDaysHistory" Member="BonusDaysHistories">
+    <Type Name="BonusDaysHistory">
+      <Column Name="BonusDayID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="submitterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bunusCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Employee_BonusDaysHistory" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Employee_BonusDaysHistory1" Member="Employee1" ThisKey="submitterID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Emails" Member="Emails">
+    <Type Name="Email">
+      <Column Name="emailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emailAddress" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_Email" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="dateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="roleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="slava" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="profilePicture" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Employee_Address" Member="Addresses" ThisKey="employeeID" OtherKey="employeeID" Type="Address" />
+      <Association Name="Employee_Telephone" Member="Telephones" ThisKey="employeeID" OtherKey="employeeID" Type="Telephone" />
+      <Association Name="Employee_BonusDaysHistory" Member="BonusDaysHistories" ThisKey="employeeID" OtherKey="employeeID" Type="BonusDaysHistory" />
+      <Association Name="Employee_BonusDaysHistory1" Member="BonusDaysHistories1" ThisKey="employeeID" OtherKey="submitterID" Type="BonusDaysHistory" />
+      <Association Name="Employee_Email" Member="Emails" ThisKey="employeeID" OtherKey="employeeID" Type="Email" />
+      <Association Name="Employee_EmployeesKid" Member="EmployeesKids" ThisKey="employeeID" OtherKey="employeeID" Type="EmployeesKid" />
+      <Association Name="Employee_EmployeeStatusesHistory" Member="EmployeeStatusesHistories" ThisKey="employeeID" OtherKey="employeeID" Type="EmployeeStatusesHistory" />
+      <Association Name="Employee_EmployeeStatusesHistory1" Member="EmployeeStatusesHistories1" ThisKey="employeeID" OtherKey="employeeID" Type="EmployeeStatusesHistory" />
+      <Association Name="Employee_EmployeesTeamsHistory" Member="EmployeesTeamsHistories" ThisKey="employeeID" OtherKey="employeeID" Type="EmployeesTeamsHistory" />
+      <Association Name="Employee_Leave" Member="Leaves" ThisKey="employeeID" OtherKey="employeeID" Type="Leave" />
+      <Association Name="Employee_LeaveStatusesHistory" Member="LeaveStatusesHistories" ThisKey="employeeID" OtherKey="submitterID" Type="LeaveStatusesHistory" />
+      <Association Name="Role_Employee" Member="Role" ThisKey="roleID" OtherKey="roleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeesKids" Member="EmployeesKids">
+    <Type Name="EmployeesKid">
+      <Column Name="EmployeeKidID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="kidID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_EmployeesKid" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Kid_EmployeesKid" Member="Kid" ThisKey="kidID" OtherKey="kidID" Type="Kid" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeStatusEnum" Member="EmployeeStatusEnums">
+    <Type Name="EmployeeStatusEnum">
+      <Column Name="EmployeeStatusEnumID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmployeeStatusEnumName" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="EmployeeStatusEnum_EmployeeStatusesHistory" Member="EmployeeStatusesHistories" ThisKey="EmployeeStatusEnumID" OtherKey="emplyeeStatusEnumID" Type="EmployeeStatusesHistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeStatusesHistory" Member="EmployeeStatusesHistories">
+    <Type Name="EmployeeStatusesHistory">
+      <Column Name="emplyeeStatusHistoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emplyeeStatusEnumID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="submitterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="insertDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="contractStart" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="contractEnd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="contractDuration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="filePDF" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="fileName" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Association Name="Employee_EmployeeStatusesHistory" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Employee_EmployeeStatusesHistory1" Member="Employee1" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="EmployeeStatusEnum_EmployeeStatusesHistory" Member="EmployeeStatusEnum" ThisKey="emplyeeStatusEnumID" OtherKey="EmployeeStatusEnumID" Type="EmployeeStatusEnum" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeesTeamsHistory" Member="EmployeesTeamsHistories">
+    <Type Name="EmployeesTeamsHistory">
+      <Column Name="EmployeeTeamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="startDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="teamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_EmployeesTeamsHistory" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Team_EmployeesTeamsHistory" Member="Team" ThisKey="teamID" OtherKey="teamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Holidays" Member="Holidays">
+    <Type Name="Holiday">
+      <Column Name="holidayID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="startDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="sameEveryYear" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Kids" Member="Kids">
+    <Type Name="Kid">
+      <Column Name="kidID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dateOfBirth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Kid_EmployeesKid" Member="EmployeesKids" ThisKey="kidID" OtherKey="kidID" Type="EmployeesKid" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Leaves" Member="Leaves">
+    <Type Name="Leave">
+      <Column Name="leaveID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="startDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="paid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Leave_LeaveStatusesHistory" Member="LeaveStatusesHistories" ThisKey="leaveID" OtherKey="leaveID" Type="LeaveStatusesHistory" />
+      <Association Name="Employee_Leave" Member="Employee" ThisKey="employeeID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="LeavesTypeEnum_Leave" Member="LeavesTypeEnum" ThisKey="typeID" OtherKey="leaveTypeEnumID" Type="LeavesTypeEnum" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LeaveStatusEnum" Member="LeaveStatusEnums">
+    <Type Name="LeaveStatusEnum">
+      <Column Name="leaveStatusEnumID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="leaveStatusEnumName" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="LeaveStatusEnum_LeaveStatusesHistory" Member="LeaveStatusesHistories" ThisKey="leaveStatusEnumID" OtherKey="leaveStatusEnumID" Type="LeaveStatusesHistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LeaveStatusesHistory" Member="LeaveStatusesHistories">
+    <Type Name="LeaveStatusesHistory">
+      <Column Name="leaveStatusHistoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="leaveID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="leaveStatusEnumID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="submitterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="startDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Employee_LeaveStatusesHistory" Member="Employee" ThisKey="submitterID" OtherKey="employeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Leave_LeaveStatusesHistory" Member="Leave" ThisKey="leaveID" OtherKey="leaveID" Type="Leave" IsForeignKey="true" />
+      <Association Name="LeaveStatusEnum_LeaveStatusesHistory" Member="LeaveStatusEnum" ThisKey="leaveStatusEnumID" OtherKey="leaveStatusEnumID" Type="LeaveStatusEnum" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LeavesTypeEnum" Member="LeavesTypeEnums">
+    <Type Name="LeavesTypeEnum">
+      <Column Name="leaveTypeEnumID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="leaveTypeEnumName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="LeavesTypeEnum_Leave" Member="Leaves" ThisKey="leaveTypeEnumID" OtherKey="typeID" Type="Leave" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Permissions" Member="Permissions">
+    <Type Name="Permission">
+      <Column Name="permissionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Permission_RolesPermission" Member="RolesPermissions" ThisKey="permissionID" OtherKey="premissionID" Type="RolesPermission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="roleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Role_Employee" Member="Employees" ThisKey="roleID" OtherKey="roleID" Type="Employee" />
+      <Association Name="Role_RolesPermission" Member="RolesPermissions" ThisKey="roleID" OtherKey="roleID" Type="RolesPermission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RolesPermissions" Member="RolesPermissions">
+    <Type Name="RolesPermission">
+      <Column Name="RolesPermissionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="roleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="premissionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Permission_RolesPermission" Member="Permission" ThisKey="premissionID" OtherKey="permissionID" Type="Permission" IsForeignKey="true" />
+      <Association Name="Role_RolesPermission" Member="Role" ThisKey="roleID" OtherKey="roleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teams" Member="Teams">
+    <Type Name="Team">
+      <Column Name="teamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="teamName" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="creationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="deleteDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Team_EmployeesTeamsHistory" Member="EmployeesTeamsHistories" ThisKey="teamID" OtherKey="teamID" Type="EmployeesTeamsHistory" />
+    </Type>
+  </Table>
+</Database>

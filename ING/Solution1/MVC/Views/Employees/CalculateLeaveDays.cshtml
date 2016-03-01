@@ -1,0 +1,163 @@
+﻿@model MVC.Models.LeaveDaysCalculationModel
+
+@{
+    ViewBag.Title = "CalculateLeaveDays";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.EmployeeID)
+
+    <div class="form-inline filter-container">
+        <div class="form-group">
+            <h4>Pick date</h4>
+            @Html.EditorFor(m => m.Date, DateTime.Today.ToString(), new { htmlAttributes = new { @class = "datePicker" } })
+            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Calculate" class="btn btn-default" />
+        </div>
+
+    </div>
+
+
+
+    <div class="main-content">
+        <div class="table-container personal">
+            <h3>LEAVE DAYS CALCULATION</h3>
+            <div class="personal-subcontainer">
+
+                <div class="personal-informations">
+                    <table class="leaveDaysCalcuationTable">
+                        <tr>
+                            <td>Name:</td>
+                            <td>@Data2.Employees.getEmplyeeAt(Model.EmployeeID).firstName @Data2.Employees.getEmplyeeAt(Model.EmployeeID).lastName</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.Total):</td>
+                            <td>@Html.DisplayFor(model => model.Days.Total)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.Kids):</td>
+                            <td>@Html.DisplayFor(model => model.Days.Kids)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.TwoYearBonus):</td>
+                            <td>@Html.DisplayFor(model => model.Days.TwoYearBonus)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.Bonuses):</td>
+                            <td>@Html.DisplayFor(model => model.Days.Bonuses)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.Potencial):</td>
+                            <td>@Html.DisplayFor(model => model.Days.Potencial)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.LastYearLeaveDays):</td>
+                            <td>@Html.DisplayFor(model => model.Days.LastYearLeaveDays)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.FutureUsedLeaveDays):</td>
+                            <td>@Html.DisplayFor(model => model.Days.FutureUsedLeaveDays)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Days.Expired):</td>
+                            <td>@Html.DisplayFor(model => model.Days.Expired)</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        @if (!CheckPermission.CheckUserID(id: Model.EmployeeID))
+        {
+            <div class="table-container personal">
+                <h3>ADD BONUS</h3>
+                <div class="form-inline" style ="margin: 0 30px 30px 30px;">
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.newBonusNum, new { placeholder = "Enter Quantity" })
+                        @Html.ValidationMessageFor(model => model.newBonusNum, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.newBonusComment, new { placeholder = "Enter Comment" })
+                        @Html.ValidationMessageFor(model => model.newBonusComment, "", new { @class = "text-danger" })
+                    </div>
+
+                    <input type="submit" value="Add bonus" class="green-btn" style="margin: 13px" />
+
+                </div>
+            </div>
+        }
+
+        <div class="table-container personal">
+            <h3>BONUSES</h3>
+            <div class="personal-subcontainer">
+
+                @if (Model.BonusesList != null && Model.BonusesList.Count > 0)
+                {
+
+                    <table class="table">
+                        <tr>
+                            <th class ="table-narrow">
+                                @Html.DisplayNameFor(model => model.BonusesList[0].BonusNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BonusesList[0].Comment)
+                            </th>
+                            <th class ="table-name">
+                                @Html.DisplayNameFor(model => model.BonusesList[0].SubmitterName)
+                            </th>
+                            <th class ="table-date">
+                                @Html.DisplayNameFor(model => model.BonusesList[0].Date)
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model.BonusesList)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BonusNumber)
+                                </td>
+                                <td class="comment" >
+                                    <div class="table-data-content" id="table-data-content">
+                                        <div class="td-subcontent">
+                                            <p class="commentInfo">@item.Comment</p>
+                                        </div>
+                                        <span class="plus">+</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SubmitterName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+                }
+                else
+                {
+                    <h4>There was no bonuses</h4>
+                }
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

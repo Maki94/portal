@@ -1,0 +1,93 @@
+﻿@model MVC.Models.TeamsPageModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Boolean manager = CheckPermission.CheckUserPermisson((int)Data2.Enums.Permissions.Team_Add_Edit_Remove_View);
+    String name = "";
+}
+
+<div class="main-content">
+    <div class="table-container ">
+      
+        @if (manager)
+        {
+           <input type="button" value="Create Team" class="green-btn" id="create-team-btn" />
+        }
+
+        @if (Model.List.Count > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.ActionLink(@Html.DisplayNameFor(model => model.List[0].TeamName).ToHtmlString(), "Sort", "Teams", new {sort = "Name"}, new {@class = "teamName"})
+                    </th>
+                    @Html.HiddenFor(model => model.List[0].TeamID)
+                    <th>
+                        @Html.ActionLink(@Html.DisplayNameFor(model => model.List[0].DateOfCreation).ToHtmlString(), "Sort", "Teams", new { sort = "DateOfCreation" }, null)
+                    </th>
+                    <th colspan="3">
+                        @Html.ActionLink(@Html.DisplayNameFor(model => model.List[0].DateOfDeletion).ToHtmlString(), "Sort", "Teams", new { sort = "DateOfDeletion" }, null)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td>
+                            @if (item.DateOfDeletion == null)
+                            {
+                                @Html.ActionLink(item.TeamName, "Details", new {id = item.TeamID}, new {@class = "teamName"})
+                            }
+                            else
+                            {
+                                @Html.ActionLink(item.TeamName, "History", new { id = item.TeamID }, new { @class = "teamName" })
+                            }
+                        </td>
+                        @Html.HiddenFor(modelItem => item.TeamID, htmlAttributes: new { @class = "hiddenID" })
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfCreation)
+                        </td>
+
+                        @if (item.DateOfDeletion == null && manager)
+                        {
+                            <td colspan="3">
+                                <a class="edit-team-btn" href="#"><span>Edit name</span></a> |
+                                @Html.ActionLink("History", "History", new { id = item.TeamID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.TeamID }) |
+                                <a class="green addEmpToTeam-btn" href="#"><span>Add Employee</span></a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td colspan="3">
+                                @Html.DisplayFor(modelItem => item.DateOfDeletion)
+                            </td>
+                        }
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <h4>There are no teams</h4>
+        }
+    </div>
+</div>
+
+<div class="dialog dialogContainer" id="dialogEdit" title="CREATE TEAM">
+    @using (Html.BeginForm("Create", "Teams", FormMethod.Post))
+            {
+                Html.RenderPartial("Create", new Data2.DTOs.TeamDTO());
+            }
+</div>
+
+<div id="dialogAddEmployeeToTeam" class ="dialogContainer" title="ADD EMPLOYEE">
+    @using (Html.BeginForm("AddEmployeeToTeam", "Teams", FormMethod.Post))
+            {
+                Html.RenderPartial("AddEmployeeToTeam", new MVC.Models.EmpToTeamModel());
+            }
+</div>

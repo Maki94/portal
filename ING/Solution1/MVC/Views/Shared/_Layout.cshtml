@@ -1,0 +1,197 @@
+﻿@using System.Web.UI.WebControls
+@using Data2.DTOs
+
+
+
+@helper MenuItem(string action, string controller, string link, string spanClass, string spanContent, string name)
+{
+    var mvcHandler = Context.CurrentHandler as MvcHandler;
+    if (mvcHandler != null)
+    {
+        var url = new UrlHelper(mvcHandler.RequestContext);
+        var routeData = mvcHandler.RequestContext.RouteData;
+        var currentAction = routeData.Values["action"].ToString();
+        var currentController = routeData.Values["controller"].ToString();
+        var isCurrent = string.Equals(currentAction, action, StringComparison.InvariantCultureIgnoreCase) &&
+                        string.Equals(currentController, controller, StringComparison.InvariantCultureIgnoreCase);
+        if (isCurrent && action == "Index" && controller == "Leaves")
+        {
+            if (name == "MY LEAVES")
+            {
+                isCurrent = (bool)@ViewBag.empFilter ;
+            }
+            if (name == "ALL LEAVES")
+            {
+                isCurrent = !(bool)@ViewBag.empFilter;
+            }
+
+        }
+        <li><a class="@(isCurrent ? "active" : "")" href=@link><span class="@spanClass">@spanContent</span>@name</a></li>
+    }
+}
+
+@{
+    Data2.DTOs.LoginDTO user = GetUser.LoginDTO();
+    int userID = user.EmployeeID;
+    bool manager = CheckPermission.CheckUserPermisson((int)Data2.Enums.Permissions.Respond);
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME | Vacation Manager</title>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="~/css/stacktable.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+
+
+</head>
+<body>
+    <div class="fluid">
+        <aside class="nav-container">
+            <div style ="position: fixed;">
+                <div class="logo-container">
+                    <img src="~/Images/logo.png" alt="Vacation Management" />
+                    <div class="burger">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+                <nav class="navigation">
+                    <ul>
+                        @MenuItem("Index", "Login", @Url.Action("Index", "Login", null), "fa fa-home", "", "HOME")
+                        @MenuItem("Details", "Employees", @Url.Action("Details", "Employees", new { id = user.EmployeeID }, null), "material-icons", "person", "PROFILE")
+                        @MenuItem("Index", "Leaves", @Url.Action("Index", "Leaves", new { empFilter = userID }, null), "material-icons walk-icon", "directions_walk", "MY LEAVES")
+
+
+                        @if (manager)
+                        {
+                            @MenuItem("Index", "Leaves", @Url.Action("Index", "Leaves", null), "material-icons walk-icon", "directions_walk", "ALL LEAVES")
+                            @MenuItem("Index", "Teams", @Url.Action("Index", "Teams", null), "material-icons", "people", "TEAMS")
+                            @MenuItem("Index", "Employees", @Url.Action("Index", "Employees", null), "material-icons", "people", "EMPLOYEES")
+                        }
+                        @MenuItem("Index", "Holidays", @Url.Action("Index", "Holidays", null), "material-icons", "people", "HOLIDAYS")
+
+                    </ul>
+                </nav><!--end navigation-->
+            </div>
+            
+        </aside><!--end nav-container-->
+        <div class="user-container">
+            <div class="user-content">
+                <img class="user-img" src="~/Images/user.png" />
+
+                <div class="user-info">
+                    <h4 class="full-name">@Html.ActionLink(user.Name, "Details", "Employees", new { id = user.EmployeeID }, new { @class = "full-name" })</h4>
+
+
+                    <p class="working-status">
+                        <span class="intern">
+                            @((Data2.Enums.Roles)user.Role)
+                        </span>
+                        at
+                        <span class="company-name">
+                            INGSoftware
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            @Html.ActionLink("Log out", "Index", "Login", new { logOut = true }, new { @class = "logout" })
+
+        </div><!--end user-container-->
+        <div class="breadcrumbs">
+            <p class="app-name">Vacation Management / <span class="current-page">Home</span></p>
+            @*<div class="date-calendar">
+                    <p class="current-date" id="current-date"></p>
+
+                    <input type="text" id="date" class="hidden" />
+                    <i class="fa fa-calendar" id="show-date"></i>
+
+                </div>*@
+        </div>
+
+
+        <div class="data-container">
+            @RenderBody()
+        </div><!--end data-container-->
+
+
+
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
+
+    <script type="text/javascript" src="~/js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/js/stacktable.js"></script>
+    <script type="text/javascript" src="~/js/main.js"></script>
+
+</body>
+</html>
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    @Html.ActionLink("My Leaves","Index", "Leaves", new { empFilter = userID }, new { @class = "navbar-brand" })
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @if (manager)
+                        {
+                            <li>@Html.ActionLink("Leaves", "Index", "Leaves")</li>
+                            <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                            <li>@Html.ActionLink("Teams", "Index", "Teams")</li>
+                        }
+                        <li>@Html.ActionLink("Holidays", "Index", "Holidays")</li>
+
+
+
+
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
