@@ -1,0 +1,170 @@
+﻿@model MVC.Models.LeaveHistoryPageModel
+@using Data2.DTOs
+
+@{
+    ViewBag.Title = "History";
+}
+
+@{
+    bool manager = CheckPermission.CheckUserPermisson((int)Data2.Enums.Permissions.Respond);
+    bool mine = CheckPermission.CheckUserID(Model.leave.EmployeeID);
+}
+
+
+<div class="main-content">
+    <div class="table-container" style="height: 400px">
+        <div id="LeaveDTO" style="width: 40%; float: left;">
+            <table class="leaveDaysCalcuationTable">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.Date)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => m.leave.Date)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.Status)
+                    </th>
+                    <td class="status">
+                        @{ string stat = ((Data2.Enums.leaveStatuses)Model.leave.Status).ToString(); }
+                        <span class=@stat.ToLower()>@stat</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.FirstName)
+                    </th>
+                    <td>
+                        @Html.ActionLink(Model.leave.FirstName + " " + Model.leave.LastName, "Details", "Employees", new { id = Model.leave.EmployeeID }, null)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.StartDate)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => m.leave.StartDate)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.EndDate)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => m.leave.EndDate)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.Duration)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => m.leave.Duration)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.Type)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => m.leave.Type)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.leave.Comment)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => m.leave.Comment)
+                    </td>
+                </tr>
+            </table>
+
+
+            @if (manager && Model.LastStatus == (int)Data2.Enums.leaveStatuses.pending && !mine)
+            {
+                using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="button" value="Approve" class="green-btn respond" onclick="location.href = '@Url.Action("Approve", new {leaveID = Model.leave.LeaveID})'" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="button" value="Reject" class="green-btn respond rejectRequest" onclick="location.href = '@Url.Action("Reject", new {leaveID = Model.leave.LeaveID})'" />
+                        </div>
+                    </div>
+                }
+            }
+            @if (mine && (Model.LastStatus == (int)Data2.Enums.leaveStatuses.pending || Model.LastStatus == (int)Data2.Enums.leaveStatuses.approved))
+            {
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="button" value="Cancel" class="green-btn respond cancelRequest" onclick="location.href = '@Url.Action("Cancel", new {leaveID = Model.leave.LeaveID})'" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="leaveHistory" style="width: 60%; float: left;">
+
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.States[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.States[0].StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.States[0].EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.States[0].SubFirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.States[0].Comment)
+                    </th>
+                </tr>
+                @foreach (LeaveStatusDTO l in Model.States)
+                {
+                    <tr>
+                        <td class="status">
+                            @{ string s = ((Data2.Enums.leaveStatuses)l.Status).ToString(); }
+                            <span class=@s.ToLower()>@s</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => l.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => l.EndDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink(l.SubFirstName + " " + l.SubLastName, "Details", "Employees", new { id = l.SubmitterID }, null)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => l.Comment)
+                        </td>
+                    </tr>
+                                }
+
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

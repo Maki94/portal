@@ -1,0 +1,79 @@
+﻿@model MVC.Models.SendRequestModel
+
+@{
+    ViewBag.Title = "EditRequest";
+    Layout = null;
+}
+
+@{
+    List<SelectListItem> types = new List<SelectListItem>();
+    foreach (var a in Enum.GetValues(typeof(Data2.Enums.leaveTypes)))
+    {
+        if ((int)a != Model.Type)
+        {
+            var pom = new SelectListItem { Text = a.ToString(), Value = ((int)a).ToString() };
+            pom.Selected = true;
+            types.Add(pom);
+        }
+        else
+        {
+            types.Add(new SelectListItem { Text = a.ToString(), Value = ((int)a).ToString() });
+        }
+
+    }
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal form-group sendRequestText">
+        @Html.HiddenFor(model => model.leaveID, new {@class = "leaveID"})
+      
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-push-12">
+                @Html.DropDownListFor(m => m.Type, types, new { text = ((Data2.Enums.leaveTypes)Model.Type).ToString(), @class = "sendRequestType typeEdit" })
+                @Html.ValidationMessageFor(model => model.Type)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2 " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, (Model == null || Model.StartDate == null) ? "" : Model.StartDate.ToString(), new { htmlAttributes = new { @class = "form-control datePicker editStartDate startDate", @id = "startDateEdit" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2 " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndDate, (Model == null || Model.EndDate == null) ? "" : Model.EndDate.ToString(), new { htmlAttributes = new { @class = "form-control editEndDate datePicker endDate", @id = "endDateEdit"} })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2 " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment, (Model == null || Model.Comment == null) ? "" : Model.Comment, new { htmlAttributes = new { @class = "form-control editComment" } })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (Model.Error != null)
+        {
+            <p> @Html.Raw("<script>alert('Not enough leave days! Try again.');</script>")</p>
+        }
+
+        <input class="bottom-button diagram-submit" type="submit" value="Edit" />
+        <a href="" class="bottom-button cancel-button">Cancel</a>
+
+      
+    </div>
+}
+
+

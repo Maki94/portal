@@ -1,0 +1,30 @@
+﻿@model Data2.DTOs.TeamDTO
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.TeamID, new { @class = "teamIDInput" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TeamName)
+            @Html.EditorFor(model => model.TeamName, new { htmlAttributes = new { @class = "nameInput" } })
+            @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <input class="bottom-button  diagram-submit diagramCreate" type="submit" name="submit" value="Create" />
+    <input class="bottom-button diagram-submit diagramEdit" type="submit" value="Edit" formaction='@Url.Action("Edit", "Teams")' />
+
+    <a href="" class="bottom-button cancel-button">Cancel</a>
+}
+

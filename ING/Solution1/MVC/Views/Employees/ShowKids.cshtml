@@ -1,0 +1,70 @@
+﻿@model MVC.Models.EmployeesKidsModel
+@using Data2
+@{
+    ViewBag.Title = "ShowKids";
+}
+
+@{
+    Boolean manager = CheckPermission.CheckUserPermisson((int)Enums.Permissions.EditEmp);
+   
+}
+
+<h2>Kids of @Model.FristName @Model.LastName</h2>
+
+@if (manager)
+{
+    <div class="form-group">
+        <div class="col-md-offset-11 col-md-pull-12">
+            <input type="button" value="Add Kid" class="btn btn-default" onclick="location.href='@Url.Action("AddKid", "Employees", new { id = Model.EmployeeID })'" />
+        </div>
+    </div>
+}
+
+
+<div>
+    <hr />
+    <table  class="table">
+        <tr>
+            <td>
+                @Html.DisplayNameFor( m => m.Kids[0].FirstName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(m => m.Kids[0].DateOfBirth)
+            </td>
+
+            <td>
+                @Html.DisplayNameFor(m => m.Kids[0].Gender)
+            </td>
+            <td>
+                @Html.DisplayNameFor(m => m.Kids[0].Parents)
+            </td>
+        </tr>
+        @foreach(var k in Model.Kids)
+        {
+            <tr>
+                <td class="col-md-1">
+                    @Html.DisplayFor(m => k.FirstName)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(m =>k.DateOfBirth)
+                </td>
+
+                <td class="col-md-1">
+                    @((Enums.gender)Convert.ToInt32(k.Gender))
+                </td>
+                <td  class="col-md-1">
+                <p>
+                    @for (int i = 0; i < k.Parents.Count -1; i++)
+                    {
+                        @Html.ActionLink(k.ParentsNames[i], "Details", "Employees", new { id = k.Parents[i] }, null) <i>,</i>
+                    }  @Html.ActionLink(k.ParentsNames[k.Parents.Count-1], "Details", "Employees", new { id = k.Parents[k.Parents.Count-1] }, null)
+                </p>
+                   
+                </td>
+            </tr>
+        }
+
+
+    </table>
+</div>
+
