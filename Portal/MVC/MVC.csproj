@@ -177,7 +177,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MemberProfileModel.cs" />
+    <Compile Include="Models\Members\EditProfileModel.cs" />
+    <Compile Include="Models\Members\MemberIndexModel.cs" />
+    <Compile Include="Models\Members\MemberProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -10,9 +10,9 @@ namespace Data.DataClasses
 {
     public class MemberProject
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        public int MemberProjectID { get; set; }
         public int MemberID { get; set; }
-        [Key, Column(Order = 1)]
         public int ProjectID { get; set; }
 
         public virtual Member Member { get; set; }

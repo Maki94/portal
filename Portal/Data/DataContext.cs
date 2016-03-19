@@ -12,5 +12,6 @@ namespace Data
     {
         public DbSet<Member> Members { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<MemberProject> MemberProjects { get; set; }
     }
 }

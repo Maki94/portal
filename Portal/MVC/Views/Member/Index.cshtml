@@ -4,42 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>
+    @Html.DisplayFor(model => model.Name)
+    @Html.DisplayFor(model => model.Surname)
+</h2>
 
 <div>
-    <h4>MemberProfileModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MemberID)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Username)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
         </dd>
 
         <dt>
@@ -65,10 +43,30 @@
         <dd>
             @Html.DisplayFor(model => model.JoinDate)
         </dd>
+    </dl>
 
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+    <h4>Projekti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var t in Model.Projects)
+        {
+            <dt>
+                @Html.DisplayNameFor(s => t.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(s => t.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(s => t.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(s => t.Description)
+            </dd>
+        }
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
