@@ -61,3 +61,4 @@ D:\SVN LEAVE DAYS\Solution1\MVC.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xm
 D:\SVN LEAVE DAYS\Solution1\MVC.Tests\obj\Debug\MVC.Tests.csprojResolveAssemblyReference.cache
 D:\SVN LEAVE DAYS\Solution1\MVC.Tests\obj\Debug\MVC.Tests.dll
 D:\SVN LEAVE DAYS\Solution1\MVC.Tests\obj\Debug\MVC.Tests.pdb
+D:\Faks\6. semestar\SWE Projekat\ING\Solution1\MVC.Tests\obj\Debug\MVC.Tests.csprojResolveAssemblyReference.cache
