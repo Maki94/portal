@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace Data.DataClasses
 {
-    public class MemberProject
+    public class MemberTeam
     {
         [Key]
-        public int MemberProjectID { get; set; }
+        public int MemberTeamID { get; set; }
         public int MemberID { get; set; }
-        public int ProjectID { get; set; }
+        public int TeamID { get; set; }
 
         public virtual Member Member { get; set; }
-        public virtual Project Project { get; set; }
-
-        public string Role { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

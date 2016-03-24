@@ -16,5 +16,11 @@ namespace MVC.Controllers
             MemberProfileModel model = MemberProfileModel.Load(1);
             return View(model);
         }
+
+        public ActionResult Profile()
+        {
+            MemberProfileModel model = MemberProfileModel.Load(1);
+            return View(model);
+        }
     }
 }

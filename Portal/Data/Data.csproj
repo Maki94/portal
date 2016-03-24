@@ -56,17 +56,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseInitializer.cs" />
+    <Compile Include="DataClasses\Company.cs" />
+    <Compile Include="DataClasses\Email.cs" />
     <Compile Include="DataClasses\Member.cs" />
     <Compile Include="DataClasses\MemberProject.cs" />
+    <Compile Include="DataClasses\MemberTeam.cs" />
     <Compile Include="DataClasses\Project.cs" />
+    <Compile Include="DataClasses\Team.cs" />
+    <Compile Include="DataClasses\Telephone.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
     <Compile Include="Entities\Members.cs" />
     <Compile Include="Entities\Projects.cs" />
+    <Compile Include="Enumerations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

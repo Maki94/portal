@@ -10,7 +10,7 @@ namespace Data.Entities
     public class Members
     {
         public static Member AddMember(string username, string name, string surname, 
-                                       string nickname, string status, DateTime joindate)
+                                       string nickname, Enumerations.MemberStatus status, DateTime joindate)
         {
             DataContext dc = new DataContext();
 
@@ -34,6 +34,14 @@ namespace Data.Entities
         {
             dc = dc ?? new DataContext();
             return (from m in dc.Members where m.MemberID == memberID select m).First();
+        }
+
+        public static List<string> GetMemberEmails(int memberID, DataContext dc = null)
+        {
+            dc = dc ?? new DataContext();
+            return (from e in dc.Emails
+                    where e.OwnerType == Enumerations.OwnerType.member &&
+                          e.MemberID == memberID select e.Address).ToList();
         }
     }
 }

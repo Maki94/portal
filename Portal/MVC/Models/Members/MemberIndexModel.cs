@@ -13,8 +13,10 @@ namespace MVC.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nickname { get; set; }
-        public string Status { get; set; }
+        public Data.Enumerations.MemberStatus Status { get; set; }
         public DateTime JoinDate { get; set; }
+
+        public List<string> Emails { get; set; }
 
         public static MemberIndexModel Load(int memberID)
         {
@@ -29,6 +31,8 @@ namespace MVC.Models
                 Status = m.Status,
                 JoinDate = m.JoinDate,
             };
+
+            model.Emails = Data.Entities.Members.GetMemberEmails(memberID);
 
             return model;
         }

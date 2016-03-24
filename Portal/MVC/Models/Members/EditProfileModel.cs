@@ -13,7 +13,14 @@ namespace MVC.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nickname { get; set; }
-        public string Status { get; set; }
+        public string Faculty { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public Data.Enumerations.MemberStatus Status { get; set; }
+
+        public string Facebook { get; set; }
+        public string LinkedIn { get; set; }
+
+        public List<string> Emails { get; set; }
 
         public static EditProfileModel Load(int memberID)
         {
@@ -26,7 +33,13 @@ namespace MVC.Models
                 Surname = m.Surname,
                 Nickname = m.Nickname,
                 Status = m.Status,
+                Faculty = m.Faculty,
+                DateOfBirth = m.DateOfBirth,
+                Facebook = m.Facebook,
+                LinkedIn = m.LinkedIn,
             };
+
+            model.Emails = Data.Entities.Members.GetMemberEmails(memberID);
 
             return model;
         }

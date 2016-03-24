@@ -25,9 +25,15 @@ namespace MVC.Models
                 Nickname = m.Nickname,
                 Status = m.Status,
                 JoinDate = m.JoinDate,
+                Faculty = m.Faculty,
+                DateOfBirth = m.DateOfBirth,
+                Facebook = m.Facebook,
+                LinkedIn = m.LinkedIn,
             };
 
-            model.Projects = Data.Entities.Projects.GetProjectsOfMember(1);
+            model.Emails = Data.Entities.Members.GetMemberEmails(memberID);
+
+            model.Projects = Data.Entities.Projects.GetProjectsOfMember(memberID);
 
             return model;
         }

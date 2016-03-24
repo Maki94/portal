@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Data.DataClasses
 {
-    public class Project
+    public class Company
     {
-        public int ProjectID { get; set; }
-        public string Title { get; set; }
+        public int CompanyID { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
-
-        public virtual ICollection<MemberProject> ProjectMembers { get; set; }
     }
 }
