@@ -92,14 +92,20 @@
 8. 	Komentarisanje sa stanjem pregovora sa kompanijama
 
 # **Usecase** #
-![alt tag](path)
-  
-usecase_main.jpg
-usecase_pregled_informacija.jpg
-usecase_pretraga_informacija.jpg
-usecase_kompanija.jpg
-usecase_clanovi.jpg
-usecase_upravljanje_clanovi.jpg
-usecase_projekti.jpg
-usecase_bedzevi.jpg
-usecase_dogadjaji.jpg
+![usecase_main.jpg](https://bitbucket.org/repo/A7kEKB/images/1685514132-usecase_main.jpg)
+
+![usecase_pregled_informacija.jpg](https://bitbucket.org/repo/A7kEKB/images/1550305437-usecase_pregled_informacija.jpg)
+
+![usecase_pretraga_informacija.jpg](https://bitbucket.org/repo/A7kEKB/images/3508957776-usecase_pretraga_informacija.jpg)
+
+![usecase_kompanija.jpg](https://bitbucket.org/repo/A7kEKB/images/876868700-usecase_kompanija.jpg)
+
+![usecase_clanovi.jpg](https://bitbucket.org/repo/A7kEKB/images/2637172853-usecase_clanovi.jpg)
+
+![usecase_upravljanje_clanovi.jpg](https://bitbucket.org/repo/A7kEKB/images/1687115700-usecase_upravljanje_clanovi.jpg)
+
+![usecase_projekti.jpg](https://bitbucket.org/repo/A7kEKB/images/3197016525-usecase_projekti.jpg)
+
+![usecase_bedzevi.jpg](https://bitbucket.org/repo/A7kEKB/images/3990323457-usecase_bedzevi.jpg)
+
+![usecase_dogadjaji.jpg](https://bitbucket.org/repo/A7kEKB/images/183297058-usecase_dogadjaji.jpg)
