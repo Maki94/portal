@@ -81,7 +81,7 @@
 6.  Kreiranje bedževa i nagrađivanje članova   
 7.  Dodavanje i ažuriranje podataka o kompanijama   
 
-# __Prioriti__ u izradi projekta #
+# __Prioriteti__ u izradi projekta #
 1. 	Prijavljivanje na sistem
 2. 	Dodavanje članova, ažuriranje i prikaz podataka o članovima
 3. 	Objavljivanje i ažuriranje dogadjaja i projekata
