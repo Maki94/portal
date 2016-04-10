@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="pomagao" directorySegmentName="seg_0" id="8C8C3E00-0968-8F1A-7E3B-C28A2386E1CD">
+<createdBy>Marko</createdBy>
+<createdTime>2016-04-10 21:40:11 UTC</createdTime>
+<ownerDesignName>databaseTest</ownerDesignName>
+<engineerTo>
+<item key="53255A1E-76BE-0587-A925-9171AED6E574" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>192554BC-DC92-058B-E172-D94433E040D1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>87DA8216-BCAD-10C3-C338-8751767B8AC6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
