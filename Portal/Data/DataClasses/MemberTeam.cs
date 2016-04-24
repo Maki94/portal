@@ -10,9 +10,9 @@ namespace Data.DataClasses
     public class MemberTeam
     {
         [Key]
-        public int MemberTeamID { get; set; }
-        public int MemberID { get; set; }
-        public int TeamID { get; set; }
+        public int MemberTeamId { get; set; }
+        public int MemberId { get; set; }
+        public int TeamId { get; set; }
 
         public virtual Member Member { get; set; }
         public virtual Team Team { get; set; }

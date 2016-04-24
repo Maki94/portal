@@ -6,21 +6,17 @@ using System.Threading.Tasks;
 
 namespace Data.DataClasses
 {
-    public class Project
+    public class Event
     {
-        public int ProjectId { get; set; }
+        public int EventId { get; set; }
         public string Name { get; set; }
-        public string Website { get; set; }
-        public Enumerations.ProjectState State { get; set; }
-        public byte[] Report { get; set; }
-        public byte[] Logo { get; set; }
+        public Enumerations.EventState State { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
-        public string Description { get; set; }
         public string Place { get; set; }
+        public string Description { get; set; }
 
         public virtual Team Team { get; set; }
         public virtual ICollection<Picture> Gallery { get; set; }
-        public virtual ICollection<MemberProject> ProjectMembers { get; set; }
     }
 }

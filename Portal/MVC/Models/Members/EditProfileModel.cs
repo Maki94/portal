@@ -8,7 +8,7 @@ namespace MVC.Models
 {
     public class EditProfileModel
     {
-        public int MemberID { get; set; }
+        public int MemberId { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -27,19 +27,17 @@ namespace MVC.Models
             Member m = Data.Entities.Members.GetMember(memberID);
             MemberProfileModel model = new MemberProfileModel
             {
-                MemberID = m.MemberID,
+                MemberId = m.MemberId,
                 Username = m.Username,
                 Name = m.Name,
                 Surname = m.Surname,
                 Nickname = m.Nickname,
-                Status = m.Status,
+                //Status = m.Status,
                 Faculty = m.Faculty,
                 DateOfBirth = m.DateOfBirth,
                 Facebook = m.Facebook,
                 LinkedIn = m.LinkedIn,
             };
-
-            model.Emails = Data.Entities.Members.GetMemberEmails(memberID);
 
             return model;
         }

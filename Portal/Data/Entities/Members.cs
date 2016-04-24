@@ -20,7 +20,7 @@ namespace Data.Entities
                 Name = name,
                 Surname = surname,
                 Nickname = nickname,
-                Status = status,
+                //Status = status,
                 JoinDate = joindate,
             };
 
@@ -33,15 +33,7 @@ namespace Data.Entities
         public static Member GetMember(int memberID, DataContext dc = null)
         {
             dc = dc ?? new DataContext();
-            return (from m in dc.Members where m.MemberID == memberID select m).First();
-        }
-
-        public static List<string> GetMemberEmails(int memberID, DataContext dc = null)
-        {
-            dc = dc ?? new DataContext();
-            return (from e in dc.Emails
-                    where e.OwnerType == Enumerations.OwnerType.member &&
-                          e.MemberID == memberID select e.Address).ToList();
+            return (from m in dc.Members where m.MemberId == memberID select m).First();
         }
     }
 }

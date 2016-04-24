@@ -18,20 +18,18 @@ namespace MVC.Models
             Member m = Data.Entities.Members.GetMember(memberID);
             MemberProfileModel model = new MemberProfileModel
             {
-                MemberID = m.MemberID,
+                MemberId = m.MemberId,
                 Username = m.Username,
                 Name = m.Name,
                 Surname = m.Surname,
                 Nickname = m.Nickname,
-                Status = m.Status,
+                //Status = m.Status,
                 JoinDate = m.JoinDate,
                 Faculty = m.Faculty,
                 DateOfBirth = m.DateOfBirth,
                 Facebook = m.Facebook,
                 LinkedIn = m.LinkedIn,
             };
-
-            model.Emails = Data.Entities.Members.GetMemberEmails(memberID);
 
             model.Projects = Data.Entities.Projects.GetProjectsOfMember(memberID);
 

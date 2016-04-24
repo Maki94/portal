@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Data.DataClasses
 {
-    public class Team
+    public class ContactPerson
     {
-        public int TeamId { get; set; }
+        public int ContactPersonId { get; set; }
         public string Name { get; set; }
+        public string Note { get; set; }
         public string Email { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime DismantleDate { get; set; }
+        public string Phone { get; set; }
 
-        public virtual ICollection<MemberTeam> TeamMembers { get; set; }
+        public virtual Company Company { get; set; }
     }
 }

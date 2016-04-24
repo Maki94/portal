@@ -21,5 +21,23 @@ namespace Data
             kralj,
             car,
         }
+
+        public enum PollState
+        {
+            aktivan,
+            zatvoren,
+        }
+
+        public enum EventState
+        {
+            aktivan,
+            zatvoren,
+        }
+
+        public enum ProjectState
+        {
+            aktivan,
+            zatvoren,
+        }
     }
 }

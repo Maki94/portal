@@ -10,13 +10,13 @@ namespace Data.Entities
 {
     public class Projects
     {
-        public static Project AddProject(string title, string description)
+        public static Project AddProject(string name, string description)
         {
             DataContext dc = new DataContext();
 
             Project p = new Project
             {
-                Title = title,
+                Name = name,
                 Description = description,
             };
 
@@ -29,7 +29,7 @@ namespace Data.Entities
         public static Project GetProject(int projectID, DataContext dc = null)
         {
             dc = dc ?? new DataContext();
-            return (from p in dc.Projects where p.ProjectID == projectID select p).First();
+            return (from p in dc.Projects where p.ProjectId == projectID select p).First();
         }
 
         public static List<ProjectDTO> GetProjectsOfMember(int memberID, DataContext dc = null)
@@ -37,11 +37,11 @@ namespace Data.Entities
             dc = dc ?? new DataContext();
 
             return (from p in dc.MemberProjects
-                    where p.MemberID == memberID
+                    where p.MemberId == memberID
                     select new ProjectDTO
                     {
-                        ProjectID = p.ProjectID,
-                        Title = p.Project.Title,
+                        ProjectId = p.ProjectId,
+                        Name = p.Project.Name,
                         Description = p.Project.Description,
                     }).ToList();
         }

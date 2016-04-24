@@ -10,9 +10,9 @@ namespace Data.DataClasses
     public class MemberProject
     {
         [Key]
-        public int MemberProjectID { get; set; }
-        public int MemberID { get; set; }
-        public int ProjectID { get; set; }
+        public int MemberProjectId { get; set; }
+        public int MemberId { get; set; }
+        public int ProjectId { get; set; }
 
         public virtual Member Member { get; set; }
         public virtual Project Project { get; set; }

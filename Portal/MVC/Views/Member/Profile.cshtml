@@ -59,17 +59,7 @@
 
     <h4>Kontakt</h4>
     <hr />
-    <dl class="dl-horizontal">
-        @foreach (var e in Model.Emails)
-        {
-            <dt>
-                Email:
-            </dt>
-            <dd>
-                @e
-            </dd>
-        }
-    </dl>
+    
 
     <h4>Projekti</h4>
     <hr />
@@ -77,10 +67,10 @@
         @foreach (var t in Model.Projects)
         {
             <dt>
-                @Html.DisplayNameFor(s => t.Title)
+                @Html.DisplayNameFor(s => t.Name)
             </dt>
             <dd>
-                @Html.DisplayFor(s => t.Title)
+                @Html.DisplayFor(s => t.Name)
             </dd>
             <dt>
                 @Html.DisplayNameFor(s => t.Description)

@@ -56,14 +56,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseInitializer.cs" />
+    <Compile Include="DataClasses\Badge.cs" />
+    <Compile Include="DataClasses\Comment.cs" />
     <Compile Include="DataClasses\Company.cs" />
-    <Compile Include="DataClasses\Email.cs" />
+    <Compile Include="DataClasses\ContactPerson.cs" />
+    <Compile Include="DataClasses\Event.cs" />
+    <Compile Include="DataClasses\ExecutiveBoard.cs" />
     <Compile Include="DataClasses\Member.cs" />
     <Compile Include="DataClasses\MemberProject.cs" />
     <Compile Include="DataClasses\MemberTeam.cs" />
+    <Compile Include="DataClasses\Picture.cs" />
+    <Compile Include="DataClasses\Poll.cs" />
+    <Compile Include="DataClasses\PollOption.cs" />
     <Compile Include="DataClasses\Project.cs" />
     <Compile Include="DataClasses\Team.cs" />
-    <Compile Include="DataClasses\Telephone.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
     <Compile Include="Entities\Members.cs" />
