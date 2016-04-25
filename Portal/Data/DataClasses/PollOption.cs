@@ -9,10 +9,8 @@ namespace Data.DataClasses
 {
     public class PollOption
     {
-        [Key]
         public int PollOptionId { get; set; }
         public string Answer { get; set; }
-        public List<int> Voters { get; set; }
         
         public virtual Poll Poll { get; set; }
     }

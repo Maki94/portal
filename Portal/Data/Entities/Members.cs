@@ -16,7 +16,7 @@ namespace Data.Entities
 
             Member m = new Member
             {
-                Username = username,
+                Gmail = username,
                 Name = name,
                 Surname = surname,
                 Nickname = nickname,

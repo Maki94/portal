@@ -11,5 +11,9 @@ namespace Data.DataClasses
         public string CommentId { get; set; }
         public string Type { get; set; }
         public string Text { get; set; }
+
+        public virtual Member Author { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

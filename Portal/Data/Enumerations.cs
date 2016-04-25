@@ -14,6 +14,12 @@ namespace Data
             company,
         }
 
+        public enum FeedbackType
+        {
+            dobro,
+            lose,
+        }
+
         public enum MemberStatus
         {
             pocetnik,
@@ -38,6 +44,18 @@ namespace Data
         {
             aktivan,
             zatvoren,
+        }
+
+        public enum CompanyType
+        {
+            money,
+            stuff,
+        }
+
+        public enum TeamRole
+        {
+            role1,
+            role2,
         }
     }
 }

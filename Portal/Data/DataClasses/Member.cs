@@ -16,15 +16,16 @@ namespace Data.DataClasses
         public string Faculty { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime JoinDate { get; set; }
-        public string Username { get; set; }
         public string Password { get; set; }
+        public string Gmail { get; set; }
+        public DateTime FeePayedUntil { get; set; }
 
         public string Phone { get; set; }
         public string Facebook { get; set; }
         public string LinkedIn { get; set; }
         public string Skype { get; set; }
-        public string Gmail { get; set; }
 
+        public virtual Role Role { get; set; }
         public virtual ICollection<MemberProject> MemberProjects { get; set; }
         public virtual ICollection<MemberTeam> MemberTeams { get; set; }
     }

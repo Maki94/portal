@@ -19,7 +19,7 @@ namespace MVC.Models
             MemberProfileModel model = new MemberProfileModel
             {
                 MemberId = m.MemberId,
-                Username = m.Username,
+                Gmail = m.Gmail,
                 Name = m.Name,
                 Surname = m.Surname,
                 Nickname = m.Nickname,

@@ -9,7 +9,7 @@ namespace MVC.Models
     public class MemberIndexModel
     {
         public int MemberId { get; set; }
-        public string Username { get; set; }
+        public string Gmail { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nickname { get; set; }
@@ -24,7 +24,7 @@ namespace MVC.Models
             MemberIndexModel model = new MemberIndexModel
             {
                 MemberId = m.MemberId,
-                Username = m.Username,
+                Gmail = m.Gmail,
                 Name = m.Name,
                 Surname = m.Surname,
                 Nickname = m.Nickname,

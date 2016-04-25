@@ -14,5 +14,7 @@ namespace Data.DataClasses
         public Enumerations.PollState State { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        public virtual Member PollCreator { get; set; }
     }
 }

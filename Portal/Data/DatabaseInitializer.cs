@@ -16,10 +16,10 @@ namespace Data
         {
             var members = new List<Member>
             {
-                new Member { Username = "zantsu", Name = "Milos", Surname = "Jajac", Nickname = "jajac", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 5, 26), JoinDate = DateTime.Now, /*Status = Enumerations.MemberStatus.pocetnik, */Facebook = "#", LinkedIn = "#" },
-                new Member { Username = "tesla", Name = "Nikola", Surname = "Mitic", Nickname = "tesla", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.bitan */},
-                new Member { Username = "mare", Name = "Marko", Surname = "Mihajlovic", Nickname = "mare", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.car */},
-                new Member { Username = "strale", Name = "Strahinja", Surname = "Mijajlovic", Nickname = "strale", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.kralj */},
+                new Member { Gmail = "zantsu", Name = "Milos", Surname = "Jajac", Nickname = "jajac", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 5, 26), JoinDate = DateTime.Now, /*Status = Enumerations.MemberStatus.pocetnik, */Facebook = "#", LinkedIn = "#" },
+                new Member { Gmail = "tesla", Name = "Nikola", Surname = "Mitic", Nickname = "tesla", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.bitan */},
+                new Member { Gmail = "mare", Name = "Marko", Surname = "Mihajlovic", Nickname = "mare", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.car */},
+                new Member { Gmail = "strale", Name = "Strahinja", Surname = "Mijajlovic", Nickname = "strale", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.kralj */},
             };
 
             var projects = new List<Project>

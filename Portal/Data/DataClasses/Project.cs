@@ -19,6 +19,10 @@ namespace Data.DataClasses
         public string Description { get; set; }
         public string Place { get; set; }
 
+        public byte[] FlyerImage { get; set; }
+        public byte[] Newsletter { get; set; }
+        public byte[] Offer { get; set; }
+
         public virtual Team Team { get; set; }
         public virtual ICollection<Picture> Gallery { get; set; }
         public virtual ICollection<MemberProject> ProjectMembers { get; set; }

@@ -13,6 +13,7 @@ namespace Data.DataClasses
         public int MemberTeamId { get; set; }
         public int MemberId { get; set; }
         public int TeamId { get; set; }
+        public Enumerations.TeamRole TeamRole { get; set; }
 
         public virtual Member Member { get; set; }
         public virtual Team Team { get; set; }
