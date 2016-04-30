@@ -13,6 +13,7 @@ namespace MVC.Controllers
             return View();
         }
 
+        [AuthorizeMember(Permission = "ViewAboutPage")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

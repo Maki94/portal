@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.DataClasses;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Data
 {
@@ -46,10 +47,47 @@ namespace Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Properties<DateTime>()
             .Configure(c => c.HasColumnType("datetime2"));
+
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            //// uklanjanje on delete cascade za member1 i member2
+            //// u Conversation kako bi se uklonio multiple cascade paths error
+            //modelBuilder.Entity<Conversation>()
+            //    .HasRequired<Member>(m => m.Member1)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<Conversation>()
+            //    .HasRequired<Member>(m => m.Member2)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+
+            //// uklanjanje on delete cascade za meetingCreator i HR
+            //// u Meeting kako bi se uklonio multiple cascade paths error
+            //modelBuilder.Entity<Meeting>()
+            //    .HasRequired<Member>(m => m.MeetingCreator)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<Meeting>()
+            //    .HasRequired<Member>(m => m.HR)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+
+            //// uklanjanje on delete cascade za member i comment
+            //// u MemberComment kako bi se uklonio multiple cascade paths error
+            //modelBuilder.Entity<MemberComment>()
+            //    .HasRequired<Member>(m => m.Member)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<MemberComment>()
+            //    .HasRequired<Comment>(c => c.Comment)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,10 @@ namespace Data.DataClasses
         public string LinkedIn { get; set; }
         public string Skype { get; set; }
 
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
         public virtual Role Role { get; set; }
+
         public virtual ICollection<MemberProject> MemberProjects { get; set; }
         public virtual ICollection<MemberTeam> MemberTeams { get; set; }
     }

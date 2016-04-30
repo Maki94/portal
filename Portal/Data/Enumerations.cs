@@ -57,5 +57,12 @@ namespace Data
             role1,
             role2,
         }
+
+        public enum LoginStatus
+        {
+            Successful,
+            Failed,
+            IncorrectPassword
+        }
     }
 }

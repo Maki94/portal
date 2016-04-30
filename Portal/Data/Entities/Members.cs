@@ -12,28 +12,60 @@ namespace Data.Entities
         public static Member AddMember(string username, string name, string surname, 
                                        string nickname, Enumerations.MemberStatus status, DateTime joindate)
         {
-            DataContext dc = new DataContext();
-
-            Member m = new Member
+            using (var dc = new DataContext())
             {
-                Gmail = username,
-                Name = name,
-                Surname = surname,
-                Nickname = nickname,
-                //Status = status,
-                JoinDate = joindate,
-            };
+                Member m = new Member
+                {
+                    Gmail = username,
+                    Name = name,
+                    Surname = surname,
+                    Nickname = nickname,
+                    //Status = status,
+                    JoinDate = joindate,
+                };
 
-            dc.Members.Add(m);
-            dc.SaveChanges();
+                dc.Members.Add(m);
+                dc.SaveChanges();
 
-            return m;
+                return m;
+            }
         }
 
-        public static Member GetMember(int memberID, DataContext dc = null)
+        public static Member GetMember(int memberID)
         {
-            dc = dc ?? new DataContext();
-            return (from m in dc.Members where m.MemberId == memberID select m).First();
+            using (var dc = new DataContext())
+            {
+                return (from m in dc.Members where m.MemberId == memberID select m).First();
+            }
+        }
+
+        public static Member MemberExists(string gmail, string pass)
+        {
+            using (var dc = new DataContext())
+            {
+                var find = (from m in dc.Members where m.Gmail == gmail && m.Password == pass select m);
+                if (find.Any())
+                    return find.First();
+                else
+                    return null;
+            }
+                
+        }
+
+        public static bool GmailExists(string gmail)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from m in dc.Members where m.Gmail == gmail select m).Any();
+            }
+        }
+
+        public static List<string> GetPermissions(int roleID)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from rp in dc.RolePermissions where rp.RoleId == roleID select rp.Permission.Name).ToList<string>();
+            }
         }
     }
 }

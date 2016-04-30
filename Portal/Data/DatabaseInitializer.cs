@@ -14,30 +14,30 @@ namespace Data
     {
         protected override void Seed(DataContext context)
         {
+            var roles = new List<Role>
+            {
+                new Role { Name = "Clan" },
+                new Role { Name = "Blagajnik" },
+                new Role { Name = "Sekretar" },
+                new Role { Name = "HR" },
+                new Role { Name = "FR" },
+                new Role { Name = "Administrator" }
+            };
+
+            var permissions = new List<Permission>
+            {
+                new Permission { Name = "ViewAboutPage" },
+            };
+
+            var rolespermissions = new List<RolePermission>
+            {
+                new RolePermission { RoleId = 6, PermissionId = 1 },
+            };
+
             var members = new List<Member>
             {
-                new Member { Gmail = "zantsu", Name = "Milos", Surname = "Jajac", Nickname = "jajac", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 5, 26), JoinDate = DateTime.Now, /*Status = Enumerations.MemberStatus.pocetnik, */Facebook = "#", LinkedIn = "#" },
-                new Member { Gmail = "tesla", Name = "Nikola", Surname = "Mitic", Nickname = "tesla", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.bitan */},
-                new Member { Gmail = "mare", Name = "Marko", Surname = "Mihajlovic", Nickname = "mare", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.car */},
-                new Member { Gmail = "strale", Name = "Strahinja", Surname = "Mijajlovic", Nickname = "strale", DateOfBirth = (DateTime) SqlDateTime.MinValue, JoinDate = DateTime.Now,/* Status = Enumerations.MemberStatus.kralj */},
-            };
-
-            var projects = new List<Project>
-            {
-                new Project { Name = "JobFair", Description = "Opis za JobFair" },
-                new Project { Name = "Elektrijada", Description = "Opis za Elektrijadu" },
-                new Project { Name = "Takmicenje", Description = "Opis za takmicenje" },
-            };
-
-            var memberprojects = new List<MemberProject>
-            {
-                new MemberProject { MemberId = 1, ProjectId = 1, Member = members[0], Project = projects[0], Role = "posetilac" },
-                new MemberProject { MemberId = 1, ProjectId = 2, Member = members[0], Project = projects[1], Role = "ucesnik" },
-                new MemberProject { MemberId = 2, ProjectId = 1, Member = members[1], Project = projects[0], Role = "organizator" },
-                new MemberProject { MemberId = 2, ProjectId = 2, Member = members[1], Project = projects[1], Role = "organizator" },
-                new MemberProject { MemberId = 2, ProjectId = 3, Member = members[1], Project = projects[2], Role = "organizator" },
-                new MemberProject { MemberId = 3, ProjectId = 1, Member = members[2], Project = projects[0], Role = "organizator" },
-                new MemberProject { MemberId = 4, ProjectId = 3, Member = members[3], Project = projects[2], Role = "ucesnik" },
+                new Member { Name = "Milos", Surname = "Jajac", Nickname = "jajac", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 5, 26), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "zantsusan@gmail.com", Phone = "0641234123", Role = roles[5] },
+                new Member { Name = "Mika", Surname = "Mikic", Nickname = "mika", Faculty = "Elfak", DateOfBirth = new DateTime(1999, 7, 13), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "mikamikic@gmail.com", Phone = "0691231231", Role = roles[0] },
             };
 
             var teams = new List<Team>
@@ -53,8 +53,30 @@ namespace Data
                 new MemberTeam { MemberId = 2, Member = members[1], TeamId = 2, Team = teams[1] },
             };
 
+            var projects = new List<Project>
+            {
+                new Project { Name = "JobFair", Description = "Opis za JobFair", TeamId = 1, Team = teams[0] },
+                new Project { Name = "Elektrijada", Description = "Opis za Elektrijadu", TeamId = 1, Team = teams[0] },
+                new Project { Name = "Takmicenje", Description = "Opis za takmicenje", TeamId = 2, Team = teams[1] },
+            };
+
+            var memberprojects = new List<MemberProject>
+            {
+                new MemberProject { MemberId = 1, ProjectId = 1, Member = members[0], Project = projects[0], Function = "posetilac" },
+                new MemberProject { MemberId = 1, ProjectId = 2, Member = members[0], Project = projects[1], Function = "ucesnik" },
+                new MemberProject { MemberId = 2, ProjectId = 1, Member = members[1], Project = projects[0], Function = "organizator" },
+                new MemberProject { MemberId = 2, ProjectId = 2, Member = members[1], Project = projects[1], Function = "organizator" },
+            };
+
+            roles.ForEach(x => context.Roles.Add(x));
+            permissions.ForEach(x => context.Permissions.Add(x));
+            rolespermissions.ForEach(x => context.RolePermissions.Add(x));
+
+            // snimam jednom ovako pre da bi se roles & permissions snimili gore navedenim redosledom
+            // bez ovoga se redosled promeni, zato sto se administrator i clan koriste u pravljenju membera
+            context.SaveChanges();
+
             memberprojects.ForEach(x => context.MemberProjects.Add(x));
-            //memberteams.ForEach(x => context.MemberTeams.Add(x));
 
             context.SaveChanges();
         }

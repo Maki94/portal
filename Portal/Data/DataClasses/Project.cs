@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,10 @@ namespace Data.DataClasses
         public byte[] Newsletter { get; set; }
         public byte[] Offer { get; set; }
 
+        [ForeignKey("Team")]
+        public int TeamId { get; set; }
         public virtual Team Team { get; set; }
+
         public virtual ICollection<Picture> Gallery { get; set; }
         public virtual ICollection<MemberProject> ProjectMembers { get; set; }
     }

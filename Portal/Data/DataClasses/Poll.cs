@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace Data.DataClasses
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        [ForeignKey("PollCreator")]
+        public int PollCreatorId { get; set; }
         public virtual Member PollCreator { get; set; }
     }
 }
