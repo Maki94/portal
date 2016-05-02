@@ -68,15 +68,19 @@ namespace Data
                 new MemberProject { MemberId = 2, ProjectId = 2, Member = members[1], Project = projects[1], Function = "organizator" },
             };
 
-            roles.ForEach(x => context.Roles.Add(x));
-            permissions.ForEach(x => context.Permissions.Add(x));
-            rolespermissions.ForEach(x => context.RolePermissions.Add(x));
+            //roles.ForEach(x => context.Roles.Add(x));
+            context.Roles.AddRange(roles);
+            context.Permissions.AddRange(permissions);
+            context.RolePermissions.AddRange(rolespermissions);
+            //permissions.ForEach(x => context.Permissions.Add(x));
+            //rolespermissions.ForEach(x => context.RolePermissions.Add(x));
 
             // snimam jednom ovako pre da bi se roles & permissions snimili gore navedenim redosledom
             // bez ovoga se redosled promeni, zato sto se administrator i clan koriste u pravljenju membera
             context.SaveChanges();
 
-            memberprojects.ForEach(x => context.MemberProjects.Add(x));
+            context.MemberProjects.AddRange(memberprojects);
+            //memberprojects.ForEach(x => context.MemberProjects.Add(x));
 
             context.SaveChanges();
         }
