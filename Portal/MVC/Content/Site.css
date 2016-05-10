@@ -86,3 +86,6 @@ aside a:hover {
   margin-right: 3px;
   margin-left: 3px;
 }
+#member-year {
+  width: 200px !important;
+}

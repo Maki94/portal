@@ -1,5 +1,4 @@
-﻿@using WebGrease.Css.Extensions
-@model List<Data.DataClasses.Project>
+﻿@model List<Data.DataClasses.Project>
 
 @{
     ViewBag.Title = "Projects";
@@ -8,6 +7,22 @@
     <main class="mdl-layout__content">
         <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
             <main class="mdl-layout__content">
+
+                <form action="#" method="post">
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked>
+                        <span class="mdl-checkbox__label">JF</span>
+                    </label>
+
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+                        <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" checked>
+                        <span class="mdl-checkbox__label">TEDX</span>
+                    </label>
+                    <div id="member-year">
+                        <input class="mdl-slider mdl-js-slider" type="range"
+                               min="2007" max="2016" value="2007" step="1" tabindex="0">
+                    </div>
+                </form>
 
                 <div class="mdl-grid">
                     @foreach (var m in Model)
