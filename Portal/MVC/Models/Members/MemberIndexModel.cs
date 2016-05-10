@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Data.DataClasses;
 
-namespace MVC.Models
+namespace MVC.Models.Members
 {
     public class MemberIndexModel
     {

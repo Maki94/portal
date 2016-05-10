@@ -64,8 +64,22 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return (from rp in dc.RolePermissions where rp.RoleId == roleID select rp.Permission.Name).ToList<string>();
+                var q = dc.Roles.Where(role => role.RoleId == roleID).Select(role => role.Permissions).ToList();
+
+                List<string> s = null;
+
+                q.ForEach(permissions => s.AddRange(permissions.Select(permission => permission.Name)));
+
+                return s;
             }
+        }
+
+        public static List<Member> GetAllMember(DataContext dc = null)
+        {
+
+            dc = dc ?? new DataContext();
+
+            return (from p in dc.Members select p).ToList();
         }
     }
 }

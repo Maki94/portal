@@ -45,5 +45,12 @@ namespace Data.Entities
                         Description = p.Project.Description,
                     }).ToList();
         }
+
+        public static List<Project> GetAllProjects(DataContext dc = null)
+        {
+            dc = dc ?? new DataContext();
+
+            return (from p in dc.Projects select p).ToList();
+        }
     }
 }

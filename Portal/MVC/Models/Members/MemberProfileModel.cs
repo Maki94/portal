@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Data;
 using Data.DataClasses;
 using Data.DTOs;
 
-namespace MVC.Models
+namespace MVC.Models.Members
 {
     public class MemberProfileModel : EditProfileModel
     {

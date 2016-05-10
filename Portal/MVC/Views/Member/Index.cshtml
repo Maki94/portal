@@ -1,4 +1,4 @@
-﻿@model MVC.Models.MemberProfileModel
+﻿@model MVC.Models.Members.MemberProfileModel
 
 @{
     ViewBag.Title = "Index";
@@ -55,12 +55,12 @@
     <dl class="dl-horizontal">
         @foreach (var t in Model.Projects)
         {
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(s => t.Title)
             </dt>
             <dd>
                 @Html.DisplayFor(s => t.Title)
-            </dd>
+            </dd>*@
             <dt>
                 @Html.DisplayNameFor(s => t.Description)
             </dt>

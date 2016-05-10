@@ -83,7 +83,6 @@
     <Compile Include="DataClasses\PollOption.cs" />
     <Compile Include="DataClasses\Project.cs" />
     <Compile Include="DataClasses\Role.cs" />
-    <Compile Include="DataClasses\RolePermission.cs" />
     <Compile Include="DataClasses\Team.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />

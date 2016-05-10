@@ -1,29 +1,35 @@
-aside span {
-  color: white !important;
+﻿aside span {
+    color: white !important;
 }
+
 main div.page-content {
-  /*padding-left:100px;*/
+    /*padding-left:100px;*/
 }
 aside {
-  background: #512DA8 !important;
+    background: #512DA8 !important;
 }
 aside a {
-  color: #D1C4E9 !important;
+    color: #D1C4E9 !important;
 }
 aside a:hover {
-  color: white !important;
-  background: #D1C4E9 !important;
+    color: white !important;
+    background: #D1C4E9 !important;
 }
 #logout {
-  background: #C2185B;
+    background: #C2185B;
 }
 #feedback {
-  background: #BA68C8;
+    background: #BA68C8;
 }
+
 #welcome-photo {
-  height: 250px;
-  background: url('http://placehold.it/350x150') center / cover;
+    height: 250px;
+    background: url('http://placehold.it/350x150') center / cover;
 }
+
+
+/// home.Projects
+
 .demo-card-wide.mdl-card {
   width: 512px;
 }
@@ -35,6 +41,9 @@ aside a:hover {
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
 }
+
+/// Home Calendar
+
 .demo-card-event.mdl-card {
   width: 256px;
   height: 256px;
@@ -51,7 +60,7 @@ aside a:hover {
 }
 .demo-card-event > .mdl-card__actions {
   display: flex;
-  box-sizing: border-box;
+  box-sizing:border-box;
   align-items: center;
 }
 .demo-card-event > .mdl-card__actions > .material-icons {
@@ -62,27 +71,32 @@ aside a:hover {
 .demo-card-event > .mdl-card__actions > .mdl-button {
   color: #fff;
 }
-.mdl-grid {
-  margin-left: 0;
+
+// SVI CLANOVI 
+
+@header-change: 1025px;
+@header-width: 239px;
+
+.mdl-grid{
+    margin-left: 0;
+    @media (min-width: @header-change) {
+      margin-right: @header-width;
+    }
+    .mdl-card__media {
+	    margin: 0;
+    }
+    .mdl-card__media > img {
+	    max-width: 100%;
+        min-width: 100%;
+    }
+    .mdl-card__actions {
+	    display: flex;
+	    box-sizing:border-box;
+	    align-items: center;
+    }
+    .mdl-card__actions > .mdl-button--icon {
+	    margin-right: 3px;
+	    margin-left: 3px;
+    }
 }
-@media (min-width: 1025px) {
-  .mdl-grid {
-    margin-right: 239px;
-  }
-}
-.mdl-grid .mdl-card__media {
-  margin: 0;
-}
-.mdl-grid .mdl-card__media > img {
-  max-width: 100%;
-  min-width: 100%;
-}
-.mdl-grid .mdl-card__actions {
-  display: flex;
-  box-sizing: border-box;
-  align-items: center;
-}
-.mdl-grid .mdl-card__actions > .mdl-button--icon {
-  margin-right: 3px;
-  margin-left: 3px;
-}
+

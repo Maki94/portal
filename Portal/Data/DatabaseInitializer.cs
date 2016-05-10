@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Data.DataClasses;
-using Data.Entities;
-using System.Data.SqlTypes;
 
 namespace Data
 {
@@ -14,9 +9,15 @@ namespace Data
     {
         protected override void Seed(DataContext context)
         {
+            var permissions = new List<Permission>
+            {
+                new Permission { Name = "ViewAboutPage" },
+                new Permission { Name = "Logged" },
+            };
+
             var roles = new List<Role>
             {
-                new Role { Name = "Clan" },
+                new Role { Name = "Clan"},
                 new Role { Name = "Blagajnik" },
                 new Role { Name = "Sekretar" },
                 new Role { Name = "HR" },
@@ -24,20 +25,17 @@ namespace Data
                 new Role { Name = "Administrator" }
             };
 
-            var permissions = new List<Permission>
-            {
-                new Permission { Name = "ViewAboutPage" },
-            };
-
-            var rolespermissions = new List<RolePermission>
-            {
-                new RolePermission { RoleId = 6, PermissionId = 1 },
-            };
+            roles[5].AddPermission(permissions[0], permissions[1]);
+            roles[0].AddPermission(permissions[0], permissions[1]);
+            
+            permissions[0].AddRoles(roles[5], roles[0]);
+            permissions[1].AddRoles(roles[5], roles[0]);
 
             var members = new List<Member>
             {
                 new Member { Name = "Milos", Surname = "Jajac", Nickname = "jajac", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 5, 26), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "zantsusan@gmail.com", Phone = "0641234123", Role = roles[5] },
                 new Member { Name = "Mika", Surname = "Mikic", Nickname = "mika", Faculty = "Elfak", DateOfBirth = new DateTime(1999, 7, 13), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "mikamikic@gmail.com", Phone = "0691231231", Role = roles[0] },
+                new Member { Name = "Marko", Surname = "Mihajlovic", Nickname = "Maki", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 7, 13), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "maki@gmail.com", Phone = "0651231231", Role = roles[0] }
             };
 
             var teams = new List<Team>
@@ -68,13 +66,9 @@ namespace Data
                 new MemberProject { MemberId = 2, ProjectId = 2, Member = members[1], Project = projects[1], Function = "organizator" },
             };
 
-            //roles.ForEach(x => context.Roles.Add(x));
             context.Roles.AddRange(roles);
             context.Permissions.AddRange(permissions);
-            context.RolePermissions.AddRange(rolespermissions);
-            //permissions.ForEach(x => context.Permissions.Add(x));
-            //rolespermissions.ForEach(x => context.RolePermissions.Add(x));
-
+            
             // snimam jednom ovako pre da bi se roles & permissions snimili gore navedenim redosledom
             // bez ovoga se redosled promeni, zato sto se administrator i clan koriste u pravljenju membera
             context.SaveChanges();

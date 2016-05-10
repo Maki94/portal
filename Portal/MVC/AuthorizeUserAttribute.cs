@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
+using Data.DTOs;
 
 namespace MVC
 {
@@ -23,28 +20,25 @@ namespace MVC
             //    return false;
             //}
 
-            Data.DTOs.LoginDTO member = (Data.DTOs.LoginDTO)httpContext.Session["Member"];
+            var member = (LoginDTO) httpContext.Session?["Member"];
 
-            if (member != null && member.Permissions.Contains(this.Permission))
+            if (member != null && member.Permissions.Contains(Permission))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new RedirectToRouteResult(
-                new RouteValueDictionary(
-                    new
-                    {
-                        controller = "Access",
-                        action = "Index",
-                    })
-                    );
+            //filterContext.Result = new RedirectToRouteResult(
+            //    new RouteValueDictionary(
+            //        new
+            //        {
+            //            controller = "Access",
+            //            action = "Login"
+            //        })
+            //    );
         }
     }
 }
