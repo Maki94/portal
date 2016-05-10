@@ -1,4 +1,5 @@
-﻿@model List<Data.DataClasses.Project>
+﻿@using System.Globalization
+@model List<Data.DataClasses.Project>
 
 @{
     ViewBag.Title = "Projects";
@@ -35,14 +36,15 @@
                                 <h1 class="mdl-card__title-text">@Html.DisplayName(m.Name)</h1>
                             </div>
                             <div class="mdl-card__supporting-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam accusamus, consectetur.</p>
+                                <p>@Html.DisplayName(m.Description)</p>
+                                <p>@Html.DisplayName(m.State.ToString())</p>
                             </div>
                             <div class="mdl-card__actions mdl-card--border">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Read More</a>
+                                
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Opsirnije</a>
+                                
                                 <div class="mdl-layout-spacer"></div>
-                                <button class="mdl-button mdl-button--icon mdl-button--colored">
-                                    <i class="material-icons">favorite</i>
-                                </button>
+                                
                                 <button class="mdl-button mdl-button--icon mdl-button--colored">
                                     <i class="material-icons">share</i>
                                 </button>
