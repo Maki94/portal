@@ -20,6 +20,7 @@ namespace Data.DataClasses
         public string Password { get; set; }
         public string Gmail { get; set; }
         public DateTime FeePayedUntil { get; set; }
+        public Enumerations.MemberStatus Status { get; set; }
 
         public string Phone { get; set; }
         public string Facebook { get; set; }

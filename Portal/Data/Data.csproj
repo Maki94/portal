@@ -87,6 +87,7 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
+    <Compile Include="DTOs\MemberThumbnailDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Members.cs" />

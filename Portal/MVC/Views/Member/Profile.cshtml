@@ -1,15 +1,18 @@
-﻿@model MVC.Models.Members.MemberProfileModel
+﻿@model MVC.ViewModels.Member.MemberProfileViewModel
 
 @{
     ViewBag.Title = "Profile";
 }
 
-<h2> @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.Surname) (@Html.DisplayFor(model => model.Nickname)) </h2>
+<h2>Profile</h2>
 
 <div>
-    <h4>Osnovne informacije</h4>
+    <h4>@Html.DisplayFor(model => model.Name) 
+    @Html.DisplayFor(model => model.Surname)
+    (@Html.DisplayFor(model => model.Nickname))</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.Faculty)
         </dt>
@@ -24,6 +27,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
         </dd>
 
         <dt>
@@ -43,6 +54,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Skype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skype)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.JoinDate)
         </dt>
 
@@ -50,25 +69,36 @@
             @Html.DisplayFor(model => model.JoinDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Gmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FeePayedUntil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeePayedUntil)
+        </dd>
+
     </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", "Member"); |
+</p>
 
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-
-    <h4>Kontakt</h4>
-    <hr />
-    
-
-    <h4>Projekti</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        @foreach (var t in Model.Projects)
-        {
-            <dt>
-                @Html.DisplayNameFor(s => t.Name)
-            </dt>
+<h4>Projekti</h4>
+<hr />
+<dl class="dl-horizontal">
+    @foreach (var t in Model.Projects)
+    {
+        <dt>
+            @Html.DisplayNameFor(s => t.Name)
+        </dt>
             <dd>
                 @Html.DisplayFor(s => t.Name)
             </dd>
@@ -78,7 +108,5 @@
             <dd>
                 @Html.DisplayFor(s => t.Description)
             </dd>
-        }
-    </dl>
-
-</div>
+    }
+</dl>

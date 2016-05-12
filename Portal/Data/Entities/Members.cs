@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.DataClasses;
+using Data.DTOs;
 
 namespace Data.Entities
 {
@@ -72,12 +73,51 @@ namespace Data.Entities
             }
         }
 
-        public static List<Member> GetAllMember(DataContext dc = null)
+        public static List<MemberThumbnailDTO> GetMemberThumbnails()
         {
+            using (var dc = new DataContext())
+            {
+                List<Member> members = (from m in dc.Members select m).ToList();
+                List<MemberThumbnailDTO> memberthumbnails = new List<MemberThumbnailDTO>();
 
-            dc = dc ?? new DataContext();
+                foreach (var mem in members)
+                {
+                    memberthumbnails.Add(new MemberThumbnailDTO
+                    {
+                        Name = mem.Name,
+                        Surname = mem.Surname,
+                        Nickname = mem.Nickname,
+                        Faculty = mem.Faculty,
+                        Avatar = mem.Avatar,
+                    });
+                }
 
-            return (from p in dc.Members select p).ToList();
+                return memberthumbnails;
+            }
+        }
+
+        public static void EditProfile(int memberID, string name, string surname, string nickname,
+                                       string faculty, DateTime? dob, Enumerations.MemberStatus? status,
+                                       string phone, string facebook, string linkedin, string skype)
+        {
+            using (var dc = new DataContext())
+            {
+                // ovde treba umesto ovog da se pozove get member ali nisam 101% siguran
+                // kako da se snadjem lepo sa datacontextom u getmember funkciji, nebitno zasad
+                var mem = (from m in dc.Members where m.MemberId == memberID select m).First();
+
+                mem.Name = name ?? mem.Name;
+                mem.Surname = surname ?? mem.Surname;
+                mem.Nickname = nickname ?? mem.Nickname;
+                mem.Faculty = faculty ?? mem.Faculty;
+                mem.Status = status ?? mem.Status;
+                mem.DateOfBirth = dob ?? mem.DateOfBirth;
+                mem.Phone = phone ?? mem.Phone;
+                mem.Facebook = facebook ?? mem.Facebook;
+                mem.LinkedIn = linkedin ?? mem.LinkedIn;
+
+                dc.SaveChanges();
+            }
         }
     }
 }

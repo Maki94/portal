@@ -20,10 +20,8 @@ namespace MVC.Controllers
                 if (logOut)
                     Session["Member"] = null;
 
-                // ako je ulogovan stavljamo ga trenutno na svoj profil
-                // treba to kasnije da se promeni da bude na neki homepage
                 if (Session["Member"] != null)
-                    return RedirectToAction("Profile", "Member");
+                    return RedirectToAction("Index", "Member");
 
                 ViewBag.message = message;
 
@@ -48,7 +46,7 @@ namespace MVC.Controllers
 
                     Session.Timeout = member.RememberMe ? 525600 : 20;
 
-                    return RedirectToAction("Profile", "Member");
+                    return RedirectToAction("Index", "Member");
                 }
                 else if (member.loginStatus == (int)Data.Enumerations.LoginStatus.IncorrectPassword)
                 {

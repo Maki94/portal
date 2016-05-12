@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using MVC.Models;
-using MVC.Models.Members;
+using MVC.ViewModels.Member;
+using MVC.ViewModels;
 
 namespace MVC.Controllers
 {
@@ -10,24 +10,35 @@ namespace MVC.Controllers
         // GET: MemberProfile
         public ActionResult Index()
         {
-            MemberProfileModel model = MemberProfileModel.Load(MemberSession.GetMemberId());
+            MemberIndexViewModel model = MemberIndexViewModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
         public ActionResult AllMembers()
         {
-            var model = Data.Entities.Members.GetAllMember();
+            var model = Data.Entities.Members.GetMemberThumbnails();
             return View(model);
         }
 
-        public ActionResult Profile()
+        public ActionResult Profile(int id)
         {
-            MemberProfileModel model = MemberProfileModel.Load(MemberSession.GetMemberId());
+            MemberProfileViewModel model = MemberProfileViewModel.Load(id);
             return View(model);
         }
 
         public ActionResult Edit()
         {
-            return View();
+            EditProfileViewModel model = EditProfileViewModel.Load(MemberSession.GetMemberId());
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditProfileViewModel m)
+        {
+            int memberId = MemberSession.GetMemberId();
+            Data.Entities.Members.EditProfile(memberId, m.Name, m.Surname, m.Nickname,
+                                              m.Faculty, m.DateOfBirth, m.Status, m.Phone,
+                                              m.Facebook, m.LinkedIn, m.Skype);
+            return RedirectToAction("Profile", new { id = memberId });
         }
     }
 }
