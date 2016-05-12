@@ -64,11 +64,9 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                var q = dc.Roles.Where(role => role.RoleId == roleID).Select(role => role.Permissions).ToList();
+                var q = (from r in dc.Roles where r.RoleId == roleID select r).First().Permissions.ToList();
 
-                List<string> s = null;
-
-                q.ForEach(permissions => s.AddRange(permissions.Select(permission => permission.Name)));
+                List<string> s = q.Select(x => x.Name).ToList();
 
                 return s;
             }

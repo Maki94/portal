@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using Data.DTOs;
+using System.Web.Routing;
 
 namespace MVC
 {
@@ -22,23 +23,26 @@ namespace MVC
 
             var member = (LoginDTO) httpContext.Session?["Member"];
 
-            if (member != null && member.Permissions.Contains(Permission))
+            // ako member postoji i ako se trazi da bude samo ulogovan
+            // ili ako member postoji i ako se trazi da ima permisiju
+            if (member != null && (Permission == null || member.Permissions.Contains(Permission)))
             {
                 return true;
             }
+
             return false;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            //filterContext.Result = new RedirectToRouteResult(
-            //    new RouteValueDictionary(
-            //        new
-            //        {
-            //            controller = "Access",
-            //            action = "Login"
-            //        })
-            //    );
+            filterContext.Result = new RedirectToRouteResult(
+                new RouteValueDictionary(
+                    new
+                    {
+                        controller = "Access",
+                        action = "Index"
+                    })
+                );
         }
     }
 }

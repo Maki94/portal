@@ -4,12 +4,13 @@ using MVC.Models.Members;
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class MemberController : Controller
     {
         // GET: MemberProfile
         public ActionResult Index()
         {
-            MemberProfileModel model = MemberProfileModel.Load(1);
+            MemberProfileModel model = MemberProfileModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
         public ActionResult AllMembers()
@@ -20,7 +21,7 @@ namespace MVC.Controllers
 
         public ActionResult Profile()
         {
-            MemberProfileModel model = MemberProfileModel.Load(1);
+            MemberProfileModel model = MemberProfileModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
 

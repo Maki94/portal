@@ -10,13 +10,13 @@ namespace Data.Entities
 {
     public class Login
     {
-        public static LoginDTO CreateLoginDTO(LoginTransporterDTO ltd)
+        public static LoginDTO CreateLoginDTO(string gmail, string password, bool rememberMe)
         {
             LoginDTO ld = new LoginDTO();
-            Member mem = Members.MemberExists(ltd.Gmail, ltd.Password);
+            Member mem = Members.MemberExists(gmail, password);
             if (mem == null)
             {
-                if (Members.GmailExists(ltd.Gmail))
+                if (Members.GmailExists(gmail))
                     ld.loginStatus = (int)Enumerations.LoginStatus.IncorrectPassword;
                 else
                     ld.loginStatus = (int)Enumerations.LoginStatus.Failed;
@@ -26,11 +26,10 @@ namespace Data.Entities
             ld.loginStatus = (int)Enumerations.LoginStatus.Successful;
 
             ld.MemberID = mem.MemberId;
-            ld.Name = mem.Name + " " + mem.Surname + " (" + mem.Nickname + ")";
             ld.Gmail = mem.Gmail;
             ld.Role = mem.RoleId;
             ld.Permissions = Members.GetPermissions(ld.Role);
-            ld.RememberMe = ltd.RememberMe;
+            ld.RememberMe = rememberMe;
 
             return ld;
         }

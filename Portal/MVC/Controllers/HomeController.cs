@@ -2,9 +2,9 @@
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class HomeController : Controller
     {
-        [AuthorizeMember(Permission = "Logged")]
         public ActionResult Index()
         {
             return View();
@@ -17,7 +17,7 @@ namespace MVC.Controllers
 
             return View();
         }
-        [AuthorizeMember(Permission = "Logged")]
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
