@@ -8,21 +8,14 @@ namespace Data.DataClasses
 {
     public class Role
     {
-        public Role()
-        {
-            Permissions = new List<Permission>();
-        }
         public int RoleId { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<Permission> Permissions { get; set; }
 
-        public virtual void AddPermission(params Permission[] permissions)
+        public Role()
         {
-            foreach (Permission permission in permissions)
-            {
-                Permissions.Add(permission);
-            }
+            Permissions = new List<Permission>();
         }
     }
 }

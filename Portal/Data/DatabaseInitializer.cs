@@ -9,10 +9,12 @@ namespace Data
     {
         protected override void Seed(DataContext context)
         {
+            // ovo stampa sql query u Output prozor
+            context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+
             var permissions = new List<Permission>
             {
                 new Permission { Name = "ViewAboutPage" },
-                new Permission { Name = "Logged" },
             };
 
             var roles = new List<Role>
@@ -25,11 +27,15 @@ namespace Data
                 new Role { Name = "Administrator" }
             };
 
-            roles[5].AddPermission(permissions[0], permissions[1]);
-            roles[0].AddPermission(permissions[0], permissions[1]);
-            
-            permissions[0].AddRoles(roles[5], roles[0]);
-            permissions[1].AddRoles(roles[5], roles[0]);
+            // odmah snimam role i permisije da bi se snimile ovim redom jer ako
+            // se prvo "povezu" addovanjem i snime onda se snimi prvo administrator
+            // i njegova permisija pa tek onda sve ostale role
+            context.Roles.AddRange(roles);
+            context.Permissions.AddRange(permissions);
+            context.SaveChanges();
+
+            // dodajemo administratoru permisiju da vidi About page
+            roles[5].Permissions.Add(permissions[0]);
 
             var members = new List<Member>
             {
@@ -46,9 +52,10 @@ namespace Data
 
             var memberteams = new List<MemberTeam>
             {
-                new MemberTeam { MemberId = 1, Member = members[0], TeamId = 1, Team = teams[0] },
-                new MemberTeam { MemberId = 1, Member = members[0], TeamId = 2, Team = teams[1] },
-                new MemberTeam { MemberId = 2, Member = members[1], TeamId = 2, Team = teams[1] },
+                new MemberTeam { Member = members[0], Team = teams[0] },
+                new MemberTeam { Member = members[0], Team = teams[1] },
+                new MemberTeam { Member = members[1], Team = teams[1] },
+                new MemberTeam { Member = members[2], Team = teams[1] }
             };
 
             var projects = new List<Project>
@@ -60,21 +67,13 @@ namespace Data
 
             var memberprojects = new List<MemberProject>
             {
-                new MemberProject { MemberId = 1, ProjectId = 1, Member = members[0], Project = projects[0], Function = "posetilac" },
-                new MemberProject { MemberId = 1, ProjectId = 2, Member = members[0], Project = projects[1], Function = "ucesnik" },
-                new MemberProject { MemberId = 2, ProjectId = 1, Member = members[1], Project = projects[0], Function = "organizator" },
-                new MemberProject { MemberId = 2, ProjectId = 2, Member = members[1], Project = projects[1], Function = "organizator" },
+                new MemberProject { Member = members[0], Project = projects[0], Function = "posetilac" },
+                new MemberProject { Member = members[0], Project = projects[1], Function = "ucesnik" },
+                new MemberProject { Member = members[1], Project = projects[1], Function = "organizator" },
+                new MemberProject { Member = members[2], Project = projects[2], Function = "organizator" },
             };
 
-            context.Roles.AddRange(roles);
-            context.Permissions.AddRange(permissions);
-            
-            // snimam jednom ovako pre da bi se roles & permissions snimili gore navedenim redosledom
-            // bez ovoga se redosled promeni, zato sto se administrator i clan koriste u pravljenju membera
-            context.SaveChanges();
-
             context.MemberProjects.AddRange(memberprojects);
-            //memberprojects.ForEach(x => context.MemberProjects.Add(x));
 
             context.SaveChanges();
         }
