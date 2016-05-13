@@ -3,24 +3,29 @@
 @{
     ViewBag.Title = "Index";
 }
+@Html.DisplayName(Model.Nickname);
 
-<h2>Index</h2>
-
-<div>
-    <h4>MemberIndexViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nickname)
-        </dd>
-
-    </dl>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div id="calendar-popup" class="modal-content">
+            kskks
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="header">
+    <span class="left button" id="prev"> <b>prev</b></span>
+    <span class="left hook"></span>
+    <span class="month-year" id="label"> </span>
+    <span class="right hook" id=""></span>
+    <span class="right button" id="next"> <b>next</b> </span>
+</div>
+<div id="calendar-wrapper">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../../Scripts/calendarField.js"></script>
+<script src="../../Scripts/Calendar.js"></script>
+<script src="../../Scripts/memberIndex.js"></script>
+@*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+@*@Html.ActionLink("Back to List", "Index")*@

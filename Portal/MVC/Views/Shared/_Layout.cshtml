@@ -16,7 +16,7 @@
     <aside class="mdl-layout__drawer">
         <span class="mdl-layout-title">LBG BEST Nis</span>
         <nav class="mdl-navigation">
-            @Html.ActionLink("Home", "Index", "Home", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("Home", "Index", "Member", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("Projekti", "Index", "Project", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("Svi Clanovi", "AllMembers", "Member", null, new { @class = "mdl-navigation__link" })
             <a href="#" class="mdl-navigation__link">
@@ -33,6 +33,7 @@
         </div>
     </main>
 </div>
+
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
