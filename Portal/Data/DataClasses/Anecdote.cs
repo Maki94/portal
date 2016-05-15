@@ -12,14 +12,12 @@ namespace Data.DataClasses
         public int AnecdoteId { get; set; }
         public string Description { get; set; }
 
-        // ovo sklonjeno zbog SQL cycle/foreign key problema
-        // treba da se implementira nekako drugacije nekad
-        //[ForeignKey("Author")]
-        //public int AuthorId { get; set; }
-        //public virtual Member Author { get; set; }
+        [ForeignKey("Author")]
+        public int AuthorId { get; set; }
+        public virtual Member Author { get; set; }
 
-        //[ForeignKey("HR")]
-        //public int HRId { get; set; }
-        //public virtual Member HR { get; set; }
+        [ForeignKey("HR")]
+        public int HRId { get; set; }
+        public virtual Member HR { get; set; }
     }
 }

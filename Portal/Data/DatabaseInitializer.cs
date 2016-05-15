@@ -60,9 +60,9 @@ namespace Data
 
             var projects = new List<Project>
             {
-                new Project { Name = "JobFair", Description = "Opis za JobFair", TeamId = 1, Team = teams[0] },
-                new Project { Name = "Elektrijada", Description = "Opis za Elektrijadu", TeamId = 1, Team = teams[0] },
-                new Project { Name = "Takmicenje", Description = "Opis za takmicenje", TeamId = 2, Team = teams[1] },
+                new Project { Name = "JobFair", Description = "Opis za JobFair", Team = teams[0] },
+                new Project { Name = "Elektrijada", Description = "Opis za Elektrijadu", Team = teams[0] },
+                new Project { Name = "Takmicenje", Description = "Opis za takmicenje", Team = teams[1] },
             };
 
             var memberprojects = new List<MemberProject>
@@ -74,6 +74,7 @@ namespace Data
             };
 
             context.MemberProjects.AddRange(memberprojects);
+            context.MemberTeams.AddRange(memberteams);
 
             context.SaveChanges();
         }
