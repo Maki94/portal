@@ -39,7 +39,7 @@ namespace MVC.ViewModels.Member
         
         [Required(ErrorMessage = "Morate izabrati ulogu.")]
         [Display(Name = "Uloga")]
-        public string Role { get; set; }
+        public int RoleId { get; set; }
 
         // status?
         // jos nesto mozda

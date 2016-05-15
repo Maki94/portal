@@ -7,27 +7,22 @@ namespace MVC
 {
     public class AuthorizeMemberAttribute : AuthorizeAttribute
     {
-        public string Permission { get; set; }
+        public int Permission { get; set; }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            // ovo koristi default identity i authentication klase
-            // koje mi u ovom slucaju ne koristimo
-
-            //var authorized = base.AuthorizeCore(httpContext);
-            //if (!authorized)
-            //{
-            //    // if member is not logged in, no need to check further
-            //    return false;
-            //}
-
             var member = (LoginDTO) httpContext.Session?["Member"];
 
-            // ako member postoji i ako se trazi da bude samo ulogovan
-            // ili ako member postoji i ako se trazi da ima permisiju
-            if (member != null && (Permission == null || member.Permissions.Contains(Permission)))
+            // Permission = 0 znaci da se ne trazi nikakva posebna permisija,
+            // tj. zahteva se samo da je clan ulogovan (ostale permisije krecu od 1 navise)
+            if (member != null)
             {
-                return true;
+                if (Permission == 0)
+                    return true;
+                else
+                {
+                    return member.Permissions.Contains(Permission);
+                }
             }
 
             return false;

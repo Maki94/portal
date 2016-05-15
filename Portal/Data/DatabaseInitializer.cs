@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using Data;
 using Data.DataClasses;
 
 namespace Data
@@ -12,21 +13,17 @@ namespace Data
             // ovo stampa sql query u Output prozor
             context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
-            var permissions = new List<Permission>
+            var roles = new List<Role>();
+            foreach (var r in Enum.GetValues(typeof(Data.Enumerations.Role)))
             {
-                new Permission { Name = "ViewAboutPage" },
-                new Permission { Name = "AddMember" },
-            };
+                roles.Add(new Role { Name = r.ToString()});
+            }
 
-            var roles = new List<Role>
+            var permissions = new List<Permission>();
+            foreach (var p in Enum.GetValues(typeof(Data.Enumerations.Permission)))
             {
-                new Role { Name = "Clan"},
-                new Role { Name = "Blagajnik" },
-                new Role { Name = "Sekretar" },
-                new Role { Name = "HR" },
-                new Role { Name = "FR" },
-                new Role { Name = "Administrator" }
-            };
+                permissions.Add(new Permission { Name = p.ToString() });
+            }
 
             // odmah snimam role i permisije da bi se snimile ovim redom jer ako
             // se prvo "povezu" addovanjem i snime onda se snimi prvo administrator

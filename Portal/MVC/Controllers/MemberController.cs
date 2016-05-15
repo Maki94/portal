@@ -2,6 +2,7 @@
 using MVC.ViewModels.Member;
 using MVC.ViewModels;
 using Data.Entities;
+using System;
 
 namespace MVC.Controllers
 {
@@ -42,7 +43,7 @@ namespace MVC.Controllers
             return RedirectToAction("Profile", new { id = memberId });
         }
 
-        [AuthorizeMember(Permission = "AddMember")]
+        [AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
         public ActionResult Add()
         {
             return View(new AddMemberViewModel());
@@ -56,7 +57,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Add");
             }
 
-            Members.AddMember(m.Gmail, m.Password, m.Name, m.Surname, m.Role);
+            Members.AddMember(m.Gmail, m.Password, m.Name, m.Surname, m.RoleId);
 
             return RedirectToAction("AllMembers");
         }

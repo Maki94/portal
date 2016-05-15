@@ -8,6 +8,22 @@ namespace Data
 {
     public class Enumerations
     {
+        public enum Role
+        {
+            Clan = 1,
+            Blagajnik,
+            Sekretar,
+            HR,
+            FR,
+            Administrator,
+        }
+
+        public enum Permission
+        {
+            ViewAboutPage = 1,
+            AddMember,
+        }
+
         public enum OwnerType
         {
             member,

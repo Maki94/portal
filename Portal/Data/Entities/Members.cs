@@ -10,12 +10,12 @@ namespace Data.Entities
 {
     public class Members
     {
-        public static Member AddMember(string gmail, string password, string name, string surname, string roleName,
+        public static Member AddMember(string gmail, string password, string name, string surname, int roleId,
                                        string nickname = null)
         {
             using (var dc = new DataContext())
             {
-                var role = (from r in dc.Roles where r.Name == roleName select r).First();
+                var role = (from r in dc.Roles where r.RoleId == roleId select r).First();
 
                 Member m = new Member
                 {
@@ -64,15 +64,13 @@ namespace Data.Entities
             }
         }
 
-        public static List<string> GetPermissions(int roleID)
+        public static List<int> GetPermissions(int roleID)
         {
             using (var dc = new DataContext())
             {
-                var q = (from r in dc.Roles where r.RoleId == roleID select r).First().Permissions.ToList();
+                var permissions = (from r in dc.Roles where r.RoleId == roleID select r).First().Permissions.ToList();
 
-                List<string> s = q.Select(x => x.Name).ToList();
-
-                return s;
+                return permissions.Select(x => x.PermissionId).ToList();
             }
         }
 
