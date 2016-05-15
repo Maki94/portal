@@ -180,7 +180,7 @@
     <Compile Include="MemberSession.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LoginViewModels.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -189,6 +189,7 @@
     <Compile Include="ViewModels\Member\MemberIndexViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberProfileViewModel.cs" />
+    <Compile Include="ViewModels\Projects\ProjectListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -258,11 +259,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Member\AllMembers.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Member\Profile.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\Add.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

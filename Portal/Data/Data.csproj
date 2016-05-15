@@ -89,6 +89,7 @@
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
     <Compile Include="DTOs\MemberThumbnailDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
+    <Compile Include="DTOs\ProjectThumbnailDTO.cs" />
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Members.cs" />
     <Compile Include="Entities\Projects.cs" />

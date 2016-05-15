@@ -1,4 +1,4 @@
-﻿@model List<Data.DTOs.MemberThumbnailDTO>
+﻿@model MVC.ViewModels.Member.MemberListViewModel
 
 @{
     ViewBag.Title = "Members";
@@ -7,8 +7,8 @@
     <main class="mdl-layout__content">
         <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
             <main class="mdl-layout__content">
-                
-               
+
+
 
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
@@ -22,7 +22,7 @@
                     </div>
                 </form>
                 <div class="mdl-grid">
-                    @foreach (var m in Model)
+                    @foreach (var m in Model.MemberThumbnails)
                     {
                         <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
                             <figure class="mdl-card__media">

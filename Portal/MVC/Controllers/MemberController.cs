@@ -17,8 +17,7 @@ namespace MVC.Controllers
         }
         public ActionResult AllMembers()
         {
-            var model = Data.Entities.Members.GetMemberThumbnails();
-            return View(model);
+            return View(new MemberListViewModel());
         }
 
         public ActionResult Profile(int id)
