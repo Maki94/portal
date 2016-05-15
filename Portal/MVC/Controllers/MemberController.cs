@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using MVC.ViewModels.Member;
 using MVC.ViewModels;
+using Data.Entities;
 
 namespace MVC.Controllers
 {
@@ -39,6 +40,25 @@ namespace MVC.Controllers
                                               m.Faculty, m.DateOfBirth, m.Status, m.Phone,
                                               m.Facebook, m.LinkedIn, m.Skype);
             return RedirectToAction("Profile", new { id = memberId });
+        }
+
+        [AuthorizeMember(Permission = "AddMember")]
+        public ActionResult Add()
+        {
+            return View(new AddMemberViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Add(AddMemberViewModel m)
+        {
+            if (Members.GmailExists(m.Gmail))
+            {
+                return RedirectToAction("Add");
+            }
+
+            Members.AddMember(m.Gmail, m.Password, m.Name, m.Surname, m.Role);
+
+            return RedirectToAction("AllMembers");
         }
     }
 }

@@ -184,6 +184,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Member\AddMemberViewModel.cs" />
     <Compile Include="ViewModels\Member\EditProfileViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberIndexViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
@@ -261,6 +262,7 @@
     <Content Include="Views\Member\Profile.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

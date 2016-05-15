@@ -92,6 +92,7 @@
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Members.cs" />
     <Compile Include="Entities\Projects.cs" />
+    <Compile Include="Entities\Roles.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,19 +10,22 @@ namespace Data.Entities
 {
     public class Members
     {
-        public static Member AddMember(string username, string name, string surname, 
-                                       string nickname, Enumerations.MemberStatus status, DateTime joindate)
+        public static Member AddMember(string gmail, string password, string name, string surname, string roleName,
+                                       string nickname = null)
         {
             using (var dc = new DataContext())
             {
+                var role = (from r in dc.Roles where r.Name == roleName select r).First();
+
                 Member m = new Member
                 {
-                    Gmail = username,
+                    Gmail = gmail,
+                    Password = password,
                     Name = name,
                     Surname = surname,
                     Nickname = nickname,
-                    //Status = status,
-                    JoinDate = joindate,
+                    Role = role,
+                    JoinDate = DateTime.Now,
                 };
 
                 dc.Members.Add(m);

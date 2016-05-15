@@ -15,6 +15,7 @@ namespace Data
             var permissions = new List<Permission>
             {
                 new Permission { Name = "ViewAboutPage" },
+                new Permission { Name = "AddMember" },
             };
 
             var roles = new List<Role>
@@ -36,6 +37,7 @@ namespace Data
 
             // dodajemo administratoru permisiju da vidi About page
             roles[5].Permissions.Add(permissions[0]);
+            roles[5].Permissions.Add(permissions[1]);
 
             var members = new List<Member>
             {
