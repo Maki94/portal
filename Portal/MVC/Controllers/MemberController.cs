@@ -3,6 +3,9 @@ using MVC.ViewModels.Member;
 using MVC.ViewModels;
 using Data.Entities;
 using System;
+using Newtonsoft.Json;
+using Data.DataClasses;
+using System.Collections.Generic;
 
 namespace MVC.Controllers
 {
@@ -15,9 +18,26 @@ namespace MVC.Controllers
             MemberIndexViewModel model = MemberIndexViewModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
+
         public ActionResult AllMembers()
         {
             return View(new MemberListViewModel());
+        }
+
+        [HttpPost]
+        public JsonResult SearchMembers(string term)
+        {
+            var resultIds = Members.SearchMembers(term);
+            return Json(resultIds);
+        }
+
+        public ActionResult GetAvatar(int id)
+        {
+            Member mem = Members.GetMember(id);
+            byte[] image = (mem.Avatar == null || mem.Avatar.Length == 0) ? DefaultPictures.GetPictureByName("Avatar") : mem.Avatar;
+            var base64 = Convert.ToBase64String(image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            return Content(imgSrc);
         }
 
         public ActionResult Profile(int id)

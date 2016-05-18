@@ -6,7 +6,7 @@ using Data.DataClasses;
 
 namespace Data
 {
-    public class DatabaseInitializer : DropCreateDatabaseAlways<DataContext>
+    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
         protected override void Seed(DataContext context)
         {
@@ -35,6 +35,7 @@ namespace Data
             // dodajemo administratoru permisiju da vidi About page
             roles[5].Permissions.Add(permissions[0]);
             roles[5].Permissions.Add(permissions[1]);
+            roles[5].Permissions.Add(permissions[2]);
 
             var members = new List<Member>
             {

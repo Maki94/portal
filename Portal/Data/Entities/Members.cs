@@ -74,26 +74,56 @@ namespace Data.Entities
             }
         }
 
-        public static List<MemberThumbnailDTO> GetMemberThumbnails()
+        public static List<MemberThumbnailDTO> GetAllMemberThumbnails()
         {
             using (var dc = new DataContext())
             {
                 List<Member> members = (from m in dc.Members select m).ToList();
+
                 List<MemberThumbnailDTO> memberthumbnails = new List<MemberThumbnailDTO>();
 
-                foreach (var mem in members)
+                foreach (var m in members)
                 {
                     memberthumbnails.Add(new MemberThumbnailDTO
                     {
-                        Name = mem.Name,
-                        Surname = mem.Surname,
-                        Nickname = mem.Nickname,
-                        Faculty = mem.Faculty,
-                        Avatar = mem.Avatar,
+                        Id = m.MemberId,
+                        Name = m.Name,
+                        Surname = m.Surname,
+                        Nickname = m.Nickname,
+                        Faculty = m.Faculty
                     });
                 }
 
                 return memberthumbnails;
+            }
+        }
+
+        public static List<int> SearchMembers(string keyword = "")
+        {
+            using (var dc = new DataContext())
+            {
+                List<string> searchTerms = new List<string>();
+                searchTerms = keyword.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList().ConvertAll(m => m.ToLower());
+
+                // trazimo da li ime, prezime ili nadimak clana sadrzi
+                // neku od reci koje su unete kao search parametar
+                List<Member> members = new List<Member>();
+                if (searchTerms.Count == 0)
+                {
+                    members = (from m in dc.Members select m).ToList();
+                }
+                else
+                {
+                    members = (from m in dc.Members where
+                                        searchTerms.Any(s => m.Name.Contains(s)) ||
+                                        searchTerms.Any(s => m.Surname.Contains(s)) ||
+                                        searchTerms.Any(s => m.Nickname.Contains(s))
+                                            select m).ToList();
+                }
+
+                List<int> memberIds = members.Select(m => m.MemberId).ToList();
+
+                return memberIds;
             }
         }
 
@@ -103,8 +133,6 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                // ovde treba umesto ovog da se pozove get member ali nisam 101% siguran
-                // kako da se snadjem lepo sa datacontextom u getmember funkciji, nebitno zasad
                 var mem = (from m in dc.Members where m.MemberId == memberID select m).First();
 
                 mem.Name = name ?? mem.Name;

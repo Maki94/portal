@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "UploadDefaultPicture";
+}
+
+<h2>UploadDefaultPicture</h2>
+
+@using (Html.BeginForm("UploadDefaultPicture", "Access", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="text" name="name" value="Avatar" />
+    <input type="file" name="file" />
+    <input type="submit" value="Zakaci sliku" /> 
+}

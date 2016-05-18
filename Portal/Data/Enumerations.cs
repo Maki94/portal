@@ -22,6 +22,7 @@ namespace Data
         {
             ViewAboutPage = 1,
             AddMember,
+            UploadDefaultPicture,
         }
 
         public enum OwnerType

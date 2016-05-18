@@ -1,5 +1,7 @@
 ﻿using MVC.ViewModels;
 using System;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -55,6 +57,29 @@ namespace MVC.Controllers
             {
                 return RedirectToAction("Index", new { message = "Nesto ne valja" });
             }
+        }
+
+        [AuthorizeMember(Permission = (int)Data.Enumerations.Permission.UploadDefaultPicture)]
+        public ActionResult UploadDefaultPicture()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadDefaultPicture(string name, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                byte[] array;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    array = ms.GetBuffer();
+                }
+                Data.Entities.DefaultPictures.UploadPicture(array, name);
+            }
+
+            return RedirectToAction("UploadDefaultPicture");
         }
     }
 }

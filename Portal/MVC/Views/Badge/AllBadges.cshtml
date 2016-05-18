@@ -1,0 +1,23 @@
+﻿@using MVC.ViewModels.Badge
+@model MVC.ViewModels.Badge.BadgeListViewModel
+
+@{
+    ViewBag.Title = "AllBadges";
+}
+
+@{ Html.RenderPartial("Create", new CreateBadgeViewModel()); }
+
+<h2>AllBadges</h2>
+
+@foreach (var b in Model.Badges)
+{
+    var base64 = Convert.ToBase64String(b.Image);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+    @Html.DisplayFor(m => b.Name);
+    @Html.DisplayFor(m => b.Description);
+    <img src="@imgSrc" />
+}
+
+<hr />
+

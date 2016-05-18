@@ -13,7 +13,7 @@ namespace MVC.ViewModels.Member
 
         public MemberListViewModel()
         {
-            MemberThumbnails = Members.GetMemberThumbnails();
+            MemberThumbnails = Members.GetAllMemberThumbnails();
         }
     }
 }
