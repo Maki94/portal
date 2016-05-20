@@ -44,6 +44,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,6 +67,7 @@
     <Compile Include="DataClasses\Company.cs" />
     <Compile Include="DataClasses\ContactPerson.cs" />
     <Compile Include="DataClasses\Conversation.cs" />
+    <Compile Include="DataClasses\DefaultPicture.cs" />
     <Compile Include="DataClasses\Event.cs" />
     <Compile Include="DataClasses\Excuse.cs" />
     <Compile Include="DataClasses\ExecutiveBoard.cs" />
@@ -85,13 +90,18 @@
     <Compile Include="DataClasses\Role.cs" />
     <Compile Include="DataClasses\Team.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="DTOs\BadgeThumbnailDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
     <Compile Include="DTOs\MemberThumbnailDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
+    <Compile Include="DTOs\ProjectThumbnailDTO.cs" />
+    <Compile Include="Entities\Badges.cs" />
+    <Compile Include="Entities\DefaultPictures.cs" />
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Members.cs" />
     <Compile Include="Entities\Projects.cs" />
+    <Compile Include="Entities\Roles.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

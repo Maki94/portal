@@ -1,6 +1,11 @@
 ﻿using System.Web.Mvc;
 using MVC.ViewModels.Member;
 using MVC.ViewModels;
+using Data.Entities;
+using System;
+using Newtonsoft.Json;
+using Data.DataClasses;
+using System.Collections.Generic;
 
 namespace MVC.Controllers
 {
@@ -13,10 +18,26 @@ namespace MVC.Controllers
             MemberIndexViewModel model = MemberIndexViewModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
+
         public ActionResult AllMembers()
         {
-            var model = Data.Entities.Members.GetMemberThumbnails();
-            return View(model);
+            return View(new MemberListViewModel());
+        }
+
+        [HttpPost]
+        public JsonResult SearchMembers(string term)
+        {
+            var resultIds = Members.SearchMembers(term);
+            return Json(resultIds);
+        }
+
+        public ActionResult GetAvatar(int id)
+        {
+            Member mem = Members.GetMember(id);
+            byte[] image = (mem.Avatar == null || mem.Avatar.Length == 0) ? DefaultPictures.GetPictureByName("Avatar") : mem.Avatar;
+            var base64 = Convert.ToBase64String(image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            return Content(imgSrc);
         }
 
         public ActionResult Profile(int id)
@@ -39,6 +60,25 @@ namespace MVC.Controllers
                                               m.Faculty, m.DateOfBirth, m.Status, m.Phone,
                                               m.Facebook, m.LinkedIn, m.Skype);
             return RedirectToAction("Profile", new { id = memberId });
+        }
+
+        [AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
+        public ActionResult Add()
+        {
+            return View(new AddMemberViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Add(AddMemberViewModel m)
+        {
+            if (Members.GmailExists(m.Gmail))
+            {
+                return RedirectToAction("Add");
+            }
+
+            Members.AddMember(m.Gmail, m.Password, m.Name, m.Surname, m.RoleId);
+
+            return RedirectToAction("AllMembers");
         }
     }
 }

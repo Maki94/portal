@@ -1,12 +1,8 @@
-﻿using Data;
-using Data.DataClasses;
-using MVC.Models;
+﻿using MVC.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 
 namespace MVC.Controllers
 {
@@ -63,54 +59,27 @@ namespace MVC.Controllers
             }
         }
 
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
+        [AuthorizeMember(Permission = (int)Data.Enumerations.Permission.UploadDefaultPicture)]
+        public ActionResult UploadDefaultPicture()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //public ActionResult Register(MemberRegisterViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var member = new Member { Gmail = model.Gmail, Password = model.Password, RoleId = 1 };
-        //        using (DataContext dc = new DataContext())
-        //        {
-        //            dc.Members.Add(member);
-        //            dc.SaveChanges();
-        //        }
-        //        ModelState.Clear();
-        //        ViewBag.Message = member.Gmail + " korisnik uspesno registrovan!";
-        //    }
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult UploadDefaultPicture(string name, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                byte[] array;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    array = ms.GetBuffer();
+                }
+                Data.Entities.DefaultPictures.UploadPicture(array, name);
+            }
 
-        //public ActionResult Login()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Login(MemberLoginViewModel model)
-        //{
-        //    try
-        //    {
-        //        Data.DTOs.LoginTransporterDTO  ltd = new Data.DTOs.LoginTransporterDTO
-        //        {
-        //            Gmail = model.Gmail,
-        //            Password = model.Password,
-        //            RememberMe = model.RememberMe,
-        //        };
-        //        Data.DTOs.LoginDTO member = Data.Entities.Login.CreateLoginDTO(ltd);
-        //        Session["Member"] = member;
-        //        Session.Timeout = member.RememberMe ? 525600 : 20;
-
-        //        return RedirectToAction("Profile", "Member");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return RedirectToAction("Index", new { message = "Something went wrong." });
-        //    }
-        //}
+            return RedirectToAction("UploadDefaultPicture");
+        }
     }
 }

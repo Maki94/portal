@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Data.DTOs
 {
-    public class ProjectDTO
+    public class BadgeThumbnailDTO
     {
-        public int ProjectId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        Enumerations.ProjectState State { get; set; }
+        public byte[] Image { get; set; }
     }
 }

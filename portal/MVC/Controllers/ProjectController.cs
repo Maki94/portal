@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using MVC.ViewModels.Projects;
+using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
@@ -7,8 +8,7 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            var m = Data.Entities.Projects.GetAllProjects();
-            return View(m);
+            return View(new ProjectListViewModel());
         }
     }
 }
