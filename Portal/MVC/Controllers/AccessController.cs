@@ -59,7 +59,7 @@ namespace MVC.Controllers
             }
         }
 
-        [AuthorizeMember(Permission = (int)Data.Enumerations.Permission.UploadDefaultPicture)]
+        //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.UploadDefaultPicture)]
         public ActionResult UploadDefaultPicture()
         {
             return View();
