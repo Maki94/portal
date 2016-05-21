@@ -40,8 +40,8 @@ namespace Data
             var members = new List<Member>
             {
                 new Member { Name = "Milos", Surname = "Jajac", Nickname = "jajac", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 5, 26), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "zantsusan@gmail.com", Phone = "0641234123", Role = roles[5] },
-                new Member { Name = "Mika", Surname = "Mikic", Nickname = "mika", Faculty = "Elfak", DateOfBirth = new DateTime(1999, 7, 13), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "mikamikic@gmail.com", Phone = "0691231231", Role = roles[0] },
-                new Member { Name = "Marko", Surname = "Mihajlovic", Nickname = "Maki", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 7, 13), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "maki@gmail.com", Phone = "0651231231", Role = roles[0] }
+                new Member { Name = "Mika", Surname = "Mikic", Nickname = "Mika", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 4, 18), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "nikolcar@gmail.com", Phone = "0643156260", Role = roles[5] },
+                new Member { Name = "Marko", Surname = "Mihajlovic", Nickname = "Maki", Faculty = "Elfak", DateOfBirth = new DateTime(1994, 7, 13), JoinDate = DateTime.Now, Password = "Admin@123", Gmail = "maki@gmail.com", Phone = "0651231231", Role = roles[5] }
             };
 
             var teams = new List<Team>
