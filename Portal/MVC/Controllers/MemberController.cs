@@ -62,7 +62,7 @@ namespace MVC.Controllers
             return RedirectToAction("Profile", new { id = memberId });
         }
 
-        [AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
+        //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
         public ActionResult Add()
         {
             return View(new AddMemberViewModel());

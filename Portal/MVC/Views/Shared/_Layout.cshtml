@@ -4,9 +4,15 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -22,14 +28,35 @@
         <span class="mdl-layout-title">LBG BEST Nis</span>
         <nav class="mdl-navigation">
             @Html.ActionLink("Home", "Index", "Member", null, new {@class = "mdl-navigation__link"})
-            @Html.ActionLink("Projekti", "Index", "Project", null, new {@class = "mdl-navigation__link"})
-            @Html.ActionLink("Svi Clanovi", "AllMembers", "Member", null, new { @class = "mdl-navigation__link" })
-            <a href="#" class="mdl-navigation__link">
-                <span class="mdl-badge" data-badge="4">Inbox</span>
+            @Html.ActionLink("Members", "AllMembers", "Member", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("Projects", "Index", "Project", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("Events", "Index", "Event", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("Poll", "Index", "Poll", null, new {@class = "mdl-navigation__link"})
+            <a href="@Url.Action("Index", "Messenger")" class="mdl-navigation__link">
+                <span class="mdl-badge" data-badge="4">Messenger</span>
             </a>
-            <a id="feedback" href="#" class="mdl-navigation__link">FeedBack</a>
+            @*@Html.ActionLink("Inbox", "Index", "Messenger", null, new { @class = "mdl-navigation__link" })*@
+            @Html.ActionLink("M/P", "Index", "MP", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("FRator", "Index", "Frator", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("Admin", "Index", "Admin", null, new {@class = "mdl-navigation__link"})
+
+            <a id="show-dialog" class="mdl-navigation__link">Feedback</a>
+            <dialog class="mdl-dialog">
+                @*<h4 class="mdl-dialog__title">FeedBack</h4>*@
+                <div class="mdl-dialog__content">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input" type="text" rows="2" id="textareaFeedback"></textarea>
+                            <label class="mdl-textfield__label" for="textareaFeedback">FeedBack</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button close "> Send! </button>
+                </div>
+            </dialog>
             <a id="logout" href="/?logOut=true" class="mdl-navigation__link">Log Out</a>
-        
+
         </nav>
     </aside>
     <main class="mdl-layout__content">
@@ -39,8 +66,26 @@
     </main>
 </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
+@*@Scripts.Render("~/bundles/jquery")*@
+@*@Scripts.Render("~/bundles/bootstrap")*@
 @RenderSection("scripts", false)
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+<script>
+    var dialog = document.querySelector('dialog');
+    var showDialogButton = document.querySelector('#show-dialog');
+    if (! dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+        dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+        dialog.close();
+    });
+</script>
+
 </body>
 </html>

@@ -9,48 +9,57 @@
     <main class="mdl-layout__content">
         <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
             <main class="mdl-layout__content">
-
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                        <label class="mdl-button mdl-js-button mdl-button--icon" for="searchMembersText">
-                            <i class="material-icons">search</i>
-                        </label>
-                        <div class="mdl-textfield__expandable-holder">
-                            <input class="mdl-textfield__input" type="text" id="searchMembersText">
-                            <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-                        </div>
-                    </div>
-                </form>
-                
-
-                    <div id="members" class="mdl-grid">
-                        @foreach (var m in Model.MemberThumbnails)
-                        {
-                            <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" member-id="@m.Id">
-                                <figure class="mdl-card__media" >
-                                    <div class="loader" style="background-image:url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
-                                    <img class="avatar" />
-                                </figure>
-                                <div class="mdl-card__title">
-                                    <h1 class="mdl-card__title-text">@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) (@Html.DisplayName(m.Nickname))</h1>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <p>@Html.DisplayName(m.Faculty)</p>
-                                </div>
-                                <div class="mdl-card__actions mdl-card--border">
-                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new { id = m.Id })">Read More</a>
-                                    <div class="mdl-layout-spacer"></div>
-                                    <button class="mdl-button mdl-button--icon mdl-button--colored">
-                                        <i class="material-icons">favorite</i>
-                                    </button>
-                                    <button class="mdl-button mdl-button--icon mdl-button--colored">
-                                        <i class="material-icons">share</i>
-                                    </button>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                    <div class="mdl-cell mdl-cell--10-col mdl-cell--4-col-tablet">
+                        <form action="#">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                                <label class="mdl-button mdl-js-button mdl-button--icon" for="searchMembersText">
+                                    <i class="material-icons">search</i>
+                                </label>
+                                <div class="mdl-textfield__expandable-holder">
+                                    <input class="mdl-textfield__input" type="text" id="searchMembersText">
+                                    <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
                                 </div>
                             </div>
-                        }
+                        </form>        
                     </div>
-                </main>
+                    <div class="mdl-cell mdl-cell--1-col">
+                        <a href="@Url.Action("Add", "Member")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">add</i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="members" class="mdl-grid">
+                    @foreach (var m in Model.MemberThumbnails)
+                    {
+                        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" member-id="@m.Id">
+                            <figure class="mdl-card__media">
+                                <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
+                                <img class="avatar"/>
+                            </figure>
+                            <div class="mdl-card__title">
+                                <h1 class="mdl-card__title-text">@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) (@Html.DisplayName(m.Nickname))</h1>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <p>@Html.DisplayName(m.Faculty)</p>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.Id})">Read More</a>
+                                <div class="mdl-layout-spacer"></div>
+                                <button class="mdl-button mdl-button--icon mdl-button--colored">
+                                    <i class="material-icons">favorite</i>
+                                </button>
+                                <button class="mdl-button mdl-button--icon mdl-button--colored">
+                                    <i class="material-icons">share</i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </main>
             </div>
         </main>
     </div>
@@ -60,7 +69,7 @@
     $(function ($) {
         var data = [];
         var elements = $("#members").find('h1.mdl-card__title-text');
-        for (i = 0; i < elements.length; i++) {
+        for (var i = 0; i < elements.length; i++) {
             data.push(elements[i].innerHTML);
         }
         $("#searchMembersText").autocomplete({
@@ -86,7 +95,7 @@
         $.post("@Url.Action("SearchMembers", "Member")", { "term": term }, function (data) {
             $('#members').children().each(function () {
                 var id = parseInt($(this).attr('member-id'));
-                if (data.indexOf(id) != -1) {
+                if (data.indexOf(id) !== -1) {
                     $(this).show();
                 } else {
                     $(this).hide();
