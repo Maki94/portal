@@ -188,6 +188,7 @@
     <Compile Include="ValidationClasses.cs" />
     <Compile Include="ViewModels\Badge\BadgeListViewModel.cs" />
     <Compile Include="ViewModels\Badge\CreateBadgeViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,13 +269,20 @@
     <Content Include="Views\Badge\AllBadges.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Views\Access\UploadDefaultPicture.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Access\ChangePassword.cshtml" />
+=======
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Poll\Index.cshtml" />
     <Content Include="Views\Messenger\Index.cshtml" />
     <Content Include="Views\Mp\Index.cshtml" />
     <Content Include="Views\Frator\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Event\Add.cshtml" />
+=======
+>>>>>>> 26b19c3e5dabefb49276c359159f9e6402efd292
+>>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

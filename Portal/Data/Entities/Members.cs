@@ -10,8 +10,8 @@ namespace Data.Entities
 {
     public class Members
     {
-        public static Member AddMember(string gmail, string password, string name, string surname, int roleId,
-                                       string nickname = null)
+        public static Member AddMember(string gmail, string password, string name,
+                                       string surname, int roleId, string nickname = null)
         {
             using (var dc = new DataContext())
             {
@@ -127,7 +127,7 @@ namespace Data.Entities
             }
         }
 
-        public static void EditProfile(int memberID, string name, string surname, string nickname,
+        public static void EditProfile(int memberID, string nickname,
                                        string faculty, DateTime? dob, Enumerations.MemberStatus? status,
                                        string phone, string facebook, string linkedin, string skype)
         {
@@ -135,8 +135,6 @@ namespace Data.Entities
             {
                 var mem = (from m in dc.Members where m.MemberId == memberID select m).First();
 
-                mem.Name = name ?? mem.Name;
-                mem.Surname = surname ?? mem.Surname;
                 mem.Nickname = nickname ?? mem.Nickname;
                 mem.Faculty = faculty ?? mem.Faculty;
                 mem.Status = status ?? mem.Status;
@@ -145,6 +143,26 @@ namespace Data.Entities
                 mem.Facebook = facebook ?? mem.Facebook;
                 mem.LinkedIn = linkedin ?? mem.LinkedIn;
 
+                dc.SaveChanges();
+            }
+        }
+
+        public static bool CheckMemberPassword(int memberID, string password)
+        {
+            using (var dc = new DataContext())
+            {
+                var mem = GetMember(memberID);
+
+                return mem.Password == password;
+            }
+        }
+
+        public static void ChangeMemberPassword(int memberId, string newPassword)
+        {
+            using (var dc = new DataContext())
+            {
+                var mem = GetMember(memberId);
+                mem.Password = newPassword;
                 dc.SaveChanges();
             }
         }

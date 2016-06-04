@@ -1,8 +1,10 @@
-﻿@model MVC.ViewModels.Member.MemberProfileViewModel
+﻿@using Data.DTOs
+@model MVC.ViewModels.Member.MemberProfileViewModel
 
 @{
     ViewBag.Title = "Profile";
 }
+@{ LoginDTO member = MemberSession.GetMember();}
 
 <h2>Profile</h2>
 
@@ -86,6 +88,11 @@
         </dd>
 
     </dl>
+    @if (member.MemberID == Model.Id)
+    {
+        <a href="@Url.Action("Edit", "Member")">Izmeni profil</a>
+    }
+
 </div>
 
 <h4>Projekti</h4>

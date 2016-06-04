@@ -70,6 +70,20 @@ aside a:hover {
     margin-right: 239px;
   }
 }
+<<<<<<< HEAD
+=======
+
+/*Ubaceno za naslov u thumbnailovima da ne prelazi 2 reda*/
+.mdl-grid .mdl-card__title > h1.mdl-card__title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+/* ----------------------------------------------------- */
+
+>>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614
 .mdl-grid .mdl-card__media {
   margin: 0;
 }
@@ -103,6 +117,40 @@ aside a:hover {
 #today {
   background: purple;
 }
+<<<<<<< HEAD
 #span-spacer {
   height: 130px;
 }
+=======
+
+/* ------------------------ */
+/* ------------------------ */
+/* ------------------------ */
+/* Dodat css za neke stvari */
+/* ------------------------ */
+/* ------------------------ */
+/* ------------------------ */
+
+/*Ubaceno za avatar-loader gif style*/
+.loader {
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: inherit;
+}
+
+/*Ubaceno za badgethumbnail size*/
+
+div.badgediv {
+	width: 130px;
+	height: 150px;
+}
+
+p.badgetitle {
+	text-align: center;
+}
+
+img.badgethumbnail {
+	max-width: 100%;
+	max-height: 100%;
+}
+>>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614

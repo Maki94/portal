@@ -14,9 +14,10 @@
     var base64 = Convert.ToBase64String(b.Image);
     var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-    @Html.DisplayFor(m => b.Name);
-    @Html.DisplayFor(m => b.Description);
-    <img src="@imgSrc" />
+    <div class="badgediv">
+        <p class="badgetitle">@Html.DisplayFor(m => b.Name)</p>
+        <img class="badgethumbnail" src="@imgSrc" title="@Html.DisplayFor(m => b.Description)" />
+    </div>
 }
 
 <hr />

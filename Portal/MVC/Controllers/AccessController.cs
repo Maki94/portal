@@ -1,4 +1,5 @@
-﻿using MVC.ViewModels;
+﻿using Data.Entities;
+using MVC.ViewModels;
 using System;
 using System.IO;
 using System.Web;
@@ -21,7 +22,7 @@ namespace MVC.Controllers
 
                 ViewBag.message = message;
 
-                return View(new MemberLoginViewModel());
+                return View(new MemberLoginViewModel() { Gmail = "zantsusan@gmail.com", Password = "Admin@123" });
             }
             catch (Exception)
             {
@@ -80,6 +81,31 @@ namespace MVC.Controllers
             }
 
             return RedirectToAction("UploadDefaultPicture");
+        }
+
+        public ActionResult ChangePassword(string message)
+        {
+            ViewBag.message = message;
+            return View(new ChangePasswordViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordViewModel m)
+        {
+            if (!Members.CheckMemberPassword(MemberSession.GetMemberId(), m.OldPassword))
+            {
+                return RedirectToAction("ChangePassword", new { message = "Pogresna stara lozinka." });
+            }
+            else if (m.NewPassword != m.RepeatPassword) {
+                return RedirectToAction("ChangePassword", new { message = "Polja za novu lozinku nisu jednaka." });
+            }
+            else
+            {
+                Members.ChangeMemberPassword(MemberSession.GetMemberId(), m.NewPassword);
+
+            }
+
+            return RedirectToAction("ChangePassword", new { message = "Nesto ne valja." });
         }
     }
 }

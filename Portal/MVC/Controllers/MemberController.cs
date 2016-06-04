@@ -7,7 +7,6 @@ using Data.DataClasses;
 
 namespace MVC.Controllers
 {
-    [AuthorizeMember]
     public class MemberController : Controller
     {
         // GET: MemberProfile
@@ -54,13 +53,20 @@ namespace MVC.Controllers
         public ActionResult Edit(EditProfileViewModel m)
         {
             int memberId = MemberSession.GetMemberId();
+<<<<<<< HEAD
             Members.EditProfile(memberId, m.Name, m.Surname, m.Nickname,
+=======
+            Data.Entities.Members.EditProfile(memberId, m.Nickname,
+>>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614
                                               m.Faculty, m.DateOfBirth, m.Status, m.Phone,
                                               m.Facebook, m.LinkedIn, m.Skype);
             return RedirectToAction("Profile", new { id = memberId });
         }
 
+<<<<<<< HEAD
+=======
         //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
+>>>>>>> 26b19c3e5dabefb49276c359159f9e6402efd292
         public ActionResult Add()
         {
             return View(new AddMemberViewModel());

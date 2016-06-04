@@ -11,7 +11,6 @@ using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
-    [AuthorizeMember]
     public class BadgeController : Controller
     {
         // GET: Badge
