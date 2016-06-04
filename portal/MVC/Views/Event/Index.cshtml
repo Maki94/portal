@@ -3,5 +3,68 @@
 @{
     ViewBag.Title = "Events";
 }
-
+<link rel="stylesheet" href="../../Content/cssDatePicker/pikaday.css">
+<link rel="stylesheet" href="../../Content/cssDatePicker/theme.css">
 <h2>Events</h2>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone"></div>
+    <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-expandable2">
+                <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="search-expandable2">
+                <label class="mdl-textfield__label" for="search-expandable2">
+                    Pretrazi Dogadjaj
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+        <div class="mdl-cell mdl-cell--1-col">
+            <a href="@Url.Action("Add", "Event")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+        <ul class="event-list">
+            <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-avatar">person</i>
+                    <span>Motivacioni vikend</span>
+                    <span class="mdl-list__item-text-body">
+                        Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+                        for playing Hal in Malcom in the Middle.
+                    </span>
+                </span>
+            </li>
+            <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons  mdl-list__item-avatar">person</i>
+                    <span>Okupljane u sumicu</span>
+                    <span class="mdl-list__item-text-body">
+                        Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
+                        the "Need For Speed" Movie.
+                    </span>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+        <input class="mdl-textfield__input" placeholder="Od" type="text" id="pretragaOd">
+        <span id="span-spacer"></span>
+        <input class="mdl-textfield__input" placeholder="Od" type="text" id="pretragaDo">
+    </div>
+</div>
+<script src="../../Scripts/pikaday.js"></script>
+<script>
+    var pretragaOd = new Pikaday({ field: document.getElementById('pretragaOd') });
+    var pretragaDo = new Pikaday({ field: document.getElementById('pretragaDo') });
+</script>

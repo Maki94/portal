@@ -3,9 +3,7 @@ using MVC.ViewModels.Member;
 using MVC.ViewModels;
 using Data.Entities;
 using System;
-using Newtonsoft.Json;
 using Data.DataClasses;
-using System.Collections.Generic;
 
 namespace MVC.Controllers
 {
@@ -56,7 +54,7 @@ namespace MVC.Controllers
         public ActionResult Edit(EditProfileViewModel m)
         {
             int memberId = MemberSession.GetMemberId();
-            Data.Entities.Members.EditProfile(memberId, m.Name, m.Surname, m.Nickname,
+            Members.EditProfile(memberId, m.Name, m.Surname, m.Nickname,
                                               m.Faculty, m.DateOfBirth, m.Status, m.Phone,
                                               m.Facebook, m.LinkedIn, m.Skype);
             return RedirectToAction("Profile", new { id = memberId });

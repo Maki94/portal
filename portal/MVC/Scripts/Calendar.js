@@ -33,18 +33,12 @@ function Calendar(wrapperId) {
 
     self.Init = function () {
         for (var i = 0; i < 6 * 7; i++) self.CalederFields[i] = new CalendarField(0, false);
-        self._updateCalenderFields();
 
         self.Draw("calendar-wrapper");
         $("#prev").bind("click", function () { self.switchMonth(false); });
         $("#next").bind("click", function () { self.switchMonth(true); });
 
-        $(".calculator-field").each(function () {
-            $(this).bind("click", function () {
-                //alert(this.dataset.label);
-                POPUP.innerHTML = this.dataset.label;
-            });
-        });
+
 
     };
 
@@ -54,24 +48,45 @@ function Calendar(wrapperId) {
         var firstDayString = (new Date(self._currentYear, self._currentMonth, firstDay + 1)).toDateString().split(" ")[0];
         var printNull = true;
         var today = new Date().getDate();
+        var thisMonth = new Date().getMonth();
         for (var i = 0, index = 0; i < 6; i++) {
             for (var j in days) {
-                if (today === firstDay + 1)
+                if (today === (firstDay + 1) && self._currentMonth === thisMonth) {
                     self.CalederFields[index].SetCurrentDay();
-                if ((printNull && firstDayString !== days[j]) || (firstDay > lastDay)) {
+                    printNull = false;
+                    self.CalederFields[index].Label = ++firstDay;
+                }
+                else if ((printNull && firstDayString !== days[j]) || (firstDay >= lastDay - 1)) {
                     self.CalederFields[index].Label = 0;
                     self.CalederFields[index].Init(firstDay, self._currentMonth, self._currentYear);
+                    self.CalederFields[index].ClearCurrentDay();
                 } else {
                     printNull = false;
                     self.CalederFields[index].Label = ++firstDay;
+                    self.CalederFields[index].ClearCurrentDay();
                 }
                 index++;
             }
         }
     };
     self.Draw = function () {
+        self._updateCalenderFields();
         self.Wrapper.innerHTML = self.GetDiv().innerHTML;
         document.getElementById("label").innerHTML = getMonth(self._currentMonth) + " " + self._currentYear;
+
+        $(".calculator-field").each(function () {
+            var snackbarContainer = document.querySelector('#calendar-message-box');
+            $(this).bind("click", function () {
+                'use strict';
+                var data = {
+                    message: this.dataset.label,
+                    //actionHandler: function(event) {},
+                    //actionText: 'Undo',
+                    timeout: 500
+                };
+                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+            });
+        });
     };
 
     self.GetDiv = function () {
@@ -122,6 +137,3 @@ function Calendar(wrapperId) {
         self.Draw();
     }
 }
-
-
-

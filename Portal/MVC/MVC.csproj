@@ -202,6 +202,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cssDatePicker\pikaday.css" />
+    <Content Include="Content\cssDatePicker\site.css" />
+    <Content Include="Content\cssDatePicker\theme.css" />
+    <Content Include="Content\cssDatePicker\triangle.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -215,6 +219,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\memberIndex.less" />
+    <Content Include="Content\calendar.less" />
+    <Content Include="Content\Event.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\calendarField.js" />
@@ -227,6 +233,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\memberIndex.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pikaday.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -267,6 +274,7 @@
     <Content Include="Views\Mp\Index.cshtml" />
     <Content Include="Views\Frator\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Event\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
