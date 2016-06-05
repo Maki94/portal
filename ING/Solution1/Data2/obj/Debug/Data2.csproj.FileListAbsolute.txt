@@ -18,3 +18,13 @@ D:\SVN LEAVE DAYS\Solution1\Data2\bin\Debug\itextsharp.xml
 D:\SVN LEAVE DAYS\Solution1\Data2\obj\Debug\Data2.dll
 D:\SVN LEAVE DAYS\Solution1\Data2\obj\Debug\Data2.pdb
 D:\SVN LEAVE DAYS\Solution1\Data2\obj\Debug\Data2.csprojResolveAssemblyReference.cache
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\Data2.dll.config
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\Data2.dll
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\Data2.pdb
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\itextsharp.dll
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\itextsharp.xmlworker.dll
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\RazorPDF.dll
+C:\SI Portal\ING\Solution1\Data2\bin\Debug\itextsharp.xml
+C:\SI Portal\ING\Solution1\Data2\obj\Debug\Data2.csprojResolveAssemblyReference.cache
+C:\SI Portal\ING\Solution1\Data2\obj\Debug\Data2.dll
+C:\SI Portal\ING\Solution1\Data2\obj\Debug\Data2.pdb
