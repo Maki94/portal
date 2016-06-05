@@ -70,6 +70,8 @@ aside a:hover {
     margin-right: 239px;
   }
 }
+<<<<<<< HEAD
+=======
 
 /*Ubaceno za naslov u thumbnailovima da ne prelazi 2 reda*/
 .mdl-grid .mdl-card__title > h1.mdl-card__title-text {
@@ -81,8 +83,8 @@ aside a:hover {
 }
 /* ----------------------------------------------------- */
 
+>>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614
 .mdl-grid .mdl-card__media {
-  background-color: white;
   margin: 0;
 }
 .mdl-grid .mdl-card__media > img {
@@ -90,9 +92,6 @@ aside a:hover {
   min-width: 100%;
 }
 .mdl-grid .mdl-card__actions {
-/*Ubaceno da bi link ka profilu na thumbnailu bio skroz dole*/
-  margin-top: auto;
-/* -------------------------------------------------------- */
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -105,15 +104,24 @@ aside a:hover {
   width: 200px !important;
 }
 .calculator-field {
-  background: red;
-  width: 50px;
-  height: 50px;
-  max-width: 50px;
-  max-height: 50px;
+  background-color: orchid;
+  width: 77px;
+  height: 77px;
+  max-width: 77px;
+  max-height: 77px;
+}
+.calculator-field:hover {
+  background-color: transparent;
+  cursor: pointer;
 }
 #today {
   background: purple;
 }
+<<<<<<< HEAD
+#span-spacer {
+  height: 130px;
+}
+=======
 
 /* ------------------------ */
 /* ------------------------ */
@@ -145,3 +153,4 @@ img.badgethumbnail {
 	max-width: 100%;
 	max-height: 100%;
 }
+>>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614

@@ -5,27 +5,50 @@
 }
 @Html.DisplayName(Model.Nickname);
 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-        <div id="calendar-popup" class="modal-content">
-            kskks
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+        <h1>Vazne vesti</h1>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet right">
+        <img src="http://placehold.it/250x150">
+    </div>
+</div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+        <h3>
+            Danas je rodjendan
+        </h3>
+        <h5><a>link</a></h5><h3>
+            Godisnjice clasnstava
+        </h3>
+        <h5><a>link</a></h5><h3>
+            Aktivni projekti
+        </h3>
+        <h5><a>link</a></h5><h3>
+            Aktivna glasanja
+        </h3>
+        <h5><a>link</a></h5>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+        <div id="calendar-message-box" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
         </div>
+
+        <div class="header">
+            <span class="left button" id="prev"> <b>prev</b></span>
+            <span class="left hook"></span>
+            <span class="month-year" id="label"> </span>
+            <span class="right hook" id=""></span>
+            <span class="right button" id="next"> <b>next</b> </span>
+        </div>
+        <div id="calendar-wrapper"></div>
     </div>
 </div>
 
-<div class="header">
-    <span class="left button" id="prev"> <b>prev</b></span>
-    <span class="left hook"></span>
-    <span class="month-year" id="label"> </span>
-    <span class="right hook" id=""></span>
-    <span class="right button" id="next"> <b>next</b> </span>
-</div>
-<div id="calendar-wrapper">
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../../Scripts/calendarField.js"></script>
 <script src="../../Scripts/Calendar.js"></script>
-<script src="../../Scripts/memberIndex.js"></script>
-@*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
-@*@Html.ActionLink("Back to List", "Index")*@
+<script>
+    var calendar = new Calendar("calendar-wrapper");
+    calendar.Init();
+</script>    

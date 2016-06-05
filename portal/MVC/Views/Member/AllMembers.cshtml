@@ -40,20 +40,16 @@
                                 <img class="avatar"/>
                             </figure>
                             <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) (@Html.DisplayName(m.Nickname))</h1>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.Id})">
+                                    @Html.DisplayName(m.Name)
+                                </a>
                             </div>
                             <div class="mdl-card__supporting-text">
+                                <h6>@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) (@Html.DisplayName(m.Nickname))</h6>
                                 <p>@Html.DisplayName(m.Faculty)</p>
                             </div>
                             <div class="mdl-card__actions mdl-card--border">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.Id})">Read More</a>
                                 <div class="mdl-layout-spacer"></div>
-                                <button class="mdl-button mdl-button--icon mdl-button--colored">
-                                    <i class="material-icons">favorite</i>
-                                </button>
-                                <button class="mdl-button mdl-button--icon mdl-button--colored">
-                                    <i class="material-icons">share</i>
-                                </button>
                             </div>
                         </div>
                     }

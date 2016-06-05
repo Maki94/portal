@@ -203,6 +203,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cssDatePicker\pikaday.css" />
+    <Content Include="Content\cssDatePicker\site.css" />
+    <Content Include="Content\cssDatePicker\theme.css" />
+    <Content Include="Content\cssDatePicker\triangle.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -216,6 +220,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\memberIndex.less" />
+    <Content Include="Content\calendar.less" />
+    <Content Include="Content\Event.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\calendarField.js" />
@@ -228,6 +234,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\memberIndex.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pikaday.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -262,16 +269,14 @@
     <Content Include="Views\Badge\AllBadges.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Views\Access\UploadDefaultPicture.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Access\ChangePassword.cshtml" />
-=======
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Poll\Index.cshtml" />
     <Content Include="Views\Messenger\Index.cshtml" />
     <Content Include="Views\Mp\Index.cshtml" />
     <Content Include="Views\Frator\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
->>>>>>> 26b19c3e5dabefb49276c359159f9e6402efd292
+    <Content Include="Views\Event\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -291,7 +296,7 @@
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <!--<VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>-->
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

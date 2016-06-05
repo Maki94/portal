@@ -28,15 +28,17 @@
     self.GetDiv = function () {
         var div = document.createElement("div");
 
-        div.className = FIELD_CLASS_NAME;
+        div.className = FIELD_CLASS_NAME; // + " " + 'mdl-cell mdl-cell--2-col';
         if (self._isCurrentDay)
             div.id = FIELD_CURRENT_ID;
         div.innerHTML = self.Label;
         div.click(function () {
             alert("MRK");
         });
-        div.setAttribute("data-target", ".bs-example-modal-lg");
-        div.setAttribute("data-toggle", "modal");
+        //div.setAttribute("data-target", ".bs-example-modal-lg");
+        //div.setAttribute("data-toggle", "modal");
+        //div.addClass('mdl-cell mdl-cell--1-col');
+
         div.setAttribute("data-label", self.Label);
         return div;
     };
