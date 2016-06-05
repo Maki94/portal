@@ -32,7 +32,7 @@ namespace MVC.ViewModels.Member
 
         public static MemberProfileViewModel Load(int memberID)
         {
-            Data.DataClasses.Member m = Data.Entities.Members.GetMember(memberID);
+            Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
             MemberProfileViewModel model = new MemberProfileViewModel
             {
                 Nickname = m.Nickname,
