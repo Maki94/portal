@@ -1,0 +1,90 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+}
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    <h2> Motivacioni vikend</h2>
+
+    <form action="#" id="event-edit-form">
+        <ul class="demo-list-item mdl-list">
+            <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <div class="event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="event-edit-naziv">
+                        <label class="mdl-textfield__label" for="event-edit-naziv">Naziv...</label>
+                    </div>
+                </span>
+            </li>
+            <li class="mdl-list__item">
+                <div class="event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="event-edit-labela">
+                    <label class="mdl-textfield__label" for="event-edit-labela">Labela...</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="event-edit-MO">
+                    <label class="mdl-textfield__label" for="event-edit-MO">MO...</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <ul id="event-edit-ucesnik-wrapper" class="demo-list-item mdl-list">
+                    <li class="mdl-list__item">
+                        <div id="event-edit-add" class="icon material-icons">add</div>
+                        <div class="mdl-tooltip mdl-tooltip--large" for="event-edit-add">
+                            Ucesnik
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <div class="event-edit-wrapper mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows="5" id="event-edit-opis"></textarea>
+                        <label class="mdl-textfield__label" for="event-edit-opis">Opis...</label>
+                    </div>
+                </span>
+            </li>
+
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+                    <input class="mdl-textfield__input" placeholder="Fotogrfija" type="text" id="uploadFile" readonly/>
+                    <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                        <i class="material-icons">attach_file</i><input type="file" id="uploadBtn">
+                    </div>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <input class="mdl-textfield__input" placeholder="Od" type="text" id="event-edit-od">
+                <input class="mdl-textfield__input" placeholder="Od" type="text" id="event-edit-do">
+            </li>
+            <li class="mdl-list__item">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Sacuvaj Izmene
+                </button>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<script>
+    $('#event-edit-add').bind('click', function() {
+        $('#event-edit-ucesnik-wrapper').append(
+            "<li class='mdl-list__item'> " +
+            "<div class='event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label'>" +
+            " <input class='event-edit-ucesnik mdl-textfield__input' type='text'> " +
+            "</div>" +
+            " </li>"
+        );
+    });
+    document.getElementById("uploadBtn").onchange = function() {
+        document.getElementById("uploadFile").value = this.files[0].name;
+    };
+
+    var pretragaOd = new Pikaday({ field: document.getElementById('event-edit-od') });
+    var pretragaDo = new Pikaday({ field: document.getElementById('event-edit-do') });
+</script>

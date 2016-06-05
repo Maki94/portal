@@ -207,6 +207,7 @@
     <Content Include="Content\cssDatePicker\site.css" />
     <Content Include="Content\cssDatePicker\theme.css" />
     <Content Include="Content\cssDatePicker\triangle.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -222,6 +223,9 @@
     <Content Include="Content\memberIndex.less" />
     <Content Include="Content\calendar.less" />
     <Content Include="Content\Event.less" />
+    <Content Include="Content\EventProfile.less" />
+    <Content Include="Content\EventEdit.less" />
+    <Content Include="Content\PollIndex.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\calendarField.js" />
@@ -277,6 +281,10 @@
     <Content Include="Views\Frator\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Event\Add.cshtml" />
+    <None Include="Views\Event\Edit.cshtml" />
+    <None Include="Views\Event\Profile.cshtml" />
+    <None Include="Views\Poll\Add.cshtml" />
+    <None Include="Views\Poll\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

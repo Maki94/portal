@@ -35,7 +35,7 @@ aside a:hover {
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
 }
-.demo-card-event.mdl-card {
+/*.demo-card-event.mdl-card {
   width: 256px;
   height: 256px;
   background: #3E4EB8;
@@ -61,7 +61,7 @@ aside a:hover {
 .demo-card-event > .mdl-card__actions,
 .demo-card-event > .mdl-card__actions > .mdl-button {
   color: #fff;
-}
+}*/
 .mdl-grid {
   margin-left: 0;
 }
@@ -70,20 +70,6 @@ aside a:hover {
     margin-right: 239px;
   }
 }
-<<<<<<< HEAD
-=======
-
-/*Ubaceno za naslov u thumbnailovima da ne prelazi 2 reda*/
-.mdl-grid .mdl-card__title > h1.mdl-card__title-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-/* ----------------------------------------------------- */
-
->>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614
 .mdl-grid .mdl-card__media {
   margin: 0;
 }
@@ -117,40 +103,60 @@ aside a:hover {
 #today {
   background: purple;
 }
-<<<<<<< HEAD
 #span-spacer {
   height: 130px;
 }
-=======
-
-/* ------------------------ */
-/* ------------------------ */
-/* ------------------------ */
-/* Dodat css za neke stvari */
-/* ------------------------ */
-/* ------------------------ */
-/* ------------------------ */
-
-/*Ubaceno za avatar-loader gif style*/
-.loader {
-  height: 32px;
-  background-repeat: no-repeat;
-  background-position: inherit;
+#event-profile-wrapper .demo-card-wide.mdl-card {
+  width: 100%;
 }
-
-/*Ubaceno za badgethumbnail size*/
-
-div.badgediv {
-	width: 130px;
-	height: 150px;
+#event-profile-wrapper .demo-card-wide > .mdl-card__title {
+  color: purple;
+  height: 300px;
+  background: url('http://placehold.it/350x150') center / cover;
 }
-
-p.badgetitle {
-	text-align: center;
+#event-profile-wrapper .demo-card-wide > .mdl-card__menu {
+  color: mediumpurple;
+  width: 50px;
 }
-
-img.badgethumbnail {
-	max-width: 100%;
-	max-height: 100%;
+#event-edit-form {
+  width: 100%;
 }
->>>>>>> 3c4643b69ee7c03f2e5c0327fcbdad820c351614
+#event-edit-form #event-edit-naziv {
+  width: 100%;
+}
+#event-edit-form #event-edit-add:hover {
+  cursor: pointer;
+  background: #f3e6ff;
+}
+#event-edit-form .event-edit-wrapper {
+  width: 100%;
+}
+#event-edit-form #event-edit-ucesnik-wrapper {
+  width: 100%;
+}
+.mdl-button--file input {
+  cursor: pointer;
+  height: 100%;
+  right: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  z-index: 4;
+}
+.mdl-textfield--file .mdl-textfield__input {
+  box-sizing: border-box;
+  width: calc(68%);
+}
+.mdl-textfield--file .mdl-button--file {
+  right: 0;
+}
+.mdl-textfield--file .mdl-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.poll-aktivnoGlasanje-content:hover {
+  cursor: pointer;
+  border-top: 1px blue;
+}

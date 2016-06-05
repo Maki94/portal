@@ -3,5 +3,87 @@
 @{
     ViewBag.Title = "Poll";
 }
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--11-col"></div>
+    <div class="mdl-cell mdl-cell--1-col">
+        <a href="@Url.Action("Add", "Poll")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+</div>
 
-<h2>Poll</h2>
+<div class="poll-aktivnoGlasanje mdl-list__item mdl-list__item--two-line" data-model="poll-aktinaGlasanjaIzbor-list-1">
+    <span class="poll-aktivnoGlasanje-content mdl-list__item-primary-content">
+            <b><span class="text-info">Datum skupstine <span class="text-danger">DL Subota 15h</span></span></b>
+            <span class="mdl-list__item-sub-title">Opis: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing </span>
+        </span>
+
+    <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
+        <i class="fa fa-edit" title="Edit" aria-hidden="true"></i>
+        <span class="sr-only">Edit</span>
+    </a>
+    <a class="btn btn-success" href="#" disabled>
+        <i class="fa fa-star-o" title="Settings" aria-hidden="true"></i>
+        <span class="sr-only">Activity</span>
+    </a>
+</div>
+<form action="#">
+    <ul id="poll-aktinaGlasanjaIzbor-list-1" class="poll-aktinaGlasanjaIzbor-list mdl-list">
+        <li class="mdl-list__item">
+            <span class="mdl-list__item-secondary-action">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"><input type="checkbox" class="mdl-checkbox__input" /></label>
+            </span>subota 15h
+        </li>
+        <li class="mdl-list__item">
+            <span class="mdl-list__item-secondary-action">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"><input type="checkbox" class="mdl-checkbox__input" /></label>
+            </span>subota 15h
+        </li>
+        <li class="mdl-list__item">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Glasaj
+            </button>
+        </li>
+    </ul>
+</form>
+
+
+<ul id="poll-index-list" class="mdl-list">
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <b><span class="text-info">Datum skupstine</span></b>
+                <span class="mdl-list__item-sub-title"><b>Izglasan 25.februar</b></span>
+                <span class="mdl-list__item-sub-title">62 Glasova</span>
+            </span>
+        <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
+            <i class="fa fa-edit" title="Edit" aria-hidden="true"></i>
+            <span class="sr-only">Edit</span>
+        </a>
+        <a class="btn btn-danger" href="#" disabled>
+            <i class="fa fa-star-o" title="Activity" aria-hidden="true"></i>
+            <span class="sr-only">Activity</span>
+        </a>
+    </li>
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <b><span class="text-info">Datum skupstine</span></b>
+                <span class="mdl-list__item-sub-title"><b>Izglasan 25.februar</b></span>
+                <span class="mdl-list__item-sub-title">62 Glasova</span>
+            </span>
+        <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
+            <i class="fa fa-edit" title="Activity" aria-hidden="true"></i>
+            <span class="sr-only">Edit</span>
+        </a>
+        <a class="btn btn-danger" href="#" disabled>
+            <i class="fa fa-star-o" title="Settings" aria-hidden="true"></i>
+            <span class="sr-only">Activity</span>
+        </a>
+    </li>
+</ul>
+<script src="https://use.fontawesome.com/c256757c6a.js"></script>
+<script>
+    $('.poll-aktinaGlasanjaIzbor-list').toggle();
+    $('.poll-aktivnoGlasanje').bind('click', function() {
+        $('#' + this.dataset.model).toggle();
+    });
+</script>

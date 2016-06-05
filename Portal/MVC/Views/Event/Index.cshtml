@@ -24,9 +24,19 @@
     </div>
     <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
         <div class="mdl-cell mdl-cell--1-col">
-            <a href="@Url.Action("Add", "Event")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                <i class="material-icons">add</i>
-            </a>
+            <button id="show-dialog-delete" type="button" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Delete</button>
+            <dialog id="dialog-delete" class="mdl-dialog">
+                <h4 class="mdl-dialog__title">Da li zaista zelite da obrisete?</h4>
+                <div class="mdl-dialog__content">
+                    <p>
+
+                    </p>
+                </div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button">Potvrdi</button>
+                    <button type="button" class="mdl-button close">Odkazi</button>
+                </div>
+            </dialog>
         </div>
     </div>
 </div>
@@ -38,7 +48,9 @@
             <li class="mdl-list__item mdl-list__item--three-line">
                 <span class="mdl-list__item-primary-content">
                     <i class="material-icons mdl-list__item-avatar">person</i>
-                    <span>Motivacioni vikend</span>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Event", new {id = 1})">
+                        Motivacioni vikend
+                    </a>
                     <span class="mdl-list__item-text-body">
                         Bryan Cranston played the role of Walter in Breaking Bad. He is also known
                         for playing Hal in Malcom in the Middle.
@@ -47,11 +59,13 @@
             </li>
             <li class="mdl-list__item mdl-list__item--three-line">
                 <span class="mdl-list__item-primary-content">
-                    <i class="material-icons  mdl-list__item-avatar">person</i>
-                    <span>Okupljane u sumicu</span>
+                    <i class="material-icons mdl-list__item-avatar">person</i>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Event", new {id = 1})">
+                        Okopljanje u kafanu
+                    </a>
                     <span class="mdl-list__item-text-body">
-                        Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
-                        the "Need For Speed" Movie.
+                        Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+                        for playing Hal in Malcom in the Middle.
                     </span>
                 </span>
             </li>
@@ -59,7 +73,7 @@
     </div>
     <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
         <input class="mdl-textfield__input" placeholder="Od" type="text" id="pretragaOd">
-        <span id="span-spacer"></span>
+        <br/>
         <input class="mdl-textfield__input" placeholder="Od" type="text" id="pretragaDo">
     </div>
 </div>

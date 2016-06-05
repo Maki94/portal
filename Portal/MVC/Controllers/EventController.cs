@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace MVC.Controllers
 {
@@ -11,6 +12,16 @@ namespace MVC.Controllers
         }
 
         public ActionResult Add()
+        {
+            return View();
+        }
+
+        public ActionResult Profile(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Edit(int id)
         {
             return View();
         }
