@@ -18,5 +18,3 @@ D:\SVN LEAVE DAYS\Solution1\Data2\bin\Debug\itextsharp.xml
 D:\SVN LEAVE DAYS\Solution1\Data2\obj\Debug\Data2.dll
 D:\SVN LEAVE DAYS\Solution1\Data2\obj\Debug\Data2.pdb
 D:\SVN LEAVE DAYS\Solution1\Data2\obj\Debug\Data2.csprojResolveAssemblyReference.cache
-D:\Faks\6. semestar\SWE Projekat\ING\Solution1\Data2\obj\Debug\Data2.dll
-D:\Faks\6. semestar\SWE Projekat\ING\Solution1\Data2\obj\Debug\Data2.pdb
