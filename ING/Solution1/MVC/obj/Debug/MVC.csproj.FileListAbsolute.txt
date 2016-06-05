@@ -75,4 +75,3 @@ D:\SVN LEAVE DAYS\Solution1\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\SVN LEAVE DAYS\Solution1\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 D:\SVN LEAVE DAYS\Solution1\MVC\obj\Debug\MVC.dll
 D:\SVN LEAVE DAYS\Solution1\MVC\obj\Debug\MVC.pdb
-D:\Faks\6. semestar\SWE Projekat\ING\Solution1\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
