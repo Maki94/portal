@@ -185,6 +185,7 @@
     <Compile Include="MemberSession.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PollModel.cs" />
     <Compile Include="ValidationClasses.cs" />
     <Compile Include="ViewModels\Badge\BadgeListViewModel.cs" />
     <Compile Include="ViewModels\Badge\CreateBadgeViewModel.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="ViewModels\Member\MemberIndexViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberProfileViewModel.cs" />
+    <Compile Include="ViewModels\Poll\PollListViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +292,7 @@
     <Content Include="Views\Mp\Izvestaj.cshtml" />
     <Content Include="Views\Frator\Profile.cshtml" />
     <None Include="Views\Poll\Add.cshtml" />
+    <Content Include="Views\Poll\AllPolls.cshtml" />
     <None Include="Views\Poll\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

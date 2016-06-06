@@ -34,7 +34,7 @@
                 <div id="members" class="mdl-grid">
                     @foreach (var m in Model.MemberThumbnails)
                     {
-                        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" member-id="@m.Id">
+                        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.Id">
                             <figure class="mdl-card__media">
                                 <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
                                 <img class="avatar"/>
@@ -62,7 +62,7 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript">
-    $(function ($) {
+    $(window).bind('load', function() {
         var data = [];
         var elements = $("#members").find('h6');
         for (var i = 0; i < elements.length; i++) {
@@ -78,7 +78,7 @@
     $(window).bind('load', function () {
         $('#members').children().each(function () {
             var $that = $(this);
-            var id = $(this).attr('member-id');
+            var id = $(this).attr('data-member-id');
             $.post("@Url.Action("GetAvatar", "Member")", { "id" : id }, function (data) {
                 $that.find('.avatar').attr('src', data);
                 $that.find('.loader').hide();
@@ -90,7 +90,7 @@
         var term = $('#searchMembersText').val();
         $.post("@Url.Action("SearchMembers", "Member")", { "term": term }, function (data) {
             $('#members').children().each(function () {
-                var id = parseInt($(this).attr('member-id'));
+                var id = parseInt($(this).attr('data-member-id'));
                 if (data.indexOf(id) !== -1) {
                     $(this).show();
                 } else {

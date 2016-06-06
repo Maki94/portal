@@ -77,6 +77,44 @@ namespace Data
             context.MemberTeams.AddRange(memberteams);
 
             context.SaveChanges();
+
+            var polls = new List<Poll>
+            {
+                new Poll { Topic = "Glasanje1", Description = "Ovo je opis za glasanje1.", MaxAnswers = 3, StartDate = DateTime.Now, EndDate = new DateTime(2016, 7, 20), State = Enumerations.PollState.aktivan, PollCreator = members[0]},
+                new Poll { Topic = "Glasanje2", Description = "Ovo je opis za glasanje2.", MaxAnswers = 1, StartDate = DateTime.Now, EndDate = new DateTime(2016, 7, 20), State = Enumerations.PollState.aktivan, PollCreator = members[1]},
+            };
+
+            context.Polls.AddRange(polls);
+            context.SaveChanges();
+
+            var polloptions = new List<PollOption>
+            {
+                new PollOption { Poll = polls[0], Answer = "Odgovor1 za glasanje1" },
+                new PollOption { Poll = polls[0], Answer = "Odgovor2 za glasanje1" },
+                new PollOption { Poll = polls[0], Answer = "Odgovor3 za glasanje1" },
+                new PollOption { Poll = polls[0], Answer = "Odgovor4 za glasanje1" },
+                new PollOption { Poll = polls[0], Answer = "Odgovor5 za glasanje1" },
+
+                new PollOption { Poll = polls[1], Answer = "Odgovor1 za glasanje2" },
+                new PollOption { Poll = polls[1], Answer = "Odgovor2 za glasanje2" },
+            };
+
+            context.PollOptions.AddRange(polloptions);
+            context.SaveChanges();
+
+            var memberpolloptions = new List<MemberPollOption>
+            {
+                new MemberPollOption { Member = members[0], PollOption = polloptions[1] },
+                new MemberPollOption { Member = members[0], PollOption = polloptions[2] },
+                new MemberPollOption { Member = members[0], PollOption = polloptions[3] },
+                new MemberPollOption { Member = members[1], PollOption = polloptions[1] },
+                new MemberPollOption { Member = members[2], PollOption = polloptions[2] },
+
+                new MemberPollOption { Member = members[0], PollOption = polloptions[6] },
+            };
+
+            context.MemberPollOptions.AddRange(memberpolloptions);
+            context.SaveChanges();
         }
     }
 }

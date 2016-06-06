@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using MVC.ViewModels.Poll;
+using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
@@ -6,7 +7,12 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("AllPolls");
+        }
+
+        public ActionResult AllPolls()
+        {
+            return View(new PollListViewModel());
         }
 
         public ActionResult Add()
