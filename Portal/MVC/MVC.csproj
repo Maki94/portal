@@ -226,6 +226,10 @@
     <Content Include="Content\EventProfile.less" />
     <Content Include="Content\EventEdit.less" />
     <Content Include="Content\PollIndex.less" />
+    <Content Include="Content\MessengerIndex.less" />
+    <Content Include="Content\MpTree.less" />
+    <Content Include="Content\MpIzvestaj.less" />
+    <Content Include="Content\fratorIndex.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\calendarField.js" />
@@ -283,6 +287,8 @@
     <Content Include="Views\Event\Add.cshtml" />
     <None Include="Views\Event\Edit.cshtml" />
     <None Include="Views\Event\Profile.cshtml" />
+    <Content Include="Views\Mp\Izvestaj.cshtml" />
+    <Content Include="Views\Frator\Profile.cshtml" />
     <None Include="Views\Poll\Add.cshtml" />
     <None Include="Views\Poll\Edit.cshtml" />
   </ItemGroup>
