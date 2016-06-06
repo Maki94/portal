@@ -53,10 +53,9 @@ namespace MVC.Controllers
         public ActionResult Edit(EditProfileViewModel m)
         {
             int memberId = MemberSession.GetMemberId();
-            //Members.EditProfile(memberId, m.Name, m.Surname, m.Nickname,
-            //Data.Entities.Members.EditProfile(memberId, m.Nickname,
-            //                                  m.Faculty, m.DateOfBirth, m.Status, m.Phone,
-            //                                  m.Facebook, m.LinkedIn, m.Skype);
+            Data.Entities.Members.EditProfile(memberId, m.Nickname,
+                                              m.Faculty, m.DateOfBirth, m.Status, m.Phone,
+                                              m.Facebook, m.LinkedIn, m.Skype);
             return RedirectToAction("Profile", new { id = memberId });
         }
 
