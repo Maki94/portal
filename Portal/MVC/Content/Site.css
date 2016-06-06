@@ -71,6 +71,10 @@ aside a:hover {
 .div-expand {
   width: 100%;
 }
+.li-shrink {
+  margin: 0;
+  padding: 0;
+}
 .calculator-field {
   background-color: orchid;
   width: 77px;
@@ -155,8 +159,19 @@ aside a:hover {
   color: white;
 }
 #messenger-header #messenger-message {
-  /*margin-top: -@messenger-header-height/2;*/
   border-color: blueviolet;
+}
+@media (max-width: 480px) {
+  #messenger-header #messenger-message {
+    margin-left: -46px;
+    width: calc(100% + 46px);
+  }
+}
+@media (max-width: 1023px) {
+  #messenger-header #messenger-message {
+    margin-left: -46px;
+    width: calc(100% + 46px);
+  }
 }
 #messenger-header #messenger-message::-webkit-input-placeholder,
 #messenger-header #messenger-message::-moz-placeholder {
@@ -362,4 +377,81 @@ aside a:hover {
 }
 .frator-kompanije-list {
   list-style: none;
+}
+#frator-komentari-wrapper {
+  margin-top: 0px;
+}
+#frator-komentari-wrapper #komentar-list {
+  width: 350px !important;
+}
+#frator-komentari-wrapper .time-info {
+  display: none;
+}
+#frator-komentari-wrapper ul.ChatLog {
+  list-style: none;
+}
+#frator-komentari-wrapper .ChatLog {
+  max-width: 100%;
+  margin: 0 auto;
+}
+#frator-komentari-wrapper .ChatLog .ChatLog__entry {
+  margin: .5em;
+}
+#frator-komentari-wrapper .ChatLog__entry {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  max-width: 100%;
+}
+#frator-komentari-wrapper .ChatLog__entry.ChatLog__entry_mine {
+  flex-direction: row-reverse;
+}
+#frator-komentari-wrapper .ChatLog__avatar {
+  flex-shrink: 0;
+  flex-grow: 0;
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+}
+#frator-komentari-wrapper .ChatLog__entry.ChatLog__entry_mine.ChatLog__avatar {
+  display: none;
+}
+#frator-komentari-wrapper .ChatLog__entry .ChatLog__message {
+  position: relative;
+  margin: 0 12px;
+}
+#frator-komentari-wrapper .ChatLog__entry .ChatLog__message::before {
+  position: absolute;
+  right: auto;
+  bottom: .6em;
+  left: -12px;
+  height: 0;
+  content: '';
+  border: 6px solid transparent;
+  border-right-color: #ddd;
+  z-index: 2;
+}
+#frator-komentari-wrapper .ChatLog__entry.ChatLog__entry_mine .ChatLog__message::before {
+  right: -12px;
+  bottom: .6em;
+  left: auto;
+  border: 6px solid transparent;
+  border-left-color: #08f;
+}
+#frator-komentari-wrapper .ChatLog__message {
+  background-color: #ddd;
+  padding: .5em;
+  border-radius: 4px;
+  font-weight: lighter;
+  max-width: 70%;
+}
+#frator-komentari-wrapper .ChatLog__entry.ChatLog__entry_mine .ChatLog__message {
+  border-top: 1px solid #07f;
+  border-bottom: 1px solid #07f;
+  background-color: #08f;
+  color: #fff;
+}
+#frator-komentari-wrapper .ChatLog__message .ChatLog__timestamp {
+  display: none;
 }

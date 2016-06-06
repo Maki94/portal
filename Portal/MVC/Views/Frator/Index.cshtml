@@ -7,6 +7,7 @@
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
         <a href="#vesti-panel" class="mdl-tabs__tab is-active">Vesti</a>
+        <a href="#moje-kompanije-panel" class="mdl-tabs__tab">Moje kompanije</a>
         <a href="#kompanije-panel" class="mdl-tabs__tab">Kompanije</a>
         <a href="#delegiranje-panel" class="mdl-tabs__tab">Delegiranje</a>
     </div>
@@ -40,6 +41,194 @@
             </li>
         </ul>
     </div>
+    <div id="moje-kompanije-panel" class="mdl-tabs__panel">
+        <div class="div-expand mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                <form action="#">
+                    <ul class="div-expand mdl-list">
+                        <li class="mdl-list__item">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">
+                                Kompanija Naziv
+                            </a>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="kompanija-adresa" value="NekaAdresa">
+                                <label class="mdl-textfield__label" for="kompanija-adresa">Adresa</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="kompanija-sajt" value="neki sajt">
+                                <label class="mdl-textfield__label" for="kompanija-sajt">Sajt...</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kompanija-telefon" value="0654854588">
+                                <label class="mdl-textfield__label" for="kompanija-telefon">Telefon...</label>
+                                <span class="mdl-textfield__error">To nije broj!</span>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="kompanija-email" value="email neki">
+                                <label class="mdl-textfield__label" for="kompanija-email">Email...</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="div-expand mdl-textfield mdl-js-textfield">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="kompanija-opis">neki opis bla bla</textarea>
+                                <label class="mdl-textfield__label" for="kompanija-opis">Opis...</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <select class="mdl-textfield__input" id="kompanija-delatnost">
+                                    <option value="robno1">robno1</option>
+                                    <option value="robno2" selected>robno2</option>
+                                    <option value="robno3">robno3</option>
+                                </select>
+                                <label class="mdl-textfield__label" for="kompanija-delatnost">Delatnost</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <select class="mdl-textfield__input" id="kompanija-tip">
+                                    <option value="robno1">robno1</option>
+                                    <option value="robno2" selected>robno2</option>
+                                    <option value="robno3">robno3</option>
+                                </select>
+                                <label class="mdl-textfield__label" for="kompanija-tip">Tip</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <select class="mdl-textfield__input" id="kompanija-projekat">
+                                    <option value="jf">JF</option>
+                                    <option value="tedex" selected>TEDx</option>
+                                    <option value="summer course">summer course</option>
+                                </select>
+                                <label class="mdl-textfield__label" for="kompanija-projekat">Projekat</label>
+                            </div>
+                        </li>
+                        <li class="li-shrink mdl-list__item">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                Sacuvaj Izmene
+                            </button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                <ul id="kontakt-kompanija" class="div-expand demo-list-three mdl-list">
+                    <li class="li-shrink mdl-list__item">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <select class="mdl-textfield__input" id="kompanija-kontakti">
+                                <option value="jf">DarkoDakic</option>
+                                <option value="tedex" selected>Mani makic</option>
+                                <option value="summer course">Das vasdmis</option>
+                            </select>
+                            <label class="mdl-textfield__label" for="kompanija-kontakti">Kontakti</label>
+                        </div>
+                    </li>
+                    <li class="li-shrink mdl-list__item">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kontakti-telefon" value="0654854588">
+                            <label class="mdl-textfield__label" for="kontakti-telefon">kontakti-telefon...</label>
+                            <span class="mdl-textfield__error">To nije broj!</span>
+                        </div>
+                    </li>
+                    <li class="li-shrink mdl-list__item">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="kontakti-email" value="email neki">
+                            <label class="mdl-textfield__label" for="kontakti-email">Email...</label>
+                        </div>
+                    </li>
+                    <li class="li-shrink mdl-list__item">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="kontakti-napomena" value="napomena neka neki">
+                            <label class="mdl-textfield__label" for="kontakti-napomena">Napomena...</label>
+                        </div>
+                    </li>
+                    <li class="li-shrink mdl-list__item">
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                            Sacuvaj Izmene
+                        </button>
+                    </li>
+                </ul>
+                <ul id="komentar-kompanija" class="div-expand demo-list-three mdl-list">
+                    <li class="mdl-list__item">
+                        <span class="h2 text-warning text-center">Komentar</span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <select class="mdl-textfield__input" id="komentar-tip">
+                                <option value="jf">DarkoDakic</option>
+                                <option value="tedex" selected>Mani makic</option>
+                                <option value="summer course">Das vasdmis</option>
+                            </select>
+                            <label class="mdl-textfield__label" for="komentar-tip">Tip</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <select class="mdl-textfield__input" id="komentar--projekat-aktivan">
+                                <option value="jf">Neakrivan</option>
+                                <option value="tedex" selected>Aktivan</option>
+                            </select>
+                            <label class="mdl-textfield__label" for="komentar--projekat-aktivan">Aktivan projekat?</label>
+                        </div>
+                    </li>
+                    <li class="li-shrink mdl-list__item">
+                        <div class="div-expand mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input" type="text" rows="3" id="komentar-text"></textarea>
+                            <label class="mdl-textfield__label" for="komentar-text">Pretisni enter da postavis komentar...</label>
+                        </div>
+                    </li>
+                    <li class="div-expand mdl-list__item">
+                        <div id="frator-komentari-wrapper">
+                            <div class="arrow"></div>
+                            <ul id="komentar-list" class="div-expand ChatLog">
+                                <li class="ChatLog__entry ChatLog__entry_mine">
+                                    <img class="ChatLog__avatar" src="//placekitten.com/56/56" />
+                                    <p class="ChatLog__message">
+                                        I have no idea.
+                                    </p>
+                                    <p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">11</i></a></p>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone mdl-cell--12-col-phone">
+                <ul class="div-expand mdl-list">
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">
+                                Kompanija Naziv 1
+                            </a>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">
+                                Kompanija Naziv 2
+                            </a>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">
+                                Kompanija Naziv 3
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="mdl-tabs__panel" id="kompanije-panel">
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
@@ -64,30 +253,54 @@
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--3-col">
                 <ul class="frator-kompanije-list">
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
                 </ul>
             </div>
             <div class="mdl-cell mdl-cell--3-col">
                 <ul class="frator-kompanije-list">
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
                 </ul>
             </div>
             <div class="mdl-cell mdl-cell--3-col">
                 <ul class="frator-kompanije-list">
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
                 </ul>
             </div>
             <div class="mdl-cell mdl-cell--3-col">
                 <ul class="frator-kompanije-list">
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
-                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
+                    <li>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -131,6 +344,25 @@
 </div>
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
+    var ENTER_CODE = 13;
+
+    $('#komentar-text').bind('keypress', function (event) {
+        var x = event.keyCode;
+        if (x === ENTER_CODE && this.value !== "") {
+            var message = this.value;
+            $('#frator-komentari-wrapper').prepend(
+                '<li class="ChatLog__entry ChatLog__entry_mine"> ' +
+                    '<img class="ChatLog__avatar" src="//placekitten.com/56/56" />' +
+                    '<p class="ChatLog__message">' + message + '</p>' +
+                    '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">11</i></a></p>' +
+                    '&nbsp;&nbsp;&nbsp;' +
+                    '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>' +
+                '</li>');
+            console.log(x);
+            this.value = "";
+        }
+    });
+
     $('#delegiranje-kompanija-add').bind('click', function () {
         $('#delegiranje-kompanija-add-wrapper').append(
             "<li class='mdl-list__item'> " +

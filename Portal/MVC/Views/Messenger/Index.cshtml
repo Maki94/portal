@@ -6,7 +6,7 @@
 <div id="messenger-header">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
-        <div class="mdl-cell mdl-cell--9-col mdl-cell--9-col-tablet mdl-cell--9-col-phone">
+        <div class="mdl-cell mdl-cell--9-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
             <div class="" id="messenger-message-wrapper">
                 <input placeholder="Text poruke" class="mdl-textfield__input" type="text" id="messenger-message">
             </div>
@@ -16,7 +16,6 @@
                 <i class="material-icons">add</i>
             </button>
             <dialog id="dialog-messenger" class="mdl-dialog">
-                @*<h2 class="mdl-dialog__title">Dodajte novog clana</h2>*@
                 <div class="mdl-dialog__content">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="messenger-user">
@@ -73,13 +72,11 @@
         </li>
     </ul>
 </div>
-<div id="messenger-footer">
-</div>
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
     var ENTER_CODE = 13;
+
     $('#messenger-message').bind('keypress', function (event) {
-        // enter code = 13
         var x = event.keyCode;
         if (x === ENTER_CODE) {
             var message = this.value;
@@ -90,8 +87,8 @@
                 message +
                 '</p>' +
                 '</li>');
-            //document.getElementById("demo").innerHTML = "The Unicode value is: " + x;
             console.log(x);
+            this.value = "";
         }
     });
     var dialogMessenger = document.querySelector('#dialog-messenger');
@@ -105,25 +102,10 @@
     dialogMessenger.querySelector('.close').addEventListener('click', function () {
         dialogMessenger.close();
     });
-    //$('.ChatLog__message').hover(function () {
-    //$(document.body).hover('.ChatLog__message' ,function(){
-    //$(document.body).on('hover', '.ChatLog__message' ,function(){
-    //$('.ChatLog__message').bind('hover',function () {
-    //    var el = this.children[0];
-    //    el.style.display = 'block';
-    //    setTimeout(function () {
-    //        el.style.display = 'none';
-    //    }, 500);
-    //});
-    //$(document.body).bind({
     $('#messenger-wrapper').on('mouseenter', '.ChatLog__message', function() {
         this.children[0].style.display = 'block';
     });
     $('#messenger-wrapper').on('mouseleave', '.ChatLog__message', function() {
         this.children[0].style.display = 'none';
     });
-    //$('.ChatLog__message').bind(
-    //    {mouseenter: function (e) { this.children[0].style.display = 'block'; }, mouseleave: function (e) { this.children[0].style.display = 'none'; }}
-    //    , '.ChatLog__message'
-    //    );
 </script>
