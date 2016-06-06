@@ -30,7 +30,7 @@ namespace MVC.ViewModels
 
         public static EditProfileViewModel Load(int memberID)
         {
-            Data.DataClasses.Member m = Data.Entities.Members.GetMember(memberID);
+            Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
             EditProfileViewModel model = new EditProfileViewModel
             {
                 Nickname = m.Nickname,

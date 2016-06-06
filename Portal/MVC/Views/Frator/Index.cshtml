@@ -4,4 +4,140 @@
     ViewBag.Title = "FRator";
 }
 
-<h2>FRator</h2>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#vesti-panel" class="mdl-tabs__tab is-active">Vesti</a>
+        <a href="#kompanije-panel" class="mdl-tabs__tab">Kompanije</a>
+        <a href="#delegiranje-panel" class="mdl-tabs__tab">Delegiranje</a>
+    </div>
+
+    <div class="mdl-tabs__panel is-active" id="vesti-panel">
+        <ul class="div-expand demo-list-three mdl-list">
+            <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-avatar">person</i>
+                    <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new {id = 1})">Komapnija1</a></span>
+                    <span class="mdl-list__item-text-body">
+                        <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new {id = 1})">Maki</a> : played the role of Walter in Breaking Bad. He is also known
+                        for playing Hal in Malcom in the Middle.
+                    </span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">121</i></a>
+                </span>
+            </li>
+            <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons  mdl-list__item-avatar">person</i>
+                    <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new {id = 1})">Komapnija1</a></span>
+                    <span class="mdl-list__item-text-body">
+                        <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new {id = 1})">Maki</a> : played the role of Walter in Breaking Bad. He is also known
+                    </span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">21</i></a>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="mdl-tabs__panel" id="kompanije-panel">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
+            <div class="mdl-cell mdl-cell--3-col">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                    <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+                    <span class="mdl-switch__label">Aktivna</span>
+                </label>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="frator-kompanija-pretraga">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="frator-kompanija-pretraga">
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
+        </div>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col">
+                <ul class="frator-kompanije-list">
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                </ul>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col">
+                <ul class="frator-kompanije-list">
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                </ul>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col">
+                <ul class="frator-kompanije-list">
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                </ul>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col">
+                <ul class="frator-kompanije-list">
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                    <li><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-tabs__panel" id="delegiranje-panel">
+        <form action="#" id="frator-delegiranje-form">
+            <ul class="div-expand mdl-list">
+
+                <li class="mdl-list__item">
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="frator-delegiranje-aktivno">
+                        <input type="checkbox" id="frator-delegiranje-aktivno" class="mdl-checkbox__input">
+                        <span class="mdl-checkbox__label">Aktivna</span>
+                    </label>
+                </li>
+
+                <li class="mdl-list__item">
+                    <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="frator-delegiranje-clan">
+                        <label class="mdl-textfield__label" for="frator-delegiranje-clan">Clan...</label>
+                    </div>
+                </li>
+
+                <li class="mdl-list__item">
+                    <ul id="delegiranje-kompanija-add-wrapper" class="div-expand mdl-list">
+                        <li class="mdl-list__item">
+                            <div id="delegiranje-kompanija-add" class="icon material-icons">add</div>
+                            <div class="mdl-tooltip mdl-tooltip--large" for="delegiranje-kompanija-add">
+                                Kompanija
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="mdl-list__item">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Sacuvaj Izmene
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<script src="https://use.fontawesome.com/c256757c6a.js"></script>
+<script>
+    $('#delegiranje-kompanija-add').bind('click', function () {
+        $('#delegiranje-kompanija-add-wrapper').append(
+            "<li class='mdl-list__item'> " +
+            "<div class='div-expand mdl-textfield mdl-js-textfield mdl-textfield--floating-label'>" +
+            " <input placeholder='Kompanija' class='event-edit-ucesnik mdl-textfield__input' type='text'> " +
+            "</div>" +
+            " </li>"
+        );
+    });
+</script>

@@ -35,7 +35,7 @@ namespace Data.Entities
             }
         }
 
-        public static Member GetMember(int memberID)
+        public static Member GetMemberAt(int memberID)
         {
             using (var dc = new DataContext())
             {
@@ -151,7 +151,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                var mem = GetMember(memberID);
+                var mem = GetMemberAt(memberID);
 
                 return mem.Password == password;
             }
@@ -161,7 +161,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                var mem = GetMember(memberId);
+                var mem = GetMemberAt(memberId);
                 mem.Password = newPassword;
                 dc.SaveChanges();
             }

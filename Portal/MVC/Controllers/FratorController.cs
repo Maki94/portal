@@ -8,5 +8,10 @@ namespace MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Profile(int id)
+        {
+            return View();
+        }
     }
 }

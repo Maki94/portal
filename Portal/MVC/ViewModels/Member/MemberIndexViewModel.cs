@@ -11,7 +11,7 @@ namespace MVC.ViewModels.Member
 
         public static MemberIndexViewModel Load(int memberID)
         {
-            Data.DataClasses.Member m = Data.Entities.Members.GetMember(memberID);
+            Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
             MemberIndexViewModel model = new MemberIndexViewModel
             {
                 Nickname = m.Nickname

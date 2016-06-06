@@ -3,5 +3,152 @@
 @{
     ViewBag.Title = "MP";
 }
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#tree-panel" class="mdl-tabs__tab is-active">Stablo</a>
+        <a href="#report-panel" class="mdl-tabs__tab">Izvestaji</a>
+        <a href="#add-report-panel" class="mdl-tabs__tab">Postavi izvestaj</a>
+        <a href="#add-padavan-panel" class="mdl-tabs__tab">Dodaj Padavana</a>
+    </div>
+    <div class="mdl-tabs__panel is-active" id="tree-panel">
+        <div id="familytree-wrapper">
 
-<h2>MP</h2>
+            <div class="familytree">
+                <ul>
+                    <li>
+                        <a href="#">Parent</a>
+                        <ul>
+                            <li>
+                                <a href="#">Child</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Grand Child</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Child</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Grand Child</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Grand Child</a>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Great Grand Child</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Great Grand Child</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Great Grand Child</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Grand Child</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-tabs__panel" id="report-panel">
+        <table id="mp-table-report"class="mdl-data-table mdl-js-data-table">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">
+                    <h3>Master</h3>
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    <h3>Padavan</h3>
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    <h3>Izvestaj</h3>
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                    <h3>Datum</h3>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">John Lennon</td>
+                <td class="mdl-data-table__cell--non-numeric">The smart one</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Izvestaj", "Mp", new {id = 1})">
+                        LINK
+                    </a>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">No</td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Paul McCartney</td>
+                <td class="mdl-data-table__cell--non-numeric">The cute one</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Izvestaj", "Mp", new {id = 1})">
+                        LINK
+                    </a>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">No</td>
+
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">George Harrison</td>
+                <td class="mdl-data-table__cell--non-numeric">The shy one</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Izvestaj", "Mp", new {id = 1})">
+                        LINK
+                    </a>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">No</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-tabs__panel" id="add-report-panel">
+        <form action="#">
+            <ul id="add-report-panel-list-item" class="mdl-list">
+                <li class="mdl-list__item">
+                    <div id="mp-report-opis-wrapper" class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows="10" id="mp-report-opis"></textarea>
+                        <label class="mdl-textfield__label" for="mp-report-opis">Text lines...</label>
+                    </div>
+                </li>
+                <li class="mdl-list__item">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        Postavi
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="mdl-tabs__panel" id="add-padavan-panel">
+        <form action="#">
+            <ul id="add-padavan-panel-list-item" class="mdl-list">
+                <li class="mdl-list__item">
+                    <div class="mp-exapnd mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="mp-master">
+                        <label class="mdl-textfield__label" for="mp-master">Master</label>
+                    </div>
+                </li>
+                <li class="mdl-list__item">
+                    <div class="mp-exapnd mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="mp-padavan">
+                        <label class="mdl-textfield__label" for="mp-padavan">Padavan...</label>
+                    </div>
+                </li>
+                <li class="mdl-list__item">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        Postavi
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

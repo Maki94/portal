@@ -13,7 +13,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -35,18 +35,30 @@
             <a href="@Url.Action("Index", "Messenger")" class="mdl-navigation__link">
                 <span class="mdl-badge" data-badge="4">Messenger</span>
             </a>
-            @*@Html.ActionLink("Inbox", "Index", "Messenger", null, new { @class = "mdl-navigation__link" })*@
             @Html.ActionLink("M/P", "Index", "MP", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("FRator", "Index", "Frator", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("Admin", "Index", "Admin", null, new {@class = "mdl-navigation__link"})
 
             <a id="show-dialog-feedback" class="mdl-navigation__link">Feedback</a>
             <dialog id="dialog-feedback" class="mdl-dialog">
-                @*<h4 class="mdl-dialog__title">FeedBack</h4>*@
+                <h4 class="mdl-dialog__title">FeedBack</h4>
                 <div class="mdl-dialog__content">
                     <form action="#">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feedback-pohvala">
+                            Pohvala <input type="radio" id="feedback-pohvala" class="mdl-radio__button" name="options" value="1" checked>
+                        </label>
+                        <br/>
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feedback-bug">
+                            Bug <input type="radio" id="feedback-bug" class="mdl-radio__button" name="options" value="1">
+                        </label>
+                        <br />
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feedback-funkcionalnost">
+                            <input type="radio" id="feedback-funkcionalnost" class="mdl-radio__button" name="options" value="1">
+                            Funkcionalnost <span class="mdl-radio__label">First</span>
+                        </label>
+                        <br />
                         <div class="mdl-textfield mdl-js-textfield">
-                            <textarea class="mdl-textfield__input" type="text" rows="2" id="textareaFeedback"></textarea>
+                            <textarea class="mdl-textfield__input" type="text" rows="10" id="textareaFeedback"></textarea>
                             <label class="mdl-textfield__label" for="textareaFeedback">FeedBack</label>
                         </div>
                     </form>

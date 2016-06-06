@@ -43,5 +43,26 @@ namespace Data.Entities
                 dc.SaveChanges();
             }
         }
+
+        public static void DeleteBadge(int badgeId)
+        {
+            using (var dc = new DataContext())
+            {
+                Badge b = Badges.GetBadgesAt(badgeId, dc);
+                dc.Badges.Remove(b);
+                dc.SaveChanges();
+            }
+        }
+
+        public static Badge GetBadgesAt(int badgeId, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                return (from a in dc.Badges where a.BadgeId == badgeId select a).First();
+            }
+        }
+
+
+
     }
 }
