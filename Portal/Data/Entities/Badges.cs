@@ -15,17 +15,10 @@ namespace Data.Entities
             using (var dc = new DataContext())
             {
                 var badges = (from b in dc.Badges select b).ToList();
-                var badgeThumbnails = new List<BadgeThumbnailDTO>();
-                foreach (var b in badges)
+                return badges.Select(b => new BadgeThumbnailDTO
                 {
-                    badgeThumbnails.Add(new BadgeThumbnailDTO
-                    {
-                        Name = b.Name,
-                        Description = b.Description,
-                        Image = b.Image,
-                    });
-                }
-                return badgeThumbnails;
+                    BadgeId = b.BadgeId, Name = b.Name, Description = b.Description, Image = b.Image,
+                }).ToList();
             }
         }
 

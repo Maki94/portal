@@ -33,7 +33,7 @@ namespace MVC.Controllers
             Member mem = Members.GetMemberAt(id);
             byte[] image = (mem.Avatar == null || mem.Avatar.Length == 0) ? DefaultPictures.GetPictureByName("Avatar") : mem.Avatar;
             var base64 = Convert.ToBase64String(image);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            var imgSrc = $"data:image/gif;base64,{base64}";
             return Content(imgSrc);
         }
 

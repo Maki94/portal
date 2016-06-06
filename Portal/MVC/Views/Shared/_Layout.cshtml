@@ -37,7 +37,11 @@
             </a>
             @Html.ActionLink("M/P", "Index", "MP", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("FRator", "Index", "Frator", null, new {@class = "mdl-navigation__link"})
-            @Html.ActionLink("Admin", "Index", "Admin", null, new {@class = "mdl-navigation__link"})
+
+            <a id="admin-button" class="mdl-navigation__link admin-button-color">Admin</a>
+            @Html.ActionLink("Vesti", "Index", "Admin", null, new {@class = "mdl-navigation__link admin-button-color", @id="admin-news"})
+            @Html.ActionLink("Sastanci", "Index", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color", @id = "admin-meetings"})
+            @Html.ActionLink("Bedzevi", "Index", "Badge", null, new { @class = "mdl-navigation__link admin-button-color", @id = "admin-badges"})
 
             <a id="show-dialog-feedback" class="mdl-navigation__link">Feedback</a>
             <dialog id="dialog-feedback" class="mdl-dialog">
@@ -77,15 +81,22 @@
         </div>
     </main>
 </div>
-
-@*@Scripts.Render("~/bundles/jquery")*@
-@*@Scripts.Render("~/bundles/bootstrap")*@
 @RenderSection("scripts", false)
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
 <script>
+    $('#admin-news').toggle();
+    $('#admin-meetings').toggle();
+    $('#admin-badges').toggle();
+
+    $('#admin-button').bind('click', function () {
+        $('#admin-news').toggle();
+        $('#admin-meetings').toggle();
+        $('#admin-badges').toggle();
+    });
+
     var dialog = document.querySelector('#dialog-feedback');
     var showDialogButton = document.querySelector('#show-dialog-feedback');
     if (! dialog.showModal) {

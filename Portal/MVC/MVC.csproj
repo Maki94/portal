@@ -174,6 +174,7 @@
     <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FratorController.cs" />
+    <Compile Include="Controllers\MeetingController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MessengerController.cs" />
     <Compile Include="Controllers\MpController.cs" />
@@ -232,6 +233,7 @@
     <Content Include="Content\MpTree.less" />
     <Content Include="Content\MpIzvestaj.less" />
     <Content Include="Content\fratorIndex.less" />
+    <Content Include="Content\BadgeIndex.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\calendarField.js" />
@@ -276,7 +278,7 @@
     <Content Include="Views\Member\Add.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Member\AllMembers.cshtml" />
-    <Content Include="Views\Badge\AllBadges.cshtml" />
+    <Content Include="Views\Badge\Index.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Views\Access\UploadDefaultPicture.cshtml" />
     <Content Include="Views\Access\ChangePassword.cshtml" />
@@ -291,6 +293,8 @@
     <None Include="Views\Event\Profile.cshtml" />
     <Content Include="Views\Mp\Izvestaj.cshtml" />
     <Content Include="Views\Frator\Profile.cshtml" />
+    <Content Include="Views\Meeting\Index.cshtml" />
+    <Content Include="Views\Meeting\Meeting.cshtml" />
     <None Include="Views\Poll\Add.cshtml" />
     <Content Include="Views\Poll\AllPolls.cshtml" />
     <None Include="Views\Poll\Edit.cshtml" />

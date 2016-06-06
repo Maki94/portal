@@ -1,12 +1,7 @@
-﻿using Data.Entities;
+﻿using System;
+using Data.Entities;
 using MVC.ViewModels.Badge;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -15,11 +10,6 @@ namespace MVC.Controllers
     {
         // GET: Badge
         public ActionResult Index()
-        {
-            return RedirectToAction("AllBadges");
-        }
-
-        public ActionResult AllBadges()
         {
             return View(new BadgeListViewModel());
         }
@@ -48,6 +38,13 @@ namespace MVC.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Console.WriteLine(id);
+            //throw new System.NotImplementedException();
+            return Index();
         }
     }
 }
