@@ -1,24 +1,21 @@
-﻿using System;
+﻿using Data.DataClasses;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.DataClasses
+namespace Data.DTOs
 {
-    public class Poll
+    public class PollDTO
     {
-        public int PollId { get; set; }
+        public int Id { get; set; }
         public string Topic { get; set; }
         public string Description { get; set; }
         public int MaxAnswers { get; set; }
         public Enumerations.PollState State { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
-        [ForeignKey("PollCreator")]
-        public int PollCreatorId { get; set; }
-        public virtual Member PollCreator { get; set; }
+        public Member PollCreator { get; set; }
     }
 }
