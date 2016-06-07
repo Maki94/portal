@@ -59,7 +59,7 @@ namespace MVC.Models
                 });
             }
 
-            return pollOptionDTOs;
+            return pollOptionDTOs.OrderByDescending(x => x.Voters.Count).ToList();
         }
 
         public static List<PollModel> GetAllPollModels()
