@@ -56,7 +56,38 @@ namespace Data.Entities
 
         public static void ClosePoll(int pollId, DataContext dc = null)
         {
-            UpdatePollState(pollId, Enumerations.PollState.zatvoren);
+            UpdatePollState(pollId, Enumerations.PollState.zatvoren, dc);
+        }
+
+        public static bool AddVote(int memberId, int pollOptionId, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Member m = dc.Members.Where(x => x.MemberId == memberId).First();
+                PollOption po = dc.PollOptions.Where(x => x.PollOptionId == pollOptionId).First();
+                MemberPollOption newVote = new MemberPollOption
+                {
+                    Member = m,
+                    PollOption = po,
+                };
+
+                var addedVote = dc.MemberPollOptions.Add(newVote);
+
+                dc.SaveChanges();
+                return newVote == addedVote;
+            }
+        }
+
+        public static bool RemoveVote(int memberId, int  pollOptionId, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                var removeVote = dc.MemberPollOptions.Where(x => x.MemberId == memberId && x.PollOptionId == pollOptionId).First();
+                var voteRemoved = dc.MemberPollOptions.Remove(removeVote);
+
+                dc.SaveChanges();
+                return removeVote == voteRemoved;
+            }
         }
     }
 }

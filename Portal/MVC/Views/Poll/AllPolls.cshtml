@@ -20,10 +20,10 @@
 @foreach (var p in Model.ActivePolls)
 {
     <div class="poll-container" data-poll-id="@p.PollDetails.Id" data-poll-max-answers="@p.PollDetails.MaxAnswers">
-        <div class="poll-aktivnoGlasanje mdl-list__item mdl-list__item--two-line" data-model="poll-aktinaGlasanjaIzbor-list-@p.PollDetails.Id" >
-            <span class="poll-aktivnoGlasanje-content mdl-list__item-primary-content">
+        <div class="poll-details mdl-list__item mdl-list__item--two-line" >
+            <span class="poll-details-title mdl-list__item-primary-content">
                 <b><span class="text-info"> @p.PollDetails.Topic <span class="text-danger"> @p.PollDetails.EndDate </span></span></b>
-                <span class="mdl-list__item-sub-title"> @p.PollDetails </span>
+                <span class="poll-details-description mdl-list__item-sub-title"> @p.PollDetails </span>
             </span>
 
             <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
@@ -35,23 +35,21 @@
                 <span class="sr-only">Activity</span>
             </a>
         </div>
-        <ul class="poll-aktinaGlasanjaIzbor-list mdl-list">
+        <div class="poll-options-list mdl-list">
             @foreach (var po in p.PollOptions)
             {
-                <li class="mdl-list__item" data-poll-option-id="@po.Id">
+                <div class="poll-option mdl-list__item" data-poll-option-id="@po.Id">
                     <span class="mdl-list__item-secondary-action">
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                            <input type="checkbox" class="mdl-checkbox__input" @if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> } />
+                            <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input" @if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text>     } />
                         </label>
-                    </span>@po.Answer (@po.Voters.Count)
-                </li>
+                    </span>
+                    <span class="mdl-list__item-primary-content">
+                        <span>@po.Answer (@po.Voters.Count)</span>
+                    </span>
+                </div>
             }
-            @* <li class="mdl-list__item">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                    Glasaj
-                </button> */
-            </li> *@
-        </ul>
+        </div>
     </div>
 }
 
@@ -92,15 +90,33 @@
     </ul>
     <script src="https://use.fontawesome.com/c256757c6a.js"></script>
     <script>
-        //$('.poll-aktinaGlasanjaIzbor-list').toggle();
-        $('.poll-aktivnoGlasanje').bind('click', function() {
-            $('#' + this.dataset.model).toggle();
+        $(window).bind('load', function() {
+            $('.poll-details').css( 'cursor', 'pointer' );
+            $('.poll-details').bind('click', function() {
+                $(this).siblings('.poll-options-list').toggle();
+            });
         });
 
-        $('input.mdl-checkbox__input').on('change', function (evt) {
+        $('input.poll-option-checkbox').on('change', function (evt) {
             var maxAnswers = $(this).closest('.poll-container').data('poll-max-answers');
-            if ($(this).closest('.poll-aktinaGlasanjaIzbor-list').find('.mdl-checkbox__input:checked').length > maxAnswers) {
-                this.checked = false;
+            var pollOptionId = $(this).closest('.poll-option').data('poll-option-id');
+            if ($(this).is(':checked')) {
+                if ($(this).closest('.poll-option').siblings().find('.poll-option-checkbox:checked').length >= maxAnswers) {
+                    this.checked = false;  // ako pokusa da glasa vise opcija nego sto sme
+                } else {
+                    $.post("@Url.Action("AddVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionId" : pollOptionId }, function (data) {
+                        if (data) {
+                            // TODO: da se ubaci kod da se odmah poveca broj glasaca za tu opciju
+                        }
+                    });
+                }
+            } else {
+                $.post("@Url.Action("RemoveVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionId" : pollOptionId }, function (data) {
+                    if (data) {
+                        var x = 5;
+                        // TODO: da se ubaci kod da se odmah smanji broj glasaca za tu opciju
+                    }
+                });
             }
         });
     </script>
