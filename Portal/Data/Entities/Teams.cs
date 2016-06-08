@@ -10,7 +10,7 @@ namespace Data.Entities
 {
     class Teams
     {
-        public static Team AddTeam(string name, DateTime created, DateTime deleted, string googlegroup = null, )
+        public static Team AddTeam(string name, DateTime created, DateTime deleted, string googlegroup = null)
         {
             using (var dc = new DataContext())
             {

@@ -43,6 +43,7 @@ namespace MVC.ViewModels.Member
 
         [Required(ErrorMessage = "Morate izabrati datum uclanjenja.")]
         [Display(Name = "Datum uclanjenja")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         // status?
@@ -51,6 +52,7 @@ namespace MVC.ViewModels.Member
         public AddMemberViewModel()
         {
             Roles = Data.Entities.Roles.GetAllRoles();
+            Date = DateTime.Now;
         }
     }
 }
