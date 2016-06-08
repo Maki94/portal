@@ -8,5 +8,11 @@ namespace MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult MemberEdit(int memberId)
+        {
+            //return View(new MemberEditViewModel());
+            return View();
+        }
     }
 }
