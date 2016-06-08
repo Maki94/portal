@@ -105,6 +105,7 @@
     <Compile Include="Entities\Polls.cs" />
     <Compile Include="Entities\Projects.cs" />
     <Compile Include="Entities\Roles.cs" />
+    <Compile Include="Entities\Teams.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -69,43 +69,64 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult UploadDefaultPicture(string name, HttpPostedFileBase file)
         {
-            if (file != null)
+            try
             {
-                byte[] array;
-                using (MemoryStream ms = new MemoryStream())
+                if (file != null)
                 {
-                    file.InputStream.CopyTo(ms);
-                    array = ms.GetBuffer();
+                    byte[] array;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        file.InputStream.CopyTo(ms);
+                        array = ms.GetBuffer();
+                    }
+                    Data.Entities.DefaultPictures.UploadPicture(array, name);
                 }
-                Data.Entities.DefaultPictures.UploadPicture(array, name);
-            }
 
-            return RedirectToAction("UploadDefaultPicture");
+                return RedirectToAction("UploadDefaultPicture");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Access");
+            }
         }
 
         public ActionResult ChangePassword(string message)
         {
-            ViewBag.message = message;
-            return View(new ChangePasswordViewModel());
+            try
+            {
+                ViewBag.message = message;
+                return View(new ChangePasswordViewModel());
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Access");
+            }
         }
 
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordViewModel m)
         {
-            if (!Members.CheckMemberPassword(MemberSession.GetMemberId(), m.OldPassword))
+            try
             {
-                return RedirectToAction("ChangePassword", new { message = "Pogresna stara lozinka." });
+                if (!Members.CheckMemberPassword(MemberSession.GetMemberId(), m.OldPassword))
+                {
+                    return RedirectToAction("ChangePassword", new { message = "Pogresna stara lozinka." });
+                }
+                else if (m.NewPassword != m.RepeatPassword)
+                {
+                    return RedirectToAction("ChangePassword", new { message = "Polja za novu lozinku nisu jednaka." });
+                }
+                else
+                {
+                    Members.ChangeMemberPassword(MemberSession.GetMemberId(), m.NewPassword);
+                }
+
+                return RedirectToAction("ChangePassword", new { message = "Nesto ne valja." });
             }
-            else if (m.NewPassword != m.RepeatPassword) {
-                return RedirectToAction("ChangePassword", new { message = "Polja za novu lozinku nisu jednaka." });
-            }
-            else
+            catch (Exception)
             {
-                Members.ChangeMemberPassword(MemberSession.GetMemberId(), m.NewPassword);
-
+                return RedirectToAction("Index", "Access");
             }
-
-            return RedirectToAction("ChangePassword", new { message = "Nesto ne valja." });
         }
     }
 }

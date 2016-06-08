@@ -41,6 +41,10 @@ namespace MVC.ViewModels.Member
         [Display(Name = "Uloga")]
         public int RoleId { get; set; }
 
+        [Required(ErrorMessage = "Morate izabrati datum uclanjenja.")]
+        [Display(Name = "Datum uclanjenja")]
+        public DateTime Date { get; set; }
+
         // status?
         // jos nesto mozda
 
