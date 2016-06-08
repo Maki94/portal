@@ -10,11 +10,22 @@ namespace Data.Entities
 {
     class Teams
     {
-        public static Team AddTeam()
+        public static Team AddTeam(string name, DateTime created, DateTime deleted, string googlegroup = null, )
         {
             using (var dc = new DataContext())
             {
-                return new Team();
+                Team t = new Team
+                {
+                    Name = name,
+                    CreationDate = created,
+                    Email = googlegroup,
+                    DismantleDate = deleted
+                };
+
+                dc.Teams.Add(t);
+                dc.SaveChanges();
+
+                return t;
             }
         }
 
@@ -25,28 +36,25 @@ namespace Data.Entities
                 return (from t in dc.Teams where t.TeamId == teamId select t).First();
             }
         }
+        
 
-        public static void EditTeam(int teamId)
+        public static bool DeleteTeam(int teamId)
         {
             using (var dc = new DataContext())
             {
+                Team t = Teams.GetTeamAt(teamId);
+                var deletedTeam = dc.Teams.Remove(t);
+                dc.SaveChanges();
 
+                return t == deletedTeam;
             }
         }
 
-        public static void DeleteTeam(int teamId)
+        public static void AddMembersToTeam(int teamId, List<int> memberIds, List<Enumerations.TeamRole> roles)
         {
-            using (var dc = new DataContext())
+            for (int i=0; i<memberIds.Count; i++)
             {
-
-            }
-        }
-
-        public static void AddMembersToTeam(int teamId)
-        {
-            using (var dc = new DataContext())
-            {
-
+                Members.AddMemberToTeam(memberIds[i], teamId, roles[i]);
             }
         }
     }
