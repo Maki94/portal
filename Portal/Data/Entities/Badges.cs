@@ -17,7 +17,10 @@ namespace Data.Entities
                 var badges = (from b in dc.Badges select b).ToList();
                 return badges.Select(b => new BadgeThumbnailDTO
                 {
-                    BadgeId = b.BadgeId, Name = b.Name, Description = b.Description, Image = b.Image,
+                    BadgeId = b.BadgeId,
+                    Name = b.Name,
+                    Description = b.Description,
+                    Image = b.Image
                 }).ToList();
             }
         }
@@ -30,7 +33,7 @@ namespace Data.Entities
                 {
                     Name = name,
                     Description = desc,
-                    Image = array,
+                    Image = array
                 });
 
                 dc.SaveChanges();
@@ -41,7 +44,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                Badge b = Badges.GetBadgeAt(badgeId, dc);
+                Badge b = Badges.GetBadgeAt(badgeId);
                 var deletedBadge = dc.Badges.Remove(b);
                 dc.SaveChanges();
 
@@ -49,14 +52,37 @@ namespace Data.Entities
             }
         }
 
-        public static Badge GetBadgeAt(int badgeId, DataContext dc = null)
+        public static Badge GetBadgeAt(int badgeId)
         {
-            using (dc = dc ?? new DataContext())
+            using (var dc = new DataContext())
             {
                 return (from a in dc.Badges where a.BadgeId == badgeId select a).First();
             }
         }
 
+        public static List<Badge> GetAllBadgesOfMember(int memberId)
+        {
+            using (var dc = new DataContext())
+            {
+                List<MemberBadge> mb = GetAllMemberBadgesOfMember(memberId);
+                List<Badge> b = new List<Badge>();
+
+                foreach (MemberBadge m in mb)
+                {
+                    b.Add(GetBadgeAt(m.BadgeId));
+                }
+ 
+                return b;
+            }
+        }
+
+        public static List<MemberBadge> GetAllMemberBadgesOfMember(int memberId)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from mb in dc.MemberBadges where mb.MemberId == memberId select mb).ToList();
+            }
+        }
 
 
     }

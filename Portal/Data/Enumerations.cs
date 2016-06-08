@@ -71,8 +71,29 @@ namespace Data
 
         public enum TeamRole
         {
-            role1,
-            role2,
+            MO,     //Main Organiser                        project || event
+
+            FR,     //Fundraising Responsible               project || EB
+
+            MR,     //Media Responsible                     project
+            DR,     //Design Responsible                    project
+
+            PR,     //Public Responsible                    EB                  ||
+                    //Participants Responsible              project-course
+
+            IT,     //Information Technologies Responsible  project
+
+            LOG,    //Logistic Responsible                  project
+
+            AR,     //Academia Responsible                  project-course
+            
+            Coworker,                                     //event
+
+            Contributor,                                  //project || event
+
+            President,                                    //EB
+            Treasurer,                                    //EB
+            Secretary,                                    //EB
         }
 
         public enum LoginStatus
@@ -81,5 +102,6 @@ namespace Data
             Failed,
             IncorrectPassword
         }
+        
     }
 }

@@ -11,7 +11,7 @@ namespace Data.Entities
     public class Members
     {
         public static Member AddMember(string gmail, string password, string name,
-                                       string surname, int roleId, string nickname = null)
+                                       string surname, int roleId, DateTime date, string nickname = null)
         {
             using (var dc = new DataContext())
             {
@@ -25,7 +25,7 @@ namespace Data.Entities
                     Surname = surname,
                     Nickname = nickname,
                     Role = role,
-                    JoinDate = DateTime.Now,
+                    JoinDate = date
                 };
 
                 dc.Members.Add(m);
@@ -163,6 +163,64 @@ namespace Data.Entities
             {
                 var mem = GetMemberAt(memberId);
                 mem.Password = newPassword;
+                dc.SaveChanges();
+            }
+        }
+
+        public static bool DeleteMember(int memberId)
+        {
+            using (var dc = new DataContext())
+            {
+                Member m = Members.GetMemberAt(memberId);
+                var deletedMember = dc.Members.Remove(m);
+                dc.SaveChanges();
+
+                return m == deletedMember;
+            }
+        }
+
+        public static void ChangeBadgesOfMember(int memberId, List<int> badgesIds)
+        {
+            using (var dc = new DataContext())
+            {
+                List<MemberBadge> OldBs = Badges.GetAllMemberBadgesOfMember(memberId);
+                List<MemberBadge> NewBs = new List<MemberBadge>();
+                
+                foreach (int bId in badgesIds)
+                {
+                    MemberBadge mb = new MemberBadge
+                    {
+                        MemberId = memberId,
+                        BadgeId = bId
+                    };
+                    NewBs.Add(mb);
+                }
+
+                List<MemberBadge> DeleteBs = OldBs.Except(NewBs).ToList();
+                dc.MemberBadges.RemoveRange(DeleteBs);
+
+                dc.SaveChanges();
+
+                List<MemberBadge> AddBs = NewBs.Except(OldBs).ToList();
+                dc.MemberBadges.AddRange(AddBs);
+                
+                dc.SaveChanges();
+            }
+        }
+
+        public static void AddMemberToTeam(int memberId, int teamId, Enumerations.TeamRole role)
+        {
+            using (var dc = new DataContext())
+            {
+
+                MemberTeam mt = new MemberTeam
+                {
+                    MemberId = memberId,
+                    TeamId = teamId,
+                    TeamRole = role
+                };
+
+                dc.MemberTeams.Add(mt);
                 dc.SaveChanges();
             }
         }
