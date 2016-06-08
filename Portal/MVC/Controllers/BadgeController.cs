@@ -40,11 +40,11 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public JsonResult Delete(int badgeId)
         {
-            Console.WriteLine(id);
-            //throw new System.NotImplementedException();
-            return Index();
+            var status = Badges.DeleteBadge(badgeId);
+            return Json(status);
         }
     }
 }

@@ -37,17 +37,19 @@ namespace Data.Entities
             }
         }
 
-        public static void DeleteBadge(int badgeId)
+        public static bool DeleteBadge(int badgeId)
         {
             using (var dc = new DataContext())
             {
-                Badge b = Badges.GetBadgesAt(badgeId, dc);
-                dc.Badges.Remove(b);
+                Badge b = Badges.GetBadgeAt(badgeId, dc);
+                var deletedBadge = dc.Badges.Remove(b);
                 dc.SaveChanges();
+
+                return b == deletedBadge;
             }
         }
 
-        public static Badge GetBadgesAt(int badgeId, DataContext dc = null)
+        public static Badge GetBadgeAt(int badgeId, DataContext dc = null)
         {
             using (dc = dc ?? new DataContext())
             {

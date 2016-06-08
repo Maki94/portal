@@ -24,6 +24,8 @@ namespace MVC.ViewModels
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
 
+        public byte[] Avatar { get; set; }
+
         public string Facebook { get; set; }
         public string LinkedIn { get; set; }
         public string Skype { get; set; }
@@ -38,6 +40,7 @@ namespace MVC.ViewModels
                 Faculty = m.Faculty,
                 DateOfBirth = m.DateOfBirth,
                 Phone = m.Phone,
+                Avatar = m.Avatar,
                 Facebook = m.Facebook,
                 LinkedIn = m.LinkedIn,
                 Skype = m.Skype

@@ -9,37 +9,39 @@
 
 <h2>AllBadges</h2>
 
-@foreach (var b in Model.Badges)
-{
-    var base64 = Convert.ToBase64String(b.Image);
-    var imgSrc = $"data:image/gif;base64,{base64}";
-    <div class="mdl-grid">
-        <div class="col-lg-1 col-md-1"></div>
-        <div class="col-lg-10 col-md-10 col-sm-12">
-            <div class="div-expand mdl-card mdl-shadow--4dp">
-                <div class="badge-img-wrapper mdl-card__media">
-                    <img src="@imgSrc">
-                </div>
-                <div class="mdl-card__supporting-text">
-                    @Html.DisplayFor(m => b.Name)
-                    <span class="badge-remove-sign-wrapper" style="float: right;" data-label="@b.BadgeId">
-                        <i class="badge-remove-sign fa fa-remove fa-3x"></i>
-                    </span>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    @Html.DisplayFor(m => b.Description)
-                </div>
+ <div id="badges" class="mdl-grid">
+    @foreach (var b in Model.Badges)
+    {
+        var base64 = Convert.ToBase64String(b.Image);
+        var imgSrc = $"data:image/gif;base64,{base64}";
+        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
+            <figure class="mdl-card__media">
+                <img src="@imgSrc"/>
+            </figure>
+            <div class="mdl-card__title">
+                <span>TITLE</span>
             </div>
+            <div class="mdl-card__supporting-text">
+                <span>Supporting text</span>
+                
+            </div>
+            <span class="badge-remove-sign-wrapper" style="float: right; position:absolute; bottom:5px; right:5px" data-badge-id="@b.BadgeId">
+                <i class="badge-remove-sign fa fa-remove fa-3x"></i>
+            </span>
         </div>
-        <div class="col-lg-1 col-md-1"></div>
-    </div>
-}
+    }
+</div>
+
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
     $('.badge-remove-sign-wrapper').bind('click', function () {
-        if (confirm('Are you sure you want to delete this comment?')) {
-            var id = this.dataset.label;
-            var url = '/Badge/Delete/' + id;
+        if (confirm('Da li sigurno zelite da obrisete ovaj bedz?')) {
+            var id = this.dataset.badgeId;
+            $.post("@Url.Action("Delete","Badge")", { "badgeId": id }, function (data) {
+                if (data) {
+                    $(this).hide();
+                }
+            });
             window.location.href = url;
         }
         console.log(this);

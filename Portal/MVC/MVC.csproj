@@ -188,6 +188,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PollModel.cs" />
     <Compile Include="ValidationClasses.cs" />
+    <Compile Include="ViewModels\Admin\MemberEditViewModel.cs" />
     <Compile Include="ViewModels\Badge\BadgeListViewModel.cs" />
     <Compile Include="ViewModels\Badge\CreateBadgeViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />

@@ -1,4 +1,5 @@
 ﻿using Data.DTOs;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,8 +18,6 @@ namespace MVC.ViewModels.Member
 
         [Display(Name = "Prezime")]
         public string Surname { get; set; }
-
-        public byte[] Avatar { get; set; }
 
         [Display(Name = "Clan od")]
         public DateTime JoinDate { get; set; }
@@ -47,7 +46,7 @@ namespace MVC.ViewModels.Member
                 Id = m.MemberId,
                 Name = m.Name,
                 Surname = m.Surname,
-                Avatar = m.Avatar,
+                Avatar = m.Avatar ?? DefaultPictures.GetPictureByName("Avatar"),
                 JoinDate = m.JoinDate,
                 Gmail = m.Gmail,
                 FeePayedUntil = m.FeePayedUntil
