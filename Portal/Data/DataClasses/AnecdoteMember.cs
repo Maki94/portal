@@ -10,6 +10,7 @@ namespace Data.DataClasses
     public class AnecdoteMember
     {
         public int AnecdoteMemberId { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Anecdote")]
         public int AnecdoteId { get; set; }

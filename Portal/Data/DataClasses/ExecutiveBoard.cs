@@ -15,6 +15,7 @@ namespace Data.DataClasses
         public byte[] Report { get; set; }
         public byte[] Image { get; set; }
         public string Note { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Team")]
         public int TeamId { get; set; }

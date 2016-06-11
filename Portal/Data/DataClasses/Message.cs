@@ -12,6 +12,7 @@ namespace Data.DataClasses
         public int MessageId { get; set; }
         public string Text { get; set; }
         public DateTime Time { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Conversation")]
         public int ConversationId { get; set; }

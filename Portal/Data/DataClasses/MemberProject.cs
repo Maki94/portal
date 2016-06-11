@@ -13,6 +13,7 @@ namespace Data.DataClasses
         [Key]
         public int MemberProjectId { get; set; }
         public string Function { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Member")]
         public int MemberId { get; set; }

@@ -41,10 +41,9 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult Delete(int badgeId)
+        public void Delete(int badgeId)
         {
-            var status = Badges.DeleteBadge(badgeId);
-            return Json(status);
+            Badges.DeleteBadge(badgeId);
         }
     }
 }

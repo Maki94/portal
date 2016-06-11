@@ -2,6 +2,7 @@
 using Data.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,15 +41,15 @@ namespace Data.Entities
             }
         }
 
-        public static bool DeleteBadge(int badgeId)
+        public static void DeleteBadge(int badgeId)
         {
             using (var dc = new DataContext())
             {
-                Badge b = Badges.GetBadgeAt(badgeId);
-                var deletedBadge = dc.Badges.Remove(b);
+                Badge b = new Badge() { BadgeId = badgeId };
+                dc.Badges.Attach(b);
+                dc.Entry(b).State = EntityState.Deleted;
+                //var deletedBadge = dc.Badges.Remove(b);
                 dc.SaveChanges();
-
-                return b == deletedBadge;
             }
         }
 

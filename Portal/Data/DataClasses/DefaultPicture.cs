@@ -11,5 +11,6 @@ namespace Data.DataClasses
         public int DefaultPictureId { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

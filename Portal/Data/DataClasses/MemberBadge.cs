@@ -10,6 +10,7 @@ namespace Data.DataClasses
     public class MemberBadge
     {
         public int MemberBadgeId { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Member")]
         public int MemberId { get; set; }

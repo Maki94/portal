@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.DataClasses;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace Data
 {
-    public class DataContext : DbContext
+    public partial class DataContext : DbContext
     {
         public DataContext(): base("DefaultConnection")
         {
@@ -24,7 +26,7 @@ namespace Data
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Excuse> Excuses { get; set; }
-        public DbSet<ExecutiveBoard> ExecutiveBoards { get; set; }
+        //public DbSet<ExecutiveBoard> ExecutiveBoards { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
         public DbSet<Member> Members { get; set; }
@@ -45,6 +47,35 @@ namespace Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<DefaultPicture> DefaultPictures { get; set; }
 
+        private void SoftDelete(DbEntityEntry entry)
+        {
+            Type entryEntityType = entry.Entity.GetType();
+
+            string tableName = GetTableName(entryEntityType);
+            string primaryKeyName = GetPrimaryKeyName(entryEntityType);
+
+            string sql =
+                string.Format(
+                    "UPDATE {0} SET IsDeleted = 1 WHERE {1} = @id",
+                        tableName, primaryKeyName);
+
+            Database.ExecuteSqlCommand(
+                sql,
+                new SqlParameter("@id", entry.OriginalValues[primaryKeyName]));
+
+            // prevent hard delete            
+            entry.State = EntityState.Detached;
+        }
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries()
+                                  .Where(p => p.State == EntityState.Deleted))
+                SoftDelete(entry);
+
+            return base.SaveChanges();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Properties<DateTime>()
@@ -52,6 +83,10 @@ namespace Data
 
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Badge>()
+            .Map(m => m.Requires("IsDeleted").HasValue(false))
+            .Ignore(m => m.IsDeleted);
 
             //// uklanjanje on delete cascade za member1 i member2
             //// u Conversation kako bi se uklonio multiple cascade paths error

@@ -12,6 +12,7 @@ namespace Data.DataClasses
         public int ExcuseId { get; set; }
         public DateTime Time { get; set; }
         public string Reason { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Member")]
         public int MemberId { get; set; }

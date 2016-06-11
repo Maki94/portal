@@ -13,6 +13,7 @@ namespace Data.DataClasses
         [Key]
         public int MemberTeamId { get; set; }
         public Enumerations.TeamRole TeamRole { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Member")]
         public int MemberId { get; set; }

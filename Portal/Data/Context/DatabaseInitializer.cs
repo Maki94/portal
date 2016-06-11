@@ -6,7 +6,7 @@ using Data.DataClasses;
 
 namespace Data
 {
-    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DatabaseInitializer : DropCreateDatabaseAlways<DataContext>
     {
         protected override void Seed(DataContext context)
         {
@@ -80,8 +80,8 @@ namespace Data
 
             var polls = new List<Poll>
             {
-                new Poll { Topic = "Glasanje1", Description = "Ovo je opis za glasanje1.", MaxAnswers = 3, StartDate = DateTime.Now, EndDate = new DateTime(2016, 7, 20), State = Enumerations.PollState.aktivan, PollCreator = members[0]},
-                new Poll { Topic = "Glasanje2", Description = "Ovo je opis za glasanje2.", MaxAnswers = 1, StartDate = DateTime.Now, EndDate = new DateTime(2016, 7, 20), State = Enumerations.PollState.aktivan, PollCreator = members[1]},
+                new Poll { Topic = "Glasanje1", Description = "Ovo je opis za glasanje1.", AllowMultiple = true, HideResultsUntilFinished = false, HideVoters = false, StartDate = DateTime.Now, EndDate = new DateTime(2016, 7, 20), State = Enumerations.PollState.aktivan, PollCreator = members[0]},
+                new Poll { Topic = "Glasanje2", Description = "Ovo je opis za glasanje2.", AllowMultiple = false, HideResultsUntilFinished = false, HideVoters = false, StartDate = DateTime.Now, EndDate = new DateTime(2016, 7, 20), State = Enumerations.PollState.aktivan, PollCreator = members[1]},
             };
 
             context.Polls.AddRange(polls);

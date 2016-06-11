@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseInitializer.cs" />
+    <Compile Include="Context\DatabaseInitializer.cs" />
     <Compile Include="DataClasses\Anecdote.cs" />
     <Compile Include="DataClasses\AnecdoteMember.cs" />
     <Compile Include="DataClasses\Badge.cs" />
@@ -89,7 +89,8 @@
     <Compile Include="DataClasses\Project.cs" />
     <Compile Include="DataClasses\Role.cs" />
     <Compile Include="DataClasses\Team.cs" />
-    <Compile Include="DataContext.cs" />
+    <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Context\DataContextPartial.cs" />
     <Compile Include="DTOs\BadgeThumbnailDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />

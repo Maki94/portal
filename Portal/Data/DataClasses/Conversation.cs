@@ -11,6 +11,7 @@ namespace Data.DataClasses
     {
         public int ConversationId { get; set; }
         public DateTime CreationDate { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Member1")]
         public int Member1Id { get; set; }

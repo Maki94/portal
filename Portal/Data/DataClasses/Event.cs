@@ -16,6 +16,7 @@ namespace Data.DataClasses
         public DateTime FinishDate { get; set; }
         public string Place { get; set; }
         public string Description { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Team")]
         public int TeamId { get; set; }

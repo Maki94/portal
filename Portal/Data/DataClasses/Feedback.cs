@@ -13,6 +13,7 @@ namespace Data.DataClasses
         public Enumerations.FeedbackType Type { get; set; }
         public string Text { get; set; }
         public DateTime Date { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("SentBy")]
         public int SentById { get; set; }

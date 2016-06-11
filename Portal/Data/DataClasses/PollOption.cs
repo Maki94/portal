@@ -12,7 +12,8 @@ namespace Data.DataClasses
     {
         public int PollOptionId { get; set; }
         public string Answer { get; set; }
-        
+        public bool IsDeleted { get; set; }
+
         [ForeignKey("Poll")]
         public int PollId { get; set; }
         public virtual Poll Poll { get; set; }

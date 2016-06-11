@@ -11,6 +11,7 @@ namespace Data.DataClasses
     {
         public int AnecdoteId { get; set; }
         public string Description { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("Author")]
         public int AuthorId { get; set; }

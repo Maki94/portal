@@ -38,10 +38,9 @@
         if (confirm('Da li sigurno zelite da obrisete ovaj bedz?')) {
             var id = this.dataset.badgeId;
             $.post("@Url.Action("Delete","Badge")", { "badgeId": id }, function (data) {
-                if (data) {
-                    $(this).hide();
-                }
+
             });
+            $(this).parent().hide(); // ovo bi trebalo gore u ajax success ali tu ne upada iz nekog razloga...
             window.location.href = url;
         }
         console.log(this);

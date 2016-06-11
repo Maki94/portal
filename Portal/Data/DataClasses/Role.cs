@@ -10,6 +10,7 @@ namespace Data.DataClasses
     {
         public int RoleId { get; set; }
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
 
         public virtual ICollection<Permission> Permissions { get; set; }
 

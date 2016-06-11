@@ -14,6 +14,7 @@ namespace Data.DataClasses
         public DateTime Date { get; set; }
         public string Agenda { get; set; }
         public string Note { get; set; }
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("HR")]
         public int HRId { get; set; }
