@@ -36,8 +36,8 @@
                     {
                         <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.Id">
                             <figure class="mdl-card__media">
-                                <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
-                                <img class="avatar"/>
+                                @*<div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>*@
+                                <img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg"/>
                             </figure>
                             <div class="mdl-card__title">
                                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.Id})">
@@ -75,7 +75,7 @@
         });
     });
 
-    $(window).bind('load', function () {
+    @*$(window).bind('load', function () {
         $('#members').children().each(function () {
             var $that = $(this);
             var id = $(this).attr('data-member-id');
@@ -84,7 +84,7 @@
                 $that.find('.loader').hide();
             });
         });
-    });
+    });*@
 
     $('#searchMembersText').bind('keyup', function filterResults() {
         var term = $('#searchMembersText').val();

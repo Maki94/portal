@@ -15,8 +15,8 @@
     <hr />
 
     <div class="avatar-div">
-        <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
-        <img class="avatar" />
+        @*<div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>*@
+        <img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg"/>
     </div>
 
         <dl class="dl-horizontal">
@@ -123,12 +123,12 @@
 
 <script type="text/javascript">
 
-    $(window).bind('load', function () {
+    @*$(window).bind('load', function () {
         var id = @Model.Id;
         $.post("@Url.Action("GetAvatar", "Member")", { "id" : id }, function (data) {
             $('.avatar').attr('src', data);
             $('.loader').hide();
         });
-    });
+    });*@
 
 </script>

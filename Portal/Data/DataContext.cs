@@ -15,8 +15,8 @@ namespace Data
         {
         }
 
-        public DbSet<Anecdote> Anecdotes { get; set; }
-        public DbSet<AnecdoteMember> AnecdoteMembers { get; set; }
+        //public DbSet<Anecdote> Anecdotes { get; set; }
+        //public DbSet<AnecdoteMember> AnecdoteMembers { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Company> Companies { get; set; }
