@@ -7,9 +7,11 @@ using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class AccessController : Controller
     {
         // GET: Login
+        [AllowAnonymous]
         public ActionResult Index(bool logOut = false, string message = null)
         {
             try
@@ -22,7 +24,13 @@ namespace MVC.Controllers
 
                 ViewBag.message = message;
 
-                return View(new MemberLoginViewModel() { Gmail = "zantsusan@gmail.com", Password = "Admin@123" });
+                // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
+                return Index(new MemberLoginViewModel
+                {
+                    Gmail = "zantsusan@gmail.com", Password = "Admin@123", RememberMe = true
+                });
+                // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
+                return View(new MemberLoginViewModel());
             }
             catch (Exception)
             {
@@ -30,6 +38,7 @@ namespace MVC.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Index(MemberLoginViewModel model)
         {

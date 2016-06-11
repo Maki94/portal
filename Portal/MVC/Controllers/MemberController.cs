@@ -7,6 +7,7 @@ using Data.DataClasses;
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class MemberController : Controller
     {
         // GET: MemberProfile

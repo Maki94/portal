@@ -2,6 +2,7 @@
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class FratorController : Controller
     {
         public ActionResult Index()

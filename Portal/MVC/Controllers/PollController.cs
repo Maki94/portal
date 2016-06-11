@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class PollController : Controller
     {
         public ActionResult Index()
@@ -17,10 +18,9 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddVote(int memberId, int pollOptionId)
+        public void AddVote(int memberId, int[] pollOptionIds)
         {
-            var success = Polls.AddVote(memberId, pollOptionId);
-            return Json(success);
+            Polls.AddVote(memberId, pollOptionIds);
         }
 
         [HttpPost]

@@ -2,6 +2,7 @@
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class AdminController : Controller
     {
         public ActionResult Index()

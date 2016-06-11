@@ -19,7 +19,7 @@
 
 @foreach (var p in Model.ActivePolls)
 {
-    <div class="poll-container" data-poll-id="@p.PollDetails.Id" data-poll-max-answers="@p.PollDetails.MaxAnswers">
+    <div class="poll-container" data-poll-id="@p.PollDetails.Id" @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text> }} >
         <div class="poll-details mdl-list__item mdl-list__item--two-line" >
             <span class="poll-details-title mdl-list__item-primary-content">
                 <b><span class="text-info"> @p.PollDetails.Topic <span class="text-danger"> @p.PollDetails.EndDate </span></span></b>
@@ -40,14 +40,24 @@
             {
                 <div class="poll-option mdl-list__item" data-poll-option-id="@po.Id">
                     <span class="mdl-list__item-secondary-action">
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                            <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input" @if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text>     } />
+                        <label class="poll-option-label mdl-checkbox mdl-js-checkbox" for="option-@po.Id">
+                            <input type="checkbox" id="option-@po.Id" class="poll-option-checkbox mdl-checkbox__input"
+                                   @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> }}  />
+                            <span class="mdl-checkbox__label">@po.Answer (@po.Voters.Count)</span>
                         </label>
                     </span>
-                    <span class="mdl-list__item-primary-content">
-                        <span>@po.Answer (@po.Voters.Count)</span>
-                    </span>
                 </div>
+            }
+
+            @{
+                if (!p.AlreadyVoted)
+                {
+                    <div class="poll-option mdl-list__item">
+                        <button class="vote-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                            Glasaj
+                        </button>
+                    </div>
+                }
             }
         </div>
     </div>
@@ -93,30 +103,38 @@
         $(window).bind('load', function() {
             $('.poll-details').css( 'cursor', 'pointer' );
             $('.poll-details').bind('click', function() {
-                $(this).siblings('.poll-options-list').toggle();
+                $(this).siblings('.poll-options-list').slideToggle();
+            });
+        });
+
+        $('button.vote-button').on('click', function() {
+            var pollContainer = $(this).closest('.poll-container');
+            var pollOptionIds = [];
+            var $this = $(this);
+            pollOptions = $(this).parent().siblings('.poll-option');
+            pollOptions.each(function() {
+                if ($(this).find('.poll-option-checkbox:checked').length != 0) {
+                    pollOptionIds.push($(this).data('poll-option-id'));
+                }
+            });
+            $.post("@Url.Action("AddVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionIds": pollOptionIds }, function (data) {
+                var parent = $this.parent();
+                $this.hide();
+                parent.html("<b>Hvala na glasanju!</b>");
+
+                pollOptions.find('.poll-option-label').each(function (){
+                    $(this)[0].MaterialCheckbox.disable();
+                });
             });
         });
 
         $('input.poll-option-checkbox').on('change', function (evt) {
-            var maxAnswers = $(this).closest('.poll-container').data('poll-max-answers');
-            var pollOptionId = $(this).closest('.poll-option').data('poll-option-id');
+            var pollContainer = $(this).closest('.poll-container');
+            var allowMultiple = pollContainer.is("[data-poll-allow-multiple]");
             if ($(this).is(':checked')) {
-                if ($(this).closest('.poll-option').siblings().find('.poll-option-checkbox:checked').length >= maxAnswers) {
+                if ($(this).closest('.poll-option').siblings().find('.poll-option-checkbox:checked').length >= 1 && !allowMultiple) {
                     this.checked = false;  // ako pokusa da glasa vise opcija nego sto sme
-                } else {
-                    $.post("@Url.Action("AddVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionId" : pollOptionId }, function (data) {
-                        if (data) {
-                            // TODO: da se ubaci kod da se odmah poveca broj glasaca za tu opciju
-                        }
-                    });
                 }
-            } else {
-                $.post("@Url.Action("RemoveVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionId" : pollOptionId }, function (data) {
-                    if (data) {
-                        var x = 5;
-                        // TODO: da se ubaci kod da se odmah smanji broj glasaca za tu opciju
-                    }
-                });
             }
         });
     </script>

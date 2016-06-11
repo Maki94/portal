@@ -101,20 +101,6 @@ namespace Data
 
             context.PollOptions.AddRange(polloptions);
             context.SaveChanges();
-
-            var memberpolloptions = new List<MemberPollOption>
-            {
-                new MemberPollOption { Member = members[0], PollOption = polloptions[1] },
-                new MemberPollOption { Member = members[0], PollOption = polloptions[2] },
-                new MemberPollOption { Member = members[0], PollOption = polloptions[3] },
-                new MemberPollOption { Member = members[1], PollOption = polloptions[1] },
-                new MemberPollOption { Member = members[2], PollOption = polloptions[2] },
-
-                new MemberPollOption { Member = members[0], PollOption = polloptions[6] },
-            };
-
-            context.MemberPollOptions.AddRange(memberpolloptions);
-            context.SaveChanges();
         }
     }
 }

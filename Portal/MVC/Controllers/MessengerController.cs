@@ -2,6 +2,7 @@
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class MessengerController : Controller
     {
         public ActionResult Index()

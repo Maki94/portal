@@ -13,6 +13,7 @@ namespace MVC.Models
     {
         public PollDTO PollDetails { get; set; }
         public List<PollOptionDTO> PollOptions { get; set; }
+        public bool AlreadyVoted { get; set; }
 
         public static PollModel Load(int pollId)
         {
@@ -24,6 +25,8 @@ namespace MVC.Models
 
             // ovo ce da zatvori glasanje ako mu je proslo vreme
             model = CheckUpdatePollState(model);
+
+            model.AlreadyVoted = Polls.CheckIfMemberVotedInPoll(MemberSession.GetMemberId(), pollId);
 
             return model;
         }

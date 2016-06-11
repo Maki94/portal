@@ -59,22 +59,24 @@ namespace Data.Entities
             UpdatePollState(pollId, Enumerations.PollState.zatvoren, dc);
         }
 
-        public static bool AddVote(int memberId, int pollOptionId, DataContext dc = null)
+        public static void AddVote(int memberId, int[] pollOptionIds, DataContext dc = null)
         {
             using (dc = dc ?? new DataContext())
             {
                 Member m = dc.Members.Where(x => x.MemberId == memberId).First();
-                PollOption po = dc.PollOptions.Where(x => x.PollOptionId == pollOptionId).First();
-                MemberPollOption newVote = new MemberPollOption
+                foreach (var poId in pollOptionIds)
                 {
-                    Member = m,
-                    PollOption = po,
-                };
+                    PollOption po = dc.PollOptions.Where(x => x.PollOptionId == poId).First();
+                    MemberPollOption newVote = new MemberPollOption
+                    {
+                        Member = m,
+                        PollOption = po,
+                    };
 
-                var addedVote = dc.MemberPollOptions.Add(newVote);
+                    dc.MemberPollOptions.Add(newVote);
+                }
 
                 dc.SaveChanges();
-                return newVote == addedVote;
             }
         }
 
@@ -87,6 +89,15 @@ namespace Data.Entities
 
                 dc.SaveChanges();
                 return removeVote == voteRemoved;
+            }
+        }
+
+        public static bool CheckIfMemberVotedInPoll (int memberId, int pollId)
+        {
+            using (var dc = new DataContext())
+            {
+                List<int> po = GetPollOptionsForPoll(pollId).Select(x => x.PollOptionId).ToList();
+                return dc.MemberPollOptions.Where(x => x.MemberId == memberId && po.Contains(x.PollOptionId)).Any();
             }
         }
     }

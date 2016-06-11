@@ -2,6 +2,7 @@
 
 namespace MVC.Controllers
 {
+    [AuthorizeMember]
     public class MeetingController : Controller
     {
         public ActionResult Index()
