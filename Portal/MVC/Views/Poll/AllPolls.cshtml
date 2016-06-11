@@ -19,11 +19,11 @@
 
 @foreach (var p in Model.ActivePolls)
 {
-    <div class="poll-container" data-poll-id="@p.PollDetails.Id" @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text> }} >
+    <div class="poll-container" data-poll-id="@Html.DisplayFor(x => p.PollDetails.Id) " @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text> }} >
         <div class="poll-details mdl-list__item mdl-list__item--two-line" >
             <span class="poll-details-title mdl-list__item-primary-content">
-                <b><span class="text-info"> @p.PollDetails.Topic <span class="text-danger"> @p.PollDetails.EndDate </span></span></b>
-                <span class="poll-details-description mdl-list__item-sub-title"> @p.PollDetails.Description </span>
+                <b><span class="text-info"> @Html.DisplayFor(x => p.PollDetails.Topic) <span class="text-danger"> @Html.DisplayFor(x => p.PollDetails.EndDate) </span></span></b>
+                <span class="poll-details-description mdl-list__item-sub-title"> @Html.DisplayFor(x => p.PollDetails.Description) </span>
             </span>
 
             <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
@@ -38,24 +38,22 @@
         <div class="poll-options-list mdl-list">
             @foreach (var po in p.PollOptions)
             {
-                <div class="poll-option mdl-list__item" data-poll-option-id="@po.Id">
-                    <label class="poll-option-label mdl-checkbox mdl-js-checkbox" for="option-@po.Id">
-                        <input type="checkbox" id="option-@po.Id" class="poll-option-checkbox mdl-checkbox__input"
-                                @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> }}  />
-                        <span class="mdl-checkbox__label">@po.Answer (@po.Voters.Count)</span>
+                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.Id)">
+                    <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
+                        <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
+                                        @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> }}  />
+                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.Voters.Count)) </span>
                     </label>
                 </div>
             }
 
-            @{
-                if (!p.AlreadyVoted)
-                {
-                    <div class="poll-option mdl-list__item">
-                        <button class="vote-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                            Glasaj
-                        </button>
-                    </div>
-                }
+            @if (!p.AlreadyVoted)
+            {
+                <div class="poll-option mdl-list__item">
+                    <button class="vote-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Glasaj
+                    </button>
+                </div>
             }
         </div>
     </div>
@@ -128,7 +126,7 @@
             var allowMultiple = pollContainer.is("[data-poll-allow-multiple]");
             if ($(this).is(':checked')) {
                 if ($(this).closest('.poll-option').siblings().find('.poll-option-checkbox:checked').length >= 1 && !allowMultiple) {
-                    this.checked = false;  // ako pokusa da glasa vise opcija nego sto sme
+                    this.checked = false;  // ako pokusa da cekira vise opcija nego sto sme
                 }
             }
         });
