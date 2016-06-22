@@ -17,6 +17,7 @@ namespace Data.DTOs
         public bool RememberMe { get; set; }
         public int Role { get; set; }
         public IList<int> Permissions { get; set; }
-        public int loginStatus { get; set; }
+        public int LoginStatus { get; set; }
+        public int LastChatParticipant { get; set; }
     }
 }

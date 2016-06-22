@@ -192,6 +192,7 @@
     <Compile Include="ViewModels\Badge\BadgeListViewModel.cs" />
     <Compile Include="ViewModels\Badge\CreateBadgeViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Chat\MessageListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

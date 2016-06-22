@@ -23,7 +23,6 @@ namespace Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<ContactPerson> ContactPersons { get; set; }
-        public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Excuse> Excuses { get; set; }
         //public DbSet<ExecutiveBoard> ExecutiveBoards { get; set; }

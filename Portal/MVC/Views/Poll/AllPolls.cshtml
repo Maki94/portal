@@ -41,8 +41,8 @@
                 <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.Id)">
                     <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
-                                        @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.Voters.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> }}  />
-                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.Voters.Count)) </span>
+                                        @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.Votes.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> }}  />
+                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.Votes.Count)) </span>
                     </label>
                 </div>
             }

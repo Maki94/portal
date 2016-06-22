@@ -17,13 +17,13 @@ namespace Data.Entities
             if (mem == null)
             {
                 if (Members.GmailExists(gmail))
-                    ld.loginStatus = (int)Enumerations.LoginStatus.IncorrectPassword;
+                    ld.LoginStatus = (int)Enumerations.LoginStatus.IncorrectPassword;
                 else
-                    ld.loginStatus = (int)Enumerations.LoginStatus.Failed;
+                    ld.LoginStatus = (int)Enumerations.LoginStatus.Failed;
                 return ld;
             }
 
-            ld.loginStatus = (int)Enumerations.LoginStatus.Successful;
+            ld.LoginStatus = (int)Enumerations.LoginStatus.Successful;
 
             ld.MemberID = mem.MemberId;
             ld.Gmail = mem.Gmail;

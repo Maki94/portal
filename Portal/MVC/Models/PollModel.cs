@@ -1,11 +1,9 @@
-﻿using Data;
-using Data.DataClasses;
-using Data.DTOs;
-using Data.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Data;
+using Data.DTOs;
+using Data.Entities;
 
 namespace MVC.Models
 {
@@ -17,10 +15,10 @@ namespace MVC.Models
 
         public static PollModel Load(int pollId)
         {
-            PollModel model = new PollModel
+            var model = new PollModel
             {
                 PollDetails = CreatePollDTO(pollId),
-                PollOptions = CreatePollOptionDTOs(pollId),
+                PollOptions = CreatePollOptionDTOs(pollId)
             };
 
             // ovo ce da zatvori glasanje ako mu je proslo vreme
@@ -33,8 +31,8 @@ namespace MVC.Models
 
         public static PollDTO CreatePollDTO(int pollId)
         {
-            Poll p = Polls.GetPollAt(pollId);
-            PollDTO pdto = new PollDTO
+            var p = Polls.GetPollAt(pollId);
+            var pdto = new PollDTO
             {
                 Id = p.PollId,
                 Topic = p.Topic,
@@ -45,32 +43,32 @@ namespace MVC.Models
                 State = p.State,
                 StartDate = p.StartDate,
                 EndDate = p.EndDate,
-                PollCreator = p.PollCreator,
+                PollCreator = p.PollCreator
             };
             return pdto;
         }
 
         public static List<PollOptionDTO> CreatePollOptionDTOs(int pollId)
         {
-            List<PollOption> pollOptions = Polls.GetPollOptionsForPoll(pollId);
-            List<PollOptionDTO> pollOptionDTOs = new List<PollOptionDTO>();
+            var pollOptions = Polls.GetPollOptionsForPoll(pollId);
+            var pollOptionDTOs = new List<PollOptionDTO>();
             foreach (var p in pollOptions)
             {
                 pollOptionDTOs.Add(new PollOptionDTO
                 {
                     Id = p.PollOptionId,
                     Answer = p.Answer,
-                    Voters = Polls.GetVotersForPollOption(p.PollOptionId),
+                    Votes = Polls.GetVotersForPollOption(p.PollOptionId)
                 });
             }
 
-            return pollOptionDTOs.OrderByDescending(x => x.Voters.Count).ToList();
+            return pollOptionDTOs.OrderByDescending(x => x.Votes.Count).ToList();
         }
 
         public static List<PollModel> GetAllPollModels()
         {
-            List<Poll> polls = Polls.GetAllPolls();
-            List<PollModel> pollModels = new List<PollModel>();
+            var polls = Polls.GetAllPolls();
+            var pollModels = new List<PollModel>();
             foreach (var p in polls)
             {
                 pollModels.Add(Load(p.PollId));

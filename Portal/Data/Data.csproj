@@ -66,7 +66,6 @@
     <Compile Include="DataClasses\Comment.cs" />
     <Compile Include="DataClasses\Company.cs" />
     <Compile Include="DataClasses\ContactPerson.cs" />
-    <Compile Include="DataClasses\Conversation.cs" />
     <Compile Include="DataClasses\DefaultPicture.cs" />
     <Compile Include="DataClasses\Event.cs" />
     <Compile Include="DataClasses\Excuse.cs" />
@@ -81,7 +80,7 @@
     <Compile Include="DataClasses\MemberPollOption.cs" />
     <Compile Include="DataClasses\MemberProject.cs" />
     <Compile Include="DataClasses\MemberTeam.cs" />
-    <Compile Include="DataClasses\Message.cs" />
+    <Compile Include="DataClasses\Chat\Message.cs" />
     <Compile Include="DataClasses\Permission.cs" />
     <Compile Include="DataClasses\Picture.cs" />
     <Compile Include="DataClasses\Poll.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Context\DataContextPartial.cs" />
     <Compile Include="DTOs\BadgeThumbnailDTO.cs" />
+    <Compile Include="DTOs\Chat\MessageDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
     <Compile Include="DTOs\MemberThumbnailDTO.cs" />
@@ -100,6 +100,8 @@
     <Compile Include="DTOs\ProjectDTO.cs" />
     <Compile Include="DTOs\ProjectThumbnailDTO.cs" />
     <Compile Include="Entities\Badges.cs" />
+    <Compile Include="Entities\Chat\IMessage.cs" />
+    <Compile Include="Entities\Chat\Message.cs" />
     <Compile Include="Entities\DefaultPictures.cs" />
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Members.cs" />

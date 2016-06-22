@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model MVC.ViewModels.Member.MemberListViewModel
 
 @{
     ViewBag.Title = "Messenger";
@@ -17,14 +17,14 @@
             </button>
             <dialog id="dialog-messenger" class="mdl-dialog">
                 <div class="mdl-dialog__content">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="messenger-user">
-                            <label class="mdl-textfield__label" for="messenger-user">Izaberi novog clana...</label>
-                        </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="messenger-user" list="messenger-users">
+                        <label class="mdl-textfield__label" for="messenger-user">Izaberi novog clana...</label>
+                    </div>
                 </div>
                 <div class="mdl-dialog__actions">
                     <button type="button" class="mdl-button">Potvrdi</button>
-                    <button type="button" class="mdl-button close">Zatvori</button>
+                    <button type="button" class="mdl-button close" id="close-dialog">Zatvori</button>
                 </div>
             </dialog>
         </div>
@@ -33,6 +33,7 @@
 <div id="messenger-wrapper">
     <div class="arrow"></div>
     <ul id="messenger-list" class="ChatLog">
+        @*
         <li class="ChatLog__entry ChatLog__entry_mine">
             <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
             <p class="ChatLog__message">
@@ -40,7 +41,7 @@
                 I have no idea.
             </p>
         </li>
-        
+
         <li class="ChatLog__entry ChatLog__entry_mine">
             <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
             <p class="ChatLog__message">
@@ -50,33 +51,82 @@
         </li>
 
         <li class="ChatLog__entry" data-label="3 minutes ago">
-            <img class="ChatLog__avatar" src="//placekitten.com/g/50/50" />
+            <img class="ChatLog__avatar" src="//placekitten.com/g/50/50"/>
             <p class="ChatLog__message">
                 <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
                 I have no idea.
             </p>
         </li>
         <li class="ChatLog__entry ChatLog__entry_mine" data-label="3 minutes ago">
-            <img class="ChatLog__avatar" src="//placekitten.com/56/56" />
+            <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
             <p class="ChatLog__message">
                 <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
                 I have no idea.
             </p>
         </li>
         <li class="ChatLog__entry" data-label="3 minutes ago">
-            <img class="ChatLog__avatar" src="//placekitten.com/g/50/50" />
+            <img class="ChatLog__avatar" src="//placekitten.com/g/50/50"/>
             <p class="ChatLog__message">
                 <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
                 I have no idea.
             </p>
         </li>
+        *@
     </ul>
 </div>
+
+<datalist id="messenger-users">
+    @foreach (var m in Model.MemberThumbnails)
+    {
+        <option data-id="@Html.DisplayName(m.Id.ToString())" value="@Html.DisplayName(m.Name)"></option>
+    }
+</datalist>
+<input type="hidden" value="@Html.DisplayName(MemberSession.GetMember().LastChatParticipant.ToString())" id="sender-data"/>
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
+    // data-list choose
+    var receiverId = parseInt(document.getElementById("sender-data").value);
+
+    function eventFire(el, etype) {
+        if (el.fireEvent) {
+            el.fireEvent('on' + etype);
+        } else {
+            var evObj = document.createEvent('Events');
+            evObj.initEvent(etype, true, false);
+            el.dispatchEvent(evObj);
+        }
+    }
+
+    function getHtmlMessage(text, time, imgUrl, mine) {
+        var myMessage = mine === undefined ? "" : "ChatLog__entry_mine";
+
+        var s =
+            '<li class="ChatLog__entry ' + myMessage + '" data-label=' + time + '> ' +
+                ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
+                '<p class="ChatLog__message">' +
+                '  <span class="time-info">' +
+                '<small class="time-signature text-warining">' + time + '</small></span> ' +
+                ' ' + text + ' </p> ' +
+                ' </li>';
+
+        return s;
+    }
+
+    $(function() {
+        $('#messenger-user').on('input', function() {
+            var opt = $('option[value="' + $(this).val() + '"]');
+            if (opt.length && parseInt(opt.attr("data-id"))) {
+                receiverId = parseInt(opt.attr("data-id"));
+                // TODO: get and refresh data
+                //alert(receiverId);
+                eventFire(document.getElementById('close-dialog'), 'click');
+            }
+        });
+    });
+
     var ENTER_CODE = 13;
 
-    $('#messenger-message').bind('keypress', function (event) {
+    $('#messenger-message').bind('keypress', function(event) {
         var x = event.keyCode;
         if (x === ENTER_CODE) {
             var message = this.value;
@@ -96,10 +146,10 @@
     if (!dialogMessenger.showModal) {
         dialogPolyfill.registerDialog(dialog);
     }
-    showDialogButtonMessenger.addEventListener('click', function () {
+    showDialogButtonMessenger.addEventListener('click', function() {
         dialogMessenger.showModal();
     });
-    dialogMessenger.querySelector('.close').addEventListener('click', function () {
+    dialogMessenger.querySelector('.close').addEventListener('click', function() {
         dialogMessenger.close();
     });
     $('#messenger-wrapper').on('mouseenter', '.ChatLog__message', function() {

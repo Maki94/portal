@@ -21,6 +21,9 @@ namespace Data.DataClasses
         public string Gmail { get; set; }
         public DateTime FeePayedUntil { get; set; }
         public Enumerations.MemberStatus Status { get; set; }
+
+        public int LastChatParticipant { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public string Phone { get; set; }

@@ -46,7 +46,7 @@ namespace MVC.Controllers
             {
                 Data.DTOs.LoginDTO member = Data.Entities.Login.CreateLoginDTO(model.Gmail, model.Password, model.RememberMe);
 
-                if (member.loginStatus == (int)Data.Enumerations.LoginStatus.Successful)
+                if (member.LoginStatus == (int)Data.Enumerations.LoginStatus.Successful)
                 {
                     Session["Member"] = member;
 
@@ -54,7 +54,7 @@ namespace MVC.Controllers
 
                     return RedirectToAction("Index", "Member");
                 }
-                else if (member.loginStatus == (int)Data.Enumerations.LoginStatus.IncorrectPassword)
+                else if (member.LoginStatus == (int)Data.Enumerations.LoginStatus.IncorrectPassword)
                 {
                     return RedirectToAction("Index", new { message = "Pogresna lozinka." });
                 }
