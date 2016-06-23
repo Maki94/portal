@@ -56,7 +56,7 @@
             <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
             I have no idea.
         </p>
-    </li>*@
+    </li>
         <li class="ChatLog__entry ChatLog__entry_mine" data-label="3 minutes ago">
             <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
             <p class="ChatLog__message">
@@ -70,7 +70,7 @@
                 <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
                 I have no idea.
             </p>
-        </li>
+        </li>*@
         
     </ul>
 </div>
@@ -115,60 +115,9 @@
 
             return s;
         }
-        self.AppendMyNewMessage = function(text, time, imgUrl) {
-            //var s =
-            //    '<li class="ChatLog__entry ChatLog__entry_mine" data-label=' + time + '> ' +
-            //        ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
-            //        '<p class="ChatLog__message">' +
-            //        '  <span class="time-info">' +
-            //        '<small class="time-signature text-warining">' + time + '</small></span> ' +
-            //        ' ' + text + ' </p> ' +
-            //        ' </li>';
-            var li = document.createElement("li");
-            li.className = "ChatLog__entry ChatLog__entry_mine";
-            li.setAttribute("data-label", time);
-
-            var img = document.createElement("img");
-            img.className = "ChatLog__avatar";
-            img.src = imgUrl;
-
-            var p = document.createElement("p");
-            p.className = "ChatLog__message";
-            p.innerHTML = '<span class="time-info"><small class="time-signature text-warining">'+time+'</small></span>' + text;
-
-            li.appendChild(img);
-            li.appendChild(p);
-            $('#messenger-list').prepend(s);
-        }
-        self.AppendParticipantsNewMessage = function(text, time, imgUrl) {
-            var li = document.createElement("li");
-            li.className = "ChatLog__entry";
-            li.setAttribute("data-label", time);
-
-            var img = document.createElement("img");
-            img.className = "ChatLog__avatar";
-            img.src = imgUrl;
-
-            var p = document.createElement("p");
-            p.className = "ChatLog__message";
-            p.innerHTML = '<span class="time-info"><small class="time-signature text-warining">'+time+'</small></span>' + text;
-
-            li.appendChild(img);
-            li.appendChild(p);
-
-            //var s =
-            //    '<li class="ChatLog__entry" data-label=' + time + '> ' +
-            //        ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
-            //        '<p class="ChatLog__message">' +
-            //        '  <span class="time-info">' +
-            //        '<small class="time-signature text-warining">' + time + '</small></span> ' +
-            //        ' ' + text + ' </p> ' +
-            //        ' </li>';
-
-            $('#messenger-list').prepend(li);
-        }
         self.RenderConversation = function (conversation) {
-            // TODO: get and refresh data
+            $('#messenger-list').html("");
+
             $.each(conversation.OrderedMessages, function (i, elem) {
                 var messageId = elem.MessageId;
                 var text = elem.Text;
@@ -181,11 +130,9 @@
                 if (senderId === self.senderId) {
                     var mesg = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
                     $('#messenger-list').prepend(mesg);
-                    //self.AppendMyNewMessage(text, time, self.senderUrl);
                 } else {
                     var mesgr = messenger.GetHtmlMessage(text, "time", "#");
                     $('#messenger-list').prepend(mesgr);
-                    //self.AppendParticipantsNewMessage(text, time, self.receiverUrl);
                 }
             });
         }
