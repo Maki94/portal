@@ -6,6 +6,8 @@ namespace Data.Entities
     public interface IMessage
     {
         List<MessageDTO> GetConversation(int senderId, int receiverId);
+        List<MessageDTO> GetConversationOrderedByDate(int senderId, int receiverId);
+        List<MessageDTO> GetConversationOrderedByDateBuffer(int senderId, int receiverId, int numberOfMessages);
 
         #region CRUD
 
@@ -16,6 +18,8 @@ namespace Data.Entities
         void Delete(int id);
 
         void Update(MessageDTO messageDTO);
+
+        void Save(MessageDTO messageDTO);
 
         #endregion
     }

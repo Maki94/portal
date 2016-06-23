@@ -81,11 +81,62 @@
         <option data-id="@Html.DisplayName(m.Id.ToString())" value="@Html.DisplayName(m.Name)"></option>
     }
 </datalist>
-<input type="hidden" value="@Html.DisplayName(MemberSession.GetMember().LastChatParticipant.ToString())" id="sender-data"/>
-<script src="https://use.fontawesome.com/c256757c6a.js"></script>
-<script>
-    // data-list choose
-    var receiverId = parseInt(document.getElementById("sender-data").value);
+
+<input
+    type="hidden"
+    data-senderId="@Html.DisplayName(MemberSession.GetMemberId().ToString())"
+    value="@Html.DisplayName(MemberSession.GetMember().LastChatParticipant.ToString())"
+    id="sender-data"/>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://use.fontawesome.com/c256757c6a.js"></script>
+<script type="text/javascript">
+    function Messeger() {
+        this.inputStorage = document.getElementById("sender-data");
+        this.receiverId = parseInt(this.inputStorage.value);
+        this.senderId = this.inputStorage.dataset.senderid;
+        this.senderUrl = "";
+
+        this.GetHtmlMessage = function(text, time, imgUrl, mine)
+        {
+            var myMessage = mine === undefined ? "" : "ChatLog__entry_mine";
+            var s =
+                '<li class="ChatLog__entry ' + myMessage + '" data-label=' + time + '> ' +
+                    ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
+                    '<p class="ChatLog__message">' +
+                    '  <span class="time-info">' +
+                    '<small class="time-signature text-warining">' + time + '</small></span> ' +
+                    ' ' + text + ' </p> ' +
+                    ' </li>';
+
+            return s;
+        }
+        this.RenderConversation = function(conversation) {
+            // TODO: get and refresh data
+
+        }
+
+    }
+    var messenger = new Messeger();
+
+
+    $(window).bind('load', function () {
+        var url = '@Url.Action("GetAvatar","Member")';
+        url += "/" + messenger.senderId;
+
+        $.post(url, function (data) {
+            messenger.senderUrl = data;
+        });
+
+        url = '@Url.Action("Conversation", "Messenger")';
+        url += "/" + messenger.receiverId;
+
+        $.post(url, function (data) {
+            alert(data);
+            //messenger.RenderConversation();
+        });
+
+    });
 
     function eventFire(el, etype) {
         if (el.fireEvent) {
@@ -97,50 +148,46 @@
         }
     }
 
-    function getHtmlMessage(text, time, imgUrl, mine) {
-        var myMessage = mine === undefined ? "" : "ChatLog__entry_mine";
-
-        var s =
-            '<li class="ChatLog__entry ' + myMessage + '" data-label=' + time + '> ' +
-                ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
-                '<p class="ChatLog__message">' +
-                '  <span class="time-info">' +
-                '<small class="time-signature text-warining">' + time + '</small></span> ' +
-                ' ' + text + ' </p> ' +
-                ' </li>';
-
-        return s;
-    }
-
-    $(function() {
+    $(function () {
         $('#messenger-user').on('input', function() {
             var opt = $('option[value="' + $(this).val() + '"]');
             if (opt.length && parseInt(opt.attr("data-id"))) {
-                receiverId = parseInt(opt.attr("data-id"));
-                // TODO: get and refresh data
-                //alert(receiverId);
+                messenger.receiverId = parseInt(opt.attr("data-id"));
+                $.get(url, function (data) {
+                    alert(data);
+                    var message = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
+                    $('#messenger-list').prepend(message);
+                    console.log(x);
+                    this.value = "";
+                });
+                //messenger.RenderConversation();
                 eventFire(document.getElementById('close-dialog'), 'click');
             }
         });
     });
 
-    var ENTER_CODE = 13;
 
+    var ENTER_CODE = 13;
     $('#messenger-message').bind('keypress', function(event) {
         var x = event.keyCode;
         if (x === ENTER_CODE) {
-            var message = this.value;
-            $('#messenger-list').prepend(' <li class="ChatLog__entry ChatLog__entry_mine"> ' +
-                '<img class="ChatLog__avatar" src="//placekitten.com/56/56"/> <p class="ChatLog__message">' +
-                '<span class="time-info"><small class="time-signature text-warining">3 minutes ago</small>' +
-                '</span> ' +
-                message +
-                '</p>' +
-                '</li>');
-            console.log(x);
+            var text = this.value;
+
+            var url = '@Url.Action("SetMessage", "Messenger")';
+            url += '/' + messenger.senderId + '?text=' + text;
+
+            $.post(url, function (data) {
+                //alert(data);
+                var message = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
+                $('#messenger-list').prepend(message);
+                console.log(data);
+            });
             this.value = "";
         }
     });
+
+
+    // PopUp handler
     var dialogMessenger = document.querySelector('#dialog-messenger');
     var showDialogButtonMessenger = document.querySelector('#show-dialog-messenger');
     if (!dialogMessenger.showModal) {

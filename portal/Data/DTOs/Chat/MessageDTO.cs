@@ -1,5 +1,4 @@
 ﻿using System;
-using Data.DataClasses;
 
 namespace Data.DTOs
 {
@@ -11,9 +10,12 @@ namespace Data.DTOs
 
         public DateTime Time { get; set; }
 
+        public virtual int SenderId { get; set; }
+        public virtual int ReceiverId { get; set; }
 
-        public virtual Member Sender { get; set; }
-        public virtual Member Receiver { get; set; }
+
+        //public virtual Member Sender { get; set; }
+        //public virtual Member Receiver { get; set; }
 
     }
 }

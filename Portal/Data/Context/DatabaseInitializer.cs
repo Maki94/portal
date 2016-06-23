@@ -178,6 +178,16 @@ namespace Data
             };
 
             context.MemberPollOptions.AddRange(memberpolloptions);
+
+            var messages = new List<Message>
+            {
+                new Message {Receiver = members[0], Sender = members[1],  Text = "Hello", Time = DateTime.Now},
+                new Message {Receiver = members[1], Sender = members[0],  Text = "Hello", Time = DateTime.Now},
+                new Message {Receiver = members[0], Sender = members[1],  Text = "Hello Again", Time = DateTime.Now},
+                new Message {Receiver = members[0], Sender = members[1],  Text = "What's up", Time = DateTime.Now}
+            };
+
+            context.Messages.AddRange(messages);
             context.SaveChanges();
         }
     }

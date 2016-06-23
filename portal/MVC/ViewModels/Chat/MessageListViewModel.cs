@@ -7,11 +7,11 @@ namespace MVC.ViewModels.Chat
     public class MessageListViewModel
     {
         private readonly Message _message = new Message();
-        public List<MessageDTO> Messages;
+        public List<MessageDTO> OrderedMessages;
 
-        public MessageListViewModel(int senderId, int receiverId)
+        public MessageListViewModel(int receiverId)
         {
-            Messages = _message.GetConversation(senderId, receiverId);
+            OrderedMessages = _message.GetConversationOrderedByDate(MemberSession.GetMemberId(), receiverId);
         }
 
         public MessageListViewModel()
@@ -19,10 +19,10 @@ namespace MVC.ViewModels.Chat
             // TODO: ubaciti default last conversation
         }
 
-        public List<MessageDTO> GetConversation(int senderId, int receiverId)
-        {
-            Messages = _message.GetConversation(senderId, receiverId);
-            return Messages;
-        }
+        //public List<MessageDTO> GetConversation(int senderId, int receiverId)
+        //{
+        //    OrderedMessages = _message.GetConversation(senderId, receiverId);
+        //    return OrderedMessages;
+        //}
     }
 }

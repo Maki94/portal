@@ -19,5 +19,6 @@ namespace Data.DTOs
         public IList<int> Permissions { get; set; }
         public int LoginStatus { get; set; }
         public int LastChatParticipant { get; set; }
+        public byte[] Avatar { get; set; }
     }
 }

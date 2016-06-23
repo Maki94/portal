@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Data.DTOs;
+using Data.Entities;
 using MVC.ViewModels.Chat;
 using MVC.ViewModels.Member;
 
@@ -14,9 +16,10 @@ namespace MVC.Controllers
             return View(new MemberListViewModel());
         }
 
+        [HttpPost]
         public string Conversation(int id) // receiverId
         {
-            var messageList = new MessageListViewModel(MemberSession.GetMemberId(), id);
+            var messageList = new MessageListViewModel(id);
 
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(messageList);
@@ -24,9 +27,41 @@ namespace MVC.Controllers
             return json;
         }
 
-        public bool SetMessage(int id, string text, DateTime time)
+        [HttpPost]
+        public bool SetMessage(int id, string text) // id - receiverId
         {
-            
+            try
+            {
+                var messageDTO = new MessageDTO
+                {
+                    SenderId = MemberSession.GetMemberId(),
+                    ReceiverId = id,
+                    Text = text,
+                    Time = DateTime.Now
+                };
+
+                var message = new Message();
+
+                message.Save(messageDTO);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public ActionResult GetAvatar(int id)
+        {
+            var mem = Members.GetMemberAt(id);
+            var image = mem.Avatar == null || mem.Avatar.Length == 0
+                ? DefaultPictures.GetPictureByName("Avatar")
+                : mem.Avatar;
+            var base64 = Convert.ToBase64String(image);
+            var imgSrc = $"data:image/gif;base64,{base64}";
+            return Content(imgSrc);
         }
     }
 }

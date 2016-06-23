@@ -1,9 +1,8 @@
-﻿using System.Web.Mvc;
-using MVC.ViewModels.Member;
-using MVC.ViewModels;
+﻿using System;
+using System.Web.Mvc;
 using Data.Entities;
-using System;
-using Data.DataClasses;
+using MVC.ViewModels;
+using MVC.ViewModels.Member;
 
 namespace MVC.Controllers
 {
@@ -13,7 +12,7 @@ namespace MVC.Controllers
         // GET: MemberProfile
         public ActionResult Index()
         {
-            MemberIndexViewModel model = MemberIndexViewModel.Load(MemberSession.GetMemberId());
+            var model = MemberIndexViewModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
 
@@ -31,8 +30,10 @@ namespace MVC.Controllers
 
         public ActionResult GetAvatar(int id)
         {
-            Member mem = Members.GetMemberAt(id);
-            byte[] image = (mem.Avatar == null || mem.Avatar.Length == 0) ? DefaultPictures.GetPictureByName("Avatar") : mem.Avatar;
+            var mem = Members.GetMemberAt(id);
+            var image = mem.Avatar == null || mem.Avatar.Length == 0
+                ? DefaultPictures.GetPictureByName("Avatar")
+                : mem.Avatar;
             var base64 = Convert.ToBase64String(image);
             var imgSrc = $"data:image/gif;base64,{base64}";
             return Content(imgSrc);
@@ -40,24 +41,24 @@ namespace MVC.Controllers
 
         public ActionResult Profile(int id)
         {
-            MemberProfileViewModel model = MemberProfileViewModel.Load(id);
+            var model = MemberProfileViewModel.Load(id);
             return View(model);
         }
 
         public ActionResult Edit()
         {
-            EditProfileViewModel model = EditProfileViewModel.Load(MemberSession.GetMemberId());
+            var model = EditProfileViewModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Edit(EditProfileViewModel m)
         {
-            int memberId = MemberSession.GetMemberId();
-            Data.Entities.Members.EditProfile(memberId, m.Nickname,
-                                              m.Faculty, m.DateOfBirth, m.Status, m.Phone,
-                                              m.Facebook, m.LinkedIn, m.Skype);
-            return RedirectToAction("Profile", new { id = memberId });
+            var memberId = MemberSession.GetMemberId();
+            Members.EditProfile(memberId, m.Nickname,
+                m.Faculty, m.DateOfBirth, m.Status, m.Phone,
+                m.Facebook, m.LinkedIn, m.Skype);
+            return RedirectToAction("Profile", new {id = memberId});
         }
 
         //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
