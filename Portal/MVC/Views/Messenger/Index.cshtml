@@ -34,29 +34,29 @@
     <div class="arrow"></div>
     <ul id="messenger-list" class="ChatLog">
         @*
-        <li class="ChatLog__entry ChatLog__entry_mine">
-            <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
-            <p class="ChatLog__message">
-                <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-                I have no idea.
-            </p>
-        </li>
+    <li class="ChatLog__entry ChatLog__entry_mine">
+        <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
+        <p class="ChatLog__message">
+            <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
+            I have no idea.
+        </p>
+    </li>
 
-        <li class="ChatLog__entry ChatLog__entry_mine">
-            <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
-            <p class="ChatLog__message">
-                <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-                I have no idea.
-            </p>
-        </li>
+    <li class="ChatLog__entry ChatLog__entry_mine">
+        <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
+        <p class="ChatLog__message">
+            <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
+            I have no idea.
+        </p>
+    </li>
 
-        <li class="ChatLog__entry" data-label="3 minutes ago">
-            <img class="ChatLog__avatar" src="//placekitten.com/g/50/50"/>
-            <p class="ChatLog__message">
-                <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-                I have no idea.
-            </p>
-        </li>
+    <li class="ChatLog__entry" data-label="3 minutes ago">
+        <img class="ChatLog__avatar" src="//placekitten.com/g/50/50"/>
+        <p class="ChatLog__message">
+            <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
+            I have no idea.
+        </p>
+    </li>*@
         <li class="ChatLog__entry ChatLog__entry_mine" data-label="3 minutes ago">
             <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
             <p class="ChatLog__message">
@@ -71,7 +71,7 @@
                 I have no idea.
             </p>
         </li>
-        *@
+        
     </ul>
 </div>
 
@@ -92,12 +92,16 @@
 <script type="text/javascript" src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script type="text/javascript">
     function Messeger() {
-        this.inputStorage = document.getElementById("sender-data");
-        this.receiverId = parseInt(this.inputStorage.value);
-        this.senderId = this.inputStorage.dataset.senderid;
-        this.senderUrl = "";
+        var self = this;
+        self.inputStorage = document.getElementById("sender-data");
 
-        this.GetHtmlMessage = function(text, time, imgUrl, mine)
+        self.receiverId = @Html.DisplayName(Model.Profile.LastChatParticipant.ToString());
+        self.senderId = @Html.DisplayName(MemberSession.GetMemberId().ToString());
+
+        self.senderUrl = "";
+        self.receiverUrl = "";
+
+        self.GetHtmlMessage = function (text, time, imgUrl, mine)
         {
             var myMessage = mine === undefined ? "" : "ChatLog__entry_mine";
             var s =
@@ -111,9 +115,110 @@
 
             return s;
         }
-        this.RenderConversation = function(conversation) {
-            // TODO: get and refresh data
+        self.AppendMyNewMessage = function(text, time, imgUrl) {
+            //var s =
+            //    '<li class="ChatLog__entry ChatLog__entry_mine" data-label=' + time + '> ' +
+            //        ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
+            //        '<p class="ChatLog__message">' +
+            //        '  <span class="time-info">' +
+            //        '<small class="time-signature text-warining">' + time + '</small></span> ' +
+            //        ' ' + text + ' </p> ' +
+            //        ' </li>';
+            var li = document.createElement("li");
+            li.className = "ChatLog__entry ChatLog__entry_mine";
+            li.setAttribute("data-label", time);
 
+            var img = document.createElement("img");
+            img.className = "ChatLog__avatar";
+            img.src = imgUrl;
+
+            var p = document.createElement("p");
+            p.className = "ChatLog__message";
+            p.innerHTML = '<span class="time-info"><small class="time-signature text-warining">'+time+'</small></span>' + text;
+
+            li.appendChild(img);
+            li.appendChild(p);
+            $('#messenger-list').prepend(s);
+        }
+        self.AppendParticipantsNewMessage = function(text, time, imgUrl) {
+            var li = document.createElement("li");
+            li.className = "ChatLog__entry";
+            li.setAttribute("data-label", time);
+
+            var img = document.createElement("img");
+            img.className = "ChatLog__avatar";
+            img.src = imgUrl;
+
+            var p = document.createElement("p");
+            p.className = "ChatLog__message";
+            p.innerHTML = '<span class="time-info"><small class="time-signature text-warining">'+time+'</small></span>' + text;
+
+            li.appendChild(img);
+            li.appendChild(p);
+
+            //var s =
+            //    '<li class="ChatLog__entry" data-label=' + time + '> ' +
+            //        ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
+            //        '<p class="ChatLog__message">' +
+            //        '  <span class="time-info">' +
+            //        '<small class="time-signature text-warining">' + time + '</small></span> ' +
+            //        ' ' + text + ' </p> ' +
+            //        ' </li>';
+
+            $('#messenger-list').prepend(li);
+        }
+        self.RenderConversation = function (conversation) {
+            // TODO: get and refresh data
+            $.each(conversation.OrderedMessages, function (i, elem) {
+                var messageId = elem.MessageId;
+                var text = elem.Text;
+                var time = elem.Time;
+                var senderId = elem.SenderId;
+                var receiverId = elem.ReceiverId;
+
+                //var imgUrl =
+
+                if (senderId === self.senderId) {
+                    var mesg = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
+                    $('#messenger-list').prepend(mesg);
+                    //self.AppendMyNewMessage(text, time, self.senderUrl);
+                } else {
+                    var mesgr = messenger.GetHtmlMessage(text, "time", "#");
+                    $('#messenger-list').prepend(mesgr);
+                    //self.AppendParticipantsNewMessage(text, time, self.receiverUrl);
+                }
+            });
+        }
+
+        self.GetConversation = function ()
+        {
+            var url = '@Url.Action("Conversation", "Messenger")';
+            url += "/" + self.receiverId;
+
+            $.post(url, function (data) {
+                var conversation = JSON.parse(data);
+                self.RenderConversation(conversation);
+            });
+        }
+
+        self.GetSenderImgUrl = function()
+        {
+            var url = '@Url.Action("GetAvatar","Member")';
+            url += "/" + messenger.senderId;
+
+            $.post(url, function (data) {
+                messenger.senderUrl = data;
+            });
+        }
+
+        self.GetReceiverImgUrl = function()
+        {
+            var url = '@Url.Action("GetAvatar","Member")';
+            url += "/" + messenger.receiverId;
+
+            $.post(url, function (data) {
+                messenger.senderUrl = data;
+            });
         }
 
     }
@@ -121,21 +226,25 @@
 
 
     $(window).bind('load', function () {
-        var url = '@Url.Action("GetAvatar","Member")';
+
+        messenger.GetSenderImgUrl();
+        messenger.GetReceiverImgUrl();
+        messenger.GetConversation();
+        @*var url = '@Url.Action("GetAvatar","Member")';
         url += "/" + messenger.senderId;
 
         $.post(url, function (data) {
             messenger.senderUrl = data;
         });
 
-        url = '@Url.Action("Conversation", "Messenger")';
+        url = '@Url.Action("GetAvatar","Member")';
         url += "/" + messenger.receiverId;
 
         $.post(url, function (data) {
-            alert(data);
-            //messenger.RenderConversation();
-        });
+            messenger.senderUrl = data;
+        });*@
 
+        //messenger.GetConversation();
     });
 
     function eventFire(el, etype) {
@@ -150,17 +259,27 @@
 
     $(function () {
         $('#messenger-user').on('input', function() {
+
             var opt = $('option[value="' + $(this).val() + '"]');
+
             if (opt.length && parseInt(opt.attr("data-id"))) {
                 messenger.receiverId = parseInt(opt.attr("data-id"));
+                messenger.GetReceiverImgUrl();
+                messenger.GetConversation();
+
+
+                @*var url = '@Url.Action("Conversation", "Messenger")';
+                url += "/" + messenger.receiverId;
+
                 $.get(url, function (data) {
                     alert(data);
                     var message = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
                     $('#messenger-list').prepend(message);
                     console.log(x);
                     this.value = "";
-                });
+                });*@
                 //messenger.RenderConversation();
+
                 eventFire(document.getElementById('close-dialog'), 'click');
             }
         });
@@ -174,7 +293,7 @@
             var text = this.value;
 
             var url = '@Url.Action("SetMessage", "Messenger")';
-            url += '/' + messenger.senderId + '?text=' + text;
+            url += '/' + messenger.receiverId + '?text=' + text;
 
             $.post(url, function (data) {
                 //alert(data);

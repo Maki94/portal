@@ -13,8 +13,8 @@ namespace Data.Entities
             {
                 return
                     (from o in dc.Messages
-                        where o.SenderId == senderId && o.ReceiverId == receiverId
-                        select new MessageDTO
+                     where (o.SenderId == senderId && o.ReceiverId == receiverId) || (o.SenderId == receiverId && o.ReceiverId == senderId)
+                     select new MessageDTO
                         {
                             MessageId = o.MessageId,
                             Text = o.Text,
@@ -35,7 +35,7 @@ namespace Data.Entities
                 return
                     (from o in dc.Messages
                      orderby o.Time
-                     where o.SenderId == senderId && o.ReceiverId == receiverId
+                     where (o.SenderId == senderId && o.ReceiverId == receiverId) || (o.SenderId == receiverId && o.ReceiverId == senderId)
                      select new MessageDTO
                      {
                          MessageId = o.MessageId,
@@ -54,7 +54,7 @@ namespace Data.Entities
                 return
                     (from o in dc.Messages
                      orderby o.Time
-                     where o.SenderId == senderId && o.ReceiverId == receiverId
+                     where (o.SenderId == senderId && o.ReceiverId == receiverId) || (o.SenderId == receiverId && o.ReceiverId == senderId)
                      select new MessageDTO
                      {
                          MessageId = o.MessageId,
@@ -117,10 +117,10 @@ namespace Data.Entities
             {
                 var message = new DataClasses.Message
                 {
-                    //ReceiverId = messageDTO.ReceiverId,
-                    //SenderId = messageDTO.SenderId,
-                    Receiver = Members.GetMemberAt(messageDTO.ReceiverId),
-                    Sender = Members.GetMemberAt(messageDTO.SenderId),
+                    //Receiver = Members.GetMemberAt(messageDTO.ReceiverId),
+                    Receiver = (from m in dc.Members where m.MemberId == messageDTO.ReceiverId select m).First(),
+                    //Sender = Members.GetMemberAt(messageDTO.SenderId),
+                    Sender = (from m in dc.Members where m.MemberId == messageDTO.SenderId select m).First(),
                     Text = messageDTO.Text,
                     Time = messageDTO.Time,
                     IsDeleted = false

@@ -11,9 +11,11 @@ namespace MVC.ViewModels.Member
     {
         public List<MemberThumbnailDTO> MemberThumbnails { get; set; }
 
+        public Data.DataClasses.Member Profile { get; set; }
         public MemberListViewModel()
         {
             MemberThumbnails = Members.GetAllMemberThumbnails();
+            Profile = Members.GetMemberAt(MemberSession.GetMemberId());
         }
     }
 }

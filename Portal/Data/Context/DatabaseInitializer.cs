@@ -51,7 +51,7 @@ namespace Data
                     Gmail = "zantsusan@gmail.com",
                     Phone = "0641234123",
                     Role = roles[5],
-                    LastChatParticipant = 1
+                    LastChatParticipant = 2
                 },
                 new Member
                 {
@@ -183,6 +183,10 @@ namespace Data
             {
                 new Message {Receiver = members[0], Sender = members[1],  Text = "Hello", Time = DateTime.Now},
                 new Message {Receiver = members[1], Sender = members[0],  Text = "Hello", Time = DateTime.Now},
+                new Message {Receiver = members[1], Sender = members[0],  Text = "Whats Up", Time = DateTime.Now},
+                new Message {Receiver = members[1], Sender = members[0],  Text = "Nth", Time = DateTime.Now},
+                new Message {Receiver = members[1], Sender = members[0],  Text = "Ok", Time = DateTime.Now},
+                new Message {Receiver = members[1], Sender = members[0],  Text = "Bye", Time = DateTime.Now},
                 new Message {Receiver = members[0], Sender = members[1],  Text = "Hello Again", Time = DateTime.Now},
                 new Message {Receiver = members[0], Sender = members[1],  Text = "What's up", Time = DateTime.Now}
             };
