@@ -74,19 +74,19 @@ namespace Data.Entities
             }
         }
 
-        public static List<MemberThumbnailDTO> GetAllMemberThumbnails()
+        public static List<MemberDTO> GetAllMemberThumbnails()
         {
             using (var dc = new DataContext())
             {
                 List<Member> members = (from m in dc.Members select m).ToList();
 
-                List<MemberThumbnailDTO> memberthumbnails = new List<MemberThumbnailDTO>();
+                List<MemberDTO> memberthumbnails = new List<MemberDTO>();
 
                 foreach (var m in members)
                 {
-                    memberthumbnails.Add(new MemberThumbnailDTO
+                    memberthumbnails.Add(new MemberDTO
                     {
-                        Id = m.MemberId,
+                        MemberId = m.MemberId,
                         Name = m.Name,
                         Surname = m.Surname,
                         Nickname = m.Nickname,

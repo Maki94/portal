@@ -51,16 +51,16 @@ namespace Data.Entities
             }
         }
         
-        public static List<ProjectThumbnailDTO> GetProjectThumbnails()
+        public static List<ProjectDTO> GetProjectThumbnails()
         {
             using (var dc = new DataContext())
             {
                 List<Project> projects = (from p in dc.Projects select p).ToList();
-                List<ProjectThumbnailDTO> projectThumbnails = new List<ProjectThumbnailDTO>();
+                List<ProjectDTO> projectThumbnails = new List<ProjectDTO>();
 
                 foreach (var proj in projects)
                 {
-                    projectThumbnails.Add(new ProjectThumbnailDTO
+                    projectThumbnails.Add(new ProjectDTO
                     {
                         Name = proj.Name,
                         Description = proj.Description,

@@ -34,7 +34,7 @@ namespace MVC.Models
             var p = Polls.GetPollAt(pollId);
             var pdto = new PollDTO
             {
-                Id = p.PollId,
+                PollId = p.PollId,
                 Topic = p.Topic,
                 Description = p.Description,
                 AllowMultiple = p.AllowMultiple,
@@ -43,7 +43,7 @@ namespace MVC.Models
                 State = p.State,
                 StartDate = p.StartDate,
                 EndDate = p.EndDate,
-                PollCreator = p.PollCreator
+                PollCreatorName = p.PollCreator.Name,
             };
             return pdto;
         }
@@ -56,13 +56,13 @@ namespace MVC.Models
             {
                 pollOptionDTOs.Add(new PollOptionDTO
                 {
-                    Id = p.PollOptionId,
+                    PollOptionId = p.PollOptionId,
                     Answer = p.Answer,
-                    Votes = Polls.GetVotersForPollOption(p.PollOptionId)
+                    PollId = p.PollId
                 });
             }
 
-            return pollOptionDTOs.OrderByDescending(x => x.Votes.Count).ToList();
+            return pollOptionDTOs.ToList();
         }
 
         public static List<PollModel> GetAllPollModels()
@@ -83,7 +83,7 @@ namespace MVC.Models
             if (pm.PollDetails.EndDate < DateTime.Now)
             {
                 // pozivamo funkciju koja ce da updatuje bazu
-                Polls.ClosePoll(pm.PollDetails.Id);
+                Polls.ClosePoll(pm.PollDetails.PollId);
                 // menjamo vrednost propertija objekta
                 pm.PollDetails.State = Enumerations.PollState.zatvoren;
             }

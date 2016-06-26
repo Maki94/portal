@@ -9,7 +9,7 @@ namespace MVC.ViewModels.Projects
 {
     public class ProjectListViewModel
     {
-        public List<ProjectThumbnailDTO> ProjectThumbnails { get; set; }
+        public List<ProjectDTO> ProjectThumbnails { get; set; }
 
         public ProjectListViewModel()
         {
