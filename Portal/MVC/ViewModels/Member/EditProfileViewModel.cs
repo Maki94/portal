@@ -16,7 +16,7 @@ namespace MVC.ViewModels
         public string Faculty { get; set; }
 
         [Display(Name = "Datum rodjenja")]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         [Display(Name = "Status")]
         public Data.Enumerations.MemberStatus Status { get; set; }

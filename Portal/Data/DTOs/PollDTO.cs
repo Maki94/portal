@@ -10,7 +10,7 @@ namespace Data.DTOs
 {
     public class PollDTO
     {
-        public int Id { get; set; }
+        public int PollId { get; set; }
         public string Topic { get; set; }
         public string Description { get; set; }
         public bool AllowMultiple { get; set; }
@@ -21,6 +21,6 @@ namespace Data.DTOs
         public DateTime StartDate { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy u hh:mm}")]
         public DateTime EndDate { get; set; }
-        public Member PollCreator { get; set; }
+        public string PollCreatorName { get; set; }
     }
 }

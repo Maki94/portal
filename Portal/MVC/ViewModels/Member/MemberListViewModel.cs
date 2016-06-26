@@ -9,7 +9,7 @@ namespace MVC.ViewModels.Member
 {
     public class MemberListViewModel
     {
-        public List<MemberThumbnailDTO> MemberThumbnails { get; set; }
+        public List<MemberDTO> MemberThumbnails { get; set; }
 
         public Data.DataClasses.Member Profile { get; set; }
         public MemberListViewModel()

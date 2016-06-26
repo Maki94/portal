@@ -25,7 +25,7 @@ namespace MVC.ViewModels.Member
         public string Gmail { get; set; }
 
         [Display(Name = "Clanarina do")]
-        public DateTime FeePayedUntil { get; set; }
+        public DateTime? FeePayedUntil { get; set; }
 
         public List<ProjectDTO> Projects { get; set; }
 

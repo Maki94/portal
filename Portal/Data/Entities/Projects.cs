@@ -12,58 +12,55 @@ namespace Data.Entities
     {
         public static Project AddProject(string name, string description)
         {
-            DataContext dc = new DataContext();
-
-            Project p = new Project
-            {
-                Name = name,
-                Description = description,
-            };
-
-            dc.Projects.Add(p);
-            dc.SaveChanges();
-
-            return p;
-        }
-
-        public static Project GetProject(int projectID, DataContext dc = null)
-        {
-            dc = dc ?? new DataContext();
-            return (from p in dc.Projects where p.ProjectId == projectID select p).First();
-        }
-
-        public static List<ProjectDTO> GetProjectsOfMember(int memberID, DataContext dc = null)
-        {
-            dc = dc ?? new DataContext();
-
-            return (from p in dc.MemberProjects
-                    where p.MemberId == memberID
-                    select new ProjectDTO
-                    {
-                        ProjectId = p.ProjectId,
-                        Name = p.Project.Name,
-                        Description = p.Project.Description,
-                    }).ToList();
-        }
-
-        public static List<Project> GetAllProjects()
-        {
             using (var dc = new DataContext())
             {
-                return (from p in dc.Projects select p).ToList();
+
+                Project p = new Project
+                {
+                    Name = name,
+                    Description = description,
+                };
+
+                dc.Projects.Add(p);
+                dc.SaveChanges();
+
+                return p;
             }
         }
 
-        public static List<ProjectThumbnailDTO> GetProjectThumbnails()
+        public static Project GetProjectAt(int projectID)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from p in dc.Projects where p.ProjectId == projectID select p).First();
+            }
+        }
+
+        public static List<ProjectDTO> GetProjectsOfMember(int memberID)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from p in dc.MemberProjects
+                        where p.MemberId == memberID
+                        select new ProjectDTO
+                        {
+                            ProjectId = p.ProjectId,
+                            Name = p.Project.Name,
+                            Description = p.Project.Description,
+                        }).ToList();
+            }
+        }
+        
+        public static List<ProjectDTO> GetProjectThumbnails()
         {
             using (var dc = new DataContext())
             {
                 List<Project> projects = (from p in dc.Projects select p).ToList();
-                List<ProjectThumbnailDTO> projectThumbnails = new List<ProjectThumbnailDTO>();
+                List<ProjectDTO> projectThumbnails = new List<ProjectDTO>();
 
                 foreach (var proj in projects)
                 {
-                    projectThumbnails.Add(new ProjectThumbnailDTO
+                    projectThumbnails.Add(new ProjectDTO
                     {
                         Name = proj.Name,
                         Description = proj.Description,
@@ -75,5 +72,29 @@ namespace Data.Entities
                 return projectThumbnails;
             }
         }
-    }
+
+        public static Project AddProject()
+        {
+            using (var dc = new DataContext())
+            {
+                return new Project();
+            }
+        }
+
+        public static bool DeleteProject(int projectId)
+        {
+            using (var dc = new DataContext())
+            {
+                return true;
+            }
+        }
+
+        public static void ChangeProject()
+        {
+            using (var dc = new DataContext())
+            {
+
+            }
+        }
+    }   
 }

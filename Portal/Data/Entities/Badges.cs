@@ -11,12 +11,12 @@ namespace Data.Entities
 {
     public class Badges
     {
-        public static List<BadgeThumbnailDTO> GetAllBadges()
+        public static List<BadgeDTO> GetAllBadges()
         {
             using (var dc = new DataContext())
             {
                 var badges = (from b in dc.Badges select b).ToList();
-                return badges.Select(b => new BadgeThumbnailDTO
+                return badges.Select(b => new BadgeDTO
                 {
                     BadgeId = b.BadgeId,
                     Name = b.Name,

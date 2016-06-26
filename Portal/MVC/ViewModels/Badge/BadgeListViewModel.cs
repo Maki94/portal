@@ -9,7 +9,7 @@ namespace MVC.ViewModels.Badge
 {
     public class BadgeListViewModel
     {
-        public List<BadgeThumbnailDTO> Badges { get; set; }
+        public List<BadgeDTO> Badges { get; set; }
 
         public BadgeListViewModel()
         {
