@@ -12,7 +12,7 @@ namespace Data.DataClasses
         public string Name { get; set; }
         public string Email { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime DismantleDate { get; set; }
+        public DateTime? DismantleDate { get; set; }
         public bool IsDeleted { get; set; }
 
         public virtual ICollection<MemberTeam> TeamMembers { get; set; }
