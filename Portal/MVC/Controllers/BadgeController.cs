@@ -1,8 +1,8 @@
 ﻿using System;
 using Data.Entities;
-using MVC.ViewModels.Badge;
 using System.IO;
 using System.Web.Mvc;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -12,11 +12,11 @@ namespace MVC.Controllers
         // GET: Badge
         public ActionResult Index()
         {
-            return View(new BadgeListViewModel());
+            return View(new BadgeListModel());
         }
 
         [HttpPost]
-        public ActionResult Create(CreateBadgeViewModel m)
+        public ActionResult Create(BadgeCreateModel m)
         {
             if (ModelState.IsValid)
             {

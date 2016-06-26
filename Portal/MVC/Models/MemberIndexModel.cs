@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Member
+namespace MVC.Models
 {
-    public class MemberIndexViewModel
+    public class MemberIndexModel
     {
         public string Nickname { get; set; }
 
-        public static MemberIndexViewModel Load(int memberID)
+        public static MemberIndexModel Load(int memberID)
         {
             Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
-            MemberIndexViewModel model = new MemberIndexViewModel
+            MemberIndexModel model = new MemberIndexModel
             {
                 Nickname = m.Nickname
             };

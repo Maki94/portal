@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Badge
+namespace MVC.Models
 {
-    public class CreateBadgeViewModel
+    public class BadgeCreateModel
     {
         [Required(ErrorMessage = "Morate uneti jedinstveno ime za bedz.")]
         public string Name { get; set; }

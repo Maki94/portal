@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels
+namespace MVC.Models
 {
-    public class ChangePasswordViewModel
+    public class MemberChangePasswordModel
     {
         [Required(ErrorMessage = "Morate uneti staru lozinku.")]
         [Display(Name = "Stara lozinka")]

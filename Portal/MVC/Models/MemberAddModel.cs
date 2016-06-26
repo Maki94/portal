@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Member
+namespace MVC.Models
 {
-    public class AddMemberViewModel
+    public class MemberAddModel
     {
         [Required(ErrorMessage = "Morate uneti Gmail adresu.")]
         [Display(Name = "Gmail")]
@@ -49,7 +49,7 @@ namespace MVC.ViewModels.Member
         // status?
         // jos nesto mozda
 
-        public AddMemberViewModel()
+        public MemberAddModel()
         {
             Roles = Data.Entities.Roles.GetAllRoles();
             Date = DateTime.Now;

@@ -1,4 +1,5 @@
-﻿using Data.DTOs;
+﻿using Data.DataClasses;
+using Data.DTOs;
 using Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Member
+namespace MVC.Models
 {
-    public class MemberProfileViewModel : EditProfileViewModel
+    public class MemberProfileModel : MemberEditProfileModel
     {
         // dodamo samo propertije koji ih nema u EditProfileViewModel
         public int Id { get; set; }
@@ -29,10 +30,10 @@ namespace MVC.ViewModels.Member
 
         public List<ProjectDTO> Projects { get; set; }
 
-        public static MemberProfileViewModel Load(int memberID)
+        public static MemberProfileModel Load(int memberID)
         {
             Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
-            MemberProfileViewModel model = new MemberProfileViewModel
+            MemberProfileModel model = new MemberProfileModel
             {
                 Nickname = m.Nickname,
                 Status = m.Status,
@@ -52,7 +53,8 @@ namespace MVC.ViewModels.Member
                 FeePayedUntil = m.FeePayedUntil
             };
 
-            model.Projects = Data.Entities.Projects.GetProjectsOfMember(memberID);
+            List<Project> projects = Data.Entities.Projects.GetAllProjects();
+            model.Projects = ProjectListModel.CreateProjectListDTOs(projects);
 
             return model;
         }

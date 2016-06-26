@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Poll
+namespace MVC.Models
 {
-    public class PollListViewModel
+    public class PollListModel
     {
         public List<PollModel> ActivePolls { get; set; }
         public List<PollModel> ClosedPolls { get; set; }
 
-        public PollListViewModel()
+        public PollListModel()
         {
             List<PollModel> pm = PollModel.GetAllPollModels();
             ActivePolls = pm.Where(p => p.PollDetails.State == Enumerations.PollState.aktivan).ToList();

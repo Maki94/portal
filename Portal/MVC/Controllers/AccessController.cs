@@ -1,5 +1,5 @@
 ﻿using Data.Entities;
-using MVC.ViewModels;
+using MVC.Models;
 using System;
 using System.IO;
 using System.Web;
@@ -30,7 +30,7 @@ namespace MVC.Controllers
                 //    Gmail = "zantsusan@gmail.com", Password = "Admin@123", RememberMe = true
                 //});
                 // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
-                return View(new MemberLoginViewModel());
+                return View(new MemberLoginModel());
             }
             catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace MVC.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Index(MemberLoginViewModel model)
+        public ActionResult Index(MemberLoginModel model)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace MVC.Controllers
             try
             {
                 ViewBag.message = message;
-                return View(new ChangePasswordViewModel());
+                return View(new MemberChangePasswordModel());
             }
             catch (Exception)
             {
@@ -113,7 +113,7 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordViewModel m)
+        public ActionResult ChangePassword(MemberChangePasswordModel m)
         {
             try
             {

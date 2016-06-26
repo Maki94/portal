@@ -187,23 +187,24 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PollModel.cs" />
+    <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="ValidationClasses.cs" />
-    <Compile Include="ViewModels\Admin\MemberEditViewModel.cs" />
-    <Compile Include="ViewModels\Badge\BadgeListViewModel.cs" />
-    <Compile Include="ViewModels\Badge\CreateBadgeViewModel.cs" />
-    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\Chat\MessageListViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\MemberEditModel.cs" />
+    <Compile Include="Models\BadgeListModel.cs" />
+    <Compile Include="Models\BadgeCreateModel.cs" />
+    <Compile Include="Models\MemberChangePasswordModel.cs" />
+    <Compile Include="Models\MessageListModel.cs" />
+    <Compile Include="Models\MemberLoginModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\Member\AddMemberViewModel.cs" />
-    <Compile Include="ViewModels\Member\EditProfileViewModel.cs" />
-    <Compile Include="ViewModels\Member\MemberIndexViewModel.cs" />
-    <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
-    <Compile Include="ViewModels\Member\MemberProfileViewModel.cs" />
-    <Compile Include="ViewModels\Poll\PollListViewModel.cs" />
-    <Compile Include="ViewModels\Projects\ProjectListViewModel.cs" />
+    <Compile Include="Models\MemberAddModel.cs" />
+    <Compile Include="Models\MemberEditProfileModel.cs" />
+    <Compile Include="Models\MemberIndexModel.cs" />
+    <Compile Include="Models\MemberListModel.cs" />
+    <Compile Include="Models\MemberProfileModel.cs" />
+    <Compile Include="Models\PollListModel.cs" />
+    <Compile Include="Models\ProjectListModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
