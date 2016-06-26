@@ -12,6 +12,7 @@ namespace Data.DataClasses
         public int CommentId { get; set; }
         public string Type { get; set; }
         public string Text { get; set; }
+        public DateTime Time { get; set; }
         public bool IsDeleted { get; set; }
 
         [ForeignKey("Author")]

@@ -15,7 +15,7 @@ namespace Data.DataClasses
         public string Nickname { get; set; }
         public byte[] Avatar { get; set; }
         public string Faculty { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public DateTime JoinDate { get; set; }
         public string Password { get; set; }
         public string Gmail { get; set; }
