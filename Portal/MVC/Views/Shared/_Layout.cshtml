@@ -33,7 +33,7 @@
             @Html.ActionLink("Events", "Index", "Event", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("Poll", "Index", "Poll", null, new {@class = "mdl-navigation__link"})
             <a href="@Url.Action("Index", "Messenger")" class="mdl-navigation__link">
-                <span class="mdl-badge" data-badge="4">Messenger</span>
+                <span id="badge-number-of-notifications" class="mdl-badge" data-badge="♥">Messenger</span>
             </a>
             @Html.ActionLink("M/P", "Index", "MP", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("FRator", "Index", "Frator", null, new {@class = "mdl-navigation__link"})
@@ -87,6 +87,19 @@
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
 <script>
+    var badgeNotificator = document.getElementById("badge-number-of-notifications");
+
+    window.setInterval(function () { // periodicno osvezavaj broj notifikacija
+        var url = '@Url.Action("GetNumberOfNotifications", "Messenger")';
+        
+        $.post(url, function (data) {
+            if (parseInt(data) === 0) {
+                data = "♥";
+            }
+            badgeNotificator.setAttribute("data-badge", data);
+        });
+    }, 1666);
+
     $('#admin-news').toggle();
     $('#admin-meetings').toggle();
     $('#admin-badges').toggle();

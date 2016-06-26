@@ -63,9 +63,9 @@ namespace MVC.Controllers
                     return RedirectToAction("Index", new { message = "Ne postoji taj nalog." });
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                return RedirectToAction("Index", new { message = "Nesto ne valja" });
+                return RedirectToAction("Index", new { message = "Nesto ne valja" + exception });
             }
         }
 

@@ -8,7 +8,7 @@
         <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
         <div class="mdl-cell mdl-cell--9-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
             <div class="" id="messenger-message-wrapper">
-                <input placeholder="Text poruke" class="mdl-textfield__input" type="text" id="messenger-message">
+                <input placeholder="Message poruke" class="mdl-textfield__input" type="text" id="messenger-message">
             </div>
         </div>
         <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone">
@@ -71,7 +71,7 @@
                 I have no idea.
             </p>
         </li>*@
-        
+
     </ul>
 </div>
 
@@ -91,8 +91,10 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script type="text/javascript">
-    function Messeger() {
+
+    function Messenger() {
         var self = this;
+
         self.inputStorage = document.getElementById("sender-data");
 
         self.receiverId = @Html.DisplayName(Model.Profile.LastChatParticipant.ToString());
@@ -101,8 +103,7 @@
         self.senderUrl = "";
         self.receiverUrl = "";
 
-        self.GetHtmlMessage = function (text, time, imgUrl, mine)
-        {
+        self.GetHtmlMessage = function(text, time, imgUrl, mine) {
             var myMessage = mine === undefined ? "" : "ChatLog__entry_mine";
             var s =
                 '<li class="ChatLog__entry ' + myMessage + '" data-label=' + time + '> ' +
@@ -114,85 +115,99 @@
                     ' </li>';
 
             return s;
-        }
-        self.RenderConversation = function (conversation) {
+        };
+        self.RenderConversation = function(conversation) {
             $('#messenger-list').html("");
-
-            $.each(conversation.OrderedMessages, function (i, elem) {
+            self.PrintConversation(conversation);
+        };
+        self.PrintConversation = function(conversation) {
+            $.each(conversation.OrderedMessages, function(i, elem) {
                 var messageId = elem.MessageId;
                 var text = elem.Text;
-                var time = elem.Time;
+                //var time = elem.Time;
+                //var date = new Date(parseInt(elem.Time.substr(6)));
+                //var time = (new Date(parseInt(elem.Time.substr(6)))).format("dd-MM-yyyy");
+                var time = "time";
                 var senderId = elem.SenderId;
                 var receiverId = elem.ReceiverId;
 
-                //var imgUrl =
-
+                if (self.senderUrl === "" || self.receiverUrl === "") {
+                    self.GetReceiverImgUrl();
+                    self.GetSenderImgUrl();
+                }
+                if (self.senderUrl === self.receiverUrl) {
+                    console.log("isti su");
+                }
                 if (senderId === self.senderId) {
-                    var mesg = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
+                    var mesg = messenger.GetHtmlMessage(text, time, self.senderUrl, "Yes");
                     $('#messenger-list').prepend(mesg);
                 } else {
-                    var mesgr = messenger.GetHtmlMessage(text, "time", "#");
+                    var mesgr = messenger.GetHtmlMessage(text, time, self.receiverUrl);
                     $('#messenger-list').prepend(mesgr);
                 }
             });
-        }
-
-        self.GetConversation = function ()
-        {
+        };
+        self.GetConversation = function() {
             var url = '@Url.Action("Conversation", "Messenger")';
             url += "/" + self.receiverId;
 
-            $.post(url, function (data) {
+            $.post(url, function(data) {
                 var conversation = JSON.parse(data);
                 self.RenderConversation(conversation);
             });
-        }
+        };
+        self.GetSenderImgUrl = function() {
+            var url = '@Url.Action("GetAvatar", "Member")';
+            url += "/" + self.senderId;
 
-        self.GetSenderImgUrl = function()
-        {
-            var url = '@Url.Action("GetAvatar","Member")';
-            url += "/" + messenger.senderId;
-
-            $.post(url, function (data) {
-                messenger.senderUrl = data;
+            $.post(url, function(data) {
+                self.senderUrl = data;
             });
-        }
+        };
+        self.GetReceiverImgUrl = function() {
+            var url = '@Url.Action("GetAvatar", "Member")';
+            url += "/" + self.receiverId;
 
-        self.GetReceiverImgUrl = function()
-        {
-            var url = '@Url.Action("GetAvatar","Member")';
+            $.post(url, function(data) {
+                self.receiverUrl = data;
+            });
+        };
+        self.CheckNotification = function() {
+            var url = '@Url.Action("GetNotifications", "Messenger")';
             url += "/" + messenger.receiverId;
 
-            $.post(url, function (data) {
-                messenger.senderUrl = data;
+            $.post(url, function(data) {
+                if (data !== "False") {
+                    // onda data predstavja JSON koji predstavlja listu ne updatovanih poruka
+                    var lastConversation = JSON.parse(data);
+                    self.PrintConversation(lastConversation);
+                }
             });
-        }
+        };
+        self.AddMessage = function(text) {
+            var url = '@Url.Action("SetMessage", "Messenger")';
+            url += '/' + messenger.receiverId + '?text=' + text;
 
+
+            $.post(url, function(data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
+                var message = messenger.GetHtmlMessage(text, "Now", messenger.senderUrl, "Yes");
+                $('#messenger-list').prepend(message); // postavi na zid
+                console.log(data);
+            });
+        };
     }
-    var messenger = new Messeger();
 
+    var messenger = new Messenger();
 
-    $(window).bind('load', function () {
-
+    $(window).bind('load', function() {
         messenger.GetSenderImgUrl();
         messenger.GetReceiverImgUrl();
         messenger.GetConversation();
-        @*var url = '@Url.Action("GetAvatar","Member")';
-        url += "/" + messenger.senderId;
-
-        $.post(url, function (data) {
-            messenger.senderUrl = data;
-        });
-
-        url = '@Url.Action("GetAvatar","Member")';
-        url += "/" + messenger.receiverId;
-
-        $.post(url, function (data) {
-            messenger.senderUrl = data;
-        });*@
-
-        //messenger.GetConversation();
     });
+
+    window.setInterval(function() {
+        messenger.CheckNotification();
+    }, 1000);
 
     function eventFire(el, etype) {
         if (el.fireEvent) {
@@ -204,8 +219,8 @@
         }
     }
 
-    $(function () {
-        $('#messenger-user').on('input', function() {
+    $(function() {
+        $('#messenger-user').on('input', function() { // choose new Receiver
 
             var opt = $('option[value="' + $(this).val() + '"]');
 
@@ -213,19 +228,6 @@
                 messenger.receiverId = parseInt(opt.attr("data-id"));
                 messenger.GetReceiverImgUrl();
                 messenger.GetConversation();
-
-
-                @*var url = '@Url.Action("Conversation", "Messenger")';
-                url += "/" + messenger.receiverId;
-
-                $.get(url, function (data) {
-                    alert(data);
-                    var message = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
-                    $('#messenger-list').prepend(message);
-                    console.log(x);
-                    this.value = "";
-                });*@
-                //messenger.RenderConversation();
 
                 eventFire(document.getElementById('close-dialog'), 'click');
             }
@@ -237,17 +239,8 @@
     $('#messenger-message').bind('keypress', function(event) {
         var x = event.keyCode;
         if (x === ENTER_CODE) {
-            var text = this.value;
+            messenger.AddMessage(this.value);
 
-            var url = '@Url.Action("SetMessage", "Messenger")';
-            url += '/' + messenger.receiverId + '?text=' + text;
-
-            $.post(url, function (data) {
-                //alert(data);
-                var message = messenger.GetHtmlMessage(text, "time", messenger.senderUrl, "Yes");
-                $('#messenger-list').prepend(message);
-                console.log(data);
-            });
             this.value = "";
         }
     });

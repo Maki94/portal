@@ -25,7 +25,6 @@ namespace Data.Entities
             }
         }
 
-        #region CRUD
 
 
         public List<MessageDTO> GetConversationOrderedByDate(int senderId, int receiverId)
@@ -65,6 +64,27 @@ namespace Data.Entities
                      }).Take(numberOfMessages).ToList();
             }
         }
+
+        public List<MessageDTO> GetConversationWithIds(List<int> ids)
+        {
+            using (var dc = new DataContext())
+            {
+                return
+                    (from o in dc.Messages
+                     orderby o.Time
+                     where ids.Contains(o.MessageId)
+                     select new MessageDTO
+                     {
+                         MessageId = o.MessageId,
+                         Text = o.Text,
+                         Time = o.Time,
+                         SenderId = o.Sender.MemberId,
+                         ReceiverId = o.Receiver.MemberId
+                     }).ToList();
+            }
+        }
+
+        #region CRUD
 
         public List<MessageDTO> GetAll()
         {
@@ -111,25 +131,25 @@ namespace Data.Entities
             throw new NotImplementedException();
         }
 
-        public void Save(MessageDTO messageDTO)
+        public void Save(ref MessageDTO messageDTO)
         {
             using (var dc = new DataContext())
             {
+                var recId = messageDTO.ReceiverId;
+                var sId = messageDTO.SenderId;
                 var message = new DataClasses.Message
                 {
-                    //Receiver = Members.GetMemberAt(messageDTO.ReceiverId),
-                    Receiver = (from m in dc.Members where m.MemberId == messageDTO.ReceiverId select m).First(),
-                    //Sender = Members.GetMemberAt(messageDTO.SenderId),
-                    Sender = (from m in dc.Members where m.MemberId == messageDTO.SenderId select m).First(),
+                    Receiver = (from m in dc.Members where m.MemberId == recId select m).First(),
+                    Sender = (from m in dc.Members where m.MemberId == sId select m).First(),
                     Text = messageDTO.Text,
                     Time = messageDTO.Time,
                     IsDeleted = false
-
                 };
 
                 dc.Messages.Add(message);
-
                 dc.SaveChanges();
+
+                messageDTO.MessageId = message.MessageId;
             }
         }
 

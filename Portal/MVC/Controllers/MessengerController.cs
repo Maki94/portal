@@ -3,8 +3,8 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Data.DTOs;
 using Data.Entities;
-using MVC.ViewModels.Chat;
 using MVC.ViewModels.Member;
+using MVC.ViewModels.Messenger;
 
 namespace MVC.Controllers
 {
@@ -24,11 +24,37 @@ namespace MVC.Controllers
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(messageList);
 
+            // TODO: postavi da se sve notifikacije obrisu koje su bile za tog usera
+            var messageNotification = new MessageNotification();
+            messageNotification.DeleteAllFrom(id, MemberSession.GetMemberId());
             return json;
         }
 
         [HttpPost]
-        public bool SetMessage(int id, string text) // id - receiverId
+        public string GetNotifications(int id) // senderId
+        {
+            var messageNotificationListViewModel = new MessageNotificationListViewModel(MemberSession.GetMemberId());
+
+            if (messageNotificationListViewModel.Notifications == null ||
+                messageNotificationListViewModel.OrderedMessages.Count == 0)
+                return false.ToString();
+
+            var messageList = new MessageListViewModel
+            {
+                OrderedMessages = messageNotificationListViewModel.OrderedMessages
+            };
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(messageList);
+
+            // obrisati sve notifikacje od tog Sendera, namenjene receiveru
+            var messageNotification = new MessageNotification();
+            messageNotification.DeleteAllFrom(id, MemberSession.GetMemberId());
+
+            return json; // vraca listu nedodatih poruka
+        }
+
+        [HttpPost]
+        public string SetMessage(int id, string text) // id - receiverId
         {
             try
             {
@@ -40,17 +66,39 @@ namespace MVC.Controllers
                     Time = DateTime.Now
                 };
 
+
                 var message = new Message();
 
-                message.Save(messageDTO);
+                message.Save(ref messageDTO);
+                // put notification
 
-                return true;
+                var messageNotification = new MessageNotification();
+
+                var messageNotificationDTO = new MessageNotificationDTO
+                {
+                    Time = DateTime.Now,
+                    MessageId = messageDTO.MessageId,
+                    ReceiverId = id,
+                    SenderId = MemberSession.GetMemberId()
+                };
+
+                messageNotification.Save(messageNotificationDTO);
+                return true.ToString();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return false;
+                return false.ToString();
             }
+        }
+
+        public int GetNumberOfNotifications()
+        {
+            var message = new MessageNotification();
+
+            var br = message.NumberOfNotifications(MemberSession.GetMemberId());
+
+            return br;
         }
 
         public ActionResult GetAvatar(int id)

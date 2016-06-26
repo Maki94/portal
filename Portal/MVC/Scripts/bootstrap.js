@@ -204,7 +204,7 @@ if (typeof jQuery === 'undefined') {
     var val  = $el.is('input') ? 'val' : 'html'
     var data = $el.data()
 
-    state += 'Text'
+    state += 'MessageId'
 
     if (data.resetText == null) $el.data('resetText', $el[val]())
 

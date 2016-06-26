@@ -37,6 +37,7 @@ namespace Data
         public DbSet<MemberProject> MemberProjects { get; set; }
         public DbSet<MemberTeam> MemberTeams { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<MessageNotification> MessageNotifications { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Poll> Polls { get; set; }

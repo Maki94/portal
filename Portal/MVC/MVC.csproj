@@ -192,7 +192,7 @@
     <Compile Include="ViewModels\Badge\BadgeListViewModel.cs" />
     <Compile Include="ViewModels\Badge\CreateBadgeViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\Chat\MessageListViewModel.cs" />
+    <Compile Include="ViewModels\Messenger\MessageListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,6 +202,7 @@
     <Compile Include="ViewModels\Member\MemberIndexViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberProfileViewModel.cs" />
+    <Compile Include="ViewModels\Messenger\MessageNotificationListViewModel.cs" />
     <Compile Include="ViewModels\Poll\PollListViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectListViewModel.cs" />
   </ItemGroup>

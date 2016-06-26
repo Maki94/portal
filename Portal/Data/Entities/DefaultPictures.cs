@@ -1,9 +1,5 @@
-﻿using Data.DataClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Data.DataClasses;
 
 namespace Data.Entities
 {
@@ -13,7 +9,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                DefaultPicture dp = new DefaultPicture
+                var dp = new DefaultPicture
                 {
                     Name = name,
                     Image = file
@@ -28,8 +24,8 @@ namespace Data.Entities
             using (var dc = new DataContext())
             {
                 return (from p in dc.DefaultPictures
-                        where p.Name == name
-                        select p).First().Image;
+                    where p.Name == name
+                    select p).First().Image;
             }
         }
     }
