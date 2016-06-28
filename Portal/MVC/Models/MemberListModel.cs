@@ -10,8 +10,8 @@ namespace MVC.Models
     public class MemberListModel
     {
         public List<MemberDTO> MemberThumbnails { get; set; }
-
         public Data.DataClasses.Member Profile { get; set; }
+
         public MemberListModel()
         {
             MemberThumbnails = Members.GetAllMemberThumbnails();

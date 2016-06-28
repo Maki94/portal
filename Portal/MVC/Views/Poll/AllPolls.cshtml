@@ -1,5 +1,5 @@
 ﻿@using Data.DTOs
-@model MVC.ViewModels.Poll.PollListViewModel
+@model MVC.Models.PollListModel
 
 @{
     ViewBag.Title = "AllPolls";
@@ -19,7 +19,7 @@
 
 @foreach (var p in Model.ActivePolls)
 {
-    <div class="poll-container" data-poll-id="@Html.DisplayFor(x => p.PollDetails.Id) " @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text> }} >
+    <div class="poll-container" data-poll-id="@Html.DisplayFor(x => p.PollDetails.PollId) " @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text> }} >
         <div class="poll-details mdl-list__item mdl-list__item--two-line" >
             <span class="poll-details-title mdl-list__item-primary-content">
                 <b><span class="text-info"> @Html.DisplayFor(x => p.PollDetails.Topic) <span class="text-danger"> @Html.DisplayFor(x => p.PollDetails.EndDate) </span></span></b>
@@ -38,11 +38,11 @@
         <div class="poll-options-list mdl-list">
             @foreach (var po in p.PollOptions)
             {
-                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.Id)">
+                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollOptionId)">
                     <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
-                                        @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.Votes.Exists(x => x.MemberId == member.MemberID)) { <text> checked </text> }}  />
-                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.Votes.Count)) </span>
+                                        @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }}  />
+                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
                     </label>
                 </div>
             }

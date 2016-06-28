@@ -12,5 +12,6 @@ namespace Data.DTOs
         public int PollOptionId { get; set; }
         public string Answer { get; set; }
         public int PollId { get; set; }
+        public List<int> VotersIds { get; set; }
     }
 }

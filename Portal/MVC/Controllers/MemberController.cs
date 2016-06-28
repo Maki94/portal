@@ -17,7 +17,7 @@ namespace MVC.Controllers
 
         public ActionResult AllMembers()
         {
-            return View(new MemberLoginModel());
+            return View(new MemberListModel());
         }
 
         [HttpPost]

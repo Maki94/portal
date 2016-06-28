@@ -165,7 +165,7 @@ namespace Data
             var memberpolloptions = new List<MemberPollOption>
             {
                 // za prvo glasanje
-                new MemberPollOption {Member = members[0], PollOption = polloptions[0]},
+                //new MemberPollOption {Member = members[0], PollOption = polloptions[0]},
                 new MemberPollOption {Member = members[1], PollOption = polloptions[0]},
                 new MemberPollOption {Member = members[2], PollOption = polloptions[0]},
                 new MemberPollOption {Member = members[1], PollOption = polloptions[1]},
@@ -173,6 +173,7 @@ namespace Data
                 new MemberPollOption {Member = members[2], PollOption = polloptions[3]},
 
                 // za drugo glasanje
+                new MemberPollOption {Member = members[0], PollOption = polloptions[5]},
                 new MemberPollOption {Member = members[1], PollOption = polloptions[6]},
                 new MemberPollOption {Member = members[2], PollOption = polloptions[6]}
             };

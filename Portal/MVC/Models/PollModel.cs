@@ -54,11 +54,14 @@ namespace MVC.Models
             var pollOptionDTOs = new List<PollOptionDTO>();
             foreach (var p in pollOptions)
             {
+                List<int> voterIds = Polls.GetVotersForPollOption(p.PollOptionId).Select(x => x.MemberId).ToList();
+
                 pollOptionDTOs.Add(new PollOptionDTO
                 {
                     PollOptionId = p.PollOptionId,
                     Answer = p.Answer,
-                    PollId = p.PollId
+                    PollId = p.PollId,
+                    VotersIds = voterIds
                 });
             }
 
