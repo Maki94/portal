@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Data.Entities;
-using MVC.ViewModels;
-using MVC.ViewModels.Member;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -12,13 +11,13 @@ namespace MVC.Controllers
         // GET: MemberProfile
         public ActionResult Index()
         {
-            var model = MemberIndexViewModel.Load(MemberSession.GetMemberId());
+            var model = MemberIndexModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
 
         public ActionResult AllMembers()
         {
-            return View(new MemberListViewModel());
+            return View(new MemberListModel());
         }
 
         [HttpPost]
@@ -41,18 +40,18 @@ namespace MVC.Controllers
 
         public ActionResult Profile(int id)
         {
-            var model = MemberProfileViewModel.Load(id);
+            var model = MemberProfileModel.Load(id);
             return View(model);
         }
 
         public ActionResult Edit()
         {
-            var model = EditProfileViewModel.Load(MemberSession.GetMemberId());
+            var model = MemberEditProfileModel.Load(MemberSession.GetMemberId());
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditProfileViewModel m)
+        public ActionResult Edit(MemberEditProfileModel m)
         {
             var memberId = MemberSession.GetMemberId();
             Members.EditProfile(memberId, m.Nickname,
@@ -64,11 +63,11 @@ namespace MVC.Controllers
         //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]
         public ActionResult Add()
         {
-            return View(new AddMemberViewModel());
+            return View(new MemberAddModel());
         }
 
         [HttpPost]
-        public ActionResult Add(AddMemberViewModel m)
+        public ActionResult Add(MemberAddModel m)
         {
             if (Members.GmailExists(m.Gmail))
             {

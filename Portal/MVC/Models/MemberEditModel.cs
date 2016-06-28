@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Admin
+namespace MVC.Models
 {
-    public class MemberEditViewModel
+    public class MemberEditModel
     {
         [Display(Name = "Ime")]
         public string Name { get; set; }
@@ -33,10 +33,10 @@ namespace MVC.ViewModels.Admin
         public string LinkedIn { get; set; }
         public string Skype { get; set; }
 
-        public static EditProfileViewModel Load(int memberID)
+        public static MemberEditProfileModel Load(int memberID)
         {
             Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
-            EditProfileViewModel model = new EditProfileViewModel
+            MemberEditProfileModel model = new MemberEditProfileModel
             {
                 Nickname = m.Nickname,
                 Status = m.Status,

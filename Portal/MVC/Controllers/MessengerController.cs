@@ -3,8 +3,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Data.DTOs;
 using Data.Entities;
-using MVC.ViewModels.Member;
-using MVC.ViewModels.Messenger;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -13,13 +12,13 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View(new MemberListViewModel());
+            return View(new MemberLoginModel());
         }
 
         [HttpPost]
         public string Conversation(int id) // receiverId
         {
-            var messageList = new MessageListViewModel(id);
+            var messageList = new MessageListModel(id);
 
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(messageList);

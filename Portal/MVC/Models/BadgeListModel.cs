@@ -5,13 +5,13 @@ using System.Linq;
 using System.Web;
 using Data.Entities;
 
-namespace MVC.ViewModels.Badge
+namespace MVC.Models
 {
-    public class BadgeListViewModel
+    public class BadgeListModel
     {
         public List<BadgeDTO> Badges { get; set; }
 
-        public BadgeListViewModel()
+        public BadgeListModel()
         {
             Badges = Data.Entities.Badges.GetAllBadges();
         }

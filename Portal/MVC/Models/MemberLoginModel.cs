@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels
+namespace MVC.Models
 {
     // u imenima klasa sam stavio Member jer je bez toga zauzeto vec
     // sredice se tamo kad izbacimo onaj njihov AccountViewModels.cs
-    public class MemberLoginViewModel
+    public class MemberLoginModel
     {
         [Required]
         [Display(Name = "Gmail")]

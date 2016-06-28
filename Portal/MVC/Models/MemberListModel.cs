@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MVC.ViewModels.Member
+namespace MVC.Models
 {
-    public class MemberListViewModel
+    public class MemberListModel
     {
         public List<MemberDTO> MemberThumbnails { get; set; }
-
         public Data.DataClasses.Member Profile { get; set; }
-        public MemberListViewModel()
+
+        public MemberListModel()
         {
             MemberThumbnails = Members.GetAllMemberThumbnails();
             Profile = Members.GetMemberAt(MemberSession.GetMemberId());

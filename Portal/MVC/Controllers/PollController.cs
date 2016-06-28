@@ -1,5 +1,5 @@
 ﻿using Data.Entities;
-using MVC.ViewModels.Poll;
+using MVC.Models;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -14,7 +14,7 @@ namespace MVC.Controllers
 
         public ActionResult AllPolls()
         {
-            return View(new PollListViewModel());
+            return View(new PollListModel());
         }
 
         [HttpPost]

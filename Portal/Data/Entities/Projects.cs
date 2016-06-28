@@ -36,40 +36,21 @@ namespace Data.Entities
             }
         }
 
-        public static List<ProjectDTO> GetProjectsOfMember(int memberID)
+        public static List<Project> GetProjectsOfMember(int memberID)
         {
             using (var dc = new DataContext())
             {
                 return (from p in dc.MemberProjects
                         where p.MemberId == memberID
-                        select new ProjectDTO
-                        {
-                            ProjectId = p.ProjectId,
-                            Name = p.Project.Name,
-                            Description = p.Project.Description,
-                        }).ToList();
+                        select p.Project).ToList();
             }
         }
         
-        public static List<ProjectDTO> GetProjectThumbnails()
+        public static List<Project> GetAllProjects()
         {
             using (var dc = new DataContext())
             {
-                List<Project> projects = (from p in dc.Projects select p).ToList();
-                List<ProjectDTO> projectThumbnails = new List<ProjectDTO>();
-
-                foreach (var proj in projects)
-                {
-                    projectThumbnails.Add(new ProjectDTO
-                    {
-                        Name = proj.Name,
-                        Description = proj.Description,
-                        Logo = proj.Logo,
-                        State = proj.State,
-                    });
-                }
-
-                return projectThumbnails;
+                return (from p in dc.Projects select p).ToList();
             }
         }
 

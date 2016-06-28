@@ -1,4 +1,4 @@
-﻿using MVC.ViewModels.Projects;
+﻿using MVC.Models;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -8,7 +8,7 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View(new ProjectListViewModel());
+            return View(new ProjectListModel());
         }
     }
 }
