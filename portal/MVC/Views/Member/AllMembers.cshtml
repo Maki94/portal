@@ -1,4 +1,4 @@
-﻿@model MVC.ViewModels.Member.MemberListViewModel
+﻿@model MVC.Models.MemberListModel
 
 <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
@@ -34,13 +34,13 @@
                 <div id="members" class="mdl-grid">
                     @foreach (var m in Model.MemberThumbnails)
                     {
-                        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.Id">
+                        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.MemberId">
                             <figure class="mdl-card__media">
                                 @*<div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>*@
                                 <img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg"/>
                             </figure>
                             <div class="mdl-card__title">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.Id})">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.MemberId})">
                                     @Html.DisplayName(m.Name)
                                 </a>
                             </div>

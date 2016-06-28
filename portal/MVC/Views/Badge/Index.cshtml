@@ -1,11 +1,10 @@
-﻿@using MVC.ViewModels.Badge
-@model MVC.ViewModels.Badge.BadgeListViewModel
-
+﻿@model MVC.Models.BadgeListModel
+@using MVC.Models;
 @{
     ViewBag.Title = "AllBadges";
 }
 
-@{ Html.RenderPartial("Create", new CreateBadgeViewModel()); }
+@{ Html.RenderPartial("Create", new BadgeCreateModel()); }
 
 <h2>AllBadges</h2>
 
