@@ -91,21 +91,13 @@
     <Compile Include="DataClasses\Team.cs" />
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Context\DataContextPartial.cs" />
-<<<<<<< HEAD
-    <Compile Include="DTOs\BadgeThumbnailDTO.cs" />
-    <Compile Include="DTOs\Messenger\MessageDTO.cs" />
-    <Compile Include="DTOs\LoginDTO.cs" />
-    <Compile Include="DTOs\LoginTransporterDTO.cs" />
-    <Compile Include="DTOs\MemberThumbnailDTO.cs" />
-    <Compile Include="DTOs\Messenger\MessageNotificationDTO.cs" />
-=======
     <Compile Include="DTOs\BadgeDTO.cs" />
-    <Compile Include="DTOs\Chat\MessageDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
     <Compile Include="DTOs\MemberDTO.cs" />
     <Compile Include="DTOs\MemberPollOptionDTO.cs" />
->>>>>>> e151545a080996a59ec9ffa4998a7a1c387de8e5
+    <Compile Include="DTOs\Messenger\MessageDTO.cs" />
+    <Compile Include="DTOs\Messenger\MessageNotificationDTO.cs" />
     <Compile Include="DTOs\PollDTO.cs" />
     <Compile Include="DTOs\PollOptionDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />

@@ -12,7 +12,7 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View(new MemberLoginModel());
+            return View(new MemberListModel());
         }
 
         [HttpPost]
@@ -32,13 +32,15 @@ namespace MVC.Controllers
         [HttpPost]
         public string GetNotifications(int id) // senderId
         {
-            var messageNotificationListViewModel = new MessageNotificationListViewModel(MemberSession.GetMemberId());
+            var messageNotificationListViewModel = new MessageNotificationListModel(MemberSession.GetMemberId());
 
             if (messageNotificationListViewModel.Notifications == null ||
                 messageNotificationListViewModel.OrderedMessages.Count == 0)
                 return false.ToString();
 
-            var messageList = new MessageListViewModel
+            messageNotificationListViewModel.CheckNotifications(MemberSession.GetMemberId());
+
+            var messageList = new MessageListModel
             {
                 OrderedMessages = messageNotificationListViewModel.OrderedMessages
             };

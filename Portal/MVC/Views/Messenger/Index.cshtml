@@ -33,52 +33,13 @@
 <div id="messenger-wrapper">
     <div class="arrow"></div>
     <ul id="messenger-list" class="ChatLog">
-        @*
-    <li class="ChatLog__entry ChatLog__entry_mine">
-        <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
-        <p class="ChatLog__message">
-            <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-            I have no idea.
-        </p>
-    </li>
-
-    <li class="ChatLog__entry ChatLog__entry_mine">
-        <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
-        <p class="ChatLog__message">
-            <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-            I have no idea.
-        </p>
-    </li>
-
-    <li class="ChatLog__entry" data-label="3 minutes ago">
-        <img class="ChatLog__avatar" src="//placekitten.com/g/50/50"/>
-        <p class="ChatLog__message">
-            <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-            I have no idea.
-        </p>
-    </li>
-        <li class="ChatLog__entry ChatLog__entry_mine" data-label="3 minutes ago">
-            <img class="ChatLog__avatar" src="//placekitten.com/56/56"/>
-            <p class="ChatLog__message">
-                <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-                I have no idea.
-            </p>
-        </li>
-        <li class="ChatLog__entry" data-label="3 minutes ago">
-            <img class="ChatLog__avatar" src="//placekitten.com/g/50/50"/>
-            <p class="ChatLog__message">
-                <span class="time-info"><small class="time-signature text-warining">3 minutes ago</small></span>
-                I have no idea.
-            </p>
-        </li>*@
-
     </ul>
 </div>
 
 <datalist id="messenger-users">
     @foreach (var m in Model.MemberThumbnails)
     {
-        <option data-id="@Html.DisplayName(m.Id.ToString())" value="@Html.DisplayName(m.Name)"></option>
+        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name)"></option>
     }
 </datalist>
 
@@ -131,20 +92,22 @@
                 var senderId = elem.SenderId;
                 var receiverId = elem.ReceiverId;
 
-                if (self.senderUrl === "" || self.receiverUrl === "") {
-                    self.GetReceiverImgUrl();
-                    self.GetSenderImgUrl();
-                }
-                if (self.senderUrl === self.receiverUrl) {
-                    console.log("isti su");
-                }
-                if (senderId === self.senderId) {
-                    var mesg = messenger.GetHtmlMessage(text, time, self.senderUrl, "Yes");
-                    $('#messenger-list').prepend(mesg);
-                } else {
-                    var mesgr = messenger.GetHtmlMessage(text, time, self.receiverUrl);
-                    $('#messenger-list').prepend(mesgr);
-                }
+                //if (receiverId !== self.receiverId) {
+                    if (self.senderUrl === "" || self.receiverUrl === "") {
+                        self.GetReceiverImgUrl();
+                        self.GetSenderImgUrl();
+                    }
+                    if (self.senderUrl === self.receiverUrl) {
+                        console.log("isti su");
+                    }
+                    if (senderId === self.senderId) {
+                        var mesg = messenger.GetHtmlMessage(text, time, self.senderUrl, "Yes");
+                        $('#messenger-list').prepend(mesg);
+                    } else {
+                        var mesgr = messenger.GetHtmlMessage(text, time, self.receiverUrl);
+                        $('#messenger-list').prepend(mesgr);
+                    }
+                //}
             });
         };
         self.GetConversation = function() {
