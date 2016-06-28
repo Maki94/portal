@@ -38,7 +38,7 @@
         <div class="poll-options-list mdl-list">
             @foreach (var po in p.PollOptions)
             {
-                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollOptionId)">
+                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollId)">
                     <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
                                         @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }}  />

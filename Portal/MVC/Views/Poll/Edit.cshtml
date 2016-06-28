@@ -1,0 +1,76 @@
+﻿@model dynamic
+
+@{
+}
+
+<link rel="stylesheet" href="../../Content/cssDatePicker/pikaday.css">
+<link rel="stylesheet" href="../../Content/cssDatePicker/theme.css">
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    <div class="mdl-cell mdl-cell--1-col">
+        <button id="show-dialog-delete" type="button" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary">
+            <i class="fa fa-remove" title="Remove" aria-hidden="true"> Delete</i>
+        </button>
+        <dialog id="dialog-delete" class="mdl-dialog">
+            <h4 class="mdl-dialog__title">Da li zaista zelite da obrisete?</h4>
+            <div class="mdl-dialog__content">
+                <p>
+
+                </p>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button">Potvrdi</button>
+                <button type="button" class="mdl-button close">Odkazi</button>
+            </div>
+        </dialog>
+    </div>
+</div>
+
+<form action="#">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
+        <h1>
+            <b>Edituj Glasanje</b>
+        </h1>
+    </div>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
+
+        <div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--5-col-phone">
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="poll-naziv">
+                <label class="mdl-textfield__label" for="poll-naziv">Naziv</label>
+            </div>
+            <br />
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="poll-opis"></textarea>
+                <label class="mdl-textfield__label" for="poll-opis">Opis</label>
+            </div>
+            <br />
+            <input class="mdl-textfield__input" placeholder="DL" type="text" id="poll-DL">
+            <br />
+            <br />
+
+        </div>
+    </div>
+</form>
+
+<script src="https://use.fontawesome.com/c256757c6a.js"></script>
+<script src="../../Scripts/pikaday.js"></script>
+<script>
+    var DL = new Pikaday({ field: document.getElementById('poll-DL') });
+
+    var dialogDelete = document.querySelector('#dialog-delete');
+    var showDialogButtonDelete = document.querySelector('#show-dialog-delete');
+    if (!dialogDelete.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButtonDelete.addEventListener('click', function () {
+        dialogDelete.showModal();
+    });
+    dialogDelete.querySelector('.close').addEventListener('click', function () {
+        dialogDelete.close();
+    });
+</script>
