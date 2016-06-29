@@ -36,6 +36,14 @@ namespace Data.Entities
             }
         }
 
+        public static List<Poll> GetPollsCurrentAtDate(DateTime date, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                return (from p in dc.Polls where p.State == Enumerations.PollState.aktivan select p).ToList();
+            }
+        }
+
         public static List<Member> GetVotersForPollOption(int pollOptionId, DataContext dc = null)
         {
             using (dc = dc ?? new DataContext())
@@ -43,6 +51,7 @@ namespace Data.Entities
                 return (from m in dc.MemberPollOptions where m.PollOptionId == pollOptionId select m.Member).ToList();
             }
         }
+
 
         public static void UpdatePollState(int pollId, Enumerations.PollState newState, DataContext dc = null)
         {

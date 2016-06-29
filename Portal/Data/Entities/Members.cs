@@ -43,6 +43,24 @@ namespace Data.Entities
             }
         }
 
+        public static List<Member> GetMemberBirthday(DateTime date)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from m in dc.Members where m.DateOfBirth != null && ((DateTime)m.DateOfBirth).Day == date.Day && ((DateTime)m.DateOfBirth).Month == date.Month select m).ToList();
+            }
+        }
+
+        public static List<Member> GetMemberAnniversary(DateTime date)
+        {
+            //int[] anniversary = { 100, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000};
+            
+            using (var dc = new DataContext())
+            {
+                return (from m in dc.Members where m.JoinDate != null  && (((DateTime)m.JoinDate).Day == date.Day && ((DateTime)m.JoinDate).Month == date.Month) select m).ToList();
+            }
+        }
+
         public static Member MemberExists(string gmail, string pass)
         {
             using (var dc = new DataContext())

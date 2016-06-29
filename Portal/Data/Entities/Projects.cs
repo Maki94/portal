@@ -36,6 +36,14 @@ namespace Data.Entities
             }
         }
 
+        public static List<Project> GetProjectCurrentAtDate(DateTime date)
+        {
+            using (var dc = new DataContext())
+            {
+                return (from p in dc.Projects where p.State == Enumerations.ProjectState.aktivan select p).ToList();
+            }
+        }
+
         public static List<Project> GetProjectsOfMember(int memberID)
         {
             using (var dc = new DataContext())
