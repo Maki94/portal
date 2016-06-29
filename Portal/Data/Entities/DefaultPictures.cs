@@ -24,8 +24,8 @@ namespace Data.Entities
             using (var dc = new DataContext())
             {
                 return (from p in dc.DefaultPictures
-                    where p.Name == name
-                    select p).First().Image;
+                            where p.Name == name
+                            select p).First().Image;
             }
         }
     }

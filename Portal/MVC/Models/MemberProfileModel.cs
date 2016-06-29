@@ -47,7 +47,7 @@ namespace MVC.Models
                 Id = m.MemberId,
                 Name = m.Name,
                 Surname = m.Surname,
-                Avatar = m.Avatar ?? DefaultPictures.GetPictureByName("Avatar"),
+                //Avatar = m.Avatar ?? DefaultPictures.GetPictureByName("Avatar"),
                 JoinDate = m.JoinDate,
                 Gmail = m.Gmail,
                 FeePayedUntil = m.FeePayedUntil
