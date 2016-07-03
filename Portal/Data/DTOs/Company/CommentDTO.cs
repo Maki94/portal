@@ -28,5 +28,9 @@ namespace Data.DTOs.Company
         
         public int ProjectId { get; set; }
         public string ProjectNameYear { get; set; }
+
+        public int CountLikes { get; set; }
+        public List<MemberDTO> Likers { get; set; }
+        public string LikersNames { get; set; }
     }
 }

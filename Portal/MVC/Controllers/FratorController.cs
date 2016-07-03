@@ -16,5 +16,17 @@ namespace MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Like(int idm, int idc)
+        {
+            Data.Entities.Comments.Like(idm, idc);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Unlike(int idm, int idc)
+        {
+            Data.Entities.Comments.Unlike(idm, idc);
+            return RedirectToAction("Index");
+        }
     }
 }

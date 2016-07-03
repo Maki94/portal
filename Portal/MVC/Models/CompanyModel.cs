@@ -13,6 +13,7 @@ namespace MVC.Models
         public List<CommentDTO> NewComments { get; set; }
         public List<CompanyDTO> MyCompany { get; set; }
         public List<CompanyDTO> AllCompany { get; set; }
+        public CompanyDTO Show { get; set; }
 
         public static CompanyModel Load(int id)
         {
@@ -35,6 +36,8 @@ namespace MVC.Models
                 model.MyCompany.Add(createCompanyDTO(c));
             }
 
+            model.Show = model.MyCompany.FirstOrDefault(); 
+
             List<Comment> lastComments = Data.Entities.Comments.GetLast(20);
 
             foreach (Comment c in lastComments)
@@ -46,18 +49,40 @@ namespace MVC.Models
 
         private static CommentDTO createCommentDTO(Comment c)
         {
+            List<MemberComment> truecomm = c.Likes.Where(x => x.IsDeleted == false).ToList();
             return new CommentDTO
             {
-                //AuthorFullName = c.Author.Name + " " + c.Author.Surname,
+                AuthorFullName = c.Author.Name + " " + c.Author.Surname,
                 CommentId = c.CommentId,
                 AuthorId = c.AuthorId,
-                //CompanyName = c.Company.Name,
+                CompanyName = c.Company.Name,
                 CompanyId = c.CompanyId,
                 ProjectId = c.ProjectId,
-                //ProjectNameYear = c.Project.Name + " " + c.Project.FinishDate.Year,
+                ProjectNameYear = c.Project.Name + " " + c.Project.FinishDate.Year,
                 Text = c.Text,
                 Time = c.Time,
-                Type = c.Type
+                Type = c.Type,
+                CountLikes = truecomm.Count,
+                LikersNames = string.Join(", ", c.Likes.Select(x => x.Member.Name + " " + x.Member.Surname).ToArray()),
+                Likers = createMembersDTO(truecomm)
+            };
+        }
+
+        private static List<MemberDTO> createMembersDTO(List<MemberComment> likes)
+        {
+            List<MemberDTO> md = new List<MemberDTO>();
+            foreach (MemberComment m in likes)
+            {
+                md.Add(crateMemberDTO(m.Member));
+            }
+            return md;
+        }
+
+        private static MemberDTO crateMemberDTO(Member member)
+        {
+            return new MemberDTO
+            {
+                MemberId = member.MemberId
             };
         }
 
@@ -68,7 +93,7 @@ namespace MVC.Models
                 Address = c.Address,
                 City = c.City,
                 CompanyId = c.CompanyId,
-                //Contacts = c.Contacts.Any() ? createContactsDTO(c.Contacts) : null,
+                Contacts = createContactsDTO(c.Contacts),
                 Description = c.Description,
                 Email = c.Email,
                 Field = c.Field,
@@ -81,6 +106,9 @@ namespace MVC.Models
 
         private static List<ContactPersonDTO> createContactsDTO(ICollection<ContactPerson> contacts)
         {
+            if (contacts==null)
+                return new List<ContactPersonDTO>();
+
             List<ContactPersonDTO> cp = new List<ContactPersonDTO>();
             foreach (ContactPerson c in contacts)
             {

@@ -17,14 +17,16 @@ namespace Data.DataClasses
 
         [ForeignKey("Author")]
         public int AuthorId { get; set; }
-        public virtual Member Author { get; set; }
+        public Member Author { get; set; }
 
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        public Company Company { get; set; }
 
         [ForeignKey("Project")]
         public int ProjectId { get; set; }
-        public virtual Project Project { get; set; }
+        public Project Project { get; set; }
+
+        public List<MemberComment> Likes { get; set; }
     }
 }
