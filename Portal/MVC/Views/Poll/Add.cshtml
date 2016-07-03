@@ -31,7 +31,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.AllowMultiple, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="add-poll-radio-buttons col-md-10">
                 <label class="mdl-radio mdl-js-radio">
                     @Html.RadioButtonFor(model => model.AllowMultiple, false, htmlAttributes: new { @class = "mdl-radio__button" })
                     <span class="mdl-radio__label">Jedan</span>
@@ -45,7 +45,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.HideResultsUntilFinished, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="add-poll-radio-buttons col-md-10">
                 <label class="mdl-radio mdl-js-radio">
                     @Html.RadioButtonFor(model => model.HideResultsUntilFinished, false, htmlAttributes: new { @class = "mdl-radio__button" })
                     <span class="mdl-radio__label">Ne</span>
@@ -59,7 +59,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.HideVoters, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="add-poll-radio-buttons col-md-10">
                 <label class="mdl-radio mdl-js-radio">
                     @Html.RadioButtonFor(model => model.HideVoters, false, htmlAttributes: new { @class = "mdl-radio__button" })
                     <span class="mdl-radio__label">Ne</span>

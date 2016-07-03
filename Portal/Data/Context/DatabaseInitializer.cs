@@ -99,9 +99,11 @@ namespace Data
 
             var projects = new List<Project>
             {
-                new Project {Name = "JobFair", Description = "Opis za JobFair", Team = teams[0]},
-                new Project {Name = "Elektrijada", Description = "Opis za Elektrijadu", Team = teams[0]},
-                new Project {Name = "Takmicenje", Description = "Opis za takmicenje", Team = teams[1]}
+                new Project {Name = "JobFair", Description = "Opis za JobFair", Team = teams[0], StartDate = new DateTime(2016, 5, 20), FinishDate = new DateTime(2016, 7, 20), Place = "Nis", State = Enumerations.ProjectState.aktivan, Website = "www.jobfairnis.rs"},
+                new Project {Name = "Elektrijada", Description = "Opis za Elektrijadu", Team = teams[0], StartDate = new DateTime(2016, 6, 20), FinishDate = new DateTime(2016, 7, 15), Place = "Nis", State = Enumerations.ProjectState.aktivan, Website = "www.elektrijada.com"},
+                new Project {Name = "Takmicenje", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2016, 3, 15), FinishDate = new DateTime(2016, 4, 15), Place = "Nis", State = Enumerations.ProjectState.zatvoren, Website = "www.google.com"},
+                new Project {Name = "Takmicenje 2", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2015, 3, 15), FinishDate = new DateTime(2015, 4, 15), Place = "Nis", State = Enumerations.ProjectState.zatvoren, Website = "www.google.com"},
+                new Project {Name = "Takmicenje 3", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2014, 3, 15), FinishDate = new DateTime(2014, 4, 15), Place = "Nis", State = Enumerations.ProjectState.zatvoren, Website = "www.google.com"}
             };
 
             var memberprojects = new List<MemberProject>
@@ -109,7 +111,10 @@ namespace Data
                 new MemberProject {Member = members[0], Project = projects[0], Function = "posetilac"},
                 new MemberProject {Member = members[0], Project = projects[1], Function = "ucesnik"},
                 new MemberProject {Member = members[1], Project = projects[1], Function = "organizator"},
-                new MemberProject {Member = members[2], Project = projects[2], Function = "organizator"}
+                new MemberProject {Member = members[2], Project = projects[2], Function = "organizator"},
+                new MemberProject {Member = members[0], Project = projects[3], Function = "ucesnik"},
+                new MemberProject {Member = members[1], Project = projects[3], Function = "organizator"},
+                new MemberProject {Member = members[2], Project = projects[4], Function = "organizator"}
             };
 
             context.MemberProjects.AddRange(memberprojects);

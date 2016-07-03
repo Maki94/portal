@@ -152,6 +152,9 @@ aside a:hover {
   cursor: pointer;
   border-top: 1px blue;
 }
+.add-poll-radio-buttons {
+  padding-top: 5px;
+}
 #messenger-message-wrapper {
   width: 100%;
 }
@@ -647,4 +650,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .voters-dialog-list {
   height: 250px;
   overflow-y: auto;
+}
+.project-list {
+  margin-right: 0px;
+}
+.member-list {
+  margin-right: 0px;
 }
