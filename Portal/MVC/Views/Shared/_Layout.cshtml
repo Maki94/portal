@@ -68,7 +68,7 @@
                     </form>
                 </div>
                 <div class="mdl-dialog__actions">
-                    <button type="button" class="mdl-button close "> Send! </button>
+                    <button type="button" class="close-dialog mdl-button"> Send! </button>
                 </div>
             </dialog>
             <a id="logout" href="/?logOut=true" class="mdl-navigation__link">Log Out</a>
@@ -118,7 +118,7 @@
     showDialogButton.addEventListener('click', function() {
         dialog.showModal();
     });
-    dialog.querySelector('.close').addEventListener('click', function() {
+    dialog.querySelector('.close-dialog').addEventListener('click', function () {
         dialog.close();
     });
 </script>

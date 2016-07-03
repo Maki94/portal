@@ -1,5 +1,7 @@
-﻿using Data.Entities;
+﻿using Data.DataClasses;
+using Data.Entities;
 using MVC.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -47,6 +49,30 @@ namespace MVC.Controllers
         public ActionResult Edit(int id)
         {
             return View(PollAddModel.GetEditModel(id));
+        }
+
+        [HttpPost]
+        public JsonResult GetVoterNames(int pollOptionId)
+        {
+            Poll poll = Polls.GetPollForPollOption(pollOptionId);
+            if (poll.HideVoters)
+            {
+                return Json(new { hidden = true });
+            }
+            List<Member> members = Polls.GetVotersForPollOption(pollOptionId);
+            List<string> names = new List<string>();
+            foreach (var m in members)
+            {
+                if (string.IsNullOrWhiteSpace(m.Nickname))
+                {
+                    names.Add(m.Name + " " + m.Surname);
+                }
+                else
+                {
+                    names.Add(m.Name + " " + m.Surname + " (" + m.Nickname + ")");
+                }
+            }
+            return Json(new { hidden = false, voterNames = names });
         }
     }
 }

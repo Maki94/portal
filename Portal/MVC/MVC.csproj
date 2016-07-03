@@ -246,6 +246,7 @@
     <Content Include="Views\Poll\Add.cshtml" />
     <Content Include="Content\TimePicker.less" />
     <Content Include="Views\Poll\Edit.cshtml" />
+    <Content Include="Content\Dialog.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
