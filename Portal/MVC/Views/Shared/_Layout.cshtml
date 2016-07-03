@@ -84,11 +84,7 @@
                     </form>
                 </div>
                 <div class="mdl-dialog__actions">
-<<<<<<< HEAD
                     <button type="button" class="mdl-button close" id="dialog-feedback-send"> Send! </button>
-=======
-                    <button type="button" class="close-dialog mdl-button"> Send! </button>
->>>>>>> 51d5f9994842120f9ad2a4cf590cc291af9e61cf
                 </div>
             </dialog>
             <a id="logout" href="/?logOut=true" class="mdl-navigation__link">Log Out</a>
@@ -129,26 +125,14 @@
     showDialogButtonFeedback.addEventListener('click', function () {
         dialogFeedback.showModal();
     });
-    dialogFeedback.querySelector('.close').addEventListener('click', function () {
-        dialogFeedback.close();
-    });
 
     var dialogAdminAddNews = document.querySelector('#dialog-admin-news');
-
     var showDialogButtonAddAdminNews = document.querySelector('#show-dialog-admin-news');
     if (!dialogAdminAddNews.showModal) {
         showDialogButtonAddAdminNews.registerDialog(dialogAdminAddNews);
     }
     showDialogButtonAddAdminNews.addEventListener('click', function () {
         dialogAdminAddNews.showModal();
-    });
-<<<<<<< HEAD
-    dialogAdminAddNews.querySelector('.close').addEventListener('click', function () {
-        dialogAdminAddNews.close();
-=======
-    dialog.querySelector('.close-dialog').addEventListener('click', function () {
-        dialog.close();
->>>>>>> 51d5f9994842120f9ad2a4cf590cc291af9e61cf
     });
 </script>
 
