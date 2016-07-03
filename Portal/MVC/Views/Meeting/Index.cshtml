@@ -4,4 +4,41 @@
     ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+<div class="mdl-tabs__panel" id="add-padavan-panel">
+    <div class="mdl-tabs__panel" id="report-panel">
+        <table id="mp-table-report" class="mdl-data-table mdl-js-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        <h3>Datum</h3>
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        <h3>Opis</h3>
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        <h3>Agenda</h3>
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        <h3>Napomena</h3>
+                    </th>
+                    <th class="mdl-data-table__cell--non-numeric">
+                        <h3>Kreirao</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Neki danum</td>
+                    <td class="mdl-data-table__cell--non-numeric">Neki Opis</td>
+                    <td class="mdl-data-table__cell--non-numeric">Agenda</td>
+                    <td class="mdl-data-table__cell--non-numeric">Napomena</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = 1})">
+                            Maki
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

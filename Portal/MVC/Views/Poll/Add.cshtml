@@ -6,26 +6,26 @@
 
 <h2>Napravi glasanje</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div class="form-group">
-            @Html.LabelFor(model => model.Topic, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Topic, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Topic, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Topic, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Topic, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Description, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
             </div>
         </div>
 
@@ -33,63 +33,73 @@
             @Html.LabelFor(model => model.AllowMultiple, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="add-poll-radio-buttons col-md-10">
                 <label class="mdl-radio mdl-js-radio">
-                    @Html.RadioButtonFor(model => model.AllowMultiple, false, htmlAttributes: new { @class = "mdl-radio__button" })
+                    @Html.RadioButtonFor(model => model.AllowMultiple, false, new {@class = "mdl-radio__button"})
                     <span class="mdl-radio__label">Jedan</span>
                 </label>
                 <label class="mdl-radio mdl-js-radio">
-                    @Html.RadioButtonFor(model => model.AllowMultiple, true, htmlAttributes: new { @class = "mdl-radio__button" })
+                    @Html.RadioButtonFor(model => model.AllowMultiple, true, new {@class = "mdl-radio__button"})
                     <span class="mdl-radio__label">Više</span>
                 </label>
             </div>
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
             @Html.LabelFor(model => model.HideResultsUntilFinished, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="add-poll-radio-buttons col-md-10">
+=======
+            @Html.LabelFor(model => model.HideResultsUntilFinished, new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+>>>>>>> fb5dcea7d1799781dc9b7a66842029b114443381
                 <label class="mdl-radio mdl-js-radio">
-                    @Html.RadioButtonFor(model => model.HideResultsUntilFinished, false, htmlAttributes: new { @class = "mdl-radio__button" })
+                    @Html.RadioButtonFor(model => model.HideResultsUntilFinished, false, new {@class = "mdl-radio__button"})
                     <span class="mdl-radio__label">Ne</span>
                 </label>
                 <label class="mdl-radio mdl-js-radio">
-                    @Html.RadioButtonFor(model => model.HideResultsUntilFinished, true, htmlAttributes: new { @class = "mdl-radio__button" })
+                    @Html.RadioButtonFor(model => model.HideResultsUntilFinished, true, new {@class = "mdl-radio__button"})
                     <span class="mdl-radio__label">Da</span>
                 </label>
             </div>
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
             @Html.LabelFor(model => model.HideVoters, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="add-poll-radio-buttons col-md-10">
+=======
+            @Html.LabelFor(model => model.HideVoters, new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+>>>>>>> fb5dcea7d1799781dc9b7a66842029b114443381
                 <label class="mdl-radio mdl-js-radio">
-                    @Html.RadioButtonFor(model => model.HideVoters, false, htmlAttributes: new { @class = "mdl-radio__button" })
+                    @Html.RadioButtonFor(model => model.HideVoters, false, new {@class = "mdl-radio__button"})
                     <span class="mdl-radio__label">Ne</span>
                 </label>
                 <label class="mdl-radio mdl-js-radio">
-                    @Html.RadioButtonFor(model => model.HideVoters, true, htmlAttributes: new { @class = "mdl-radio__button" })
+                    @Html.RadioButtonFor(model => model.HideVoters, true, new {@class = "mdl-radio__button"})
                     <span class="mdl-radio__label">Da</span>
                 </label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EndDate, new {@class = "control-label col-md-2"})
             <div class="col-md-5">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datefield" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.EndDate, new {htmlAttributes = new {@class = "form-control datefield"}})
+                @Html.ValidationMessageFor(model => model.EndDate, "", new {@class = "text-danger"})
             </div>
             <div class="col-md-5">
-                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control time" }})
-                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.EndTime, new {htmlAttributes = new {@class = "form-control time"}})
+                @Html.ValidationMessageFor(model => model.EndTime, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Options, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Options, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Options[0], new { htmlAttributes = new { @class = "form-control", data_option_id = "0" }})
-                <br />
-                @Html.EditorFor(model => model.Options[1], new { htmlAttributes = new { @class = "form-control", data_option_id = "1" }})
-                <br />
+                @Html.EditorFor(model => model.Options[0], new {htmlAttributes = new {@class = "form-control", data_option_id = "0"}})
+                <br/>
+                @Html.EditorFor(model => model.Options[1], new {htmlAttributes = new {@class = "form-control", data_option_id = "1"}})
+                <br/>
                 <button type="button" class="more-options-button mdl-button mdl-js-button mdl-button--raised">
                     Još opcija
                 </button>
@@ -98,7 +108,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj glasanje" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
+                <input type="submit" value="Dodaj glasanje" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"/>
             </div>
         </div>
     </div>
@@ -118,7 +128,7 @@
     //    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
     //});
 
-    $(function () {
+    $(function() {
         $('.time').timepicker({ 'timeFormat': 'H:i:s', useSelect: true });
         $('.time').next().addClass("form-control");
     });
@@ -134,7 +144,7 @@
             newOption.attr('name', "Options[" + newOptionId + "]");
             newOption.data("option-id", newOptionId.toString());
             newOption.insertAfter(lastElement);
-            newOption.after('<br />')
+            newOption.after('<br />');
             if (newOptionId >= 6) {
                 $(this)[0].MaterialButton.disable();
             }

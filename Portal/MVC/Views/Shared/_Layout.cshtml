@@ -36,12 +36,28 @@
                 <span id="badge-number-of-notifications" class="mdl-badge" data-badge="♥">Messenger</span>
             </a>
             @Html.ActionLink("M/P", "Index", "MP", null, new {@class = "mdl-navigation__link"})
-            @Html.ActionLink("FRator", "Index", "Frator", null, new {@class = "mdl-navigation__link"})
+            @Html.ActionLink("FRator", "Index", "Frator", null, new { @class = "mdl-navigation__link" })
 
-            <a id="admin-button" class="mdl-navigation__link admin-button-color">Admin</a>
-            @Html.ActionLink("Vesti", "Index", "Admin", null, new {@class = "mdl-navigation__link admin-button-color", @id="admin-news"})
-            @Html.ActionLink("Sastanci", "Index", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color", @id = "admin-meetings"})
-            @Html.ActionLink("Bedzevi", "Index", "Badge", null, new { @class = "mdl-navigation__link admin-button-color", @id = "admin-badges"})
+            @*@Html.ActionLink("Vesti", "Index", "Admin", null, new { @class = "mdl-navigation__link admin-button-color" })*@
+            
+            <a id="show-dialog-admin-news" class="mdl-navigation__link admin-button-color">Dodaj Vest</a>
+            <dialog id="dialog-admin-news" class="mdl-dialog">
+                <h4 class="mdl-dialog__title">Dodaj Vest</h4>
+                <div class="mdl-dialog__content">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input" type="text" rows="10" id="textareaAdnNews"></textarea>
+                            <label class="mdl-textfield__label" for="textareaAdnNews">Tekst Vesti</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button close" id="dialog-admin-news-send"> Send! </button>
+                </div>
+            </dialog>
+
+            @Html.ActionLink("Sastanci", "Index", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color" })
+            @Html.ActionLink("Bedzevi", "Index", "Badge", null, new { @class = "mdl-navigation__link admin-button-color" })
 
             <a id="show-dialog-feedback" class="mdl-navigation__link">Feedback</a>
             <dialog id="dialog-feedback" class="mdl-dialog">
@@ -68,7 +84,7 @@
                     </form>
                 </div>
                 <div class="mdl-dialog__actions">
-                    <button type="button" class="close-dialog mdl-button"> Send! </button>
+                    <button type="button" class="mdl-button close" id="dialog-feedback-send"> Send! </button>
                 </div>
             </dialog>
             <a id="logout" href="/?logOut=true" class="mdl-navigation__link">Log Out</a>
@@ -100,26 +116,23 @@
         });
     }, 1666);
 
-    $('#admin-news').toggle();
-    $('#admin-meetings').toggle();
-    $('#admin-badges').toggle();
+    var dialogFeedback = document.querySelector('#dialog-feedback');
 
-    $('#admin-button').bind('click', function () {
-        $('#admin-news').toggle();
-        $('#admin-meetings').toggle();
-        $('#admin-badges').toggle();
-    });
-
-    var dialog = document.querySelector('#dialog-feedback');
-    var showDialogButton = document.querySelector('#show-dialog-feedback');
-    if (! dialog.showModal) {
-        dialogPolyfill.registerDialog(dialog);
+    var showDialogButtonFeedback = document.querySelector('#show-dialog-feedback');
+    if (!dialogFeedback.showModal) {
+        showDialogButtonFeedback.registerDialog(dialogFeedback);
     }
-    showDialogButton.addEventListener('click', function() {
-        dialog.showModal();
+    showDialogButtonFeedback.addEventListener('click', function () {
+        dialogFeedback.showModal();
     });
-    dialog.querySelector('.close-dialog').addEventListener('click', function () {
-        dialog.close();
+
+    var dialogAdminAddNews = document.querySelector('#dialog-admin-news');
+    var showDialogButtonAddAdminNews = document.querySelector('#show-dialog-admin-news');
+    if (!dialogAdminAddNews.showModal) {
+        showDialogButtonAddAdminNews.registerDialog(dialogAdminAddNews);
+    }
+    showDialogButtonAddAdminNews.addEventListener('click', function () {
+        dialogAdminAddNews.showModal();
     });
 </script>
 

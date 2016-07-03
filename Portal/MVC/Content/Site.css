@@ -2,6 +2,9 @@
   background: #1a53ff;
   cursor: pointer;
 }
+#show-dialog-feedback:hover {
+  cursor: pointer;
+}
 aside span {
   color: white !important;
 }
