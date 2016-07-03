@@ -25,17 +25,18 @@ namespace MVC.Controllers
                 ViewBag.message = message;
 
                 // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
-                return Index(new MemberLoginModel
-                {
-                    Gmail = "zantsusan@gmail.com",
-                    Password = "Admin@123",
-                    RememberMe = true
-                });
+                //return Index(new MemberLoginModel
+                //{
+                //    Gmail = "zantsusan@gmail.com",
+                //    Password = "Admin@123",
+                //    RememberMe = true
+                //});
                 // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
-                //return View(new MemberLoginModel());
+                return View(new MemberLoginModel());
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Console.WriteLine(exception);
                 return RedirectToAction("Index", "Access");
             }
         }
@@ -46,7 +47,7 @@ namespace MVC.Controllers
         {
             try
             {
-                Data.DTOs.LoginDTO member = Data.Entities.Login.CreateLoginDTO(model.Gmail, model.Password, model.RememberMe);
+                Data.DTOs.LoginDTO member = Login.CreateLoginDTO(model.Gmail, model.Password, model.RememberMe);
 
                 if (member.LoginStatus == (int)Data.Enumerations.LoginStatus.Successful)
                 {
@@ -90,7 +91,7 @@ namespace MVC.Controllers
                         file.InputStream.CopyTo(ms);
                         array = ms.GetBuffer();
                     }
-                    Data.Entities.DefaultPictures.UploadPicture(array, name);
+                    DefaultPictures.UploadPicture(array, name);
                 }
 
                 return RedirectToAction("UploadDefaultPicture");
