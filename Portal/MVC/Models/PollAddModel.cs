@@ -34,7 +34,6 @@ namespace MVC.Models
         [Required(ErrorMessage = "Morate uneti vreme završetka glasanja.")]
         public string EndTime { get; set; }
 
-        [ValidateList(ErrorMessage = "Morate uneti opcije za glasanje.")]
         [Display(Name = "Opcije")]
         public List<string> Options { get; set; }
 

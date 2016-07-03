@@ -89,14 +89,11 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Options[0], new { htmlAttributes = new { @class = "form-control", data_option_id = "0" }})
                 @Html.EditorFor(model => model.Options[1], new { htmlAttributes = new { @class = "form-control", data_option_id = "1" }})
-                @Html.ValidationMessageFor(model => model.Options[0], "", new { @class = "text-danger" })
                 <button type="button" class="more-options-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                     Još opcija
                 </button>
             </div>
         </div>
-
-        TREBA DA SE DODA TIMEPICKER I DA SE OMOGUCI DODAVANJE OPCIJA
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -137,51 +134,4 @@
             }
         }
     });
-
-    jQuery.validator.unobtrusive.adapters.addBool("optionlist", "required");
 </script>
-
-
-
-@*  OVO JE PRVENSTVENO BILO U OVOM FAJLU
-
-    <link rel="stylesheet" href="../../Content/cssDatePicker/pikaday.css">
-    <link rel="stylesheet" href="../../Content/cssDatePicker/theme.css">
-    <form action="#">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
-            <h1>
-                <b>Kreiraj Glasanje</b>
-            </h1>
-        </div>
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
-
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--5-col-phone">
-
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="poll-naziv">
-                    <label class="mdl-textfield__label" for="poll-naziv">Naziv</label>
-                </div>
-                <br />
-                <div class="mdl-textfield mdl-js-textfield">
-                    <textarea class="mdl-textfield__input" type="text" rows="3" id="poll-opis"></textarea>
-                    <label class="mdl-textfield__label" for="poll-opis">Opis</label>
-                </div>
-                <br />
-                <input class="mdl-textfield__input" placeholder="DL" type="text" id="poll-DL">
-                <br />
-                <br />
-                <div class="mdl-list__item">
-                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                        Sacuvaj izmene
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <script src="../../Scripts/pikaday.js"></script>
-    <script>
-        var DL = new Pikaday({ field: document.getElementById('poll-DL') });
-    </script>*@

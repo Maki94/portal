@@ -37,28 +37,4 @@ namespace MVC
             return isValid;
         }
     }
-
-    public class ValidateListAttribute : ValidationAttribute, IClientValidatable
-    {
-        public override bool IsValid(object value)
-        {
-            var list = value as IList<string>;
-            if (string.IsNullOrWhiteSpace(list[0]) || string.IsNullOrWhiteSpace(list[0]))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-        {
-            var clientValidationRule = new ModelClientValidationRule()
-            {
-                ErrorMessage = FormatErrorMessage(metadata.GetDisplayName()),
-                ValidationType = "optionlist"
-            };
-
-            return new[] { clientValidationRule };
-        }
-    }
 }
