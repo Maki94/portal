@@ -23,6 +23,7 @@ namespace Data
             ViewAboutPage = 1,
             AddMember,
             UploadDefaultPicture,
+            FRator
         }
 
         public enum OwnerType
@@ -61,6 +62,13 @@ namespace Data
         {
             aktivan,
             zatvoren,
+        }
+
+        public enum CompanyField
+        {
+            IT,
+            Bank,
+            AutoIndustrija
         }
 
         public enum CompanyType

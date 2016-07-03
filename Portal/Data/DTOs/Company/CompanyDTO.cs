@@ -21,7 +21,7 @@ namespace Data.DTOs.Company
         public string City { get; set; }
         
         [DisplayName("Field")]
-        public string Field { get; set; }
+        public Enumerations.CompanyField Field { get; set; }
 
 
         [DisplayName("Type")]
@@ -41,6 +41,6 @@ namespace Data.DTOs.Company
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
 
-        public virtual List<ContactPersonDTO> Contacts { get; set; }
+        public List<ContactPersonDTO> Contacts { get; set; }
     }
 }

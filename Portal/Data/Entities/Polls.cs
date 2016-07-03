@@ -28,6 +28,14 @@ namespace Data.Entities
             }
         }
 
+        public static Poll GetPollForPollOption(int pollOptionId, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                return (from p in dc.PollOptions where p.PollOptionId == pollOptionId select p.Poll).FirstOrDefault();
+            }
+        }
+
         public static List<PollOption> GetPollOptionsForPoll(int pollId, DataContext dc = null)
         {
             using (dc = dc ?? new DataContext())
@@ -98,11 +106,14 @@ namespace Data.Entities
 
                 foreach (var po in options)
                 {
-                    pollOptions.Add(new PollOption()
+                    if (!string.IsNullOrWhiteSpace(po))
                     {
-                        Answer = po,
-                        Poll = poll
-                    });
+                        pollOptions.Add(new PollOption()
+                        {
+                            Answer = po,
+                            Poll = poll
+                        });
+                    }
                 }
 
                 dc.PollOptions.AddRange(pollOptions);

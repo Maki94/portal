@@ -28,7 +28,7 @@ namespace MVC.Models
 
         [Required(ErrorMessage = "Morate uneti datum završetka glasanja.")]
         [Display(Name = "Kraj glasanja")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
         [Required(ErrorMessage = "Morate uneti vreme završetka glasanja.")]

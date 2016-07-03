@@ -42,7 +42,8 @@
                     <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
                                         @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }}  />
-                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span data-poll-option-vote-count="@po.VotersIds.Count"> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
+                        <span class="poll-option-answer mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span> 
+                        @{if (!p.PollDetails.HideResultsUntilFinished) { <span data-poll-option-vote-count="@po.VotersIds.Count"> (@Html.DisplayFor(x => po.VotersIds.Count)) </span> }}
                     </label>
                 </div>
             }
@@ -85,7 +86,7 @@
                 <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollOptionId)">
                     <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input" disabled @if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }} />
-                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
+                        <span class="poll-option-answer mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span data-poll-option-vote-count="@po.VotersIds.Count"> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
                     </label>
                 </div>
             }
@@ -93,10 +94,59 @@
     </div>
 }
 
+<dialog id="voters-dialog" class="mdl-dialog">
+    <h6 class="voters-dialog-title mdl-dialog__title"></h6>
+    <div class="voters-dialog-list mdl-dialog__content">
+        @*ovde ide lista glasaca*@
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="close-dialog mdl-button">Zatvori</button>
+    </div>
+</dialog>
+
     
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
     $(window).bind('load', function() {
+
+        // ovde pocinje pravljenje dijaloga za listu glasaca
+        var dialog = document.getElementById('voters-dialog');
+        if (! dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+        var voteCountElements = $('[data-poll-option-vote-count]');
+        for (var i = 0; i < voteCountElements.length; i++){
+            voteCountElements[i].addEventListener('click', function() {
+                var pollOptionDiv = $(this).closest('.poll-option');
+                var pollOptionId = pollOptionDiv.data('poll-option-id');
+                var pollOptionText = pollOptionDiv.find('.poll-option-answer').html();
+                $('.voters-dialog-title').html(pollOptionText);
+                $.post("@Url.Action("GetVoterNames", "Poll")", { "pollOptionId" : pollOptionId }, function(data) {
+                    var votersDialogList = $(".voters-dialog-list");
+                    votersDialogList.empty();
+                    if (data.hidden) {
+                        votersDialogList.append('<p>Glasači su skriveni za ovo glasanje.</p>');
+                    } else if (data.voterNames.length < 1) {
+                        votersDialogList.append('<p>Niko nije glasao za ovu opciju.</p>');
+                    } else {
+                        for (var i = 0; i < data.voterNames.length; i++){
+                            votersDialogList.append('<p>' + data.voterNames[i] + '</p>');
+                        }
+                    }
+                });
+                var dialog = document.getElementById('voters-dialog');
+                dialog.showModal();
+            });
+        }
+
+        dialog.querySelector('.close-dialog').addEventListener('click', function() {
+            var dialog = document.getElementById('voters-dialog');
+            dialog.close();
+        });
+
+        $('[data-poll-option-vote-count]').css('cursor', 'pointer');
+
+        // ovo je podesavanje div-a za poll i sakrivanje opcija za zavrsena glasanja
         $('.poll-details').css( 'cursor', 'pointer' );
         $('.poll-details').bind('click', function() {
             $(this).siblings('.poll-options-list').slideToggle();

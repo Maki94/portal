@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.DTOs.Company;
 using Data.DataClasses;
+using System.Data.Entity;
 
 namespace Data.Entities
 {
@@ -14,7 +15,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return (from c in dc.Companies where c.IsDeleted == false select c).ToList();
+                return dc.Companies.Include(x => x.Contacts).ToList();
             }
         }
 
@@ -22,7 +23,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return (from m in dc.MemberCompanies where m.Member.MemberId == id && m.IsDeleted == false select m.Company).ToList();
+                return dc.MemberCompanies.Where(x => x.MemberId == id && x.IsDeleted==false && x.FinishDate ==null).Include(x => x.Company).Include(x=>x.Company.Contacts).Select(x => x.Company).ToList();
             }
         }
     }

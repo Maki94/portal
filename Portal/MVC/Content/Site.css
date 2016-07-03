@@ -70,6 +70,10 @@ aside a:hover {
   background-repeat: no-repeat;
   background-position: inherit;
 }
+/*Ubaceno da prepravi material design lite textbox plavu liniju*/
+.mdl-label-fix {
+  margin-bottom: 0px;
+}
 #member-year {
   width: 200px !important;
 }
@@ -639,4 +643,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .ui-timepicker-list li.ui-timepicker-disabled:hover,
 .ui-timepicker-list li.ui-timepicker-selected.ui-timepicker-disabled {
   background: #f2f2f2;
+}
+.voters-dialog {
+  overflow-y: initial !important;
+}
+.voters-dialog-list {
+  height: 250px;
+  overflow-y: auto;
 }

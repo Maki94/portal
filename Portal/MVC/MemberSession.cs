@@ -22,5 +22,14 @@ namespace MVC
             }
             return member.MemberID;
         }
+        public static Data.Enumerations.Role GetRole()
+        {
+            LoginDTO member = GetMember();
+            if (member == null)
+            {
+                throw new Exception("Nije prijavljen");
+            }
+            return (Data.Enumerations.Role)member.Role;
+        }
     }
 }

@@ -4,8 +4,7 @@
     ViewBag.Title = "Add";
 }
 
-<h2>Novo glasanje</h2>
-
+<h2>Napravi glasanje</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -75,7 +74,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datefield" } })
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-5">
@@ -88,8 +87,10 @@
             @Html.LabelFor(model => model.Options, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Options[0], new { htmlAttributes = new { @class = "form-control", data_option_id = "0" }})
+                <br />
                 @Html.EditorFor(model => model.Options[1], new { htmlAttributes = new { @class = "form-control", data_option_id = "1" }})
-                <button type="button" class="more-options-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                <br />
+                <button type="button" class="more-options-button mdl-button mdl-js-button mdl-button--raised">
                     Još opcija
                 </button>
             </div>
@@ -97,7 +98,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Dodaj glasanje" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
             </div>
         </div>
     </div>
@@ -110,25 +111,30 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="~/Scripts/jquery.timepicker.js"></script>
 <script type="text/javascript" src="~/Scripts/jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="~/Scripts/datepicker.js"></script>
 
 <script type="text/javascript">
-    $(window).bind('load', function () {
-        $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
-    });
+    //$(window).bind('load', function () {
+    //    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+    //});
 
     $(function () {
-        $('.time').timepicker({ 'timeFormat': 'H:i:s' });
+        $('.time').timepicker({ 'timeFormat': 'H:i:s', useSelect: true });
+        $('.time').next().addClass("form-control");
     });
 
     $('button.more-options-button').on('click', function() {
-        var lastOption = $(this).prev();
-        var newOptionId = lastOption.data("option-id") + 1;
+        var lastOption = $('[data-option-id]').last();
+        var lastElement = $(this).prev();
+        var newOptionId = parseInt(lastOption.data("option-id")) + 1;
         if (newOptionId < 7) {
             var newOption = lastOption.clone();
+            newOption.val('');
             newOption.attr('id', 'Options_' + newOptionId + '_');
             newOption.attr('name', "Options[" + newOptionId + "]");
-            newOption.data("option-id", newOptionId);
-            newOption.insertAfter(lastOption);
+            newOption.data("option-id", newOptionId.toString());
+            newOption.insertAfter(lastElement);
+            newOption.after('<br />')
             if (newOptionId >= 6) {
                 $(this)[0].MaterialButton.disable();
             }
