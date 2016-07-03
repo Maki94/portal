@@ -9,7 +9,7 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult Meeting(int id)
+        public ActionResult Add()
         {
             return View();
         }

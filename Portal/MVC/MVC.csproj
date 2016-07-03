@@ -303,7 +303,7 @@
     <Content Include="Views\Mp\Izvestaj.cshtml" />
     <Content Include="Views\Frator\Profile.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
-    <Content Include="Views\Meeting\Meeting.cshtml" />
+    <Content Include="Views\Meeting\Add.cshtml" />
     <Content Include="Views\Poll\AllPolls.cshtml" />
   </ItemGroup>
   <ItemGroup>
