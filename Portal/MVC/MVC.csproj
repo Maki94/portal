@@ -246,6 +246,9 @@
     <Content Include="Views\Poll\Add.cshtml" />
     <Content Include="Content\TimePicker.less" />
     <Content Include="Content\Dialog.less" />
+    <Content Include="Views\Project\AllProjects.cshtml" />
+    <Content Include="Content\ProjectList.less" />
+    <Content Include="Content\MemberList.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -285,14 +288,12 @@
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\Add.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Member\AllMembers.cshtml" />
     <Content Include="Views\Badge\Index.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Views\Access\UploadDefaultPicture.cshtml" />
     <Content Include="Views\Access\ChangePassword.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Poll\Index.cshtml" />
     <Content Include="Views\Messenger\Index.cshtml" />
     <Content Include="Views\Mp\Index.cshtml" />
     <Content Include="Views\Frator\Index.cshtml" />

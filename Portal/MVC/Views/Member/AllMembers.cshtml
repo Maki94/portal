@@ -10,28 +10,23 @@
         <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
             <main class="mdl-layout__content">
                 <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--1-col"></div>
-                    <div class="mdl-cell mdl-cell--10-col mdl-cell--4-col-tablet">
-                        <form action="#">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                                <label class="mdl-button mdl-js-button mdl-button--icon" for="searchMembersText">
-                                    <i class="material-icons">search</i>
-                                </label>
-                                <div class="mdl-textfield__expandable-holder">
-                                    <input class="mdl-textfield__input" type="text" id="searchMembersText">
-                                    <label class="mdl-textfield__label" for="searchMembersText">Expandable Input</label>
-                                </div>
+                    <div class="mdl-cell mdl-cell--5-col">
+                        <div class="form-group">
+                            <i class="material-icons">search</i>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" id="searchMembersText">
                             </div>
-                        </form>        
+                        </div>
                     </div>
+                    <div class="mdl-cell mdl-cell--6-col"></div>
                     <div class="mdl-cell mdl-cell--1-col">
-                        <a href="@Url.Action("Add", "Member")" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                        <a href="@Url.Action("Add", "Member")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
                             <i class="material-icons">add</i>
                         </a>
                     </div>
                 </div>
 
-                <div id="members" class="mdl-grid">
+                <div id="members" class="member-list mdl-grid">
                     @foreach (var m in Model.MemberThumbnails)
                     {
                         <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.MemberId">
@@ -40,7 +35,7 @@
                                 <img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg"/>
                             </figure>
                             <div class="mdl-card__title">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Member", new {id = m.MemberId})">
+                                <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Member", new {id = m.MemberId})">
                                     @Html.DisplayName(m.Name)
                                 </a>
                             </div>

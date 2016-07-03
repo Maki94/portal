@@ -8,6 +8,11 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
+            return RedirectToAction("AllProjects");
+        }
+
+        public ActionResult AllProjects()
+        {
             return View(new ProjectListModel());
         }
     }

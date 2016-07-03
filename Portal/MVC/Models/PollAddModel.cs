@@ -23,7 +23,7 @@ namespace MVC.Models
         [Display(Name = "Sakrij rezultate")]
         public bool HideResultsUntilFinished { get; set; }
 
-        [Display(Name = "Sakrij glasace")]
+        [Display(Name = "Sakrij glasače")]
         public bool HideVoters { get; set; }
 
         [Required(ErrorMessage = "Morate uneti datum završetka glasanja.")]
