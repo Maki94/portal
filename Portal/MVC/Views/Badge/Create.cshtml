@@ -1,40 +1,93 @@
 ﻿@model MVC.Models.BadgeCreateModel
 
-@using (Ajax.BeginForm("Create", "Badge", new AjaxOptions { HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
+@*@using (Ajax.BeginForm("Create", "Badge", new AjaxOptions {HttpMethod = "POST"}, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h2>Napravi Bedz</h2>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Description, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.MessageIdBoxFor(model => model.File, new { type = "file" })
+                @Html.TextBoxFor(model => model.File, new {type = "file"})
                 @Html.ValidationMessageFor(model => model.File)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj bedz" class="btn btn-default" />
+                <input type="submit" value="Dodaj bedz" class="btn btn-default"/>
             </div>
         </div>
     </div>
+}*@
+@using (Ajax.BeginForm("Create", "Badge", new AjaxOptions {HttpMethod = "POST"}, new {enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--10-col"></div>
+
+        <form action="#" id="event-edit-form">
+            <ul class="div-expand mdl-list">
+                <h1> Kreiraj Novi Bedž </h1>
+                <li class="div-expand mdl-list__item">
+                    <div class="div-expand mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "mdl-textfield__input", @type = "text", @id = "badge-naziv", @required="true"}})
+                        @*@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})*@
+                        <label class="mdl-textfield__label" for="badge-naziv">Naziv...</label>
+                    </div>
+                </li>
+
+                <li class="div-expand mdl-list__item">
+                    <div class="div-expand mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "mdl-textfield__input", @type = "text", @id = "badge-opis", @required = "true" } })
+                        @*@Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})*@
+                        <label class="mdl-textfield__label" for="badge-opis">Opis...</label>
+                    </div>
+                </li>
+
+
+                <li class="div-expand mdl-list__item">
+                    <div class="div-expand mdl-textfield mdl-js-textfield mdl-textfield--file">
+                        <input class="mdl-textfield__input" placeholder="Fotogrfija" type="text" id="uploadFile" required readonly/>
+                        <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                            <i class="material-icons">attach_file</i>
+                            @Html.TextBoxFor(model => model.File, new { type = "file", id = "uploadBtn" })
+                            @*<input type="file" id="uploadBtn">*@
+                        </div>
+                    </div>
+                </li>
+
+                <li class="mdl-list__item">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Dodaj bedž
+                    </button>
+                </li>
+            </ul>
+        </form>
+    </div>
 }
+
+<script>
+    document.getElementById("uploadBtn").onchange = function() {
+        document.getElementById("uploadFile").value = this.files[0].name;
+    };
+</script>

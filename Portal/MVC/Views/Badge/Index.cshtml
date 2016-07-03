@@ -7,7 +7,6 @@
 
 @{ Html.RenderPartial("Create", new BadgeCreateModel()); }
 
-<h2>AllBadges</h2>
 
  <div id="badges" class="mdl-grid">
     @foreach (var b in Model.Badges)
@@ -19,10 +18,10 @@
                 <img src="@imgSrc"/>
             </figure>
             <div class="mdl-card__title">
-                <span>TITLE</span>
+                <span>@Html.DisplayName(b.Name)</span>
             </div>
             <div class="mdl-card__supporting-text">
-                <span>Supporting text</span>
+                <span>@Html.DisplayName(b.Description)</span>
                 
             </div>
             <span class="badge-remove-sign-wrapper" style="float: right; position:absolute; bottom:5px; right:5px" data-badge-id="@b.BadgeId">
