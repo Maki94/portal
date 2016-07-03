@@ -46,11 +46,6 @@ namespace MVC.Controllers
             return RedirectToAction("AllPolls");
         }
 
-        public ActionResult Edit(int id)
-        {
-            return View(PollAddModel.GetEditModel(id));
-        }
-
         [HttpPost]
         public JsonResult GetVoterNames(int pollOptionId)
         {

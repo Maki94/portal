@@ -106,11 +106,14 @@ namespace Data.Entities
 
                 foreach (var po in options)
                 {
-                    pollOptions.Add(new PollOption()
+                    if (!string.IsNullOrWhiteSpace(po))
                     {
-                        Answer = po,
-                        Poll = poll
-                    });
+                        pollOptions.Add(new PollOption()
+                        {
+                            Answer = po,
+                            Poll = poll
+                        });
+                    }
                 }
 
                 dc.PollOptions.AddRange(pollOptions);

@@ -43,7 +43,7 @@
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
                                         @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }}  />
                         <span class="poll-option-answer mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span> 
-                        @{if (!p.PollDetails.HideResultsUntilFinished) { <span data-poll-option-vote-count="po.VotersIds.Count"> (@Html.DisplayFor(x => po.VotersIds.Count)) </span> }}
+                        @{if (!p.PollDetails.HideResultsUntilFinished) { <span data-poll-option-vote-count="@po.VotersIds.Count"> (@Html.DisplayFor(x => po.VotersIds.Count)) </span> }}
                     </label>
                 </div>
             }
