@@ -92,6 +92,11 @@
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Context\DataContextPartial.cs" />
     <Compile Include="DTOs\BadgeDTO.cs" />
+    <Compile Include="DTOs\Company\CommentDTO.cs" />
+    <Compile Include="DTOs\Company\CompanyDTO.cs" />
+    <Compile Include="DTOs\Company\ContactPersonDTO.cs" />
+    <Compile Include="DTOs\Company\MemberCommentDTO.cs" />
+    <Compile Include="DTOs\Company\MemberCompanyDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
     <Compile Include="DTOs\MemberDTO.cs" />
@@ -106,6 +111,8 @@
     <Compile Include="Entities\Chat\IMessageNotification.cs" />
     <Compile Include="Entities\Chat\Message.cs" />
     <Compile Include="Entities\Chat\MessageNotification.cs" />
+    <Compile Include="Entities\Comments.cs" />
+    <Compile Include="Entities\Companys.cs" />
     <Compile Include="Entities\DefaultPictures.cs" />
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Members.cs" />

@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="MemberSession.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MessageNotificationListModel.cs" />
     <Compile Include="Models\PollAddModel.cs" />

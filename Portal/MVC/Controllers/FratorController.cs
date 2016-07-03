@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using MVC.Models;
+using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
@@ -7,7 +8,8 @@ namespace MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            CompanyModel model = CompanyModel.Load(MemberSession.GetMemberId());
+            return View(model);
         }
 
         public ActionResult Profile(int id)

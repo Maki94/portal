@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@model MVC.Models.CompanyModel
+@using Data.DTOs.Company
 
 @{
     ViewBag.Title = "FRator";
@@ -14,31 +15,24 @@
 
     <div class="mdl-tabs__panel is-active" id="vesti-panel">
         <ul class="div-expand demo-list-three mdl-list">
-            <li class="mdl-list__item mdl-list__item--three-line">
-                <span class="mdl-list__item-primary-content">
-                    <i class="material-icons mdl-list__item-avatar">person</i>
-                    <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new {id = 1})">Komapnija1</a></span>
-                    <span class="mdl-list__item-text-body">
-                        <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new {id = 1})">Maki</a> : played the role of Walter in Breaking Bad. He is also known
-                        for playing Hal in Malcom in the Middle.
+            @if (Model.NewComments.Any())
+            {
+                foreach (CommentDTO c in Model.NewComments)
+                {
+                <li class="mdl-list__item mdl-list__item--three-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-avatar">person</i>
+                        <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">@c.CompanyId</a></span>
+                        <span class="mdl-list__item-text-body">
+                            <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new { id = c.AuthorId })">@c.AuthorId</a> @c.Text
+                        </span>
                     </span>
-                </span>
-                <span class="mdl-list__item-secondary-content">
-                    <a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">121</i></a>
-                </span>
-            </li>
-            <li class="mdl-list__item mdl-list__item--three-line">
-                <span class="mdl-list__item-primary-content">
-                    <i class="material-icons  mdl-list__item-avatar">person</i>
-                    <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new {id = 1})">Komapnija1</a></span>
-                    <span class="mdl-list__item-text-body">
-                        <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new {id = 1})">Maki</a> : played the role of Walter in Breaking Bad. He is also known
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">121</i></a>
                     </span>
-                </span>
-                <span class="mdl-list__item-secondary-content">
-                    <a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">21</i></a>
-                </span>
-            </li>
+                </li>
+                }
+            }
         </ul>
     </div>
     <div id="moje-kompanije-panel" class="mdl-tabs__panel">

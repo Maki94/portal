@@ -242,6 +242,23 @@ namespace Data
             };
 
             context.Messages.AddRange(messages);
+
+            var company = new List<Company>
+            {
+                new Company { Address = "a", City = "a", Description = "a", Email = "a", Field = "a", Name = "a", Phone = "a", Type = Enumerations.CompanyType.money, Website = "a"},
+                new Company { Address = "b", City = "b", Description = "b", Email = "b", Field = "b", Name = "b", Phone = "b", Type = Enumerations.CompanyType.money, Website = "b"},
+                new Company { Address = "c", City = "c", Description = "c", Email = "c", Field = "c", Name = "c", Phone = "c", Type = Enumerations.CompanyType.money, Website = "c"},
+                new Company { Address = "d", City = "d", Description = "d", Email = "d", Field = "d", Name = "d", Phone = "d", Type = Enumerations.CompanyType.money, Website = "d" },
+                new Company { Address = "e", City = "e", Description = "e", Email = "e", Field = "e", Name = "e", Phone = "e", Type = Enumerations.CompanyType.money, Website = "e" }
+            };
+
+            context.Companies.AddRange(company);
+            var comment = new List<Comment>
+            {
+                new Comment {Author = members[0], Company = company[0], Project = projects[0], Text = "bla", Time = DateTime.Now, Type = "nesto" }
+            };
+
+            context.Comments.AddRange(comment);
             context.SaveChanges();
         }
     }
