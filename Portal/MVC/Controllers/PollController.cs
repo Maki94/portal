@@ -32,11 +32,21 @@ namespace MVC.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            return View(new PollAddModel());
         }
+
+        [HttpPost]
+        public ActionResult Add(PollAddModel model)
+        {
+            Polls.AddPoll(model.Topic, model.Description, model.AllowMultiple, model.HideResultsUntilFinished,
+                            model.HideVoters, model.EndDate, model.EndTime, model.Options, MemberSession.GetMemberId());
+
+            return RedirectToAction("AllPolls");
+        }
+
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(PollAddModel.GetEditModel(id));
         }
     }
 }

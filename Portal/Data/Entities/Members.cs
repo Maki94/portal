@@ -107,8 +107,8 @@ namespace Data.Entities
                         MemberId = m.MemberId,
                         Name = m.Name,
                         Surname = m.Surname,
-                        Nickname = m.Nickname,
-                        Faculty = m.Faculty
+                        Nickname = m.Nickname ?? "",
+                        Faculty = m.Faculty ?? ""
                     });
                 }
 

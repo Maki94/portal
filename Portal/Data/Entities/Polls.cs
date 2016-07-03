@@ -68,6 +68,49 @@ namespace Data.Entities
             UpdatePollState(pollId, Enumerations.PollState.zatvoren, dc);
         }
 
+        public static void AddPoll(string topic, string description, bool multipleAnswers, bool hideResults, bool hideVoters, 
+                                   DateTime endDate, string endTime, List<string> options, int creatorId, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                // u time smestimo HH:MM:SS
+                var timeStrings = endTime.Split(':');
+                TimeSpan ts = new TimeSpan(Int32.Parse(timeStrings[0]), Int32.Parse(timeStrings[1]), Int32.Parse(timeStrings[2]));
+                DateTime endDateAndTime = endDate.Date + ts;
+                Member creator = Members.GetMemberAt(creatorId);
+
+                Poll poll = new Poll
+                {
+                    Topic = topic,
+                    Description = description,
+                    AllowMultiple = multipleAnswers,
+                    HideResultsUntilFinished = hideResults,
+                    HideVoters = hideVoters,
+                    EndDate = endDateAndTime,
+                    StartDate = DateTime.Now,
+                    PollCreator = creator,
+                    State = Enumerations.PollState.aktivan
+                };
+
+                dc.Polls.Add(poll);
+
+                List<PollOption> pollOptions = new List<PollOption>();
+
+                foreach (var po in options)
+                {
+                    pollOptions.Add(new PollOption()
+                    {
+                        Answer = po,
+                        Poll = poll
+                    });
+                }
+
+                dc.PollOptions.AddRange(pollOptions);
+
+                dc.SaveChanges();
+            }
+        }
+
         public static void AddVote(int memberId, int[] pollOptionIds, DataContext dc = null)
         {
             using (dc = dc ?? new DataContext())

@@ -24,13 +24,15 @@ namespace MVC.Controllers
 
                 ViewBag.message = message;
 
-                //// ovo return Index ubaceno samo da se odma uloguje na jedan nalog
-                //return Index(new MemberLoginViewModel
-                //{
-                //    Gmail = "zantsusan@gmail.com", Password = "Admin@123", RememberMe = true
-                //});
                 // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
-                return View(new MemberLoginModel());
+                return Index(new MemberLoginModel
+                {
+                    Gmail = "zantsusan@gmail.com",
+                    Password = "Admin@123",
+                    RememberMe = true
+                });
+                // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
+                //return View(new MemberLoginModel());
             }
             catch (Exception)
             {

@@ -187,6 +187,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MessageNotificationListModel.cs" />
+    <Compile Include="Models\PollAddModel.cs" />
     <Compile Include="Models\PollModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="ValidationClasses.cs" />
@@ -241,6 +242,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Poll\Add.cshtml" />
+    <Content Include="Content\TimePicker.less" />
+    <Content Include="Views\Poll\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -299,9 +303,7 @@
     <Content Include="Views\Frator\Profile.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\Meeting\Meeting.cshtml" />
-    <None Include="Views\Poll\Add.cshtml" />
     <Content Include="Views\Poll\AllPolls.cshtml" />
-    <None Include="Views\Poll\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

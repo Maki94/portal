@@ -1,76 +1,99 @@
-﻿@model dynamic
+﻿@model MVC.Models.PollAddModel
 
 @{
+    ViewBag.Title = "Edit";
 }
 
-<link rel="stylesheet" href="../../Content/cssDatePicker/pikaday.css">
-<link rel="stylesheet" href="../../Content/cssDatePicker/theme.css">
+<h2>Edit</h2>
 
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--1-col"></div>
-    <div class="mdl-cell mdl-cell--1-col">
-        <button id="show-dialog-delete" type="button" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary">
-            <i class="fa fa-remove" title="Remove" aria-hidden="true"> Delete</i>
-        </button>
-        <dialog id="dialog-delete" class="mdl-dialog">
-            <h4 class="mdl-dialog__title">Da li zaista zelite da obrisete?</h4>
-            <div class="mdl-dialog__content">
-                <p>
 
-                </p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PollAddModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Topic, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" }})
+                @Html.ValidationMessageFor(model => model.Topic, "", new { @class = "text-danger" })
             </div>
-            <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button">Potvrdi</button>
-                <button type="button" class="mdl-button close">Odkazi</button>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
-        </dialog>
-    </div>
-</div>
+        </div>
 
-<form action="#">
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
-        <h1>
-            <b>Edituj Glasanje</b>
-        </h1>
-    </div>
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
-
-        <div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--5-col-phone">
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="poll-naziv">
-                <label class="mdl-textfield__label" for="poll-naziv">Naziv</label>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AllowMultiple, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.AllowMultiple)
+                    @Html.ValidationMessageFor(model => model.AllowMultiple, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <br />
-            <div class="mdl-textfield mdl-js-textfield">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="poll-opis"></textarea>
-                <label class="mdl-textfield__label" for="poll-opis">Opis</label>
-            </div>
-            <br />
-            <input class="mdl-textfield__input" placeholder="DL" type="text" id="poll-DL">
-            <br />
-            <br />
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.HideResultsUntilFinished, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.HideResultsUntilFinished)
+                    @Html.ValidationMessageFor(model => model.HideResultsUntilFinished, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HideVoters, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.HideVoters)
+                    @Html.ValidationMessageFor(model => model.HideVoters, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        TREBA DA SE DODA TIMEPICKER I DA SE OMOGUCI DODAVANJE OPCIJA
+        <input id="basicExample" type="text" class="time" />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</form>
+}
 
-<script src="https://use.fontawesome.com/c256757c6a.js"></script>
-<script src="../../Scripts/pikaday.js"></script>
-<script>
-    var DL = new Pikaday({ field: document.getElementById('poll-DL') });
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
-    var dialogDelete = document.querySelector('#dialog-delete');
-    var showDialogButtonDelete = document.querySelector('#show-dialog-delete');
-    if (!dialogDelete.showModal) {
-        dialogPolyfill.registerDialog(dialog);
-    }
-    showDialogButtonDelete.addEventListener('click', function () {
-        dialogDelete.showModal();
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.timepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.timepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(window).bind('load', function () {
+        $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
     });
-    dialogDelete.querySelector('.close').addEventListener('click', function () {
-        dialogDelete.close();
+
+    $(function () {
+        $('#basicExample').timepicker();
     });
 </script>

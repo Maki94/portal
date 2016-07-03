@@ -45,7 +45,7 @@
                                 </a>
                             </div>
                             <div class="mdl-card__supporting-text">
-                                <h6>@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) (@Html.DisplayName(m.Nickname))</h6>
+                                <h6>@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) @if (m.Nickname != null) { @Html.DisplayFor(x => m.Nickname) } </h6>
                                 <p>@Html.DisplayName(m.Faculty)</p>
                             </div>
                             <div class="mdl-card__actions mdl-card--border">

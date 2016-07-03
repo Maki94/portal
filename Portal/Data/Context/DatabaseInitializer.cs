@@ -142,6 +142,30 @@ namespace Data
                     EndDate = new DateTime(2016, 7, 20),
                     State = Enumerations.PollState.aktivan,
                     PollCreator = members[1]
+                },
+                new Poll
+                {
+                    Topic = "Glasanje3",
+                    Description = "Ovo je opis za glasanje3.",
+                    AllowMultiple = true,
+                    HideResultsUntilFinished = false,
+                    HideVoters = false,
+                    StartDate = new DateTime(2016, 5, 20),
+                    EndDate = new DateTime(2016, 5, 27),
+                    State = Enumerations.PollState.zatvoren,
+                    PollCreator = members[1]
+                },
+                new Poll
+                {
+                    Topic = "Glasanje4",
+                    Description = "Ovo je opis za glasanje4.",
+                    AllowMultiple = false,
+                    HideResultsUntilFinished = false,
+                    HideVoters = false,
+                    StartDate = new DateTime(2016, 3, 20),
+                    EndDate = new DateTime(2016, 3, 23),
+                    State = Enumerations.PollState.zatvoren,
+                    PollCreator = members[1]
                 }
             };
 
@@ -155,8 +179,20 @@ namespace Data
                 new PollOption {Poll = polls[0], Answer = "Odgovor3 za glasanje1"},
                 new PollOption {Poll = polls[0], Answer = "Odgovor4 za glasanje1"},
                 new PollOption {Poll = polls[0], Answer = "Odgovor5 za glasanje1"},
+
                 new PollOption {Poll = polls[1], Answer = "Odgovor1 za glasanje2"},
-                new PollOption {Poll = polls[1], Answer = "Odgovor2 za glasanje2"}
+                new PollOption {Poll = polls[1], Answer = "Odgovor2 za glasanje2"},
+
+                new PollOption {Poll = polls[2], Answer = "Odgovor1 za glasanje3"},
+                new PollOption {Poll = polls[2], Answer = "Odgovor2 za glasanje3"},
+                new PollOption {Poll = polls[2], Answer = "Odgovor3 za glasanje3"},
+                new PollOption {Poll = polls[2], Answer = "Odgovor4 za glasanje3"},
+                new PollOption {Poll = polls[2], Answer = "Odgovor5 za glasanje3"},
+
+                new PollOption {Poll = polls[3], Answer = "Odgovor1 za glasanje4"},
+                new PollOption {Poll = polls[3], Answer = "Odgovor2 za glasanje4"},
+                new PollOption {Poll = polls[3], Answer = "Odgovor1 za glasanje4"},
+                new PollOption {Poll = polls[3], Answer = "Odgovor2 za glasanje4"}
             };
 
             context.PollOptions.AddRange(polloptions);
@@ -175,7 +211,20 @@ namespace Data
                 // za drugo glasanje
                 new MemberPollOption {Member = members[0], PollOption = polloptions[5]},
                 new MemberPollOption {Member = members[1], PollOption = polloptions[6]},
-                new MemberPollOption {Member = members[2], PollOption = polloptions[6]}
+                new MemberPollOption {Member = members[2], PollOption = polloptions[6]},
+
+                // za trece (zatvoreno) glasanje
+                new MemberPollOption {Member = members[0], PollOption = polloptions[7]},
+                new MemberPollOption {Member = members[1], PollOption = polloptions[7]},
+                new MemberPollOption {Member = members[2], PollOption = polloptions[7]},
+                new MemberPollOption {Member = members[1], PollOption = polloptions[7]},
+                new MemberPollOption {Member = members[1], PollOption = polloptions[8]},
+                new MemberPollOption {Member = members[2], PollOption = polloptions[9]},
+
+                // za cetvrto (zatvoreno) glasanje
+                new MemberPollOption {Member = members[0], PollOption = polloptions[12]},
+                new MemberPollOption {Member = members[1], PollOption = polloptions[12]},
+                new MemberPollOption {Member = members[2], PollOption = polloptions[13]},
             };
 
             context.MemberPollOptions.AddRange(memberpolloptions);

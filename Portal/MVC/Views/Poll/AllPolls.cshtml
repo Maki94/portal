@@ -6,7 +6,7 @@
 }
 @{ LoginDTO member = MemberSession.GetMember();}
 
-<h2>AllPolls</h2>
+<h2>Aktivna glasanja</h2>
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--11-col"></div>
@@ -22,11 +22,11 @@
     <div class="poll-container" data-poll-id="@Html.DisplayFor(x => p.PollDetails.PollId) " @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text> }} >
         <div class="poll-details mdl-list__item mdl-list__item--two-line" >
             <span class="poll-details-title mdl-list__item-primary-content">
-                <b><span class="text-info"> @Html.DisplayFor(x => p.PollDetails.Topic) <span class="text-danger"> @Html.DisplayFor(x => p.PollDetails.EndDate) </span></span></b>
+                <b><span class="text-info"> @Html.DisplayFor(x => p.PollDetails.Topic) <span class="text-danger"> - Zavrsava se @Html.DisplayFor(x => p.PollDetails.EndDate) </span></span></b>
                 <span class="poll-details-description mdl-list__item-sub-title"> @Html.DisplayFor(x => p.PollDetails.Description) </span>
             </span>
 
-            <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
+            <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new { id = p.PollDetails.PollId })">
                 <i class="fa fa-edit" title="Edit" aria-hidden="true"></i>
                 <span class="sr-only">Edit</span>
             </a>
@@ -38,11 +38,11 @@
         <div class="poll-options-list mdl-list">
             @foreach (var po in p.PollOptions)
             {
-                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollId)">
+                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollOptionId)">
                     <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
                         <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input"
                                         @{if (p.AlreadyVoted) { <text> disabled </text> }; if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }}  />
-                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
+                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span data-poll-option-vote-count="@po.VotersIds.Count"> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
                     </label>
                 </div>
             }
@@ -59,75 +59,87 @@
     </div>
 }
 
-    <ul id="poll-index-list" class="mdl-list">
-        <li class="mdl-list__item mdl-list__item--two-line">
-            <span class="mdl-list__item-primary-content">
-                <b><span class="text-info">Datum skupstine</span></b>
-                <span class="mdl-list__item-sub-title"><b>Izglasan 25.februar</b></span>
-                <span class="mdl-list__item-sub-title">62 Glasova</span>
+<h2>Zavrsena glasanja</h2>
+
+@foreach (var p in Model.ClosedPolls)
+{
+    <div class="poll-container poll-closed" data-poll-id="@Html.DisplayFor(x => p.PollDetails.PollId) " @{if (p.PollDetails.AllowMultiple) { <text> data-poll-allow-multiple </text>  }}>
+        <div class="poll-details mdl-list__item mdl-list__item--two-line">
+            <span class="poll-details-title mdl-list__item-primary-content">
+                <b><span class="text-info"> @Html.DisplayFor(x => p.PollDetails.Topic) <span class="text-danger"> - Zavrseno @Html.DisplayFor(x => p.PollDetails.EndDate) </span></span></b>
+                <span class="poll-details-description mdl-list__item-sub-title"> @Html.DisplayFor(x => p.PollDetails.Description) </span>
             </span>
+
             <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
                 <i class="fa fa-edit" title="Edit" aria-hidden="true"></i>
                 <span class="sr-only">Edit</span>
             </a>
-            <a class="btn btn-danger" href="#" disabled>
-                <i class="fa fa-star-o" title="Activity" aria-hidden="true"></i>
-                <span class="sr-only">Activity</span>
-            </a>
-        </li>
-        <li class="mdl-list__item mdl-list__item--two-line">
-            <span class="mdl-list__item-primary-content">
-                <b><span class="text-info">Datum skupstine</span></b>
-                <span class="mdl-list__item-sub-title"><b>Izglasan 25.februar</b></span>
-                <span class="mdl-list__item-sub-title">62 Glasova</span>
-            </span>
-            <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new {id = 1})">
-                <i class="fa fa-edit" title="Activity" aria-hidden="true"></i>
-                <span class="sr-only">Edit</span>
-            </a>
-            <a class="btn btn-danger" href="#" disabled>
+            <a class="btn btn-success" href="#" disabled>
                 <i class="fa fa-star-o" title="Settings" aria-hidden="true"></i>
                 <span class="sr-only">Activity</span>
             </a>
-        </li>
-    </ul>
-    <script src="https://use.fontawesome.com/c256757c6a.js"></script>
-    <script>
-        $(window).bind('load', function() {
-            $('.poll-details').css( 'cursor', 'pointer' );
-            $('.poll-details').bind('click', function() {
-                $(this).siblings('.poll-options-list').slideToggle();
-            });
+        </div>
+        <div class="poll-options-list mdl-list">
+            @foreach (var po in p.PollOptions)
+            {
+                <div class="poll-option mdl-list__item" data-poll-option-id="@Html.DisplayFor(x => po.PollOptionId)">
+                    <label class="poll-option-label mdl-checkbox mdl-js-checkbox">
+                        <input type="checkbox" class="poll-option-checkbox mdl-checkbox__input" disabled @if (po.VotersIds.Exists(x => x == member.MemberID)) { <text> checked </text> }} />
+                        <span class="mdl-checkbox__label">@Html.DisplayFor(x => po.Answer)</span><span> (@Html.DisplayFor(x => po.VotersIds.Count)) </span>
+                    </label>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+    
+<script src="https://use.fontawesome.com/c256757c6a.js"></script>
+<script>
+    $(window).bind('load', function() {
+        $('.poll-details').css( 'cursor', 'pointer' );
+        $('.poll-details').bind('click', function() {
+            $(this).siblings('.poll-options-list').slideToggle();
         });
+        $('.poll-closed').children('.poll-options-list').toggle();
+    });
 
-        $('button.vote-button').on('click', function() {
-            var pollContainer = $(this).closest('.poll-container');
-            var pollOptionIds = [];
-            var $this = $(this);
-            pollOptions = $(this).parent().siblings('.poll-option');
-            pollOptions.each(function() {
-                if ($(this).find('.poll-option-checkbox:checked').length != 0) {
-                    pollOptionIds.push($(this).data('poll-option-id'));
-                }
-            });
-            $.post("@Url.Action("AddVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionIds": pollOptionIds }, function (data) {
-                var parent = $this.parent();
-                $this.hide();
-                parent.html("<b>Hvala na glasanju!</b>");
-
-                pollOptions.find('.poll-option-label').each(function (){
-                    $(this)[0].MaterialCheckbox.disable();
-                });
-            });
-        });
-
-        $('input.poll-option-checkbox').on('change', function (evt) {
-            var pollContainer = $(this).closest('.poll-container');
-            var allowMultiple = pollContainer.is("[data-poll-allow-multiple]");
-            if ($(this).is(':checked')) {
-                if ($(this).closest('.poll-option').siblings().find('.poll-option-checkbox:checked').length >= 1 && !allowMultiple) {
-                    this.checked = false;  // ako pokusa da cekira vise opcija nego sto sme
-                }
+    $('button.vote-button').on('click', function() {
+        var pollContainer = $(this).closest('.poll-container');
+        var pollOptionIds = [];
+        var $this = $(this);
+        pollOptions = $(this).parent().siblings('.poll-option');
+        pollOptions.each(function() {
+            if ($(this).find('.poll-option-checkbox:checked').length != 0) {
+                pollOptionIds.push($(this).data('poll-option-id'));
             }
         });
-    </script>
+        $.post("@Url.Action("AddVote", "Poll")", { "memberId" : @member.MemberID, "pollOptionIds": pollOptionIds }, function (data) {
+            var parent = $this.parent();
+            $this.hide();
+            parent.html("<b>Hvala na glasanju!</b>");
+
+            pollOptions.find('.poll-option-label').each(function (){
+                $(this)[0].MaterialCheckbox.disable();
+            });
+
+            pollOptions.find('.poll-option-checkbox:checked').each(function() {
+                var spanEl = $(this).siblings("[data-poll-option-vote-count]");
+                var x = spanEl.data("poll-option-vote-count");
+                x++;
+                spanEl.data("poll-option-vote-count", x);
+                spanEl.html(" (" + x + ")");
+            });
+        });
+    });
+
+    $('input.poll-option-checkbox').on('change', function (evt) {
+        var pollContainer = $(this).closest('.poll-container');
+        var allowMultiple = pollContainer.is("[data-poll-allow-multiple]");
+        if ($(this).is(':checked')) {
+            if ($(this).closest('.poll-option').siblings().find('.poll-option-checkbox:checked').length >= 1 && !allowMultiple) {
+                this.checked = false;  // ako pokusa da cekira vise opcija nego sto sme
+            }
+        }
+    });
+</script>

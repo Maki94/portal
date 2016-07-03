@@ -1,0 +1,14 @@
+.calculator-field {
+  background-color: orchid;
+  width: 77px;
+  height: 77px;
+  max-width: 77px;
+  max-height: 77px;
+}
+.calculator-field:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+#today {
+  background: purple;
+}

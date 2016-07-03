@@ -1,45 +1,187 @@
-﻿@model dynamic
+﻿@model MVC.Models.PollAddModel
 
 @{
+    ViewBag.Title = "Add";
 }
 
-<link rel="stylesheet" href="../../Content/cssDatePicker/pikaday.css">
-<link rel="stylesheet" href="../../Content/cssDatePicker/theme.css">
-<form action="#">
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
-        <h1>
-            <b>Kreiraj Glasanje</b>
-        </h1>
-    </div>
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
+<h2>Novo glasanje</h2>
 
-        <div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--5-col-phone">
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="poll-naziv">
-                <label class="mdl-textfield__label" for="poll-naziv">Naziv</label>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Topic, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Topic, "", new { @class = "text-danger" })
             </div>
-            <br />
-            <div class="mdl-textfield mdl-js-textfield">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="poll-opis"></textarea>
-                <label class="mdl-textfield__label" for="poll-opis">Opis</label>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
-            <br />
-            <input class="mdl-textfield__input" placeholder="DL" type="text" id="poll-DL">
-            <br />
-            <br />
-            <div class="mdl-list__item">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                    Sacuvaj izmene
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AllowMultiple, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="mdl-radio mdl-js-radio">
+                    @Html.RadioButtonFor(model => model.AllowMultiple, false, htmlAttributes: new { @class = "mdl-radio__button" })
+                    <span class="mdl-radio__label">Jedan</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio">
+                    @Html.RadioButtonFor(model => model.AllowMultiple, true, htmlAttributes: new { @class = "mdl-radio__button" })
+                    <span class="mdl-radio__label">Više</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HideResultsUntilFinished, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="mdl-radio mdl-js-radio">
+                    @Html.RadioButtonFor(model => model.HideResultsUntilFinished, false, htmlAttributes: new { @class = "mdl-radio__button" })
+                    <span class="mdl-radio__label">Ne</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio">
+                    @Html.RadioButtonFor(model => model.HideResultsUntilFinished, true, htmlAttributes: new { @class = "mdl-radio__button" })
+                    <span class="mdl-radio__label">Da</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HideVoters, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="mdl-radio mdl-js-radio">
+                    @Html.RadioButtonFor(model => model.HideVoters, false, htmlAttributes: new { @class = "mdl-radio__button" })
+                    <span class="mdl-radio__label">Ne</span>
+                </label>
+                <label class="mdl-radio mdl-js-radio">
+                    @Html.RadioButtonFor(model => model.HideVoters, true, htmlAttributes: new { @class = "mdl-radio__button" })
+                    <span class="mdl-radio__label">Da</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control time" }})
+                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Options, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Options[0], new { htmlAttributes = new { @class = "form-control", data_option_id = "0" }})
+                @Html.EditorFor(model => model.Options[1], new { htmlAttributes = new { @class = "form-control", data_option_id = "1" }})
+                @Html.ValidationMessageFor(model => model.Options[0], "", new { @class = "text-danger" })
+                <button type="button" class="more-options-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Još opcija
                 </button>
             </div>
         </div>
-    </div>
-</form>
 
-<script src="../../Scripts/pikaday.js"></script>
-<script>
-    var DL = new Pikaday({ field: document.getElementById('poll-DL') });
+        TREBA DA SE DODA TIMEPICKER I DA SE OMOGUCI DODAVANJE OPCIJA
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.timepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.timepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(window).bind('load', function () {
+        $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+    });
+
+    $(function () {
+        $('.time').timepicker({ 'timeFormat': 'H:i:s' });
+    });
+
+    $('button.more-options-button').on('click', function() {
+        var lastOption = $(this).prev();
+        var newOptionId = lastOption.data("option-id") + 1;
+        if (newOptionId < 7) {
+            var newOption = lastOption.clone();
+            newOption.attr('id', 'Options_' + newOptionId + '_');
+            newOption.attr('name', "Options[" + newOptionId + "]");
+            newOption.data("option-id", newOptionId);
+            newOption.insertAfter(lastOption);
+            if (newOptionId >= 6) {
+                $(this)[0].MaterialButton.disable();
+            }
+        }
+    });
+
+    jQuery.validator.unobtrusive.adapters.addBool("optionlist", "required");
 </script>
+
+
+
+@*  OVO JE PRVENSTVENO BILO U OVOM FAJLU
+
+    <link rel="stylesheet" href="../../Content/cssDatePicker/pikaday.css">
+    <link rel="stylesheet" href="../../Content/cssDatePicker/theme.css">
+    <form action="#">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
+            <h1>
+                <b>Kreiraj Glasanje</b>
+            </h1>
+        </div>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
+
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--5-col-phone">
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="poll-naziv">
+                    <label class="mdl-textfield__label" for="poll-naziv">Naziv</label>
+                </div>
+                <br />
+                <div class="mdl-textfield mdl-js-textfield">
+                    <textarea class="mdl-textfield__input" type="text" rows="3" id="poll-opis"></textarea>
+                    <label class="mdl-textfield__label" for="poll-opis">Opis</label>
+                </div>
+                <br />
+                <input class="mdl-textfield__input" placeholder="DL" type="text" id="poll-DL">
+                <br />
+                <br />
+                <div class="mdl-list__item">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Sacuvaj izmene
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="../../Scripts/pikaday.js"></script>
+    <script>
+        var DL = new Pikaday({ field: document.getElementById('poll-DL') });
+    </script>*@
