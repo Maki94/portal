@@ -144,5 +144,13 @@ namespace Data.Entities
                 dc.SaveChanges();
             }
         }
+
+        public static ContactPerson GetContactPerson(int id, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+               return dc.ContactPersons.Where(x => x.ContactPersonId == id).First();
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MVC.Models;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MVC.Controllers
 {
@@ -43,6 +44,15 @@ namespace MVC.Controllers
         public ActionResult Add()
         {
             return View(new CompanyAddModel());
+        }
+
+        public string getContact(int id)
+        {
+            Data.DataClasses.ContactPerson cp = Data.Entities.Companys.GetContactPerson(id);
+            var c = MVC.Models.CompanyModel.crateContactDTO(cp);
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(c);
+            return json;
         }
     }
 }

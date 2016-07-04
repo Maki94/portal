@@ -131,7 +131,7 @@ namespace MVC.Models
             return cp;
         }
 
-        private static ContactPersonDTO crateContactDTO(ContactPerson c)
+        public static ContactPersonDTO crateContactDTO(ContactPerson c)
         {
             return new ContactPersonDTO
             {
