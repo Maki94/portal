@@ -3,6 +3,7 @@ using System.Web.Script.Serialization;
 using Data;
 using Data.Entities;
 using MVC.Models;
+using System;
 
 namespace MVC.Controllers
 {
@@ -58,15 +59,31 @@ namespace MVC.Controllers
             return json;
         }
         [HttpPost]
-        public void SaveComment(string text, string tip, string projekat)
+        public void SaveComment(string text, string tip, string projekat, string companyId)
         {
-            System.Console.WriteLine(text, tip, projekat);
-            // TODO: @nikolcar,
+            int idc;
+            int.TryParse(companyId, out idc);
+
+            int idp;
+            int.TryParse(projekat, out idp);
+
+            Enumerations.CommentType type = Enumerations.CommentType.Classic;
+            foreach(int i in Enum.GetValues(typeof(Enumerations.CommentType)))
+            {
+                if(((Enumerations.CommentType)i).ToString().CompareTo(tip)==0)
+                {
+                    type = (Enumerations.CommentType)i;
+                }
+            }
+            Data.Entities.Comments.AddComment(MemberSession.GetMemberId(), idc, idp, type, text);
         }
 
         public ActionResult AddContact(string name, string note, string email, string phone, string companyId)
         {
-            // TODO: @nikolcar snimiti sve paramentre u ContactPerson
+            int idc;
+            int.TryParse(companyId, out idc);
+
+            Data.Entities.Companys.AddContactPerson(idc, email, name, phone, note);
             return RedirectToAction("Index");
         }
 

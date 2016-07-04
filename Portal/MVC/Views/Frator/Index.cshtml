@@ -72,9 +72,9 @@
                 </div>
 
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-                    @if (Model.Show.Contacts.Any())
+                    <ul id="kontakt-kompanija" class="div-expand demo-list-three mdl-list">
+                        @if (Model.Show.Contacts.Any())
                 {
-                        <ul id="kontakt-kompanija" class="div-expand demo-list-three mdl-list">
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <select class="mdl-textfield__input" id="kompanija-kontakti">
@@ -112,38 +112,40 @@
                                     <label class="mdl-textfield__label" for="kontakti-napomena">Napomena</label>
                                 </div>
                             </li>
-                            <li class="li-shrink mdl-list__item">
-                                <form action="@Url.Action("AddContact", "Frator")">
-                                    <a id="show-dialog-dodaj-kontakt" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Dodaj Clana</a>
-                                    <dialog id="dialog-dodaj-kontakt" class="mdl-dialog">
-                                        <br />
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input class="mdl-textfield__input" type="text" id="AddContact-name" name="name" required>
-                                            <label class="mdl-textfield__label" for="AddContact-name">Naziv...</label>
-                                        </div>
-                                        <br />
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input class="mdl-textfield__input" type="text" id="AddContact-note" name="note" required>
-                                            <label class="mdl-textfield__label" for="AddContact-note">Napomena...</label>
-                                        </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input class="mdl-textfield__input" type="text" id="AddContact-email" name="email" required>
-                                            <label class="mdl-textfield__label" for="AddContact-email">Email...</label>
-                                        </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input class="mdl-textfield__input" type="text" id="AddContact-phone" name="phone" required>
-                                            <label class="mdl-textfield__label" for="AddContact-phone">Telefon...</label>
-                                        </div>
-                                        <input class="mdl-textfield__input" type="hidden" value=@Html.DisplayName(Model.Show.CompanyId.ToString()) name="companyId">
-                                        <div class="mdl-dialog__actions">
-                                            <button type="button" class="mdl-button">Potvrdi</button>
-                                            <button type="submit" class="mdl-button close" id="close-dialog">Zatvori</button>
-                                        </div>
-                                    </dialog>
-                                </form>
-                            </li>
-                        </ul>
-                    }
+
+                        }
+                        <li class="li-shrink mdl-list__item">
+                            <form action="@Url.Action("AddContact", "Frator")">
+                                <a id="show-dialog-dodaj-kontakt" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Dodaj Novu Kontakt Osobu</a>
+                                <dialog id="dialog-dodaj-kontakt" class="mdl-dialog">
+                                    <br />
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="AddContact-name" name="name" required>
+                                        <label class="mdl-textfield__label" for="AddContact-name">Ime i prezime...</label>
+                                    </div>
+                                    <br />
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="AddContact-note" name="note" required>
+                                        <label class="mdl-textfield__label" for="AddContact-note">Napomena...</label>
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="AddContact-email" name="email" required>
+                                        <label class="mdl-textfield__label" for="AddContact-email">Email...</label>
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="AddContact-phone" name="phone" required>
+                                        <label class="mdl-textfield__label" for="AddContact-phone">Telefon...</label>
+                                    </div>
+                                    <input class="mdl-textfield__input" type="hidden" value=@Html.DisplayName(Model.Show.CompanyId.ToString()) name="companyId">
+                                    <div class="mdl-dialog__actions">
+                                        <button type="button" class="mdl-button close">Zatvori</button>
+                                        <button type="submit" class="mdl-button close" id="close-dialog">Potvrdi</button>
+                                    </div>
+                                </dialog>
+                            </form>
+                        </li>
+                    </ul>
+
                     <ul id="komentar-kompanija" class="div-expand demo-list-three mdl-list">
                         <li class="mdl-list__item">
                             <span class="h2 text-warning text-center">Komentar</span>
@@ -408,28 +410,28 @@
         if (x === ENTER_CODE && this.value !== "") {
 
             var message = this.value;
-            var tip = komentarTip.value;
-            var projekat = komentarAktivanProjekat.value;
+            if (message.length > 2){
+                var tip = komentarTip.value;
+                var projekat = komentarAktivanProjekat.value;
+                var url = '@Url.Action("SaveComment", "Frator")';
 
-            var url = '@Url.Action("SaveComment", "Frator")';
 
+                url += '?text=' + message;
+                url += '&tip=' + tip;
+                url += '&projekat=' + projekat;
+                url += '&companyId=' + @Html.DisplayName(Model.Show?.CompanyId.ToString());
 
-            url += '?text=' + message;
-            url += '&tip=' + tip;
-            url += '&projekat=' + projekat;
-            url += '&kompanija=' + @Html.DisplayName(Model.Show?.CompanyId.ToString());
-
-            $.post(url, function (data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
-                $('#frator-komentari-wrapper').prepend(
-                    '<li class="ChatLog__entry ChatLog__entry_mine"> ' +
-                    '<img class="ChatLog__avatar" src="//placekitten.com/56/56" />' +
-                    '<p class="ChatLog__message">' + message + '</p>' +
-                    '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">11</i></a></p>' +
-                    '&nbsp;&nbsp;&nbsp;' +
-                    '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>' +
-                    '</li>');
-            });
-
+                $.post(url, function (data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
+                    $('#frator-komentari-wrapper').prepend(
+                        '<li class="ChatLog__entry ChatLog__entry_mine"> ' +
+                        '<img class="ChatLog__avatar" src="http://i.imgur.com/4UaFMTl.jpg" />' +
+                        '<p class="ChatLog__message">' + message + '</p>' +
+                        '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">0</i></a></p>' +
+                        '&nbsp;&nbsp;&nbsp;' +
+                        '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>' +
+                        '</li>');
+                });
+            }
             
             this.value = "";
         }
