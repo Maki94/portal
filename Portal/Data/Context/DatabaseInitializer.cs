@@ -259,7 +259,7 @@ namespace Data
             context.Companies.AddRange(company);
             var comment = new List<Comment>
             {
-                new Comment {Author = members[1], Company = company[0], Project = projects[0], Text = "bla", Time = DateTime.Now, Type = "nesto" }
+                new Comment {Author = members[1], Company = company[0], Project = projects[0], Text = "bla", Time = DateTime.Now, Type = Enumerations.CommentType.Classic }
             };
 
             context.Comments.AddRange(comment);

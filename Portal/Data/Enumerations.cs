@@ -82,7 +82,7 @@ namespace Data
             Classic,
             HappyNews,
             SadNews,
-            InportantInfo
+            ImportantInfo
         }
 
         public enum TeamRole
