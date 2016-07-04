@@ -52,6 +52,23 @@ namespace Data.Entities
             }
         }
 
+        public static List<Member> GetWithoutMaster(DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                List<Member> mem = dc.Members.Where(x => !x.IsDeleted).ToList();
+                List<MemberMaster> mm = dc.MemberMaster.Include(x => x.Member).Where(x => !x.IsDeleted && x.FinishDate==null).ToList();
+                foreach (Member m in mem)
+                {
+                    if (mm.Select(x => x.Member).ToList().Contains(m))
+                    {
+                        mem.Remove(m);
+                    }
+                }
+                return mem;
+            }
+        }
+
         public static List<Member> GetMemberAnniversary(DateTime date)
         {
             //int[] anniversary = { 100, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000};
@@ -253,6 +270,14 @@ namespace Data.Entities
 
                 dc.MemberTeams.Add(mt);
                 dc.SaveChanges();
+            }
+        }
+
+        public static List<Member> GetFullMembers(DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                return dc.Members.Where(x => x.Status == Enumerations.MemberStatus.Full && !x.IsDeleted).ToList();
             }
         }
     }

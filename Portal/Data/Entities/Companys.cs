@@ -152,5 +152,13 @@ namespace Data.Entities
                return dc.ContactPersons.Where(x => x.ContactPersonId == id).First();
             }
         }
+
+        public static Company GetCompanyAt(int id, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                return dc.Companies.Where(x => x.CompanyId == id).Include(x => x.Comments).Include(x => x.Comments.Select(z => z.Likes)).Include(x => x.Contacts).First();
+            }
+        }
     }
 }

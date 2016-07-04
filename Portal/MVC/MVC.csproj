@@ -189,6 +189,7 @@
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MessageNotificationListModel.cs" />
+    <Compile Include="Models\MPModel.cs" />
     <Compile Include="Models\PollAddModel.cs" />
     <Compile Include="Models\PollModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />

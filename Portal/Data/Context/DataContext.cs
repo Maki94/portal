@@ -46,6 +46,8 @@ namespace Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<DefaultPicture> DefaultPictures { get; set; }
+        public DbSet<MemberMaster> MemberMaster { get; set; }
+        public DbSet<Report> Reports { get; set; }
 
         private void SoftDelete(DbEntityEntry entry)
         {
