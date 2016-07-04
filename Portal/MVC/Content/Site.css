@@ -889,6 +889,9 @@ aside a:hover {
 #frator-komentari-wrapper .ChatLog__message .ChatLog__timestamp {
   display: none;
 }
+#kontakt-kompanija li {
+  margin-left: 10%;
+}
 .badge-img-wrapper {
   background-color: transparent;
 }
