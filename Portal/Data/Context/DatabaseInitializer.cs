@@ -54,6 +54,7 @@ namespace Data
                     LastChatParticipant = 2,
                     Skype = "jajac94",
                     Facebook = "https://www.facebook.com/milos.jajac",
+                    Status = Enumerations.MemberStatus.Full
                 },
                 new Member
                 {
@@ -70,7 +71,8 @@ namespace Data
                     LastChatParticipant = 1,
                     Skype = "mitic94",
                     Facebook = "https://www.facebook.com/mitic.nikolca",
-                    MasterId = 1
+                    Status = Enumerations.MemberStatus.Full
+
                 },
                 new Member
                 {
@@ -87,8 +89,20 @@ namespace Data
                     LastChatParticipant = 1,
                     Skype = "marko94",
                     Facebook = "https://www.facebook.com/mihajlovic.maki",
+                    Status = Enumerations.MemberStatus.Full
                 }
             };
+
+            context.Members.AddRange(members);
+            context.SaveChanges();
+
+            var masters = new List<MemberMaster>
+            {
+                new MemberMaster { Member = members[0], StartDate = DateTime.Now, MasterId = 2 }
+            };
+
+            context.MemberMaster.AddRange(masters);
+            context.SaveChanges();
 
             var badges = new List<Badge>
             {

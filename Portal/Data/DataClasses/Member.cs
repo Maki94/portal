@@ -35,8 +35,6 @@ namespace Data.DataClasses
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
         
-        public int? MasterId { get; set; }
-
         public virtual ICollection<MemberProject> MemberProjects { get; set; }
         public virtual ICollection<MemberTeam> MemberTeams { get; set; }
     }

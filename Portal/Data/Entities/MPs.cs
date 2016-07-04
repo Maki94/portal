@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Data.Entities
 {
@@ -13,7 +14,15 @@ namespace Data.Entities
         {
             using (dc = dc ?? new DataContext())
             {
-                return dc.Members.Where(x => x.MasterId == idm).ToList();
+                return dc.MemberMaster.Include(x=>x.Member).Where(x => x.MasterId == idm && !x.IsDeleted).Select(x=>x.Member).ToList();
+            }
+        }
+
+        public static List<MemberMaster> GetReports(DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                return dc.MemberMaster.Include(x => x.Member).Include(x => x.Reports).Where(x=>!x.IsDeleted).ToList();
             }
         }
     }
