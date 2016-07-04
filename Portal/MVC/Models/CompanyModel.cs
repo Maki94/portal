@@ -74,20 +74,22 @@ namespace MVC.Models
             foreach (MemberComment m in likes)
             {
                 if(!m.IsDeleted)
-                    md.Add(crateMemberDTO(m.Member));
+                    md.Add(createMemberDTO(m.Member));
             }
             return md;
         }
 
-        private static MemberDTO crateMemberDTO(Member member)
+        public static MemberDTO createMemberDTO(Member member)
         {
             return new MemberDTO
             {
-                MemberId = member.MemberId
+                MemberId = member.MemberId,
+                Name = member.Name,
+                Surname = member.Surname
             };
         }
 
-        private static CompanyDTO createCompanyDTO(Company c)
+        public static CompanyDTO createCompanyDTO(Company c)
         {
             return new CompanyDTO
             {
@@ -131,7 +133,7 @@ namespace MVC.Models
             return cp;
         }
 
-        private static ContactPersonDTO crateContactDTO(ContactPerson c)
+        public static ContactPersonDTO crateContactDTO(ContactPerson c)
         {
             return new ContactPersonDTO
             {

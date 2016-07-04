@@ -40,10 +40,9 @@ namespace Data
 
         public enum MemberStatus
         {
-            pocetnik,
-            bitan,
-            kralj,
-            car,
+            Baby,
+            Full,
+            Alumni
         }
 
         public enum PollState

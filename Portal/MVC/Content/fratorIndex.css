@@ -78,3 +78,6 @@
 #frator-komentari-wrapper .ChatLog__message .ChatLog__timestamp {
   display: none;
 }
+#kontakt-kompanija li {
+  margin-left: 10%;
+}

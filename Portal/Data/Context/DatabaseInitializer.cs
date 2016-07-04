@@ -54,6 +54,7 @@ namespace Data
                     LastChatParticipant = 2,
                     Skype = "jajac94",
                     Facebook = "https://www.facebook.com/milos.jajac",
+                    Status = Enumerations.MemberStatus.Full
                 },
                 new Member
                 {
@@ -70,6 +71,8 @@ namespace Data
                     LastChatParticipant = 1,
                     Skype = "mitic94",
                     Facebook = "https://www.facebook.com/mitic.nikolca",
+                    Status = Enumerations.MemberStatus.Full
+
                 },
                 new Member
                 {
@@ -86,13 +89,25 @@ namespace Data
                     LastChatParticipant = 1,
                     Skype = "marko94",
                     Facebook = "https://www.facebook.com/mihajlovic.maki",
+                    Status = Enumerations.MemberStatus.Full
                 }
             };
 
+            context.Members.AddRange(members);
+            context.SaveChanges();
+
+            var masters = new List<MemberMaster>
+            {
+                new MemberMaster { Member = members[0], StartDate = DateTime.Now, MasterId = 2 }
+            };
+
+            context.MemberMaster.AddRange(masters);
+            context.SaveChanges();
+
             var badges = new List<Badge>
             {
-                new Badge { Name = "JobFair manijak" },
-                new Badge { Name = "Pobednik elektrijade" },
+                new Badge { Name = "JobFair manijak", Description = "bla"},
+                new Badge { Name = "Pobednik elektrijade", Description = "nesto" },
             };
 
             var memberbadges = new List<MemberBadge>
@@ -301,7 +316,8 @@ namespace Data
 
             var contact = new List<ContactPerson>
             {
-                new ContactPerson {Company = company[0], Email="bla", Name="bla", Phone="123", Note = "bla", StartDate = DateTime.Now }
+                new ContactPerson {Company = company[0], Email="bla", Name="bla", Phone="123", Note = "bla", StartDate = DateTime.Now },
+                new ContactPerson {Company = company[0], Email="aaa", Name="aaa", Phone="123", Note = "aaa", StartDate = DateTime.Now }
             };
             context.ContactPersons.AddRange(contact);
             context.SaveChanges();

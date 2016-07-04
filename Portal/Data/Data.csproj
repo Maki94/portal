@@ -63,6 +63,7 @@
     <Compile Include="DataClasses\Anecdote.cs" />
     <Compile Include="DataClasses\AnecdoteMember.cs" />
     <Compile Include="DataClasses\Badge.cs" />
+    <Compile Include="DataClasses\MemberMaster.cs" />
     <Compile Include="DataClasses\Messenger\MessageNotification.cs" />
     <Compile Include="DataClasses\Comment.cs" />
     <Compile Include="DataClasses\Company.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="DataClasses\Poll.cs" />
     <Compile Include="DataClasses\PollOption.cs" />
     <Compile Include="DataClasses\Project.cs" />
+    <Compile Include="DataClasses\Report.cs" />
     <Compile Include="DataClasses\Role.cs" />
     <Compile Include="DataClasses\Team.cs" />
     <Compile Include="Context\DataContext.cs" />
@@ -99,15 +101,21 @@
     <Compile Include="DTOs\Company\MemberCompanyDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
+    <Compile Include="DTOs\Meeting\ExcuseDTO.cs" />
+    <Compile Include="DTOs\Meeting\MeetingDTO.cs" />
+    <Compile Include="DTOs\Meeting\MemberMeetingDTO.cs" />
     <Compile Include="DTOs\MemberDTO.cs" />
+    <Compile Include="DTOs\MemberMasterDTO.cs" />
     <Compile Include="DTOs\MemberPollOptionDTO.cs" />
     <Compile Include="DTOs\MemberProjectDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageNotificationDTO.cs" />
+    <Compile Include="DTOs\MPDTO.cs" />
     <Compile Include="DTOs\PollDTO.cs" />
     <Compile Include="DTOs\PollOptionDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
     <Compile Include="DTOs\ProjectMemberDTO.cs" />
+    <Compile Include="DTOs\ReportDTO.cs" />
     <Compile Include="Entities\Badges.cs" />
     <Compile Include="Entities\Chat\IMessage.cs" />
     <Compile Include="Entities\Chat\IMessageNotification.cs" />
@@ -117,7 +125,9 @@
     <Compile Include="Entities\Companys.cs" />
     <Compile Include="Entities\DefaultPictures.cs" />
     <Compile Include="Entities\Login.cs" />
+    <Compile Include="Entities\Meetings.cs" />
     <Compile Include="Entities\Members.cs" />
+    <Compile Include="Entities\MPs.cs" />
     <Compile Include="Entities\Polls.cs" />
     <Compile Include="Entities\Projects.cs" />
     <Compile Include="Entities\Roles.cs" />

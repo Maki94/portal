@@ -1018,14 +1018,22 @@ aside a:hover {
 #messenger-wrapper {
   margin-top: 100px;
 }
+#messenger-wrapper #messenger-list {
+  padding-left: 0px;
+  padding-top: .5em;
+}
 #messenger-wrapper .time-info {
   display: none;
 }
 #messenger-wrapper .time-info .time-signature {
-  color: wheat;
+  color: blueviolet;
+}
+#messenger-wrapper .time-info .time-signature_mine {
+  color: pink;
 }
 #messenger-wrapper ul.ChatLog {
   list-style: none;
+  margin: 0px;
 }
 #messenger-wrapper .ChatLog {
   max-width: 100%;
@@ -1284,6 +1292,9 @@ aside a:hover {
 }
 #frator-komentari-wrapper .ChatLog__message .ChatLog__timestamp {
   display: none;
+}
+#kontakt-kompanija li {
+  margin-left: 10%;
 }
 .badge-img-wrapper {
   background-color: transparent;
