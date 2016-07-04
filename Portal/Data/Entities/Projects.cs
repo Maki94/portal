@@ -36,7 +36,7 @@ namespace Data.Entities
             }
         }
 
-        public static List<Project> GetProjectCurrentAtDate(DateTime date)
+        public static List<Project> GetProjectCurrentAtDate()
         {
             using (var dc = new DataContext())
             {
@@ -85,5 +85,6 @@ namespace Data.Entities
 
             }
         }
+
     }   
 }

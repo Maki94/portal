@@ -42,5 +42,6 @@ namespace Data.DTOs.Company
         public bool IsDeleted { get; set; }
 
         public List<ContactPersonDTO> Contacts { get; set; }
+        public List<CommentDTO> Comments { get; set; }
     }
 }

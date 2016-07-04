@@ -36,7 +36,7 @@ namespace MVC.Models
                 model.MyCompany.Add(createCompanyDTO(c));
             }
 
-            model.Show = model.MyCompany.FirstOrDefault(); 
+            model.Show = model.MyCompany.FirstOrDefault();
 
             List<Comment> lastComments = Data.Entities.Comments.GetLast(20);
 
@@ -49,7 +49,7 @@ namespace MVC.Models
 
         private static CommentDTO createCommentDTO(Comment c)
         {
-            List<MemberComment> truecomm = c.Likes.Where(x => x.IsDeleted == false).ToList();
+            List<MemberComment> truecomm =  c.Likes?.Where(x => x.IsDeleted == false).ToList();
             return new CommentDTO
             {
                 AuthorFullName = c.Author.Name + " " + c.Author.Surname,
@@ -62,9 +62,9 @@ namespace MVC.Models
                 Text = c.Text,
                 Time = c.Time,
                 Type = c.Type,
-                CountLikes = truecomm.Count,
-                LikersNames = string.Join(", ", c.Likes.Select(x => x.Member.Name + " " + x.Member.Surname).ToArray()),
-                Likers = createMembersDTO(truecomm)
+                CountLikes = truecomm != null ? truecomm.Count:0,
+                LikersNames = truecomm!=null ? string.Join(", ", truecomm.Select(x => x.Member.Name + " " + x.Member.Surname).ToArray()) : "",
+                Likers = createMembersDTO(truecomm!=null ? truecomm : new List<MemberComment>())
             };
         }
 
@@ -73,7 +73,8 @@ namespace MVC.Models
             List<MemberDTO> md = new List<MemberDTO>();
             foreach (MemberComment m in likes)
             {
-                md.Add(crateMemberDTO(m.Member));
+                if(!m.IsDeleted)
+                    md.Add(crateMemberDTO(m.Member));
             }
             return md;
         }
@@ -94,6 +95,7 @@ namespace MVC.Models
                 City = c.City,
                 CompanyId = c.CompanyId,
                 Contacts = createContactsDTO(c.Contacts),
+                Comments = createCommentsDTO(c.Comments),
                 Description = c.Description,
                 Email = c.Email,
                 Field = c.Field,
@@ -104,6 +106,17 @@ namespace MVC.Models
             };
         }
 
+        private static List<CommentDTO> createCommentsDTO(ICollection<Comment> comments)
+        {
+            List<CommentDTO> md = new List<CommentDTO>();
+            foreach (Comment c in comments)
+            {
+                if (!c.IsDeleted)
+                    md.Add(createCommentDTO(c));
+            }
+            return md;
+        }
+
         private static List<ContactPersonDTO> createContactsDTO(ICollection<ContactPerson> contacts)
         {
             if (contacts==null)
@@ -112,7 +125,8 @@ namespace MVC.Models
             List<ContactPersonDTO> cp = new List<ContactPersonDTO>();
             foreach (ContactPerson c in contacts)
             {
-                cp.Add(crateContactDTO(c));
+                if(!c.IsDeleted)
+                    cp.Add(crateContactDTO(c));
             }
             return cp;
         }
@@ -122,6 +136,7 @@ namespace MVC.Models
             return new ContactPersonDTO
             {
                 ContactPersonId = c.ContactPersonId,
+                StartDate = c.StartDate,
                 Email = c.Email,
                 Name = c.Name,
                 Note = c.Note,

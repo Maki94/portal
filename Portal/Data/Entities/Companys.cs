@@ -15,7 +15,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return dc.Companies.Include(x => x.Contacts).ToList();
+                return dc.Companies.Include(x => x.Contacts).Include(x=>x.Comments).Include(x => x.Comments.Select(z=>z.Author)).Include(x => x.Comments.Select(z => z.Project)).Include(x => x.Comments.Select(z=>z.Likes)).Include(x => x.Comments.Select(z=>z.Likes.Select(y => y.Member))).ToList();
             }
         }
 
@@ -23,7 +23,8 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return dc.MemberCompanies.Where(x => x.MemberId == id && x.IsDeleted==false && x.FinishDate ==null).Include(x => x.Company).Include(x=>x.Company.Contacts).Select(x => x.Company).ToList();
+                List<MemberCompany> mc = dc.MemberCompanies.Where(x => x.MemberId == id && x.IsDeleted==false && x.FinishDate ==null).Include(x => x.Company).Include(x=>x.Company.Contacts).Include(x => x.Company.Comments).Include(x => x.Company.Comments.Select(z => z.Author)).Include(x => x.Company.Comments.Select(z => z.Likes)).Include(x => x.Company.Comments.Select(z => z.Likes.Select(y => y.Member))).Include(x => x.Company.Comments.Select(z => z.Project)).ToList();
+                return mc.Select(x => x.Company).ToList();
             }
         }
     }

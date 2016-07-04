@@ -77,6 +77,14 @@ namespace Data
             stuff,
         }
 
+        public enum CommentType
+        {
+            Classic,
+            HappyNews,
+            SadNews,
+            InportantInfo
+        }
+
         public enum TeamRole
         {
             MO,     //Main Organiser                        project || event

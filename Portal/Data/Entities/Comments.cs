@@ -15,7 +15,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return dc.Comments.Include(x => x.Author).Include(x => x.Company).Include(x => x.Project).Include(x => x.Likes).Include(x=>x.Likes.Select(z=>z.Member)).OrderByDescending(x=>x.Time).Take(v).ToList();
+                return dc.Comments.Include(x => x.Author).Include(x => x.Company).Include(x => x.Project).Include(x => x.Likes).Include(x=>x.Likes.Select(z=>z.Member)).Where(x=>x.IsDeleted==false).OrderByDescending(x=>x.Time).Take(v).ToList();
             }
         }
 
