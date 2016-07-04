@@ -141,13 +141,15 @@
     <div class="mdl-tabs__panel" id="add-report-panel">
         <form action="#">
             <ul id="add-report-panel-list-item" class="mdl-list">
-                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="messenger-user" list="messenger-users">
-                    <label class="mdl-textfield__label" for="messenger-user">Izaberi novog clana...</label>
+                <li class="mdl-list__item">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="master-list" list="messenger-users" required>
+                        <label class="mdl-textfield__label" for="master-list">Izaberi novog clana...</label>
+                    </div>
                 </li>
                 <li class="mdl-list__item">
                     <div id="mp-report-opis-wrapper" class="mdl-textfield mdl-js-textfield">
-                        <textarea class="mdl-textfield__input" type="text" rows="10" id="mp-report-opis"></textarea>
+                        <textarea class="mdl-textfield__input" type="text" rows="10" id="mp-report-opis" required></textarea>
                         <label class="mdl-textfield__label" for="mp-report-opis">MessageId lines...</label>
                     </div>
                 </li>
@@ -188,6 +190,28 @@
 <datalist id="messenger-users">
     @foreach (var m in Model.master.Padawans)
     {
-        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name+" "+m.Surname)"></option>
+        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name + " " + m.Surname)"></option>
     }
 </datalist>
+<script>
+    var padavanId = "";
+    $(function() { // napuni padavanId
+        $('#master-list').on('input', function() { // choose new Receiver
+            var opt = $('option[value="' + $(this).val() + '"]');
+            if (opt.length && parseInt(opt.attr("data-id"))) {
+                padavanId = opt.attr("data-id");
+            }
+        });
+    });
+
+    var tip = komentarTip.value;
+    var projekat = komentarAktivanProjekat.value;
+    var url = '@Url.Action("SavePdfFile", "Mp")';
+
+    url += '?padavanId=' + padavanId;
+    url += '&text=' + message;
+
+    $.post(url, function (data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
+        alert("Uspesno je sacuvan");
+    });
+</script>

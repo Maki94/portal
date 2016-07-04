@@ -31,9 +31,9 @@ namespace MVC.Controllers
             return new FileStreamResult(pdfStream, "application/pdf");
         }
 
-        private void SavePdfFile(int idm, int idp, string text)
+        public void SavePdfFile(string padavanId, string text)
         {
-            Data.Entities.MPs.SavePDF(idm, idp, text);
+            Data.Entities.MPs.SavePDF(MemberSession.GetMemberId(), int.Parse(padavanId), text);
         }
     }
 }
