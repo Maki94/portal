@@ -58,12 +58,18 @@ namespace Data.Entities
             {
                 List<Member> mem = dc.Members.Where(x => !x.IsDeleted).ToList();
                 List<MemberMaster> mm = dc.MemberMaster.Include(x => x.Member).Where(x => !x.IsDeleted && x.FinishDate==null).ToList();
+                List<Member> pom = new List<Member>();
+
                 foreach (Member m in mem)
                 {
                     if (mm.Select(x => x.Member).ToList().Contains(m))
                     {
-                        mem.Remove(m);
+                        pom.Add(m);
                     }
+                }
+                foreach (Member m in pom)
+                {
+                    mem.Remove(m);
                 }
                 return mem;
             }
