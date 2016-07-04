@@ -28,5 +28,10 @@ namespace MVC.Controllers
             Data.Entities.Comments.Unlike(idm, idc);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Add()
+        {
+            return View(new CompanyAddModel());
+        }
     }
 }

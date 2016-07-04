@@ -51,6 +51,7 @@ aside a:hover {
 
 @header-change: 1025px;
 @header-width: 239px;
+@profile-img: 200px;
 
 .mdl-grid{
     margin-left: 0;
@@ -96,6 +97,14 @@ aside a:hover {
 .li-shrink{
     margin: 0;
     padding: 0;
+}
+#profile-img{
+    width: @profile-img;
+    height: @profile-img;
+    min-height: @profile-img;
+    min-width: @profile-img;
+    max-height: @profile-img;
+    max-width: @profile-img;
 }
 @import "memberIndex.less";
 @import "Event.less";

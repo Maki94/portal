@@ -12,7 +12,7 @@ namespace Data.DTOs.Company
         public int CommentId { get; set; }
 
         [DisplayName("Type ")]
-        public string Type { get; set; }
+        public Enumerations.CommentType Type { get; set; }
         [DisplayName("Comment ")]
         public string Text { get; set; }
         [DisplayName("Time ")]

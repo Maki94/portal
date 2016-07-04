@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="MemberSession.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CompanyAddModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MessageNotificationListModel.cs" />
@@ -249,6 +250,7 @@
     <Content Include="Views\Project\AllProjects.cshtml" />
     <Content Include="Content\ProjectList.less" />
     <Content Include="Content\MemberList.less" />
+    <Content Include="Views\Frator\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -304,7 +306,7 @@
     <Content Include="Views\Mp\Izvestaj.cshtml" />
     <Content Include="Views\Frator\Profile.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
-    <Content Include="Views\Meeting\Meeting.cshtml" />
+    <Content Include="Views\Meeting\Add.cshtml" />
     <Content Include="Views\Poll\AllPolls.cshtml" />
   </ItemGroup>
   <ItemGroup>

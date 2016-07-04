@@ -44,7 +44,7 @@ namespace Data.Entities
             }
         }
 
-        public static List<Poll> GetPollsCurrentAtDate(DateTime date, DataContext dc = null)
+        public static List<Poll> GetPollsCurrentAtDate(DataContext dc = null)
         {
             using (dc = dc ?? new DataContext())
             {

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "title";
+}
+
+<div class="mdl-tabs__panel">
+    <form action="#">
+        <ul class="div-expand mdl-list">
+
+            <li class="mdl-list__item">
+                <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="meeting-description">
+                    <label class="mdl-textfield__label" for="meeting-description">Opis...</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="meeting-agenda">
+                    <label class="mdl-textfield__label" for="meeting-agenda">Agenda...</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="meeting-note">
+                    <label class="mdl-textfield__label" for="meeting-note">Note...</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="meeting-date">
+                    <label class="mdl-textfield__label" for="meeting-date">Datum...</label>
+                </div>
+            </li>
+
+            <li class="mdl-list__item">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Sacuvaj
+                </button>
+            </li>
+        </ul>
+    </form>
+</div>
+<script>
+  $(function() {
+      $("#meeting-date").datepicker();
+  });
+</script>

@@ -84,6 +84,14 @@ aside a:hover {
   margin: 0;
   padding: 0;
 }
+#profile-img {
+  width: 200px;
+  height: 200px;
+  min-height: 200px;
+  min-width: 200px;
+  max-height: 200px;
+  max-width: 200px;
+}
 .calculator-field {
   background-color: orchid;
   width: 77px;

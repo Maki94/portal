@@ -21,5 +21,6 @@ namespace Data.DataClasses
         public bool IsDeleted { get; set; }
 
         public ICollection<ContactPerson> Contacts { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

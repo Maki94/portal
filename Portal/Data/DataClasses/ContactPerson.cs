@@ -14,6 +14,7 @@ namespace Data.DataClasses
         public string Note { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public DateTime StartDate { get; set; }
         public bool IsDeleted { get; set; }
 
         [ForeignKey("Company")]

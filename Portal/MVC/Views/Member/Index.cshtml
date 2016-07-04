@@ -11,7 +11,10 @@
         <h1>Vazne vesti</h1>
     </div>
     <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet right">
-        <img src="http://placehold.it/250x150">
+        @*<img src="http://placehold.it/250x150">*@
+        <a href="@Url.Action("Profile", "Member", new {@id = MemberSession.GetMemberId().ToString()})">
+            <img id="profile-img" src="">
+        </a>
     </div>
 </div>
 <div class="mdl-grid">
@@ -96,7 +99,16 @@
 
 <script src="../../Scripts/calendarField.js"></script>
 <script src="../../Scripts/Calendar.js"></script>
-<script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://use.fontawesome.com/c256757c6a.js"></script>
+<script type="text/javascript">
+    var url = '@Url.Action("GetAvatar", "Member")';
+    url += "/" + @MemberSession.GetMemberId().ToString();
+    $.post(url, function (data) {
+        var img = document.getElementById("profile-img");
+        img.setAttribute("src", data);
+    });
+
     var calendar = new Calendar("calendar-wrapper");
     calendar.Init();
 </script>    

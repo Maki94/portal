@@ -249,11 +249,11 @@ namespace Data
 
             var company = new List<Company>
             {
-                new Company { Address = "a", City = "a", Description = "a", Email = "a", Field = Enumerations.CompanyField.AutoIndustrija, Name = "a", Phone = "a", Type = Enumerations.CompanyType.money, Website = "a"},
-                new Company { Address = "b", City = "b", Description = "b", Email = "b", Field = Enumerations.CompanyField.Bank, Name = "b", Phone = "b", Type = Enumerations.CompanyType.money, Website = "b"},
-                new Company { Address = "c", City = "c", Description = "c", Email = "c", Field = Enumerations.CompanyField.IT, Name = "c", Phone = "c", Type = Enumerations.CompanyType.money, Website = "c"},
-                new Company { Address = "d", City = "d", Description = "d", Email = "d", Field = Enumerations.CompanyField.Bank, Name = "d", Phone = "d", Type = Enumerations.CompanyType.money, Website = "d" },
-                new Company { Address = "e", City = "e", Description = "e", Email = "e", Field = Enumerations.CompanyField.IT, Name = "e", Phone = "e", Type = Enumerations.CompanyType.money, Website = "e" }
+                new Company { Address = "a", City = "a", Description = "a", Email = "a", Field = Enumerations.CompanyField.AutoIndustrija, Name = "a", Phone = "123", Type = Enumerations.CompanyType.money, Website = "a"},
+                new Company { Address = "b", City = "b", Description = "b", Email = "b", Field = Enumerations.CompanyField.Bank, Name = "b", Phone = "456", Type = Enumerations.CompanyType.money, Website = "b"},
+                new Company { Address = "c", City = "c", Description = "c", Email = "c", Field = Enumerations.CompanyField.IT, Name = "c", Phone = "789", Type = Enumerations.CompanyType.money, Website = "c"},
+                new Company { Address = "d", City = "d", Description = "d", Email = "d", Field = Enumerations.CompanyField.Bank, Name = "d", Phone = "101", Type = Enumerations.CompanyType.money, Website = "d" },
+                new Company { Address = "e", City = "e", Description = "e", Email = "e", Field = Enumerations.CompanyField.IT, Name = "e", Phone = "112", Type = Enumerations.CompanyType.money, Website = "e" }
             };
 
             context.Companies.AddRange(company);
@@ -277,6 +277,12 @@ namespace Data
             };
 
             context.MemberCompanies.AddRange(delegates);
+
+            var contact = new List<ContactPerson>
+            {
+                new ContactPerson {Company = company[0], Email="bla", Name="bla", Phone="123", Note = "bla", StartDate = DateTime.Now }
+            };
+            context.ContactPersons.AddRange(contact);
             context.SaveChanges();
         }
     }

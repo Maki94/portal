@@ -5,7 +5,7 @@
     ViewBag.Title = "FRator";
 }
 
-<div class="mdl-tabs mdl-js-tabs">
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
         <a href="#vesti-panel" class="mdl-tabs__tab is-active">Vesti</a>
         <a href="#moje-kompanije-panel" class="mdl-tabs__tab">Moje kompanije</a>
@@ -19,20 +19,18 @@
             {
                 foreach (CommentDTO c in Model.NewComments)
                 {
-                <li class="mdl-list__item mdl-list__item--three-line">
-                    <span class="mdl-list__item-primary-content">
-                        <img class="material-icons mdl-list__item-avatar" src="http://i.imgur.com/4UaFMTl.jpg"/>
-                        <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">@c.CompanyName</a></span>
-                        <span class="mdl-list__item-text-body">
-                            <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new { id = c.AuthorId })">@c.AuthorFullName</a> @c.Text
+                    <li class="mdl-list__item mdl-list__item--three-line">
+                        <span class="mdl-list__item-primary-content">
+                            <img class="material-icons mdl-list__item-avatar" src="http://i.imgur.com/4UaFMTl.jpg" />
+                            <span><a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">@c.CompanyName</a></span>
+                            <span class="mdl-list__item-text-body">
+                                <a class="mdl-list__item-secondary-action" href="@Url.Action("Profile", "Member", new { id = c.AuthorId })">@c.AuthorFullName</a> @c.Text
+                            </span>
                         </span>
-                    </span>
-                    @if (c.AuthorId != MemberSession.GetMemberId())
-                    {
-                        if (!c.Likers.Select(x => x.MemberId).Contains(MemberSession.GetMemberId()))
+                        @if (!c.Likers.Select(x => x.MemberId).Contains(MemberSession.GetMemberId()))
                         {
                             <span class="mdl-list__item-secondary-content">
-                                <a class="mdl-list__item-secondary-action" href="@Url.Action("Like", "Frator", new { idm = MemberSession.GetMemberId(), idc = c.CommentId })" > <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"> @c.CountLikes</i> </a>
+                                <a class="mdl-list__item-secondary-action" href="@Url.Action("Like", "Frator", new { idm = MemberSession.GetMemberId(), idc = c.CommentId })"> <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"> @c.CountLikes</i> </a>
                             </span>
                         }
                         else
@@ -41,14 +39,7 @@
                                 <a class="mdl-list__item-secondary-action" href="@Url.Action("Unlike", "Frator", new { idm = MemberSession.GetMemberId(), idc = c.CommentId })"> <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"> @c.CountLikes</i> </a>
                             </span>
                         }
-                    }
-                    else
-                    {
-                        <span class="mdl-list__item-secondary-content">
-                            <a class="mdl-list__item-secondary-action" > <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"> @Html.ActionLink(c.CountLikes.ToString(), "WhoLikes", "Frator", new { idc = c.CommentId, list = c.LikersNames })</i> </a>
-                        </span>
-                    }
-                </li>
+                    </li>
                 }
             }
         </ul>
@@ -56,302 +47,301 @@
 
     @if (Model.Show != null)
     {
-    <div id="moje-kompanije-panel" class="mdl-tabs__panel">
-        <div class="div-expand mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-                <form action="#">
-                    <ul class="div-expand mdl-list">
+        <div id="moje-kompanije-panel" class="mdl-tabs__panel">
+            <div class="div-expand mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                    <form action="#">
+                        <ul class="div-expand mdl-list">
+                            <li class="mdl-list__item">
+                                <h4>
+                                    @Model.Show.Name
+                                </h4>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="kompanija-adresa" value=@Model.Show.Address>
+                                    <label class="mdl-textfield__label" for="kompanija-adresa">Adresa</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="kompanija-sajt" value=@Model.Show.Website>
+                                    <label class="mdl-textfield__label" for="kompanija-sajt">Sajt...</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kompanija-telefon" value=@Model.Show.Phone>
+                                    <label class="mdl-textfield__label" for="kompanija-telefon">Telefon...</label>
+                                    <span class="mdl-textfield__error">To nije broj!</span>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="kompanija-email" value=@Model.Show.Email>
+                                    <label class="mdl-textfield__label" for="kompanija-email">Email...</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="div-expand mdl-textfield mdl-js-textfield">
+                                    <textarea class="mdl-textfield__input" type="text" rows="3" id="kompanija-opis">@Model.Show.Description</textarea>
+                                    <label class="mdl-textfield__label" for="kompanija-opis">Opis...</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <select class="mdl-textfield__input" id="kompanija-delatnost">
+                                        @foreach (Data.Enumerations.CompanyField type in Enum.GetValues(typeof(Data.Enumerations.CompanyField)))
+                                        {
+                                            if (type == Model.Show.Field)
+                                            {
+                                                <option value=@type selected>@type.ToString()</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=@type>@type.ToString()</option>
+                                            }
+                                        }
+                                    </select>
+                                    <label class="mdl-textfield__label" for="kompanija-delatnost">Delatnost</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <select class="mdl-textfield__input" id="kompanija-tip">
+                                        @foreach (Data.Enumerations.CompanyType type in Enum.GetValues(typeof(Data.Enumerations.CompanyType)))
+                                        {
+                                            if (type == Model.Show.Type)
+                                            {
+                                                <option value=@type selected>@type.ToString()</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=@type>@type.ToString()</option>
+                                            }
+                                        }
+                                    </select>
+                                    <label class="mdl-textfield__label" for="kompanija-tip">Tip</label>
+                                </div>
+                            </li>
+
+                            <li class="li-shrink mdl-list__item">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Sacuvaj Izmene
+                                </button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                    @if (Model.Show.Contacts.Any())
+                {
+                        <ul id="kontakt-kompanija" class="div-expand demo-list-three mdl-list">
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <select class="mdl-textfield__input" id="kompanija-kontakti">
+                                        @foreach (ContactPersonDTO c in Model.Show.Contacts)
+                                        {
+                                            if (c.ContactPersonId == Model.Show.Contacts.OrderByDescending(x => x.StartDate).First().ContactPersonId)
+                                            {
+                                                <option value=@c.ContactPersonId selected>@c.Name.ToString()</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=@c.ContactPersonId>@c.Name.ToString()</option>
+                                            }
+                                        }
+                                    </select>
+                                    <label class="mdl-textfield__label" for="kompanija-kontakti">Kontakti</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kontakti-telefon">
+                                    <label class="mdl-textfield__label" for="kontakti-telefon">kontakti-telefon...</label>
+                                    <span class="mdl-textfield__error">To nije broj!</span>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="kontakti-email" >
+                                    <label class="mdl-textfield__label" for="kontakti-email">Email...</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="kontakti-napomena" >
+                                    <label class="mdl-textfield__label" for="kontakti-napomena">Napomena...</label>
+                                </div>
+                            </li>
+                            <li class="li-shrink mdl-list__item">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Sacuvaj Izmene
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                    <ul id="komentar-kompanija" class="div-expand demo-list-three mdl-list">
                         <li class="mdl-list__item">
-                            <h4 >
-                                @Model.Show.Name
-                            </h4>
+                            <span class="h2 text-warning text-center">Komentar</span>
                         </li>
-                        <li class="li-shrink mdl-list__item">
+                        <li class="mdl-list__item">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="kompanija-adresa" value=@Model.Show.Address>
-                                <label class="mdl-textfield__label" for="kompanija-adresa">Adresa</label>
+                                <select class="mdl-textfield__input" id="komentar-tip">
+                                    @foreach (Data.Enumerations.CommentType type in Enum.GetValues(typeof(Data.Enumerations.CommentType)))
+                                    {
+                                        <option value=@type>@type.ToString()</option>
+                                    }
+                                </select>
+                                <label class="mdl-textfield__label" for="komentar-tip">Tip</label>
                             </div>
-                        </li>
-                        <li class="li-shrink mdl-list__item">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="kompanija-sajt" value=@Model.Show.Website>
-                                <label class="mdl-textfield__label" for="kompanija-sajt">Sajt...</label>
-                            </div>
-                        </li>
-                        <li class="li-shrink mdl-list__item">
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kompanija-telefon" value=@Model.Show.Phone>
-                                <label class="mdl-textfield__label" for="kompanija-telefon">Telefon...</label>
-                                <span class="mdl-textfield__error">To nije broj!</span>
-                            </div>
-                        </li>
-                        <li class="li-shrink mdl-list__item">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="kompanija-email" value=@Model.Show.Email>
-                                <label class="mdl-textfield__label" for="kompanija-email">Email...</label>
+                                <select class="mdl-textfield__input" id="komentar--projekat-aktivan">
+                                    @foreach (Data.DTOs.ProjectDTO p in MVC.Models.MemberIndexModel.CreateProjectDTOListForDate())
+                                    {
+                                        <option value=@p.ProjectId>@p.Name</option>
+                                    }
+                                </select>
+                                <label class="mdl-textfield__label" for="komentar--projekat-aktivan">Aktivan projekat?</label>
                             </div>
                         </li>
                         <li class="li-shrink mdl-list__item">
                             <div class="div-expand mdl-textfield mdl-js-textfield">
-                                <textarea class="mdl-textfield__input" type="text" rows="3" id="kompanija-opis">@Model.Show.Description</textarea>
-                                <label class="mdl-textfield__label" for="kompanija-opis">Opis...</label>
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="komentar-text"></textarea>
+                                <label class="mdl-textfield__label" for="komentar-text">Pretisni enter da postavis komentar...</label>
                             </div>
                         </li>
-                        <li class="li-shrink mdl-list__item">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="kompanija-delatnost">
-                                    @foreach (var type in Enum.GetValues(typeof(Data.Enumerations.CompanyField)))
+                        <li class="div-expand mdl-list__item">
+                            <div id="frator-komentari-wrapper">
+                                <div class="arrow"></div>
+                                <ul id="komentar-list" class="div-expand ChatLog">
+                                    @foreach (CommentDTO c in Model.Show.Comments.OrderByDescending(x=>x.Time))
                                     {
-                                        <option value=(int)type>@type.ToString()</option>
+                                        <li class="ChatLog__entry ChatLog__entry_mine">
+                                            <img class="ChatLog__avatar" src="http://i.imgur.com/4UaFMTl.jpg" />
+                                            <p class="ChatLog__message">
+                                                @c.Text
+                                            </p>
+                                            @if (!c.Likers.Select(x => x.MemberId).Contains(MemberSession.GetMemberId()))
+                                            {
+                                                <p>
+                                                    <a class="mdl-list__item-secondary-action" href="@Url.Action("Like", "Frator", new { idm = MemberSession.GetMemberId(), idc = c.CommentId })"> <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"> @c.CountLikes</i> </a>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p>
+                                                    <a class="mdl-list__item-secondary-action" href="@Url.Action("Unlike", "Frator", new { idm = MemberSession.GetMemberId(), idc = c.CommentId })"> <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"> @c.CountLikes</i> </a>
+                                                </p>
+                                            }
+                                            &nbsp;&nbsp;&nbsp;
+                                            <p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>
+                                        </li>
                                     }
-                                </select>
-                                <label class="mdl-textfield__label" for="kompanija-delatnost">Delatnost</label>
+                                </ul>
                             </div>
-                        </li>
-                        <li class="li-shrink mdl-list__item">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="kompanija-tip">
-                                    @foreach (var type in Enum.GetValues(typeof(Data.Enumerations.CompanyType)))
-                                    {
-                                        <option value=(int)type>@type.ToString()</option>
-                                    }
-                                </select>
-                                <label class="mdl-textfield__label" for="kompanija-tip">Tip</label>
-                            </div>
-                        </li>
-                        
-                        <li class="li-shrink mdl-list__item">
-                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                Sacuvaj Izmene
-                            </button>
                         </li>
                     </ul>
-                </form>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone mdl-cell--12-col-phone">
+                    <ul class="div-expand mdl-list">
+                        @foreach (CompanyDTO c in Model.MyCompany)
+                        {
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">
+                                        @c.Name
+                                    </a>
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
-            <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-                <ul id="kontakt-kompanija" class="div-expand demo-list-three mdl-list">
-                    <li class="li-shrink mdl-list__item">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <select class="mdl-textfield__input" id="kompanija-kontakti">
-                                <option value="jf">DarkoDakic</option>
-                                <option value="tedex" selected>Mani makic</option>
-                                <option value="summer course">Das vasdmis</option>
-                            </select>
-                            <label class="mdl-textfield__label" for="kompanija-kontakti">Kontakti</label>
+        </div>
+    }
+    @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.FR)
+    {
+        
+
+        <div class="mdl-tabs__panel" id="kompanije-panel">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                        <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+                        <span class="mdl-switch__label">Aktivna</span>
+                    </label>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="frator-kompanija-pretraga">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" id="frator-kompanija-pretraga">
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
+
+                <div class="mdl-cell mdl-cell--11-col"></div>
+                    <div class="mdl-cell mdl-cell--1-col">
+                        <a href="@Url.Action("Add", "Frator")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                            <i class="material-icons">add</i>
+                        </a>
+                    </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col">
+                    <ul class="frator-kompanije-list">
+                        @foreach (CompanyDTO c in Model.AllCompany)
+                        {
+                            <li>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">@c.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-tabs__panel" id="delegiranje-panel">
+            <form action="#" id="frator-delegiranje-form">
+                <ul class="div-expand mdl-list">
+
+                    <li class="mdl-list__item">
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="frator-delegiranje-aktivno">
+                            <input type="checkbox" id="frator-delegiranje-aktivno" class="mdl-checkbox__input">
+                            <span class="mdl-checkbox__label">Aktivna</span>
+                        </label>
+                    </li>
+
+                    <li class="mdl-list__item">
+                        <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="frator-delegiranje-clan">
+                            <label class="mdl-textfield__label" for="frator-delegiranje-clan">Clan...</label>
                         </div>
                     </li>
-                    <li class="li-shrink mdl-list__item">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kontakti-telefon" value="0654854588">
-                            <label class="mdl-textfield__label" for="kontakti-telefon">kontakti-telefon...</label>
-                            <span class="mdl-textfield__error">To nije broj!</span>
-                        </div>
+
+                    <li class="mdl-list__item">
+                        <ul id="delegiranje-kompanija-add-wrapper" class="div-expand mdl-list">
+                            <li class="mdl-list__item">
+                                <div id="delegiranje-kompanija-add" class="icon material-icons">add</div>
+                                <div class="mdl-tooltip mdl-tooltip--large" for="delegiranje-kompanija-add">
+                                    Kompanija
+                                </div>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="li-shrink mdl-list__item">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="kontakti-email" value="email neki">
-                            <label class="mdl-textfield__label" for="kontakti-email">Email...</label>
-                        </div>
-                    </li>
-                    <li class="li-shrink mdl-list__item">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="kontakti-napomena" value="napomena neka neki">
-                            <label class="mdl-textfield__label" for="kontakti-napomena">Napomena...</label>
-                        </div>
-                    </li>
-                    <li class="li-shrink mdl-list__item">
+                    <li class="mdl-list__item">
                         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                             Sacuvaj Izmene
                         </button>
                     </li>
                 </ul>
-                <ul id="komentar-kompanija" class="div-expand demo-list-three mdl-list">
-                    <li class="mdl-list__item">
-                        <span class="h2 text-warning text-center">Komentar</span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <select class="mdl-textfield__input" id="komentar-tip">
-                                <option value="jf">DarkoDakic</option>
-                                <option value="tedex" selected>Mani makic</option>
-                                <option value="summer course">Das vasdmis</option>
-                            </select>
-                            <label class="mdl-textfield__label" for="komentar-tip">Tip</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <select class="mdl-textfield__input" id="komentar--projekat-aktivan">
-                                <option value="jf">Neakrivan</option>
-                                <option value="tedex" selected>Aktivan</option>
-                            </select>
-                            <label class="mdl-textfield__label" for="komentar--projekat-aktivan">Aktivan projekat?</label>
-                        </div>
-                    </li>
-                    <li class="li-shrink mdl-list__item">
-                        <div class="div-expand mdl-textfield mdl-js-textfield">
-                            <textarea class="mdl-textfield__input" type="text" rows="3" id="komentar-text"></textarea>
-                            <label class="mdl-textfield__label" for="komentar-text">Pretisni enter da postavis komentar...</label>
-                        </div>
-                    </li>
-                    <li class="div-expand mdl-list__item">
-                        <div id="frator-komentari-wrapper">
-                            <div class="arrow"></div>
-                            <ul id="komentar-list" class="div-expand ChatLog">
-                                <li class="ChatLog__entry ChatLog__entry_mine">
-                                    <img class="ChatLog__avatar" src="//placekitten.com/56/56" />
-                                    <p class="ChatLog__message">
-                                        I have no idea.
-                                    </p>
-                                    <p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">11</i></a></p>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone mdl-cell--12-col-phone">
-                <ul class="div-expand mdl-list">
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">
-                            <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new { id = 1 })">
-                                Kompanija Naziv 1
-                            </a>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">
-                            <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new { id = 1 })">
-                                Kompanija Naziv 2
-                            </a>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">
-                            <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new { id = 1 })">
-                                Kompanija Naziv 3
-                            </a>
-                        </span>
-                    </li>
-                </ul>
-            </div>
+            </form>
         </div>
-    </div>
-    }
-    @if(MemberSession.GetRole()==Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.FR)
-    {
-    <div class="mdl-tabs__panel" id="kompanije-panel">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
-            <div class="mdl-cell mdl-cell--3-col">
-                <label class="mdl-switch mdl-js-switch" for="switch-1">
-                    <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-                    <span class="mdl-switch__label">Aktivna</span>
-                </label>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="frator-kompanija-pretraga">
-                        <i class="material-icons">search</i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" id="frator-kompanija-pretraga">
-                    </div>
-                </div>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
-        </div>
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col">
-                <ul class="frator-kompanije-list">
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col">
-                <ul class="frator-kompanije-list">
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col">
-                <ul class="frator-kompanije-list">
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col">
-                <ul class="frator-kompanije-list">
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                    <li>
-                        <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Frator", new {id = 1})">Kompanija1</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="mdl-tabs__panel" id="delegiranje-panel">
-        <form action="#" id="frator-delegiranje-form">
-            <ul class="div-expand mdl-list">
-
-                <li class="mdl-list__item">
-                    <label class="mdl-checkbox mdl-js-checkbox" for="frator-delegiranje-aktivno">
-                        <input type="checkbox" id="frator-delegiranje-aktivno" class="mdl-checkbox__input">
-                        <span class="mdl-checkbox__label">Aktivna</span>
-                    </label>
-                </li>
-
-                <li class="mdl-list__item">
-                    <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="frator-delegiranje-clan">
-                        <label class="mdl-textfield__label" for="frator-delegiranje-clan">Clan...</label>
-                    </div>
-                </li>
-
-                <li class="mdl-list__item">
-                    <ul id="delegiranje-kompanija-add-wrapper" class="div-expand mdl-list">
-                        <li class="mdl-list__item">
-                            <div id="delegiranje-kompanija-add" class="icon material-icons">add</div>
-                            <div class="mdl-tooltip mdl-tooltip--large" for="delegiranje-kompanija-add">
-                                Kompanija
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="mdl-list__item">
-                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                        Sacuvaj Izmene
-                    </button>
-                </li>
-            </ul>
-        </form>
-    </div>
     }
 </div>
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>

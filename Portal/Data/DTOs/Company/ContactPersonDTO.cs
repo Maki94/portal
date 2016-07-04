@@ -22,6 +22,10 @@ namespace Data.DTOs.Company
 
         [DisplayName("Phone ")]
         public string Phone { get; set; }
+
+        [DisplayName("Phone ")]
+        public DateTime StartDate { get; set; }
+
         public bool IsDeleted { get; set; }
     }
 }

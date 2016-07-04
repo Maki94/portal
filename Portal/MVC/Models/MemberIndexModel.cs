@@ -55,9 +55,9 @@ namespace MVC.Models
             return member;
         }
 
-        public static List<ProjectDTO> CreateProjectDTOListForDate(DateTime date)
+        public static List<ProjectDTO> CreateProjectDTOListForDate()
         {
-            List<Project> projects = Data.Entities.Projects.GetProjectCurrentAtDate(date);
+            List<Project> projects = Data.Entities.Projects.GetProjectCurrentAtDate();
             List<ProjectDTO> currentProject = new List<ProjectDTO>();
 
             foreach (Project p in projects)
@@ -73,14 +73,15 @@ namespace MVC.Models
             ProjectDTO project = new ProjectDTO()
             {
                Name = p.Name,
+               ProjectId = p.ProjectId
             };
 
             return project;
         }
 
-        public static List<PollDTO> CreatePollDTOListForDate(DateTime date)
+        public static List<PollDTO> CreatePollDTOListForDate()
         {
-            List<Data.DataClasses.Poll> polls = Data.Entities.Polls.GetPollsCurrentAtDate(date);
+            List<Data.DataClasses.Poll> polls = Data.Entities.Polls.GetPollsCurrentAtDate();
             List<PollDTO> currentPolls = new List<PollDTO>();
 
             foreach (Data.DataClasses.Poll p in polls)
@@ -95,7 +96,8 @@ namespace MVC.Models
         {
             PollDTO poll = new PollDTO()
             {
-                Topic = p.Topic
+                Topic = p.Topic,
+                PollId = p.PollId
             };
 
             return poll;
@@ -109,8 +111,8 @@ namespace MVC.Models
             MemberIndexModel model = new MemberIndexModel
             {
                 Nickname = m.Nickname,
-                CurrentProject = CreateProjectDTOListForDate((DateTime) date),
-                CurrentPoll = CreatePollDTOListForDate((DateTime) date),
+                CurrentProject = CreateProjectDTOListForDate(),
+                CurrentPoll = CreatePollDTOListForDate(),
                 Birthtdays = CreateMemberDTOListForDateBirth((DateTime) date),
                 Anniversary = CreateMemberDTOListForDateAnniversary((DateTime) date)
             };

@@ -10,7 +10,7 @@ namespace Data.DataClasses
     public class Comment
     {
         public int CommentId { get; set; }
-        public string Type { get; set; }
+        public Enumerations.CommentType Type { get; set; }
         public string Text { get; set; }
         public DateTime Time { get; set; }
         public bool IsDeleted { get; set; }
