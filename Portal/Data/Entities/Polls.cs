@@ -48,7 +48,7 @@ namespace Data.Entities
         {
             using (dc = dc ?? new DataContext())
             {
-                return (from p in dc.Polls where p.State == Enumerations.PollState.aktivan select p).ToList();
+                return (from p in dc.Polls where p.State == Enumerations.PollState.Aktivno select p).ToList();
             }
         }
 
@@ -73,7 +73,7 @@ namespace Data.Entities
 
         public static void ClosePoll(int pollId, DataContext dc = null)
         {
-            UpdatePollState(pollId, Enumerations.PollState.zatvoren, dc);
+            UpdatePollState(pollId, Enumerations.PollState.Zatvoreno, dc);
         }
 
         public static void AddPoll(string topic, string description, bool multipleAnswers, bool hideResults, bool hideVoters, 
@@ -97,7 +97,7 @@ namespace Data.Entities
                     EndDate = endDateAndTime,
                     StartDate = DateTime.Now,
                     PollCreator = creator,
-                    State = Enumerations.PollState.aktivan
+                    State = Enumerations.PollState.Aktivno
                 };
 
                 dc.Polls.Add(poll);

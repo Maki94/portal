@@ -15,5 +15,11 @@ namespace MVC.Controllers
         {
             return View(new ProjectListModel());
         }
+
+        public ActionResult Details(int id)
+        {
+            ProjectModel model = ProjectModel.Load(id);
+            return View(model);
+        }
     }
 }

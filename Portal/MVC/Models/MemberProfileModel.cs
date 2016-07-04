@@ -29,7 +29,8 @@ namespace MVC.Models
         [Display(Name = "Clanarina do")]
         public DateTime? FeePayedUntil { get; set; }
 
-        public List<ProjectDTO> MemberProjects { get; set; }
+        public List<MemberProjectDTO> MemberTeamProjects { get; set; }
+        public List<MemberProjectDTO> MemberHelpProjects { get; set; }
         public List<BadgeDTO> MemberBadges { get; set; }
 
         public Enumerations.Role Role { get; set; }
@@ -58,10 +59,12 @@ namespace MVC.Models
                 Role = (Data.Enumerations.Role)m.Role.RoleId
             };
 
-            List<Project> projects = Data.Entities.Projects.GetAllProjects();
+            List<Project> projects = Data.Entities.Projects.GetTeamProjectsOfMember(memberID);
+            List<Project> projectsPomagao = Data.Entities.Projects.GetProjectsOfMember(memberID);
             List<Badge> badges = Data.Entities.Badges.GetAllBadgesOfMember(memberID);
             model.MemberBadges = BadgeListModel.CreateBadgeDTOs(badges);
-            model.MemberProjects = ProjectListModel.CreateProjectListDTOs(projects);
+            model.MemberTeamProjects = ProjectModel.CreateMemberTeamProjectDTOList(m, projects);
+            model.MemberHelpProjects = ProjectModel.CreateMemberHelpProjectDTOList(m, projectsPomagao);
 
             return model;
         }

@@ -6,124 +6,13 @@
 }
 @{ LoginDTO member = MemberSession.GetMember();}
 
-@*<h2>@Html.DisplayFor(model => model.Name) 
-    @Html.DisplayFor(model => model.Surname)
-    (@Html.DisplayFor(model => model.Nickname))</h2>
-
-<div>
-    <div class="avatar-div">
-        <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
-        <img class="avatar" src="http://i.imgur.com/Xqdt97P.png"/>
-    </div>
-
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Faculty)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Faculty)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Facebook)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Facebook)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LinkedIn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LinkedIn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Skype)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Skype)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.JoinDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JoinDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gmail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FeePayedUntil)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FeePayedUntil)
-        </dd>
-
-    </dl>
-    @if (member.MemberID == Model.Id)
-    {
-        <a href="@Url.Action("Edit", "Member")">Izmeni profil</a>
-    }
-
-</div>
-
-<h4>Projekti</h4>
-<hr />
-<dl class="dl-horizontal">
-    @foreach (var t in Model.Projects)
-    {
-        <dt>
-            @Html.DisplayNameFor(s => t.Name)
-        </dt>
-            <dd>
-                @Html.DisplayFor(s => t.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(s => t.Description)
-            </dt>
-            <dd>
-                @Html.DisplayFor(s => t.Description)
-            </dd>
-    }
-</dl>*@
 <div id="member-profile-div">
     <div id="member-profile-content" class="clearfix">
         <div id="userphoto"><img src="http://i.imgur.com/Xqdt97P.png" alt="default avatar"></div>
         <h1>
             @Html.DisplayFor(model => model.Name)
         @Html.DisplayFor(model => model.Surname)
-        (@Html.DisplayFor(model => model.Nickname))
+        @{if (Model.Nickname != null) { <text>(</text>@Model.Nickname<text>)</text>}}
     </h1>
     <nav id="profiletabs">
         <ul class="clearfix">
@@ -157,17 +46,26 @@
                             @Html.DisplayName(b.Name)
                         </h1>
                     </div>
-                    @*<div class="mdl-card__supporting-text">
-                        <h6>@Html.DisplayName(m.Faculty)</h6>
-                        <p>@Html.DisplayName(m.Role.ToString())</p>
-                    </div>*@
                 </div>
-                                }
+            }
         </div>
     </section>
 
     <section id="projects" class="hidden">
-        <p>Projekti</p>
+        @foreach (var p in Model.MemberTeamProjects)
+        {
+            <h2 class="project-name">@p.ProjectName</h2>
+            <p class="setting project-info"><span>Tim</span>@p.TeamName</p>
+            <p class="setting project-info"><span>Uloga</span>@p.TeamRole</p>
+            <p class="setting project-info"><span>Sajt</span><a href="@p.ProjectWebsite">@p.ProjectWebsite</a></p>
+        }
+
+        @foreach (var p in Model.MemberHelpProjects)
+        {
+            <h2 class="project-name">@p.ProjectName</h2>
+            <p class="setting project-info"><span>Funkcija</span>@p.Function</p>
+            <p class="setting project-info"><span>Sajt</span><a href="@p.ProjectWebsite">@p.ProjectWebsite</a></p>
+        }
     </section>
 
     <section id="contact" class="hidden">
@@ -175,7 +73,7 @@
 
         <p class="setting"><span>Skype</span>@Model.Skype</p>
 
-        <p class="setting"><span>Facebook</span>@Model.Facebook</p>
+        <p class="setting"><span>Facebook</span><a href="@Model.Facebook">@Model.Facebook</a></p>
 
         <p class="setting"><span>LinkedIn</span>@Model.LinkedIn</p>
     </section>
@@ -196,12 +94,6 @@
             });
 
             $(newcontent).removeClass('hidden');
-
-            if ($(this).html() == "Projekti") {
-                $('#userphoto').addClass('hidden');
-            } else {
-                $('#userphoto').removeClass('hidden');
-            }
         });
     });
 

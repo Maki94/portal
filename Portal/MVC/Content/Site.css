@@ -196,9 +196,6 @@ aside a:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#member-profile-div html {
-  overflow-y: scroll;
-}
 #member-profile-div body {
   background: #f0f0f0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -358,6 +355,12 @@ aside a:hover {
   white-space: nowrap;
   text-align: center;
 }
+#member-profile-div h2.project-name {
+  text-align: left;
+  border-bottom: 1px solid #cce6ff;
+  border-top: 1px solid #cce6ff;
+  margin-bottom: 8px;
+}
 #member-profile-div p {
   display: block;
   font-size: 1.4em;
@@ -366,7 +369,7 @@ aside a:hover {
   color: #555;
 }
 #member-profile-div a {
-  color: #5a9352;
+  color: #339cff;
   text-decoration: none;
 }
 #member-profile-div a:hover {
@@ -458,8 +461,11 @@ aside a:hover {
   display: block;
   font-weight: normal;
   padding: 7px 3px;
-  border-top: 1px solid #d6d1af;
+  border-top: 1px solid #cce6ff;
   margin-bottom: 5px;
+}
+#member-profile-div .setting.project-info {
+  border-top: none;
 }
 #member-profile-div .setting span {
   float: left;
@@ -496,6 +502,404 @@ aside a:hover {
   display: block;
 }
 #member-profile-div * html .clearfix {
+  height: 1%;
+}
+#project-details-div {
+  /** typography **/
+  /** page structure **/
+  /** profile nav links **/
+  /** profile content sections **/
+  /** clearfix **/
+}
+#project-details-div html,
+#project-details-div body,
+#project-details-div div,
+#project-details-div span,
+#project-details-div applet,
+#project-details-div object,
+#project-details-div iframe,
+#project-details-div h1,
+#project-details-div h2,
+#project-details-div h3,
+#project-details-div h4,
+#project-details-div h5,
+#project-details-div h6,
+#project-details-div p,
+#project-details-div blockquote,
+#project-details-div pre,
+#project-details-div a,
+#project-details-div abbr,
+#project-details-div acronym,
+#project-details-div address,
+#project-details-div big,
+#project-details-div cite,
+#project-details-div code,
+#project-details-div del,
+#project-details-div dfn,
+#project-details-div em,
+#project-details-div img,
+#project-details-div ins,
+#project-details-div kbd,
+#project-details-div q,
+#project-details-div s,
+#project-details-div samp,
+#project-details-div small,
+#project-details-div strike,
+#project-details-div strong,
+#project-details-div sub,
+#project-details-div sup,
+#project-details-div tt,
+#project-details-div var,
+#project-details-div b,
+#project-details-div u,
+#project-details-div i,
+#project-details-div center,
+#project-details-div dl,
+#project-details-div dt,
+#project-details-div dd,
+#project-details-div ol,
+#project-details-div ul,
+#project-details-div li,
+#project-details-div fieldset,
+#project-details-div form,
+#project-details-div label,
+#project-details-div legend,
+#project-details-div table,
+#project-details-div caption,
+#project-details-div tbody,
+#project-details-div tfoot,
+#project-details-div thead,
+#project-details-div tr,
+#project-details-div th,
+#project-details-div td,
+#project-details-div article,
+#project-details-div aside,
+#project-details-div canvas,
+#project-details-div details,
+#project-details-div embed,
+#project-details-div figure,
+#project-details-div figcaption,
+#project-details-div footer,
+#project-details-div header,
+#project-details-div hgroup,
+#project-details-div menu,
+#project-details-div nav,
+#project-details-div output,
+#project-details-div ruby,
+#project-details-div section,
+#project-details-div summary,
+#project-details-div time,
+#project-details-div mark,
+#project-details-div audio,
+#project-details-div video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#project-details-div body {
+  background: #f0f0f0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #313131;
+  font-size: 62.5%;
+  line-height: 1;
+}
+#project-details-div ::selection {
+  background: #a4dcec;
+}
+#project-details-div ::-moz-selection {
+  background: #a4dcec;
+}
+#project-details-div ::-webkit-selection {
+  background: #a4dcec;
+}
+#project-details-div ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+  font-style: italic;
+}
+#project-details-div :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+  font-style: italic;
+}
+#project-details-div ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+  font-style: italic;
+}
+#project-details-div :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc !important;
+  font-style: italic;
+}
+#project-details-div br {
+  display: block;
+  line-height: 2.2em;
+}
+#project-details-div article,
+#project-details-div aside,
+#project-details-div details,
+#project-details-div figcaption,
+#project-details-div figure,
+#project-details-div footer,
+#project-details-div header,
+#project-details-div hgroup,
+#project-details-div menu,
+#project-details-div nav,
+#project-details-div section {
+  display: block;
+}
+#project-details-div ol,
+#project-details-div ul {
+  list-style: none;
+}
+#project-details-div input,
+#project-details-div textarea {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+#project-details-div blockquote,
+#project-details-div q {
+  quotes: none;
+}
+#project-details-div blockquote:before,
+#project-details-div blockquote:after,
+#project-details-div q:before,
+#project-details-div q:after {
+  content: '';
+  content: none;
+}
+#project-details-div strong {
+  font-weight: bold;
+}
+#project-details-div table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#project-details-div img {
+  border: 0;
+  max-width: 100%;
+}
+#project-details-div #topbar {
+  background: #4f4a41;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  height: 36px;
+  overflow: hidden;
+  -webkit-transition: height 0.5s linear;
+  -moz-transition: height 0.5s linear;
+  transition: height 0.5s linear;
+}
+#project-details-div #topbar a {
+  color: #fff;
+  font-size: 1.3em;
+  line-height: 1.25em;
+  text-decoration: none;
+  opacity: 0.5;
+  font-weight: bold;
+}
+#project-details-div #topbar a:hover {
+  opacity: 1;
+}
+#project-details-div h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.5em;
+  line-height: 1.5em;
+  letter-spacing: -0.05em;
+  margin-bottom: 20px;
+  padding: .1em 0;
+  color: #444;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+#project-details-div h1:before,
+#project-details-div h1:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 1px;
+  vertical-align: middle;
+  background: #f0f0f0;
+}
+#project-details-div h1:before {
+  left: -0.5em;
+  margin: 0 0 0 -50%;
+}
+#project-details-div h1:after {
+  left: .5em;
+  margin: 0 -50% 0 0;
+}
+#project-details-div h1 > span {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+}
+#project-details-div h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.1em;
+  line-height: 1.4em;
+  letter-spacing: normal;
+  margin-bottom: 20px;
+  padding: .1em 0;
+  color: #444;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+#project-details-div h2.team-name {
+  text-align: left;
+  border-bottom: 1px solid #cce6ff;
+  border-top: 1px solid #cce6ff;
+  margin-bottom: 8px;
+}
+#project-details-div p {
+  display: block;
+  font-size: 1.4em;
+  line-height: 1.55em;
+  margin-bottom: 22px;
+  color: #555;
+}
+#project-details-div a {
+  color: #339cff;
+  text-decoration: none;
+}
+#project-details-div a:hover {
+  text-decoration: underline;
+}
+#project-details-div .center {
+  display: block;
+  text-align: center;
+}
+#project-details-div #w {
+  display: block;
+  width: 750px;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 45px;
+}
+#project-details-div #project-details-content {
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 20px 20px 10px 20px;
+  padding-bottom: 35px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+#project-details-div #userphoto {
+  display: block;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+#project-details-div #userphoto img {
+  display: block;
+  padding: 2px;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+#project-details-div #profiletabs {
+  display: block;
+  margin-bottom: 4px;
+  height: 50px;
+}
+#project-details-div #profiletabs ul {
+  list-style: none;
+  display: block;
+  width: 70%;
+  height: 50px;
+}
+#project-details-div #profiletabls ul li {
+  float: left;
+}
+#project-details-div #profiletabs ul li a {
+  display: block;
+  float: left;
+  padding: 8px 11px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: #cce6ff;
+  color: #000000;
+  margin-right: 7px;
+  border: 1px solid #fff;
+  -webkit-border-radius: 5px;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius: 5px;
+  -moz-border-radius-bottomleft: 0;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+}
+#project-details-div #profiletabs ul li a:hover {
+  text-decoration: none;
+  background: #339cff;
+}
+#project-details-div #profiletabs ul li a.sel {
+  background: #fff;
+  border-color: #cce6ff;
+}
+#project-details-div .hidden {
+  display: none;
+}
+#project-details-div .activity {
+  border-bottom: 1px solid #d6d1af;
+  padding-bottom: 4px;
+}
+#project-details-div .setting {
+  overflow: hidden;
+  display: block;
+  font-weight: normal;
+  padding: 7px 3px;
+  border-top: 1px solid #cce6ff;
+  margin-bottom: 5px;
+}
+#project-details-div .setting.teammember-info {
+  border-top: none;
+}
+#project-details-div .setting span {
+  float: left;
+  width: 250px;
+  font-weight: bold;
+}
+#project-details-div .setting span img {
+  cursor: pointer;
+}
+#project-details-div .clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#project-details-div .clearfix {
+  display: inline-block;
+}
+#project-details-div html[xmlns] .clearfix {
+  display: block;
+}
+#project-details-div * html .clearfix {
   height: 1%;
 }
 .calculator-field {

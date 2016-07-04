@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using Data.DataClasses;
 using Data.DTOs;
 
 namespace Data.Entities
 {
-    class Teams
+    public class Teams
     {
         public static Team AddTeam(string name, DateTime created, DateTime deleted, string googlegroup = null)
         {
@@ -37,6 +38,13 @@ namespace Data.Entities
             }
         }
         
+        public static Team GetTeamOfProject(int projectId)
+        {
+            using (var dc = new DataContext())
+            {
+                return dc.Projects.Include(x => x.ProjectMembers).Where(x => x.ProjectId == projectId).Select(x => x.Team).First();
+            }
+        }
 
         public static bool DeleteTeam(int teamId)
         {
@@ -55,6 +63,25 @@ namespace Data.Entities
             for (int i=0; i<memberIds.Count; i++)
             {
                 Members.AddMemberToTeam(memberIds[i], teamId, roles[i]);
+            }
+        }
+
+        public static Enumerations.TeamRole FindTeamRoleOfMemberProject(int memberId, int projectId)
+        {
+            using (var dc = new DataContext())
+            {
+                Enumerations.TeamRole r = dc.Projects.Where(x => x.ProjectId == projectId).Select(x => x.Team).First()
+                                            .TeamMembers.Where(x => x.MemberId == memberId).Select(x => x.TeamRole).First();
+
+                return r;
+            }
+        }
+
+        public static List<MemberTeam> GetMemberTeamList(int teamId)
+        {
+            using (var dc = new DataContext())
+            {
+                return dc.MemberTeams.Include(x => x.Member).Where(x => x.TeamId == teamId).ToList();
             }
         }
     }
