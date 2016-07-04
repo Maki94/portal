@@ -8,7 +8,7 @@
         <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"></div>
         <div class="mdl-cell mdl-cell--9-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
             <div class="" id="messenger-message-wrapper">
-                <input placeholder="Message poruke" class="mdl-textfield__input" type="text" id="messenger-message">
+                <input placeholder="Tekst poruke" class="mdl-textfield__input" type="text" id="messenger-message">
             </div>
         </div>
         <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone">
@@ -52,6 +52,16 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script type="text/javascript">
+    function convertUTCDateToLocalDate(date) {
+        var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+        var offset = date.getTimezoneOffset() / 60;
+        var hours = date.getHours();
+
+        newDate.setHours(hours - offset);
+
+        return newDate;   
+    }
 
     function Messenger() {
         var self = this;
@@ -66,12 +76,13 @@
 
         self.GetHtmlMessage = function(text, time, imgUrl, mine) {
             var myMessage = mine === undefined ? "" : "ChatLog__entry_mine";
+            var myTime = mine === undefined ? "time-signature" : "time-signature_mine";
             var s =
                 '<li class="ChatLog__entry ' + myMessage + '" data-label=' + time + '> ' +
                     ' <img class="ChatLog__avatar" src="' + imgUrl + '"/> ' +
                     '<p class="ChatLog__message">' +
                     '  <span class="time-info">' +
-                    '<small class="time-signature text-warining">' + time + '</small></span> ' +
+                    '<small class="' + myTime + '">' + time + '</small></span> ' +
                     ' ' + text + ' </p> ' +
                     ' </li>';
 
@@ -88,7 +99,14 @@
                 //var time = elem.Time;
                 //var date = new Date(parseInt(elem.Time.substr(6)));
                 //var time = (new Date(parseInt(elem.Time.substr(6)))).format("dd-MM-yyyy");
-                var time = "time";
+                
+                var jsonDate = elem.Time;  // returns "/Date(1245398693390)/"; 
+                var re = /-?\d+/; 
+                var m = re.exec(jsonDate); 
+                var d = new Date(parseInt(m[0]));
+
+
+                var time = d.toString().substring(0,24);
                 var senderId = elem.SenderId;
                 var receiverId = elem.ReceiverId;
 
@@ -169,6 +187,7 @@
     });
 
     window.setInterval(function() {
+        
         messenger.CheckNotification();
     }, 1000);
 
