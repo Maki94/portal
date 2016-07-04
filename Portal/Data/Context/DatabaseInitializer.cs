@@ -91,8 +91,8 @@ namespace Data
 
             var badges = new List<Badge>
             {
-                new Badge { Name = "JobFair manijak" },
-                new Badge { Name = "Pobednik elektrijade" },
+                new Badge { Name = "JobFair manijak", Description = "bla"},
+                new Badge { Name = "Pobednik elektrijade", Description = "nesto" },
             };
 
             var memberbadges = new List<MemberBadge>

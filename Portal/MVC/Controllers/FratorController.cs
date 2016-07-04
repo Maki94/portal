@@ -6,15 +6,26 @@ namespace MVC.Controllers
     [AuthorizeMember]
     public class FratorController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id = null)
         {
             CompanyModel model = CompanyModel.Load(MemberSession.GetMemberId());
-            return View(model);
+            if (id != null)
+            {
+                if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.FR)
+                {
+                    model.Show = model.AllCompany.Find(x => x.CompanyId == id);
+                }
+                else
+                {
+                    model.Show = model.MyCompany.Find(x => x.CompanyId == id);
+                }
+            }
+                return View(model);
         }
 
         public ActionResult Profile(int id)
         {
-            return View();
+            return RedirectToAction("Index", new { id = id });
         }
 
         public ActionResult Like(int idm, int idc)

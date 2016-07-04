@@ -99,6 +99,9 @@
     <Compile Include="DTOs\Company\MemberCompanyDTO.cs" />
     <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\LoginTransporterDTO.cs" />
+    <Compile Include="DTOs\Meeting\ExcuseDTO.cs" />
+    <Compile Include="DTOs\Meeting\MeetingDTO.cs" />
+    <Compile Include="DTOs\Meeting\MemberMeetingDTO.cs" />
     <Compile Include="DTOs\MemberDTO.cs" />
     <Compile Include="DTOs\MemberPollOptionDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageDTO.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Entities\Companys.cs" />
     <Compile Include="Entities\DefaultPictures.cs" />
     <Compile Include="Entities\Login.cs" />
+    <Compile Include="Entities\Meetings.cs" />
     <Compile Include="Entities\Members.cs" />
     <Compile Include="Entities\Polls.cs" />
     <Compile Include="Entities\Projects.cs" />
