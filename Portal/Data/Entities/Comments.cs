@@ -51,5 +51,36 @@ namespace Data.Entities
                 dc.SaveChanges();
             }
         }
+        public static void AddComment(int idm, int idc, int idp, Enumerations.CommentType type, string text, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Member m = dc.Members.Where(x => x.MemberId == idm).First();
+                Company c = dc.Companies.Where(x => x.CompanyId == idc).First();
+                Project p = dc.Projects.Where(x => x.ProjectId == idp).First();
+
+                Comment comm = new Comment
+                {
+                    Author = m,
+                    Company = c,
+                    Project = p,
+                    Text = text,
+                    Time = DateTime.Now,
+                    Type = type
+                };
+
+                dc.Comments.Add(comm);
+                dc.SaveChanges();
+            }
+        }
+        public static void DeleteComment(int idcomm, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Comment c = dc.Comments.Where(x => x.CommentId == idcomm).First();
+                c.IsDeleted = true;
+                dc.SaveChanges();
+            }
+        }
     }
 }

@@ -27,5 +27,122 @@ namespace Data.Entities
                 return mc.Select(x => x.Company).ToList();
             }
         }
+
+        public static void AddCompany(string name, string address, string city, string description, string email, string phone, string site,
+                                   Enumerations.CompanyField field, Enumerations.CompanyType type, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {                
+                Company comp = new Company
+                {
+                    Address = address,
+                    City = city,
+                    Description = description,
+                    Email = email,
+                    Phone = phone,
+                    Field = field,
+                    Type = type,
+                    Name = name,
+                    Website = site
+                };
+
+                dc.Companies.Add(comp);
+
+                dc.SaveChanges();
+            }
+        }
+
+        
+        public static void DeleteCompany(int idcomp, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Company c = dc.Companies.Where(x => x.CompanyId == idcomp).Include(x => x.Comments).Include(x=>x.Comments.Select(z=>z.Likes)).Include(x => x.Contacts).First();
+                c.Contacts = c.Contacts ?? new List<ContactPerson>();
+                c.Comments = c.Comments ?? new List<Comment>();
+
+                c.IsDeleted = true;
+                foreach(Comment comm in c.Comments)
+                {
+                    comm.IsDeleted = true;
+                    comm.Likes = comm.Likes ?? new List<MemberComment>();
+                    foreach(MemberComment l in comm.Likes)
+                    {
+                        l.IsDeleted = true;
+                    }
+                }
+                foreach(ContactPerson cp in c.Contacts)
+                {
+                    cp.IsDeleted = true;
+                }
+                List<MemberCompany> mcs = dc.MemberCompanies.Where(x => x.Company == c).ToList();
+                foreach(MemberCompany mc in mcs)
+                {
+                    mc.IsDeleted = true;
+                }
+                dc.SaveChanges();
+            }
+        }
+
+        public static void DelegateTo(int idm, List<int> idc, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Member m = dc.Members.Where(x => x.MemberId == idm).First();
+                foreach (int id in idc)
+                {
+                    Company c = dc.Companies.Where(x => x.CompanyId == id).First();
+
+                    MemberCompany oldmc = dc.MemberCompanies.Where(x => x.Company == c && x.FinishDate == null).FirstOrDefault();
+
+                    if (oldmc!=null)
+                    {
+                        oldmc.FinishDate = DateTime.Now;
+                    }
+
+                    MemberCompany newmc = new MemberCompany
+                    {
+                        Company = c,
+                        Member = m,
+                        StartDate = DateTime.Now
+                    };
+
+                    dc.MemberCompanies.Add(newmc);
+                }
+
+                dc.SaveChanges();
+            }
+        }
+
+        public static void AddContactPerson(int idc, string email, string name, string phone, string note, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Company c = dc.Companies.Where(x => x.CompanyId == idc).First();
+
+                ContactPerson cp = new ContactPerson
+                {
+                    Company = c,
+                    Email = email,
+                    Name = name,
+                    Note = note,
+                    Phone = phone,
+                    StartDate = DateTime.Now
+                };
+
+                dc.ContactPersons.Add(cp);
+                dc.SaveChanges();
+            }
+        }
+
+        public static void DeleteContactPerson(int idcp, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                ContactPerson cp = dc.ContactPersons.Where(x => x.ContactPersonId == idcp).First();
+                cp.IsDeleted = true;
+                dc.SaveChanges();
+            }
+        }
     }
 }
