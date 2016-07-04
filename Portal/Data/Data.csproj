@@ -111,12 +111,14 @@
     <Compile Include="DTOs\MemberDTO.cs" />
     <Compile Include="DTOs\MemberMasterDTO.cs" />
     <Compile Include="DTOs\MemberPollOptionDTO.cs" />
+    <Compile Include="DTOs\MemberProjectDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageNotificationDTO.cs" />
     <Compile Include="DTOs\MPDTO.cs" />
     <Compile Include="DTOs\PollDTO.cs" />
     <Compile Include="DTOs\PollOptionDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
+    <Compile Include="DTOs\ProjectMemberDTO.cs" />
     <Compile Include="DTOs\ReportDTO.cs" />
     <Compile Include="Entities\Badges.cs" />
     <Compile Include="Entities\Chat\IMessage.cs" />

@@ -26,30 +26,6 @@
                     </div>
                 </div>
 
-                @*<div id="members" class="member-list mdl-grid">
-                    @foreach (var m in Model.MemberThumbnails)
-                    {
-                        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.MemberId">
-                            <figure class="mdl-card__media">
-                                <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
-                                <a href="@Url.Action("Profile", "Member", new { id = m.MemberId })"><img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg" /></a>
-                            </figure>
-                            <div class="mdl-card__title">
-                                <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Member", new {id = m.MemberId})">
-                                    @Html.DisplayName(m.Name)
-                                </a>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                <h6>@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) @if (m.Nickname != null) { @Html.DisplayFor(x => m.Nickname) } </h6>
-                                <p>@Html.DisplayName(m.Faculty)</p>
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <div class="mdl-layout-spacer"></div>
-                            </div>
-                        </div>
-                    }
-                </div>*@
-
                 <div id="members" class="member-list mdl-grid">
                     @foreach (var m in Model.MemberThumbnails)
                     {

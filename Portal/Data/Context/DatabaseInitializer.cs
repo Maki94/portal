@@ -121,8 +121,9 @@ namespace Data
 
             var teams = new List<Team>
             {
-                new Team {Name = "Team 1"},
-                new Team {Name = "Team 2"}
+                new Team {Name = "Tim 1"},
+                new Team {Name = "Tim 2"},
+                new Team {Name = "Tim 3"}
             };
 
             var memberteams = new List<MemberTeam>
@@ -130,27 +131,26 @@ namespace Data
                 new MemberTeam {Member = members[0], Team = teams[0]},
                 new MemberTeam {Member = members[0], Team = teams[1]},
                 new MemberTeam {Member = members[1], Team = teams[1]},
-                new MemberTeam {Member = members[2], Team = teams[1]}
+                new MemberTeam {Member = members[2], Team = teams[2]}
             };
 
             var projects = new List<Project>
             {
-                new Project {Name = "JobFair", Description = "Opis za JobFair", Team = teams[0], StartDate = new DateTime(2016, 5, 20), FinishDate = new DateTime(2016, 7, 20), Place = "Nis", State = Enumerations.ProjectState.aktivan, Website = "www.jobfairnis.rs"},
-                new Project {Name = "Elektrijada", Description = "Opis za Elektrijadu", Team = teams[0], StartDate = new DateTime(2016, 6, 20), FinishDate = new DateTime(2016, 7, 15), Place = "Nis", State = Enumerations.ProjectState.aktivan, Website = "www.elektrijada.com"},
-                new Project {Name = "Takmicenje", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2016, 3, 15), FinishDate = new DateTime(2016, 4, 15), Place = "Nis", State = Enumerations.ProjectState.zatvoren, Website = "www.google.com"},
-                new Project {Name = "Takmicenje 2", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2015, 3, 15), FinishDate = new DateTime(2015, 4, 15), Place = "Nis", State = Enumerations.ProjectState.zatvoren, Website = "www.google.com"},
-                new Project {Name = "Takmicenje 3", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2014, 3, 15), FinishDate = new DateTime(2014, 4, 15), Place = "Nis", State = Enumerations.ProjectState.zatvoren, Website = "www.google.com"}
+                new Project {Name = "JobFair", Description = "Opis za JobFair", Team = teams[0], StartDate = new DateTime(2016, 5, 20), FinishDate = new DateTime(2016, 7, 20), Place = "Nis", State = Enumerations.ProjectState.Aktivan, Website = "http://jobfairnis.rs/new/"},
+                new Project {Name = "Elektrijada", Description = "Opis za Elektrijadu", Team = teams[0], StartDate = new DateTime(2016, 6, 20), FinishDate = new DateTime(2016, 7, 15), Place = "Nis", State = Enumerations.ProjectState.Aktivan, Website = "http://elektrijada.com/"},
+                new Project {Name = "Takmicenje", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2016, 3, 15), FinishDate = new DateTime(2016, 4, 15), Place = "Nis", State = Enumerations.ProjectState.Zavrsen, Website = "https://www.google.com/"},
+                new Project {Name = "Takmicenje 2", Description = "Opis za takmicenje", Team = teams[1], StartDate = new DateTime(2015, 3, 15), FinishDate = new DateTime(2015, 4, 15), Place = "Nis", State = Enumerations.ProjectState.Zavrsen, Website = "https://www.google.com/"},
+                new Project {Name = "Takmicenje 3", Description = "Opis za takmicenje", Team = teams[2], StartDate = new DateTime(2014, 3, 15), FinishDate = new DateTime(2014, 4, 15), Place = "Nis", State = Enumerations.ProjectState.Zavrsen, Website = "https://www.google.com/"}
             };
 
             var memberprojects = new List<MemberProject>
             {
-                new MemberProject {Member = members[0], Project = projects[0], Function = "posetilac"},
-                new MemberProject {Member = members[0], Project = projects[1], Function = "ucesnik"},
-                new MemberProject {Member = members[1], Project = projects[1], Function = "organizator"},
-                new MemberProject {Member = members[2], Project = projects[2], Function = "organizator"},
-                new MemberProject {Member = members[0], Project = projects[3], Function = "ucesnik"},
-                new MemberProject {Member = members[1], Project = projects[3], Function = "organizator"},
-                new MemberProject {Member = members[2], Project = projects[4], Function = "organizator"}
+                new MemberProject {Member = members[0], Project = projects[2], Function = "Vozač"},
+                new MemberProject {Member = members[0], Project = projects[3], Function = "Prenosio stvari"},
+                new MemberProject {Member = members[1], Project = projects[0], Function = "Organizator"},
+                new MemberProject {Member = members[1], Project = projects[1], Function = "Organizator"},
+                new MemberProject {Member = members[2], Project = projects[1], Function = "Vozač"},
+                new MemberProject {Member = members[2], Project = projects[2], Function = "Vozač"}
             };
 
             context.MemberProjects.AddRange(memberprojects);
@@ -169,7 +169,7 @@ namespace Data
                     HideVoters = false,
                     StartDate = DateTime.Now,
                     EndDate = new DateTime(2016, 7, 20),
-                    State = Enumerations.PollState.aktivan,
+                    State = Enumerations.PollState.Aktivno,
                     PollCreator = members[0]
                 },
                 new Poll
@@ -181,7 +181,7 @@ namespace Data
                     HideVoters = true,
                     StartDate = DateTime.Now,
                     EndDate = new DateTime(2016, 7, 20),
-                    State = Enumerations.PollState.aktivan,
+                    State = Enumerations.PollState.Aktivno,
                     PollCreator = members[1]
                 },
                 new Poll
@@ -193,7 +193,7 @@ namespace Data
                     HideVoters = true,
                     StartDate = new DateTime(2016, 5, 20),
                     EndDate = new DateTime(2016, 5, 27),
-                    State = Enumerations.PollState.zatvoren,
+                    State = Enumerations.PollState.Zatvoreno,
                     PollCreator = members[1]
                 },
                 new Poll
@@ -205,7 +205,7 @@ namespace Data
                     HideVoters = false,
                     StartDate = new DateTime(2016, 3, 20),
                     EndDate = new DateTime(2016, 3, 23),
-                    State = Enumerations.PollState.zatvoren,
+                    State = Enumerations.PollState.Zatvoreno,
                     PollCreator = members[1]
                 }
             };

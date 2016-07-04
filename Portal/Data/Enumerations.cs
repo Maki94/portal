@@ -47,20 +47,14 @@ namespace Data
 
         public enum PollState
         {
-            aktivan,
-            zatvoren,
-        }
-
-        public enum EventState
-        {
-            aktivan,
-            zatvoren,
+            Aktivno,
+            Zatvoreno
         }
 
         public enum ProjectState
         {
-            aktivan,
-            zatvoren,
+            Aktivan,
+            Zavrsen
         }
 
         public enum CompanyField

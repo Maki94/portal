@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using Data.DataClasses;
 using Data.DTOs;
 
@@ -40,7 +41,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return (from p in dc.Projects where p.State == Enumerations.ProjectState.aktivan select p).ToList();
+                return (from p in dc.Projects where p.State == Enumerations.ProjectState.Aktivan select p).ToList();
             }
         }
 
@@ -48,17 +49,38 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return (from p in dc.MemberProjects
-                        where p.MemberId == memberID
-                        select p.Project).ToList();
+                return dc.MemberProjects.Where(x => x.MemberId == memberID)
+                                        .Include(x => x.Project.Team)
+                                        .Select(x => x.Project).ToList();
             }
         }
-        
+
+        public static List<Project> GetTeamProjectsOfMember(int memberId)
+        {
+            using (var dc = new DataContext())
+            {
+                Team t = dc.MemberTeams.Where(x => x.MemberId == memberId)
+                                       .Select(x => x.Team).First();
+
+                return dc.Projects.Include(x => x.Team)
+                                  .Where(x => x.TeamId == t.TeamId)
+                                  .ToList();
+            }
+        }
+
+        public static string FindFunctionOfMemberInProject(int memberId, int projectId)
+        {
+            using (var dc = new DataContext())
+            {
+                return dc.MemberProjects.Where(x => x.MemberId == memberId && x.ProjectId == projectId).Select(x => x.Function).First();
+            }
+        }
+
         public static List<Project> GetAllProjects()
         {
             using (var dc = new DataContext())
             {
-                return (from p in dc.Projects select p).ToList();
+                return dc.Projects.Include(x => x.Team).Select(x => x).OrderBy(x => x.State).ToList();
             }
         }
 
@@ -86,5 +108,12 @@ namespace Data.Entities
             }
         }
 
+        public static List<MemberProject> GetProjectHelpers(int projectId)
+        {
+            using (var dc = new DataContext())
+            {
+                return dc.MemberProjects.Include(x => x.Member).Where(x => x.ProjectId == projectId).Select(x => x).ToList();
+            }
+        }
     }   
 }

@@ -1,0 +1,65 @@
+﻿@model MVC.Models.ProjectModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="project-details-div">
+    <div id="project-details-content" class="clearfix">
+        <div id="userphoto"><img src="http://i.imgur.com/Xqdt97P.png" alt="default log"></div>
+        <h1>
+            @Html.DisplayFor(model => model.ProjectInfo.Name)
+        </h1>
+        <nav id="profiletabs">
+            <ul class="clearfix">
+                <li><a href="#info" class="sel">O projektu</a></li>
+                <li><a href="#team">O realizaciji</a></li>
+            </ul>
+        </nav>
+
+        <section id="info">
+            <p class="setting"><span>Opis</span>@Model.ProjectInfo.Description</p>
+
+            <p class="setting"><span>Datum početka</span>@Model.ProjectInfo.StartDate.ToString("dd.MM.yyyy")</p>
+
+            <p class="setting"><span>Datum završetka</span>@Model.ProjectInfo.FinishDate.Value.ToString("dd.MM.yyyy")</p>
+
+            <p class="setting"><span>Mesto</span>@Model.ProjectInfo.Place</p>
+
+            <p class="setting"><span>Sajt</span><a href="@Model.ProjectInfo.Website">@Model.ProjectInfo.Website</a></p>
+        </section>
+
+        <section id="team" class="hidden">
+            <h2 class="team-name">@Model.ProjectTeam.Name</h2>
+            @foreach (var m in Model.MemberTeamList)
+            {
+                <p class="setting teammember-info"><span>@m.Member.Name</span>@m.TeamRole.ToString()</p>
+            }
+            <h2 class="team-name">Ostali učesnici</h2>
+            @foreach (var m in Model.ProjectHelpers)
+            {
+                <p class="setting teammember-info"><span>@m.MemberName</span>@m.Function</p>
+            }
+        </section>
+    </div><!-- end #content -->
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#profiletabs ul li a').on('click', function (e) {
+            e.preventDefault();
+            var newcontent = $(this).attr('href');
+
+            $('#profiletabs ul li a').removeClass('sel');
+            $(this).addClass('sel');
+
+            $('#project-details-content section').each(function () {
+                if (!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+            });
+
+            $(newcontent).removeClass('hidden');
+        });
+    });
+
+</script>
+

@@ -16,8 +16,8 @@ namespace MVC.Models
         public PollListModel()
         {
             List<PollModel> pm = PollModel.GetAllPollModels();
-            ActivePolls = pm.Where(p => p.PollDetails.State == Enumerations.PollState.aktivan).ToList();
-            ClosedPolls = pm.Where(p => p.PollDetails.State == Enumerations.PollState.zatvoren).ToList();
+            ActivePolls = pm.Where(p => p.PollDetails.State == Enumerations.PollState.Aktivno).ToList();
+            ClosedPolls = pm.Where(p => p.PollDetails.State == Enumerations.PollState.Zatvoreno).ToList();
         }
     }
 }

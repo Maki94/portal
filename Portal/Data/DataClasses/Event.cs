@@ -11,7 +11,6 @@ namespace Data.DataClasses
     {
         public int EventId { get; set; }
         public string Name { get; set; }
-        public Enumerations.EventState State { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
         public string Place { get; set; }

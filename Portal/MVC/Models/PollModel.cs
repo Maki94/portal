@@ -88,7 +88,7 @@ namespace MVC.Models
                 // pozivamo funkciju koja ce da updatuje bazu
                 Polls.ClosePoll(pm.PollDetails.PollId);
                 // menjamo vrednost propertija objekta
-                pm.PollDetails.State = Enumerations.PollState.zatvoren;
+                pm.PollDetails.State = Enumerations.PollState.Zatvoreno;
             }
 
             return pm;

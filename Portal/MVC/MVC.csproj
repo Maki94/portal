@@ -257,6 +257,8 @@
     <Content Include="Content\MemberList.less" />
     <Content Include="Views\Frator\Add.cshtml" />
     <Content Include="Content\MemberProfile.less" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Content\ProjectDetails.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
