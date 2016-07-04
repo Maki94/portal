@@ -57,7 +57,6 @@ namespace MVC.Controllers
             var json = jsonSerialiser.Serialize(c);
             return json;
         }
-<<<<<<< HEAD
         [HttpPost]
         public void SaveComment(string text, string tip, string projekat)
         {
@@ -69,7 +68,7 @@ namespace MVC.Controllers
         {
             // TODO: @nikolcar snimiti sve paramentre u ContactPerson
             return RedirectToAction("Index");
-=======
+        }
 
         public string GetCompany(int id)
         {
@@ -78,7 +77,6 @@ namespace MVC.Controllers
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(c);
             return json;
->>>>>>> 1b879d0432e9d37a79dec79eba08b21051032337
         }
     }
 }
