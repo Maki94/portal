@@ -59,32 +59,32 @@
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="kompanija-adresa" value=@Model.Show.Address disabled>
+                                    <input class="mdl-textfield__input" type="text" id="kompanija-adresa" value=@Model.Show.Address readonly>
                                     <label class="mdl-textfield__label" for="kompanija-adresa">Adresa</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="kompanija-sajt" value=@Model.Show.Website disabled>
+                                    <input class="mdl-textfield__input" type="text" id="kompanija-sajt" value=@Model.Show.Website readonly>
                                     <label class="mdl-textfield__label" for="kompanija-sajt">Sajt...</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kompanija-telefon" value=@Model.Show.Phone disabled>
+                                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kompanija-telefon" value=@Model.Show.Phone readonly>
                                     <label class="mdl-textfield__label" for="kompanija-telefon">Telefon...</label>
                                     <span class="mdl-textfield__error">To nije broj!</span>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="kompanija-email" value=@Model.Show.Email disabled>
+                                    <input class="mdl-textfield__input" type="text" id="kompanija-email" value=@Model.Show.Email readonly>
                                     <label class="mdl-textfield__label" for="kompanija-email">Email...</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="div-expand mdl-textfield mdl-js-textfield">
-                                    <textarea class="mdl-textfield__input" type="text" rows="3" id="kompanija-opis" disabled>@Model.Show.Description</textarea>
+                                    <textarea class="mdl-textfield__input" type="text" rows="3" id="kompanija-opis" readonly>@Model.Show.Description</textarea>
                                     <label class="mdl-textfield__label" for="kompanija-opis">Opis...</label>
                                 </div>
                             </li>
@@ -125,11 +125,11 @@
                                 </div>
                             </li>
 
-                            <li class="li-shrink mdl-list__item">
+                            @*<li class="li-shrink mdl-list__item">
                                 <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                     Sacuvaj Izmene
                                 </button>
-                            </li>
+                            </li>*@
                         </ul>
                     </form>
                 </div>
@@ -145,7 +145,7 @@
                                         {
                                             if (c.ContactPersonId == Model.Show.Contacts.OrderByDescending(x => x.StartDate).First().ContactPersonId)
                                             {
-                                                <option value=@c.ContactPersonId selected>@c.Name.ToString()</option>
+                                                <option  value=@c.ContactPersonId selected>@c.Name.ToString()</option>
                                             }
                                             else
                                             {
@@ -346,6 +346,14 @@
 </div>
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
+    var url = '@Url.Action("GetAvatar", "Member")';
+    url += "/" + self.receiverId;
+
+    $.post(url, function (data) {
+        self.receiverUrl = data;
+    });
+
+
     var ENTER_CODE = 13;
 
     $('#komentar-text').bind('keypress', function (event) {

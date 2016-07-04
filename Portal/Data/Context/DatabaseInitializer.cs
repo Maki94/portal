@@ -301,7 +301,8 @@ namespace Data
 
             var contact = new List<ContactPerson>
             {
-                new ContactPerson {Company = company[0], Email="bla", Name="bla", Phone="123", Note = "bla", StartDate = DateTime.Now }
+                new ContactPerson {Company = company[0], Email="bla", Name="bla", Phone="123", Note = "bla", StartDate = DateTime.Now },
+                new ContactPerson {Company = company[0], Email="aaa", Name="aaa", Phone="123", Note = "aaa", StartDate = DateTime.Now }
             };
             context.ContactPersons.AddRange(contact);
             context.SaveChanges();
