@@ -24,6 +24,5 @@ namespace Data.DTOs
         public string LinkedIn { get; set; }
         public string Skype { get; set; }
         public Enumerations.Role Role { get; set; }
-        public int MyProperty { get; set; }
     }
 }

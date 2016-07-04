@@ -108,7 +108,9 @@ namespace Data.Entities
                         Name = m.Name,
                         Surname = m.Surname,
                         Nickname = m.Nickname ?? "",
-                        Faculty = m.Faculty ?? ""
+                        Faculty = m.Faculty ?? "",
+                        Role = (Enumerations.Role)m.Role.RoleId,
+                        Status = m.Status
                     });
                 }
 

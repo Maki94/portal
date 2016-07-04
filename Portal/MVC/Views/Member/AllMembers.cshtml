@@ -26,13 +26,13 @@
                     </div>
                 </div>
 
-                <div id="members" class="member-list mdl-grid">
+                @*<div id="members" class="member-list mdl-grid">
                     @foreach (var m in Model.MemberThumbnails)
                     {
                         <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.MemberId">
                             <figure class="mdl-card__media">
-                                @*<div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>*@
-                                <img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg"/>
+                                <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
+                                <a href="@Url.Action("Profile", "Member", new { id = m.MemberId })"><img class="avatar" src="http://i.imgur.com/4UaFMTl.jpg" /></a>
                             </figure>
                             <div class="mdl-card__title">
                                 <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Profile", "Member", new {id = m.MemberId})">
@@ -48,6 +48,25 @@
                             </div>
                         </div>
                     }
+                </div>*@
+
+                <div id="members" class="member-list mdl-grid">
+                    @foreach (var m in Model.MemberThumbnails)
+                    {
+                        <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.MemberId">
+                            <figure class="mdl-card__media">
+                                <a href="@Url.Action("Profile", "Member", new { id = m.MemberId })"><img class="member-list-avatar" src="http://i.imgur.com/Xqdt97P.png" alt="" /></a>
+                            </figure>
+                            <div class="mdl-card__title">
+                                <h1 class="member-list-title mdl-card__title-text">@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) 
+                                @{if (m.Nickname != null) { <text>(</text>@m.Nickname<text>)</text>}}</h1>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <h6>@Html.DisplayName(m.Faculty)</h6>
+                                <p>@Html.DisplayName(m.Role.ToString())</p>
+                            </div>
+                        </div>
+                    }
                 </div>
 
             </main>
@@ -57,16 +76,36 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript">
-    $(window).bind('load', function() {
+
+    function filterResults() {
+        var term = $('#searchMembersText').val();
+        $.post("@Url.Action("SearchMembers", "Member")", { "term": term }, function (data) {
+            $('#members').children().each(function () {
+                var id = parseInt($(this).attr('data-member-id'));
+                if (data.indexOf(id) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    }
+
+    $(window).bind('load', function () {
         var data = [];
-        var elements = $("#members").find('h6');
+        var elements = $("#members").find('.member-list-title');
         for (var i = 0; i < elements.length; i++) {
             data.push(elements[i].innerHTML);
         }
         $("#searchMembersText").autocomplete({
             source: data,
             delay: 0,
-            minLength: 1
+            minLength: 1,
+
+            select: function (e, ui) {
+                $("#searchMembersText").val(ui.item.label);
+                filterResults();
+            },
         });
     });
 
@@ -81,17 +120,7 @@
         });
     });*@
 
-    $('#searchMembersText').bind('keyup', function filterResults() {
-        var term = $('#searchMembersText').val();
-        $.post("@Url.Action("SearchMembers", "Member")", { "term": term }, function (data) {
-            $('#members').children().each(function () {
-                var id = parseInt($(this).attr('data-member-id'));
-                if (data.indexOf(id) !== -1) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-    });
+    $('#searchMembersText').bind('keyup', filterResults);
+
+
 </script>

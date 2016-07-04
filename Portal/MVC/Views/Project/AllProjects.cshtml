@@ -15,9 +15,9 @@
                 <div class="project-list mdl-grid">
                     @foreach (var p in Model.ProjectThumbnails)
                     {
-                        <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
+                        <div class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
                             <figure class="mdl-card__media">
-                                <a href="@Url.Action("Details", "Project", new { id = p.ProjectId })"><img src="http://tfirdaus.github.io/mdl/images/laptop.jpg" alt="" /></a>
+                                <a href="@Url.Action("Details", "Project", new { id = p.ProjectId })"><img class="project-list-avatar" src="http://tfirdaus.github.io/mdl/images/laptop.jpg" alt="" /></a>
                             </figure>
                             <div class="mdl-card__title">
                                 <h1 class="mdl-card__title-text">@Html.DisplayName(p.Name)</h1>
@@ -25,16 +25,6 @@
                             <div class="mdl-card__supporting-text">
                                 <p><a href="@p.Website">@p.Website</a></p>
                                 <p>@Html.DisplayName(p.State.ToString())</p>
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-
-                                <a class="mdl-button mdl-button--colored mdl-js-button">Opsirnije</a>
-
-                                <div class="mdl-layout-spacer"></div>
-
-                                <button class="mdl-button mdl-button--icon mdl-button--colored">
-                                    <i class="material-icons">share</i>
-                                </button>
                             </div>
                         </div>
                     }
