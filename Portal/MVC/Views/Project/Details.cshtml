@@ -33,12 +33,13 @@
             <h2 class="team-name">@Model.ProjectTeam.Name</h2>
             @foreach (var m in Model.MemberTeamList)
             {
-                <p class="setting teammember-info"><span>@m.Member.Name</span>@m.TeamRole.ToString()</p>
+                <p class="setting teammember-info"><span>@m.TeamRole.ToString()</span>@m.Member.Name @m.Member.Surname @{if (m.Member.Nickname != null)
+                    { <text>(</text>@m.Member.Nickname<text>)</text>}}</p>
             }
             <h2 class="team-name">Ostali učesnici</h2>
             @foreach (var m in Model.ProjectHelpers)
             {
-                <p class="setting teammember-info"><span>@m.MemberName</span>@m.Function</p>
+                <p class="setting teammember-info"><span>@m.Function</span>@m.MemberName</p>
             }
         </section>
     </div><!-- end #content -->
