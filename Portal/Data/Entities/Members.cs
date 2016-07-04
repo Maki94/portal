@@ -229,6 +229,16 @@ namespace Data.Entities
             }
         }
 
+        public static List<Badge> GetMemberBadges(int memberId)
+        {
+            using (var dc = new DataContext())
+            {
+                List<Badge> badges = dc.MemberBadges.Where(x => x.MemberId == memberId).Select(x => x.Badge).ToList();
+
+                return badges;
+            }
+        }
+
         public static void AddMemberToTeam(int memberId, int teamId, Enumerations.TeamRole role)
         {
             using (var dc = new DataContext())

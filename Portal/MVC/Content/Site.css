@@ -92,94 +92,96 @@ aside a:hover {
   max-height: 200px;
   max-width: 200px;
 }
-#member-profile-content {
+#member-profile-div {
   /** typography **/
   /** page structure **/
   /** profile nav links **/
   /** profile content sections **/
+  /**ovaj deo sam ja ubacivao**/
+  /**do ovde sam ja ubacivao**/
   /** clearfix **/
 }
-#member-profile-content html,
-#member-profile-content body,
-#member-profile-content div,
-#member-profile-content span,
-#member-profile-content applet,
-#member-profile-content object,
-#member-profile-content iframe,
-#member-profile-content h1,
-#member-profile-content h2,
-#member-profile-content h3,
-#member-profile-content h4,
-#member-profile-content h5,
-#member-profile-content h6,
-#member-profile-content p,
-#member-profile-content blockquote,
-#member-profile-content pre,
-#member-profile-content a,
-#member-profile-content abbr,
-#member-profile-content acronym,
-#member-profile-content address,
-#member-profile-content big,
-#member-profile-content cite,
-#member-profile-content code,
-#member-profile-content del,
-#member-profile-content dfn,
-#member-profile-content em,
-#member-profile-content img,
-#member-profile-content ins,
-#member-profile-content kbd,
-#member-profile-content q,
-#member-profile-content s,
-#member-profile-content samp,
-#member-profile-content small,
-#member-profile-content strike,
-#member-profile-content strong,
-#member-profile-content sub,
-#member-profile-content sup,
-#member-profile-content tt,
-#member-profile-content var,
-#member-profile-content b,
-#member-profile-content u,
-#member-profile-content i,
-#member-profile-content center,
-#member-profile-content dl,
-#member-profile-content dt,
-#member-profile-content dd,
-#member-profile-content ol,
-#member-profile-content ul,
-#member-profile-content li,
-#member-profile-content fieldset,
-#member-profile-content form,
-#member-profile-content label,
-#member-profile-content legend,
-#member-profile-content table,
-#member-profile-content caption,
-#member-profile-content tbody,
-#member-profile-content tfoot,
-#member-profile-content thead,
-#member-profile-content tr,
-#member-profile-content th,
-#member-profile-content td,
-#member-profile-content article,
-#member-profile-content aside,
-#member-profile-content canvas,
-#member-profile-content details,
-#member-profile-content embed,
-#member-profile-content figure,
-#member-profile-content figcaption,
-#member-profile-content footer,
-#member-profile-content header,
-#member-profile-content hgroup,
-#member-profile-content menu,
-#member-profile-content nav,
-#member-profile-content output,
-#member-profile-content ruby,
-#member-profile-content section,
-#member-profile-content summary,
-#member-profile-content time,
-#member-profile-content mark,
-#member-profile-content audio,
-#member-profile-content video {
+#member-profile-div html,
+#member-profile-div body,
+#member-profile-div div,
+#member-profile-div span,
+#member-profile-div applet,
+#member-profile-div object,
+#member-profile-div iframe,
+#member-profile-div h1,
+#member-profile-div h2,
+#member-profile-div h3,
+#member-profile-div h4,
+#member-profile-div h5,
+#member-profile-div h6,
+#member-profile-div p,
+#member-profile-div blockquote,
+#member-profile-div pre,
+#member-profile-div a,
+#member-profile-div abbr,
+#member-profile-div acronym,
+#member-profile-div address,
+#member-profile-div big,
+#member-profile-div cite,
+#member-profile-div code,
+#member-profile-div del,
+#member-profile-div dfn,
+#member-profile-div em,
+#member-profile-div img,
+#member-profile-div ins,
+#member-profile-div kbd,
+#member-profile-div q,
+#member-profile-div s,
+#member-profile-div samp,
+#member-profile-div small,
+#member-profile-div strike,
+#member-profile-div strong,
+#member-profile-div sub,
+#member-profile-div sup,
+#member-profile-div tt,
+#member-profile-div var,
+#member-profile-div b,
+#member-profile-div u,
+#member-profile-div i,
+#member-profile-div center,
+#member-profile-div dl,
+#member-profile-div dt,
+#member-profile-div dd,
+#member-profile-div ol,
+#member-profile-div ul,
+#member-profile-div li,
+#member-profile-div fieldset,
+#member-profile-div form,
+#member-profile-div label,
+#member-profile-div legend,
+#member-profile-div table,
+#member-profile-div caption,
+#member-profile-div tbody,
+#member-profile-div tfoot,
+#member-profile-div thead,
+#member-profile-div tr,
+#member-profile-div th,
+#member-profile-div td,
+#member-profile-div article,
+#member-profile-div aside,
+#member-profile-div canvas,
+#member-profile-div details,
+#member-profile-div embed,
+#member-profile-div figure,
+#member-profile-div figcaption,
+#member-profile-div footer,
+#member-profile-div header,
+#member-profile-div hgroup,
+#member-profile-div menu,
+#member-profile-div nav,
+#member-profile-div output,
+#member-profile-div ruby,
+#member-profile-div section,
+#member-profile-div summary,
+#member-profile-div time,
+#member-profile-div mark,
+#member-profile-div audio,
+#member-profile-div video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -194,68 +196,68 @@ aside a:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#member-profile-content html {
+#member-profile-div html {
   overflow-y: scroll;
 }
-#member-profile-content body {
+#member-profile-div body {
   background: #f0f0f0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #313131;
   font-size: 62.5%;
   line-height: 1;
 }
-#member-profile-content ::selection {
+#member-profile-div ::selection {
   background: #a4dcec;
 }
-#member-profile-content ::-moz-selection {
+#member-profile-div ::-moz-selection {
   background: #a4dcec;
 }
-#member-profile-content ::-webkit-selection {
+#member-profile-div ::-webkit-selection {
   background: #a4dcec;
 }
-#member-profile-content ::-webkit-input-placeholder {
+#member-profile-div ::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #ccc;
   font-style: italic;
 }
-#member-profile-content :-moz-placeholder {
+#member-profile-div :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #ccc;
   font-style: italic;
 }
-#member-profile-content ::-moz-placeholder {
+#member-profile-div ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #ccc;
   font-style: italic;
 }
-#member-profile-content :-ms-input-placeholder {
+#member-profile-div :-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #ccc !important;
   font-style: italic;
 }
-#member-profile-content br {
+#member-profile-div br {
   display: block;
   line-height: 2.2em;
 }
-#member-profile-content article,
-#member-profile-content aside,
-#member-profile-content details,
-#member-profile-content figcaption,
-#member-profile-content figure,
-#member-profile-content footer,
-#member-profile-content header,
-#member-profile-content hgroup,
-#member-profile-content menu,
-#member-profile-content nav,
-#member-profile-content section {
+#member-profile-div article,
+#member-profile-div aside,
+#member-profile-div details,
+#member-profile-div figcaption,
+#member-profile-div figure,
+#member-profile-div footer,
+#member-profile-div header,
+#member-profile-div hgroup,
+#member-profile-div menu,
+#member-profile-div nav,
+#member-profile-div section {
   display: block;
 }
-#member-profile-content ol,
-#member-profile-content ul {
+#member-profile-div ol,
+#member-profile-div ul {
   list-style: none;
 }
-#member-profile-content input,
-#member-profile-content textarea {
+#member-profile-div input,
+#member-profile-div textarea {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -264,29 +266,29 @@ aside a:hover {
   box-sizing: border-box;
   outline: none;
 }
-#member-profile-content blockquote,
-#member-profile-content q {
+#member-profile-div blockquote,
+#member-profile-div q {
   quotes: none;
 }
-#member-profile-content blockquote:before,
-#member-profile-content blockquote:after,
-#member-profile-content q:before,
-#member-profile-content q:after {
+#member-profile-div blockquote:before,
+#member-profile-div blockquote:after,
+#member-profile-div q:before,
+#member-profile-div q:after {
   content: '';
   content: none;
 }
-#member-profile-content strong {
+#member-profile-div strong {
   font-weight: bold;
 }
-#member-profile-content table {
+#member-profile-div table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-#member-profile-content img {
+#member-profile-div img {
   border: 0;
   max-width: 100%;
 }
-#member-profile-content #topbar {
+#member-profile-div #topbar {
   background: #4f4a41;
   padding: 10px 0 10px 0;
   text-align: center;
@@ -296,7 +298,7 @@ aside a:hover {
   -moz-transition: height 0.5s linear;
   transition: height 0.5s linear;
 }
-#member-profile-content #topbar a {
+#member-profile-div #topbar a {
   color: #fff;
   font-size: 1.3em;
   line-height: 1.25em;
@@ -304,10 +306,10 @@ aside a:hover {
   opacity: 0.5;
   font-weight: bold;
 }
-#member-profile-content #topbar a:hover {
+#member-profile-div #topbar a:hover {
   opacity: 1;
 }
-#member-profile-content h1 {
+#member-profile-div h1 {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 2.5em;
   line-height: 1.5em;
@@ -320,8 +322,8 @@ aside a:hover {
   white-space: nowrap;
   text-align: center;
 }
-#member-profile-content h1:before,
-#member-profile-content h1:after {
+#member-profile-div h1:before,
+#member-profile-div h1:after {
   content: "";
   position: relative;
   display: inline-block;
@@ -330,20 +332,20 @@ aside a:hover {
   vertical-align: middle;
   background: #f0f0f0;
 }
-#member-profile-content h1:before {
+#member-profile-div h1:before {
   left: -0.5em;
   margin: 0 0 0 -50%;
 }
-#member-profile-content h1:after {
+#member-profile-div h1:after {
   left: .5em;
   margin: 0 -50% 0 0;
 }
-#member-profile-content h1 > span {
+#member-profile-div h1 > span {
   display: inline-block;
   vertical-align: middle;
   white-space: normal;
 }
-#member-profile-content h2 {
+#member-profile-div h2 {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 2.1em;
   line-height: 1.4em;
@@ -356,48 +358,48 @@ aside a:hover {
   white-space: nowrap;
   text-align: center;
 }
-#member-profile-content p {
+#member-profile-div p {
   display: block;
   font-size: 1.4em;
   line-height: 1.55em;
   margin-bottom: 22px;
   color: #555;
 }
-#member-profile-content a {
+#member-profile-div a {
   color: #5a9352;
   text-decoration: none;
 }
-#member-profile-content a:hover {
+#member-profile-div a:hover {
   text-decoration: underline;
 }
-#member-profile-content .center {
+#member-profile-div .center {
   display: block;
   text-align: center;
 }
-#member-profile-content #w {
+#member-profile-div #w {
   display: block;
   width: 750px;
   margin: 0 auto;
   padding-top: 30px;
   padding-bottom: 45px;
 }
-#member-profile-content #member-profile-content {
+#member-profile-div #member-profile-content {
   display: block;
   width: 100%;
   background: #fff;
-  padding: 25px 20px;
+  padding: 20px 20px 10px 20px;
   padding-bottom: 35px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
-#member-profile-content #userphoto {
+#member-profile-div #userphoto {
   display: block;
   float: right;
   margin-left: 10px;
   margin-bottom: 8px;
 }
-#member-profile-content #userphoto img {
+#member-profile-div #userphoto img {
   display: block;
   padding: 2px;
   background: #fff;
@@ -405,28 +407,28 @@ aside a:hover {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
-#member-profile-content #profiletabs {
+#member-profile-div #profiletabs {
   display: block;
   margin-bottom: 4px;
   height: 50px;
 }
-#member-profile-content #profiletabs ul {
+#member-profile-div #profiletabs ul {
   list-style: none;
   display: block;
   width: 70%;
   height: 50px;
 }
-#member-profile-content #profiletabls ul li {
+#member-profile-div #profiletabls ul li {
   float: left;
 }
-#member-profile-content #profiletabs ul li a {
+#member-profile-div #profiletabs ul li a {
   display: block;
   float: left;
   padding: 8px 11px;
   font-size: 1.2em;
   font-weight: bold;
-  background: #3F51B5;
-  color: #ffffff;
+  background: #cce6ff;
+  color: #000000;
   margin-right: 7px;
   border: 1px solid #fff;
   -webkit-border-radius: 5px;
@@ -436,23 +438,22 @@ aside a:hover {
   border-radius: 5px;
   border-bottom-left-radius: 0;
 }
-#member-profile-content #profiletabs ul li a:hover {
+#member-profile-div #profiletabs ul li a:hover {
   text-decoration: none;
-  background: #dad7c2;
-  color: #565656;
+  background: #339cff;
 }
-#member-profile-content #profiletabs ul li a.sel {
+#member-profile-div #profiletabs ul li a.sel {
   background: #fff;
-  border-color: #d1cdb5;
+  border-color: #cce6ff;
 }
-#member-profile-content .hidden {
+#member-profile-div .hidden {
   display: none;
 }
-#member-profile-content .activity {
+#member-profile-div .activity {
   border-bottom: 1px solid #d6d1af;
   padding-bottom: 4px;
 }
-#member-profile-content .setting {
+#member-profile-div .setting {
   overflow: hidden;
   display: block;
   font-weight: normal;
@@ -460,35 +461,27 @@ aside a:hover {
   border-top: 1px solid #d6d1af;
   margin-bottom: 5px;
 }
-#member-profile-content .setting span {
+#member-profile-div .setting span {
   float: left;
   width: 250px;
   font-weight: bold;
 }
-#member-profile-content .setting span img {
+#member-profile-div .setting span img {
   cursor: pointer;
 }
-#member-profile-content #friendslist {
+#member-profile-div .member-profile-badge-card {
+  margin: 8px;
+}
+#member-profile-div .member-profile-badge-card .mdl-card__media {
+  background-color: transparent;
+}
+#member-profile-div .member-profile-badge-card h1 {
+  font-size: 1.5em;
+  margin: auto;
   display: block;
-  font-size: 1.1em;
-  font-weight: bold;
+  text-overflow: ellipsis;
 }
-#member-profile-content #friendslist li {
-  line-height: 30px;
-}
-#member-profile-content #friendslist li a {
-  float: left;
-  height: 30px;
-  padding: 3px 6px;
-  line-height: 22px;
-  margin-right: 15px;
-  border: 1px solid #c9d8b8;
-}
-#member-profile-content #friendslist li a img {
-  float: left;
-  margin-right: 5px;
-}
-#member-profile-content .clearfix:after {
+#member-profile-div .clearfix:after {
   content: ".";
   display: block;
   clear: both;
@@ -496,13 +489,13 @@ aside a:hover {
   line-height: 0;
   height: 0;
 }
-#member-profile-content .clearfix {
+#member-profile-div .clearfix {
   display: inline-block;
 }
-#member-profile-content html[xmlns] .clearfix {
+#member-profile-div html[xmlns] .clearfix {
   display: block;
 }
-#member-profile-content * html .clearfix {
+#member-profile-div * html .clearfix {
   height: 1%;
 }
 .calculator-field {

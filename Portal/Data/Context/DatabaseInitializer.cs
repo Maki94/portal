@@ -41,37 +41,41 @@ namespace Data
             {
                 new Member
                 {
-                    Name = "Milos",
+                    Name = "Miloš",
                     Surname = "Jajac",
                     Nickname = "jajac",
                     Faculty = "Elfak",
                     DateOfBirth = new DateTime(1994, 5, 26),
                     JoinDate = DateTime.Now,
                     Password = "Admin@123",
-                    Gmail = "zantsusan@gmail.com",
+                    Gmail = "milosjajac@gmail.com",
                     Phone = "0641234123",
                     Role = roles[5],
-                    LastChatParticipant = 2
+                    LastChatParticipant = 2,
+                    Skype = "jajac94",
+                    Facebook = "https://www.facebook.com/milos.jajac",
                 },
                 new Member
                 {
-                    Name = "Mika",
-                    Surname = "Mikic",
-                    Nickname = "mika",
+                    Name = "Nikola",
+                    Surname = "Mitić",
+                    Nickname = "tesla",
                     Faculty = "Elfak",
                     DateOfBirth = new DateTime(1999, 7, 13),
                     JoinDate = DateTime.Now,
                     Password = "Admin@123",
-                    Gmail = "mikamikic@gmail.com",
+                    Gmail = "nikolamitic@gmail.com",
                     Phone = "0691231231",
                     Role = roles[5],
-                    LastChatParticipant = 1
+                    LastChatParticipant = 1,
+                    Skype = "mitic94",
+                    Facebook = "https://www.facebook.com/mitic.nikolca",
                 },
                 new Member
                 {
                     Name = "Marko",
-                    Surname = "Mihajlovic",
-                    Nickname = "Maki",
+                    Surname = "Mihajlović",
+                    Nickname = "maki",
                     Faculty = "Elfak",
                     DateOfBirth = new DateTime(1994, 7, 13),
                     JoinDate = DateTime.Now,
@@ -79,9 +83,26 @@ namespace Data
                     Gmail = "maki@gmail.com",
                     Phone = "0651231231",
                     Role = roles[5],
-                    LastChatParticipant = 1
+                    LastChatParticipant = 1,
+                    Skype = "marko94",
+                    Facebook = "https://www.facebook.com/mihajlovic.maki",
                 }
             };
+
+            var badges = new List<Badge>
+            {
+                new Badge { Name = "JobFair manijak" },
+                new Badge { Name = "Pobednik elektrijade" },
+            };
+
+            var memberbadges = new List<MemberBadge>
+            {
+                new MemberBadge { Member = members[0], Badge = badges[0] },
+                new MemberBadge { Member = members[0], Badge = badges[1] },
+            };
+
+            context.MemberBadges.AddRange(memberbadges);
+            context.SaveChanges();
 
             var teams = new List<Team>
             {

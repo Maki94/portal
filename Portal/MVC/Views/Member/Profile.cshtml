@@ -117,12 +117,14 @@
             </dd>
     }
 </dl>*@
-
-<div id="member-profile-content" class="clearfix">
-    <div id="userphoto"><img src="http://i.imgur.com/Xqdt97P.png" alt="default avatar"></div>
-    <h1>@Html.DisplayFor(model => model.Name)
-    @Html.DisplayFor(model => model.Surname)
-    (@Html.DisplayFor(model => model.Nickname))</h1>
+<div id="member-profile-div">
+    <div id="member-profile-content" class="clearfix">
+        <div id="userphoto"><img src="http://i.imgur.com/Xqdt97P.png" alt="default avatar"></div>
+        <h1>
+            @Html.DisplayFor(model => model.Name)
+        @Html.DisplayFor(model => model.Surname)
+        (@Html.DisplayFor(model => model.Nickname))
+    </h1>
     <nav id="profiletabs">
         <ul class="clearfix">
             <li><a href="#info" class="sel">O meni</a></li>
@@ -134,13 +136,34 @@
     <section id="info">
         <p class="setting"><span>Fakultet</span>@Model.Faculty</p>
 
-        <p class="setting"><span>Datum rođenja</span>@Model.DateOfBirth</p>
+        <p class="setting"><span>Datum rođenja</span>@Model.DateOfBirth.Value.ToString("dd.MM.yyyy")</p>
 
         <p class="setting"><span>Status</span>@Model.Status.ToString()</p>
 
-        <p class="setting"><span>Član od</span>@Model.JoinDate</p>
+        <p class="setting"><span>Član od</span>@Model.JoinDate.ToString("dd.MM.yyyy")</p>
 
         <p class="setting"><span>Uloga</span>@Model.Role.ToString()</p>
+
+        <p class="setting"><span>Bedževi</span></p>
+        <div id="member-badges" class="member-badge-list mdl-grid">
+            @foreach (var b in Model.MemberBadges)
+            {
+                <div class="member-profile-badge-card mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
+                    <figure class="mdl-card__media">
+                        <img class="member-profile-badge-img" src="http://demo.rocketseo.org/wp-content/uploads/2015/07/Gold-Badge.png" alt="" />
+                    </figure>
+                    <div class="mdl-card__title">
+                        <h1 class="member-list-title mdl-card__title-text">
+                            @Html.DisplayName(b.Name)
+                        </h1>
+                    </div>
+                    @*<div class="mdl-card__supporting-text">
+                        <h6>@Html.DisplayName(m.Faculty)</h6>
+                        <p>@Html.DisplayName(m.Role.ToString())</p>
+                    </div>*@
+                </div>
+                                }
+        </div>
     </section>
 
     <section id="projects" class="hidden">
@@ -148,15 +171,16 @@
     </section>
 
     <section id="contact" class="hidden">
+        <p class="setting"><span>Telefon</span>@Model.Phone</p>
+
         <p class="setting"><span>Skype</span>@Model.Skype</p>
 
         <p class="setting"><span>Facebook</span>@Model.Facebook</p>
 
-        <p class="setting"><span>LinkedIn</span>@Model.LinkedIn.</p>
-
-        <p class="setting"><span>Skype</span>@Model.Skype</p>
+        <p class="setting"><span>LinkedIn</span>@Model.LinkedIn</p>
     </section>
 </div><!-- end #content -->
+</div>
 
 <script type="text/javascript">
     $(function () {
@@ -172,6 +196,12 @@
             });
 
             $(newcontent).removeClass('hidden');
+
+            if ($(this).html() == "Projekti") {
+                $('#userphoto').addClass('hidden');
+            } else {
+                $('#userphoto').removeClass('hidden');
+            }
         });
     });
 
