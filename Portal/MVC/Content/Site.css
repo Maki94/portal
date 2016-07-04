@@ -92,6 +92,419 @@ aside a:hover {
   max-height: 200px;
   max-width: 200px;
 }
+#member-profile-content {
+  /** typography **/
+  /** page structure **/
+  /** profile nav links **/
+  /** profile content sections **/
+  /** clearfix **/
+}
+#member-profile-content html,
+#member-profile-content body,
+#member-profile-content div,
+#member-profile-content span,
+#member-profile-content applet,
+#member-profile-content object,
+#member-profile-content iframe,
+#member-profile-content h1,
+#member-profile-content h2,
+#member-profile-content h3,
+#member-profile-content h4,
+#member-profile-content h5,
+#member-profile-content h6,
+#member-profile-content p,
+#member-profile-content blockquote,
+#member-profile-content pre,
+#member-profile-content a,
+#member-profile-content abbr,
+#member-profile-content acronym,
+#member-profile-content address,
+#member-profile-content big,
+#member-profile-content cite,
+#member-profile-content code,
+#member-profile-content del,
+#member-profile-content dfn,
+#member-profile-content em,
+#member-profile-content img,
+#member-profile-content ins,
+#member-profile-content kbd,
+#member-profile-content q,
+#member-profile-content s,
+#member-profile-content samp,
+#member-profile-content small,
+#member-profile-content strike,
+#member-profile-content strong,
+#member-profile-content sub,
+#member-profile-content sup,
+#member-profile-content tt,
+#member-profile-content var,
+#member-profile-content b,
+#member-profile-content u,
+#member-profile-content i,
+#member-profile-content center,
+#member-profile-content dl,
+#member-profile-content dt,
+#member-profile-content dd,
+#member-profile-content ol,
+#member-profile-content ul,
+#member-profile-content li,
+#member-profile-content fieldset,
+#member-profile-content form,
+#member-profile-content label,
+#member-profile-content legend,
+#member-profile-content table,
+#member-profile-content caption,
+#member-profile-content tbody,
+#member-profile-content tfoot,
+#member-profile-content thead,
+#member-profile-content tr,
+#member-profile-content th,
+#member-profile-content td,
+#member-profile-content article,
+#member-profile-content aside,
+#member-profile-content canvas,
+#member-profile-content details,
+#member-profile-content embed,
+#member-profile-content figure,
+#member-profile-content figcaption,
+#member-profile-content footer,
+#member-profile-content header,
+#member-profile-content hgroup,
+#member-profile-content menu,
+#member-profile-content nav,
+#member-profile-content output,
+#member-profile-content ruby,
+#member-profile-content section,
+#member-profile-content summary,
+#member-profile-content time,
+#member-profile-content mark,
+#member-profile-content audio,
+#member-profile-content video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#member-profile-content html {
+  overflow-y: scroll;
+}
+#member-profile-content body {
+  background: #f0f0f0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #313131;
+  font-size: 62.5%;
+  line-height: 1;
+}
+#member-profile-content ::selection {
+  background: #a4dcec;
+}
+#member-profile-content ::-moz-selection {
+  background: #a4dcec;
+}
+#member-profile-content ::-webkit-selection {
+  background: #a4dcec;
+}
+#member-profile-content ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+  font-style: italic;
+}
+#member-profile-content :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+  font-style: italic;
+}
+#member-profile-content ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+  font-style: italic;
+}
+#member-profile-content :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc !important;
+  font-style: italic;
+}
+#member-profile-content br {
+  display: block;
+  line-height: 2.2em;
+}
+#member-profile-content article,
+#member-profile-content aside,
+#member-profile-content details,
+#member-profile-content figcaption,
+#member-profile-content figure,
+#member-profile-content footer,
+#member-profile-content header,
+#member-profile-content hgroup,
+#member-profile-content menu,
+#member-profile-content nav,
+#member-profile-content section {
+  display: block;
+}
+#member-profile-content ol,
+#member-profile-content ul {
+  list-style: none;
+}
+#member-profile-content input,
+#member-profile-content textarea {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+#member-profile-content blockquote,
+#member-profile-content q {
+  quotes: none;
+}
+#member-profile-content blockquote:before,
+#member-profile-content blockquote:after,
+#member-profile-content q:before,
+#member-profile-content q:after {
+  content: '';
+  content: none;
+}
+#member-profile-content strong {
+  font-weight: bold;
+}
+#member-profile-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#member-profile-content img {
+  border: 0;
+  max-width: 100%;
+}
+#member-profile-content #topbar {
+  background: #4f4a41;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  height: 36px;
+  overflow: hidden;
+  -webkit-transition: height 0.5s linear;
+  -moz-transition: height 0.5s linear;
+  transition: height 0.5s linear;
+}
+#member-profile-content #topbar a {
+  color: #fff;
+  font-size: 1.3em;
+  line-height: 1.25em;
+  text-decoration: none;
+  opacity: 0.5;
+  font-weight: bold;
+}
+#member-profile-content #topbar a:hover {
+  opacity: 1;
+}
+#member-profile-content h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.5em;
+  line-height: 1.5em;
+  letter-spacing: -0.05em;
+  margin-bottom: 20px;
+  padding: .1em 0;
+  color: #444;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+#member-profile-content h1:before,
+#member-profile-content h1:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 1px;
+  vertical-align: middle;
+  background: #f0f0f0;
+}
+#member-profile-content h1:before {
+  left: -0.5em;
+  margin: 0 0 0 -50%;
+}
+#member-profile-content h1:after {
+  left: .5em;
+  margin: 0 -50% 0 0;
+}
+#member-profile-content h1 > span {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+}
+#member-profile-content h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.1em;
+  line-height: 1.4em;
+  letter-spacing: normal;
+  margin-bottom: 20px;
+  padding: .1em 0;
+  color: #444;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+#member-profile-content p {
+  display: block;
+  font-size: 1.4em;
+  line-height: 1.55em;
+  margin-bottom: 22px;
+  color: #555;
+}
+#member-profile-content a {
+  color: #5a9352;
+  text-decoration: none;
+}
+#member-profile-content a:hover {
+  text-decoration: underline;
+}
+#member-profile-content .center {
+  display: block;
+  text-align: center;
+}
+#member-profile-content #w {
+  display: block;
+  width: 750px;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 45px;
+}
+#member-profile-content #member-profile-content {
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 25px 20px;
+  padding-bottom: 35px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+#member-profile-content #userphoto {
+  display: block;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+#member-profile-content #userphoto img {
+  display: block;
+  padding: 2px;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+#member-profile-content #profiletabs {
+  display: block;
+  margin-bottom: 4px;
+  height: 50px;
+}
+#member-profile-content #profiletabs ul {
+  list-style: none;
+  display: block;
+  width: 70%;
+  height: 50px;
+}
+#member-profile-content #profiletabls ul li {
+  float: left;
+}
+#member-profile-content #profiletabs ul li a {
+  display: block;
+  float: left;
+  padding: 8px 11px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: #3F51B5;
+  color: #ffffff;
+  margin-right: 7px;
+  border: 1px solid #fff;
+  -webkit-border-radius: 5px;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius: 5px;
+  -moz-border-radius-bottomleft: 0;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+}
+#member-profile-content #profiletabs ul li a:hover {
+  text-decoration: none;
+  background: #dad7c2;
+  color: #565656;
+}
+#member-profile-content #profiletabs ul li a.sel {
+  background: #fff;
+  border-color: #d1cdb5;
+}
+#member-profile-content .hidden {
+  display: none;
+}
+#member-profile-content .activity {
+  border-bottom: 1px solid #d6d1af;
+  padding-bottom: 4px;
+}
+#member-profile-content .setting {
+  overflow: hidden;
+  display: block;
+  font-weight: normal;
+  padding: 7px 3px;
+  border-top: 1px solid #d6d1af;
+  margin-bottom: 5px;
+}
+#member-profile-content .setting span {
+  float: left;
+  width: 250px;
+  font-weight: bold;
+}
+#member-profile-content .setting span img {
+  cursor: pointer;
+}
+#member-profile-content #friendslist {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+#member-profile-content #friendslist li {
+  line-height: 30px;
+}
+#member-profile-content #friendslist li a {
+  float: left;
+  height: 30px;
+  padding: 3px 6px;
+  line-height: 22px;
+  margin-right: 15px;
+  border: 1px solid #c9d8b8;
+}
+#member-profile-content #friendslist li a img {
+  float: left;
+  margin-right: 5px;
+}
+#member-profile-content .clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#member-profile-content .clearfix {
+  display: inline-block;
+}
+#member-profile-content html[xmlns] .clearfix {
+  display: block;
+}
+#member-profile-content * html .clearfix {
+  height: 1%;
+}
 .calculator-field {
   background-color: orchid;
   width: 77px;

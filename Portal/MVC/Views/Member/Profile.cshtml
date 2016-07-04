@@ -6,100 +6,97 @@
 }
 @{ LoginDTO member = MemberSession.GetMember();}
 
-<h2>Profile</h2>
+@*<h2>@Html.DisplayFor(model => model.Name) 
+    @Html.DisplayFor(model => model.Surname)
+    (@Html.DisplayFor(model => model.Nickname))</h2>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.Name) 
-    @Html.DisplayFor(model => model.Surname)
-    (@Html.DisplayFor(model => model.Nickname))</h4>
-    <hr />
-
     <div class="avatar-div">
-        @*<div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>*@
+        <div class="loader" style="background-image: url('@Url.Content("~/Content/avatar-ajax-loader.gif")')"></div>
         <img class="avatar" src="http://i.imgur.com/Xqdt97P.png"/>
     </div>
 
-        <dl class="dl-horizontal">
+    <dl class="dl-horizontal">
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Faculty)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Faculty)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Faculty)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.DateOfBirth)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Facebook)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Facebook)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Facebook)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Facebook)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LinkedIn)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkedIn)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LinkedIn)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LinkedIn)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Skype)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Skype)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Skype)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Skype)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.JoinDate)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.JoinDate)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.JoinDate)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Gmail)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gmail)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Gmail)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Gmail)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.FeePayedUntil)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FeePayedUntil)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FeePayedUntil)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FeePayedUntil)
+        </dd>
 
-        </dl>
-        @if (member.MemberID == Model.Id)
-        {
-            <a href="@Url.Action("Edit", "Member")">Izmeni profil</a>
-        }
+    </dl>
+    @if (member.MemberID == Model.Id)
+    {
+        <a href="@Url.Action("Edit", "Member")">Izmeni profil</a>
+    }
 
-    </div>
+</div>
 
 <h4>Projekti</h4>
 <hr />
@@ -119,9 +116,64 @@
                 @Html.DisplayFor(s => t.Description)
             </dd>
     }
-</dl>
+</dl>*@
+
+<div id="member-profile-content" class="clearfix">
+    <div id="userphoto"><img src="http://i.imgur.com/Xqdt97P.png" alt="default avatar"></div>
+    <h1>@Html.DisplayFor(model => model.Name)
+    @Html.DisplayFor(model => model.Surname)
+    (@Html.DisplayFor(model => model.Nickname))</h1>
+    <nav id="profiletabs">
+        <ul class="clearfix">
+            <li><a href="#info" class="sel">O meni</a></li>
+            <li><a href="#projects">Projekti</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <section id="info">
+        <p class="setting"><span>Fakultet</span>@Model.Faculty</p>
+
+        <p class="setting"><span>Datum rođenja</span>@Model.DateOfBirth</p>
+
+        <p class="setting"><span>Status</span>@Model.Status.ToString()</p>
+
+        <p class="setting"><span>Član od</span>@Model.JoinDate</p>
+
+        <p class="setting"><span>Uloga</span>@Model.Role.ToString()</p>
+    </section>
+
+    <section id="projects" class="hidden">
+        <p>Projekti</p>
+    </section>
+
+    <section id="contact" class="hidden">
+        <p class="setting"><span>Skype</span>@Model.Skype</p>
+
+        <p class="setting"><span>Facebook</span>@Model.Facebook</p>
+
+        <p class="setting"><span>LinkedIn</span>@Model.LinkedIn.</p>
+
+        <p class="setting"><span>Skype</span>@Model.Skype</p>
+    </section>
+</div><!-- end #content -->
 
 <script type="text/javascript">
+    $(function () {
+        $('#profiletabs ul li a').on('click', function (e) {
+            e.preventDefault();
+            var newcontent = $(this).attr('href');
+
+            $('#profiletabs ul li a').removeClass('sel');
+            $(this).addClass('sel');
+
+            $('#member-profile-content section').each(function () {
+                if (!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+            });
+
+            $(newcontent).removeClass('hidden');
+        });
+    });
 
     @*$(window).bind('load', function () {
         var id = @Model.Id;

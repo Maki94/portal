@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using Data.DataClasses;
 using Data.DTOs;
 
@@ -39,7 +40,7 @@ namespace Data.Entities
         {
             using (var dc = new DataContext())
             {
-                return (from m in dc.Members where m.MemberId == memberID select m).First();
+                return dc.Members.Include(x => x.Role).Where(x => x.MemberId == memberID).First();
             }
         }
 

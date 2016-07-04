@@ -39,7 +39,7 @@ namespace MVC.Controllers
             return Content(imgSrc);
             */
 
-            var imgSrc = $"http://i.imgur.com/4UaFMTl.jpg";
+            var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
             return Content(imgSrc);
         }
 

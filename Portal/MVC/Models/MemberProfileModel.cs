@@ -1,4 +1,5 @@
-﻿using Data.DataClasses;
+﻿using Data;
+using Data.DataClasses;
 using Data.DTOs;
 using Data.Entities;
 using System;
@@ -30,6 +31,8 @@ namespace MVC.Models
 
         public List<ProjectDTO> Projects { get; set; }
 
+        public Enumerations.Role Role { get; set; }
+
         public static MemberProfileModel Load(int memberID)
         {
             Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
@@ -50,7 +53,8 @@ namespace MVC.Models
                 //Avatar = m.Avatar ?? DefaultPictures.GetPictureByName("Avatar"),
                 JoinDate = m.JoinDate,
                 Gmail = m.Gmail,
-                FeePayedUntil = m.FeePayedUntil
+                FeePayedUntil = m.FeePayedUntil,
+                Role = (Data.Enumerations.Role)m.Role.RoleId
             };
 
             List<Project> projects = Data.Entities.Projects.GetAllProjects();
