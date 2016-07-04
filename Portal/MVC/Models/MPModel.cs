@@ -83,7 +83,7 @@ namespace MVC.Models
             return rep;
         }
 
-        private static ReportDTO createReportDTO(Report r)
+        public static ReportDTO createReportDTO(Report r)
         {
             return new ReportDTO
             {
@@ -93,5 +93,6 @@ namespace MVC.Models
                 Time = r.Time
             };
         }
+
     }
 }
