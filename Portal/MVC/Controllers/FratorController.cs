@@ -54,5 +54,14 @@ namespace MVC.Controllers
             var json = jsonSerialiser.Serialize(c);
             return json;
         }
+
+        public string GetCompany(int id)
+        {
+            Data.DataClasses.Company cp = Data.Entities.Companys.GetCompanyAt(id);
+            var c = MVC.Models.CompanyModel.createCompanyDTO(cp);
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(c);
+            return json;
+        }
     }
 }

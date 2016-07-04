@@ -70,6 +70,7 @@ namespace Data
                     LastChatParticipant = 1,
                     Skype = "mitic94",
                     Facebook = "https://www.facebook.com/mitic.nikolca",
+                    MasterId = 1
                 },
                 new Member
                 {

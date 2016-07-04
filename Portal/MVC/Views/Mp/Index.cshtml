@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model MVC.Models.MPModel
 
 @{
     ViewBag.Title = "MP";
@@ -100,6 +100,8 @@
             </div>
         </div>
     </div>
+    @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.HR)
+    {
     <div class="mdl-tabs__panel" id="report-panel">
         <table id="mp-table-report"class="mdl-data-table mdl-js-data-table">
             <thead>
@@ -123,7 +125,7 @@
                 <td class="mdl-data-table__cell--non-numeric">John Lennon</td>
                 <td class="mdl-data-table__cell--non-numeric">The smart one</td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new {id = 1})">
+                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new { id = 1 })">
                         LINK
                     </a>
                 </td>
@@ -133,7 +135,7 @@
                 <td class="mdl-data-table__cell--non-numeric">Paul McCartney</td>
                 <td class="mdl-data-table__cell--non-numeric">The cute one</td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new {id = 1})">
+                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new { id = 1 })">
                         LINK
                     </a>
                 </td>
@@ -144,7 +146,7 @@
                 <td class="mdl-data-table__cell--non-numeric">George Harrison</td>
                 <td class="mdl-data-table__cell--non-numeric">The shy one</td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new {id = 1})">
+                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new { id = 1 })">
                         LINK
                     </a>
                 </td>
@@ -154,9 +156,14 @@
             </tbody>
         </table>
     </div>
+    }
     <div class="mdl-tabs__panel" id="add-report-panel">
         <form action="#">
             <ul id="add-report-panel-list-item" class="mdl-list">
+                <li class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="messenger-user" list="messenger-users">
+                    <label class="mdl-textfield__label" for="messenger-user">Izaberi novog clana...</label>
+                </li>
                 <li class="mdl-list__item">
                     <div id="mp-report-opis-wrapper" class="mdl-textfield mdl-js-textfield">
                         <textarea class="mdl-textfield__input" type="text" rows="10" id="mp-report-opis"></textarea>
@@ -195,3 +202,11 @@
         </form>
     </div>
 </div>
+
+
+<datalist id="messenger-users">
+    @foreach (var m in Model.master.Padawans)
+    {
+        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name+" "+m.Surname)"></option>
+    }
+</datalist>

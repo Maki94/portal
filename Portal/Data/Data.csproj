@@ -106,6 +106,7 @@
     <Compile Include="DTOs\MemberPollOptionDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageDTO.cs" />
     <Compile Include="DTOs\Messenger\MessageNotificationDTO.cs" />
+    <Compile Include="DTOs\MPDTO.cs" />
     <Compile Include="DTOs\PollDTO.cs" />
     <Compile Include="DTOs\PollOptionDTO.cs" />
     <Compile Include="DTOs\ProjectDTO.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Meetings.cs" />
     <Compile Include="Entities\Members.cs" />
+    <Compile Include="Entities\MPs.cs" />
     <Compile Include="Entities\Polls.cs" />
     <Compile Include="Entities\Projects.cs" />
     <Compile Include="Entities\Roles.cs" />

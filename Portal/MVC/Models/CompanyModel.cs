@@ -79,15 +79,17 @@ namespace MVC.Models
             return md;
         }
 
-        private static MemberDTO crateMemberDTO(Member member)
+        public static MemberDTO crateMemberDTO(Member member)
         {
             return new MemberDTO
             {
-                MemberId = member.MemberId
+                MemberId = member.MemberId,
+                Name = member.Name,
+                Surname = member.Surname
             };
         }
 
-        private static CompanyDTO createCompanyDTO(Company c)
+        public static CompanyDTO createCompanyDTO(Company c)
         {
             return new CompanyDTO
             {
