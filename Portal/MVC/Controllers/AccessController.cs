@@ -45,9 +45,17 @@ namespace MVC.Controllers
             }
         }
 
-        public async void SendFeedback(string type, string text)
+        public async Task<ActionResult> SendFeedback(string type, string text)
         {
-            await SendRequestEmail(text, (Data.Enumerations.FeedbackType)int.Parse(type));
+            try
+            {
+                await SendRequestEmail(text, (Data.Enumerations.FeedbackType) int.Parse(type));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            return RedirectToAction("Index");
         }
 
         public async Task SendRequestEmail(string text, Data.Enumerations.FeedbackType type, byte[] pdf = null)
@@ -59,8 +67,8 @@ namespace MVC.Controllers
             var body = "<p>Request From: {0} ({1})</p><p>Comment: {2}</p>";
             var message = new MailMessage();
             message.To.Add(new MailAddress("mnjs2016@googlegroups.com"));
-            message.From = new MailAddress(user.Gmail);
-            message.Subject = "Leave Request";
+            message.From = new MailAddress("mn.jsSWE@gmail.com");
+            message.Subject = "Feedback";
             message.Body = string.Format(body, user.Name + " " + user.Surname, user.Gmail, type.ToString(), text);
             message.IsBodyHtml = true;
             //message.Attachments.Add(new Attachment(stream, "Request.pdf", System.Net.Mime.MediaTypeNames.Application.Pdf));

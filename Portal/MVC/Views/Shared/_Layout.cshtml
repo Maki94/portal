@@ -128,8 +128,8 @@
         url += "&text=" + text;
 
         $.post(url, function (data) {
-            dialogFeedbackSend.close();
         });
+        dialogFeedback.close();
     });
 
     var dialogFeedback = document.querySelector('#dialog-feedback');
