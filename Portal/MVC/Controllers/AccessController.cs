@@ -31,7 +31,7 @@ namespace MVC.Controllers
                 // ovo return Index ubaceno samo da se odma uloguje na jedan nalog
                 //return Index(new MemberLoginModel
                 //{
-                //    Gmail = "zantsusan@gmail.com",
+                //    Gmail = "milosjajac@gmail.com",
                 //    Password = "Admin@123",
                 //    RememberMe = true
                 //});

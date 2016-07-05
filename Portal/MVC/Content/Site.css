@@ -1424,6 +1424,9 @@ h1 {
 .uploadBtn {
   padding-top: 6px;
 }
+#badges{
+  margin-right: 0px;
+}
 .ui-timepicker-wrapper {
   overflow-y: auto;
   height: 150px;

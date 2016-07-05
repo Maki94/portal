@@ -28,7 +28,7 @@
             {
             <h5>
                 <a>
-                    @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new { id = p.MemberId }, null);
+                    @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new { id = p.MemberId }, null)
                 </a>
             </h5>
             }
@@ -43,7 +43,7 @@
             {
                     <h5>
                         <a>
-                            @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new { id = p.MemberId }, null);
+                            @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new { id = p.MemberId }, null)
                         </a>
                     </h5>
             }
@@ -59,7 +59,7 @@
             {
                     <h5>
                         <a>
-                            @Html.ActionLink(p.Name, "Index", "Project");
+                            @Html.ActionLink(p.Name, "Details", "Project", new { id = p.ProjectId }, null)
                         </a>
                     </h5>
             }
@@ -74,7 +74,7 @@
             {
                 <h5>
                     <a>
-                        @Html.ActionLink(p.Topic, "Index", "Poll");
+                        @Html.ActionLink(p.Topic, "AllPolls", "Poll")
                     </a>
                 </h5>
             }
