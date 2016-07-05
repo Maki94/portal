@@ -214,8 +214,8 @@
         url += '?padavanId=' + padavanId;
         url += '&text=' + message;
 
-        $.post(url, function (data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
-            alert("Uspesno je sacuvan");
+        $.post(url, function (data) { 
+            location.reload();
         });
     });
     

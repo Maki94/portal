@@ -24,7 +24,7 @@ namespace MVC.Controllers
         public ActionResult DisplayPDF(int id)
         {
             ReportDTO r = MVC.Models.MPModel.createReportDTO(Data.Entities.MPs.GetRaportAt(id));
-            
+
             MemoryStream pdfStream = new MemoryStream();
             pdfStream.Write(r.Text, 0, r.Text.Length);
             pdfStream.Position = 0;
