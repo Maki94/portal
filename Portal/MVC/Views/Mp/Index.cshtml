@@ -167,14 +167,14 @@
         <form action="#">
             <ul id="add-padavan-panel-list-item" class="mdl-list">
                 <li class="mdl-list__item">
-                    <div class="mp-exapnd mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="mp-master">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="mp-master" list="masters-users" required>
                         <label class="mdl-textfield__label" for="mp-master">Master</label>
                     </div>
                 </li>
                 <li class="mdl-list__item">
-                    <div class="mp-exapnd mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="mp-padavan">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="mp-padavan" list="baby-users" required>
                         <label class="mdl-textfield__label" for="mp-padavan">Padavan...</label>
                     </div>
                 </li>
@@ -192,6 +192,20 @@
 
 <datalist id="messenger-users">
     @foreach (var m in Model.master.Padawans)
+    {
+        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name + " " + m.Surname)"></option>
+    }
+</datalist>
+
+<datalist id="masters-users">
+    @foreach (var m in Model.fullMembers)
+    {
+        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name + " " + m.Surname)"></option>
+    }
+</datalist>
+
+<datalist id="baby-users">
+    @foreach (var m in Model.whitoutMaster)
     {
         <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name + " " + m.Surname)"></option>
     }
