@@ -121,19 +121,22 @@
             </tr>
             </thead>
             <tbody>
-               
-            <tr>
-                <td class="mdl-data-table__cell--non-numeric">John Lennon</td>
-                <td class="mdl-data-table__cell--non-numeric">The smart one</td>
-                <td class="mdl-data-table__cell--non-numeric">
-                    <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("Izvestaj", "Mp", new { id = 1 })">
-                        LINK
-                    </a>
-                </td>
-                <td class="mdl-data-table__cell--non-numeric">No</td>
-            </tr>
-           
-            
+                @foreach (Data.DTOs.MemberMasterDTO r in Model.reports)
+                {
+                    foreach (Data.DTOs.ReportDTO rep in r.Reports)
+                    {
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayName(r.Master.Name + " " + r.Master.Surname)</td>
+                            <td class="mdl-data-table__cell--non-numeric">@Html.DisplayName(r.Padawan.Name + " " + r.Padawan.Surname)</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("DisplayPDF", "Mp", new { id = rep.ReportId })">
+                                    LINK
+                                </a>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">@rep.Time.ToShortDateString()</td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
@@ -154,7 +157,7 @@
                     </div>
                 </li>
                 <li class="mdl-list__item">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                    <button id="postavi-report-button"class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
                         Postavi
                     </button>
                 </li>
@@ -177,7 +180,7 @@
                     </div>
                 </li>
                 <li class="mdl-list__item">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                    <button id="mp-postavi-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
                         Postavi
                     </button>
                 </li>
@@ -194,7 +197,9 @@
     }
 </datalist>
 <script>
+    var submitButton = document.getElementById("postavi-report-button");
     var padavanId = "";
+    
     $(function() { // napuni padavanId
         $('#master-list').on('input', function() { // choose new Receiver
             var opt = $('option[value="' + $(this).val() + '"]');
@@ -203,15 +208,15 @@
             }
         });
     });
+    submitButton.addEventListener("click", function() {
+        var url = '@Url.Action("SavePdfFile", "Mp")';
+        var message = document.getElementById('mp-report-opis').value;
+        url += '?padavanId=' + padavanId;
+        url += '&text=' + message;
 
-    var tip = komentarTip.value;
-    var projekat = komentarAktivanProjekat.value;
-    var url = '@Url.Action("SavePdfFile", "Mp")';
-
-    url += '?padavanId=' + padavanId;
-    url += '&text=' + message;
-
-    $.post(url, function (data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
-        alert("Uspesno je sacuvan");
+        $.post(url, function (data) { 
+            location.reload();
+        });
     });
+    
 </script>
