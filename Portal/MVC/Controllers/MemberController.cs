@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Data.Entities;
 using MVC.Models;
+using System.IO;
 
 namespace MVC.Controllers
 {
@@ -56,13 +57,27 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(MemberEditProfileModel m)
+        public ActionResult Edit(MemberEditProfileModel model)
         {
             var memberId = MemberSession.GetMemberId();
-            Members.EditProfile(memberId, m.Nickname,
-                m.Faculty, m.DateOfBirth, m.Status, m.Phone,
-                m.Facebook, m.LinkedIn, m.Skype);
-            return RedirectToAction("Profile", new {id = memberId});
+            if (ModelState.IsValid)
+            {
+                byte[] array = null;
+                if (model.Avatar != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        model.Avatar.InputStream.Position = 0;
+                        model.Avatar.InputStream.CopyTo(ms);
+                        array = ms.GetBuffer();
+                    }
+                }
+                Members.EditProfile(memberId, model.Nickname, array,
+                model.Faculty, model.DateOfBirth, model.Status, model.Phone,
+                model.Facebook, model.LinkedIn, model.Skype);
+            }
+
+            return RedirectToAction("Profile", new { id = memberId });
         }
 
         //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]

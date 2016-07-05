@@ -24,7 +24,9 @@ namespace MVC.Models
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
 
-        public byte[] Avatar { get; set; }
+        [Display(Name = "Avatar")]
+        [ValidateFile(ErrorMessage = "Izaberite JPG/PNG/GIF sliku manju od 1MB")]
+        public HttpPostedFileBase Avatar { get; set; }
 
         public string Facebook { get; set; }
         public string LinkedIn { get; set; }
@@ -40,7 +42,7 @@ namespace MVC.Models
                 Faculty = m.Faculty,
                 DateOfBirth = m.DateOfBirth,
                 Phone = m.Phone,
-                Avatar = m.Avatar,
+                //Avatar = m.Avatar,
                 Facebook = m.Facebook,
                 LinkedIn = m.LinkedIn,
                 Skype = m.Skype

@@ -171,7 +171,7 @@ namespace Data.Entities
             }
         }
 
-        public static void EditProfile(int memberID, string nickname,
+        public static void EditProfile(int memberID, string nickname, byte[] avatar,
                                        string faculty, DateTime? dob, Enumerations.MemberStatus? status,
                                        string phone, string facebook, string linkedin, string skype)
         {
@@ -186,6 +186,7 @@ namespace Data.Entities
                 mem.Phone = phone ?? mem.Phone;
                 mem.Facebook = facebook ?? mem.Facebook;
                 mem.LinkedIn = linkedin ?? mem.LinkedIn;
+                mem.Avatar = avatar ?? mem.Avatar;
 
                 dc.SaveChanges();
             }
