@@ -10,7 +10,7 @@ namespace MVC.Models
     public class MemberIndexModel
     {
         
-        public string Nickname { get; set; }
+        public byte[] Avatar { get; set; }
         public List<MemberDTO> Birthtdays { get; set; }
         public List<ProjectDTO> CurrentProject { get; set; }
         public List<MemberDTO> Anniversary { get; set; }
@@ -110,7 +110,7 @@ namespace MVC.Models
             Data.DataClasses.Member m = Data.Entities.Members.GetMemberAt(memberID);
             MemberIndexModel model = new MemberIndexModel
             {
-                Nickname = m.Nickname,
+                Avatar = m.Avatar,
                 CurrentProject = CreateProjectDTOListForDate(),
                 CurrentPoll = CreatePollDTOListForDate(),
                 Birthtdays = CreateMemberDTOListForDateBirth((DateTime) date),

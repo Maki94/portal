@@ -25,12 +25,12 @@
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
     <aside class="mdl-layout__drawer">
-        <span class="mdl-layout-title">LBG BEST Nis</span>
+        <span class="mdl-layout-title">LBG Nis</span>
         <nav class="mdl-navigation">
             @Html.ActionLink("Home", "Index", "Member", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("Members", "AllMembers", "Member", null, new {@class = "mdl-navigation__link"})
             @Html.ActionLink("Projects", "Index", "Project", null, new {@class = "mdl-navigation__link"})
-            @Html.ActionLink("Events", "Index", "Event", null, new {@class = "mdl-navigation__link"})
+            @*@Html.ActionLink("Events", "Index", "Event", null, new {@class = "mdl-navigation__link"})*@
             @Html.ActionLink("Poll", "Index", "Poll", null, new {@class = "mdl-navigation__link"})
             <a href="@Url.Action("Index", "Messenger")" class="mdl-navigation__link">
                 <span id="badge-number-of-notifications" class="mdl-badge" data-badge="♥">Messenger</span>
@@ -40,7 +40,7 @@
 
             @*@Html.ActionLink("Vesti", "Index", "Admin", null, new { @class = "mdl-navigation__link admin-button-color" })*@
             
-            <a id="show-dialog-admin-news" class="mdl-navigation__link admin-button-color">Dodaj Vest</a>
+            @*<a id="show-dialog-admin-news" class="mdl-navigation__link admin-button-color">Dodaj Vest</a>
             <dialog id="dialog-admin-news" class="mdl-dialog">
                 <h4 class="mdl-dialog__title">Dodaj Vest</h4>
                 <div class="mdl-dialog__content">
@@ -54,10 +54,10 @@
                 <div class="mdl-dialog__actions">
                     <button type="button" class="mdl-button close" id="dialog-admin-news-send"> Send! </button>
                 </div>
-            </dialog>
+            </dialog>*@
 
-            @Html.ActionLink("Sastanci", "Index", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color" })
-            @Html.ActionLink("Kreiraj Sastanak", "Add", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color" })
+            @*@Html.ActionLink("Sastanci", "Index", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color" })
+            @Html.ActionLink("Kreiraj Sastanak", "Add", "Meeting", null, new { @class = "mdl-navigation__link admin-button-color" })*@
             @Html.ActionLink("Bedzevi", "Index", "Badge", null, new { @class = "mdl-navigation__link admin-button-color" })
 
             <a id="show-dialog-feedback" class="mdl-navigation__link">Feedback</a>

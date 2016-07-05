@@ -419,7 +419,7 @@
                 url += '?text=' + message;
                 url += '&tip=' + tip;
                 url += '&projekat=' + projekat;
-                url += '&companyId=' + @Html.DisplayName(Model.Show?.CompanyId.ToString());
+                url += '&companyId=' + @Html.DisplayName(Model.Show == null ? "" : Model.Show.CompanyId.ToString());
 
                 $.post(url, function (data) { // snimi poruku u bazi, i postavi notifikaciju da bi mogao primalac sa druge strane da ocita
                     $('#frator-komentari-wrapper').prepend(

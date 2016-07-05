@@ -7,7 +7,7 @@
 @{ LoginDTO member = MemberSession.GetMember();}
 
 <div id="member-profile-div">
-    <div id="member-profile-content" class="clearfix">
+    <div id="member-profile-content" class="clearfix" >
         @{ 
             var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
             if (Model.Avatar != null)
@@ -16,7 +16,7 @@
                 imgSrc = $"data:image/gif;base64,{base64}";
             }
         }
-        <div id="userphoto"><img src="@imgSrc" alt="default avatar"></div>
+        <div id="userphoto"><img src="@imgSrc" alt="default avatar" width="300"></div>
         <h1>
             @Html.DisplayFor(model => model.Name)
         @Html.DisplayFor(model => model.Surname)

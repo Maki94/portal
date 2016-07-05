@@ -7,13 +7,21 @@
 }
 
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    @*<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
         <h1>Vazne vesti</h1>
-    </div>
+    </div>*@
     <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet right">
         @*<img src="http://placehold.it/250x150">*@
+        @{
+            var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
+            if (Model.Avatar != null)
+            {
+                var base64 = Convert.ToBase64String(Model.Avatar);
+                imgSrc = $"data:image/gif;base64,{base64}";
+            }
+        }
         <a href="@Url.Action("Profile", "Member", new {@id = MemberSession.GetMemberId().ToString()})">
-            <img id="profile-img" src="">
+            <img id="profile-img" src="@imgSrc" alt="default avatar"> <p>Profile</p>
         </a>
     </div>
 </div>
@@ -102,12 +110,12 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script type="text/javascript">
-    var url = '@Url.Action("GetAvatar", "Member")';
+    @*var url = '@Url.Action("GetAvatar", "Member")';
     url += "/" + @MemberSession.GetMemberId().ToString();
     $.post(url, function (data) {
         var img = document.getElementById("profile-img");
         img.setAttribute("src", data);
-    });
+    });*@
 
     var calendar = new Calendar("calendar-wrapper");
     calendar.Init();
