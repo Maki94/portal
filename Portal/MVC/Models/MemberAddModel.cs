@@ -1,4 +1,5 @@
-﻿using Data.DataClasses;
+﻿using Data;
+using Data.DataClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,11 +37,16 @@ namespace MVC.Models
         [Display(Name = "Prezime")]
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Morate izabrati ulogu.")]
-        public string RoleIdString { get; set; }
+        [Required(ErrorMessage = "Morate izabrati status.")]
+        [Display(Name = "Status")]
+        public string StatusIdString { get; set; }
+
+        public SelectList StatusChoice { get; set; }
 
         [Required(ErrorMessage = "Morate izabrati ulogu.")]
         [Display(Name = "Uloga")]
+        public string RoleIdString { get; set; }
+
         public SelectList RoleChoice { get; set; }
 
         [Required(ErrorMessage = "Morate izabrati datum uclanjenja.")]
@@ -65,6 +71,18 @@ namespace MVC.Models
             }
             RoleChoice = new SelectList(roleitems, "Value", "Text");
             Date = DateTime.Now;
+
+            List<SelectListItem> statusitems = new List<SelectListItem>();
+            Array statusValues = Enum.GetValues(typeof(Enumerations.MemberStatus));
+            foreach (var r in statusValues)
+            {
+                statusitems.Add(new SelectListItem()
+                {
+                    Value = r.ToString(),
+                    Text = Enum.GetName(typeof(Enumerations.MemberStatus), r)
+                });
+            }
+            StatusChoice = new SelectList(statusitems, "Value", "Text");
         }
     }
 }

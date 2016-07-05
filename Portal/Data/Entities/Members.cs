@@ -193,6 +193,23 @@ namespace Data.Entities
             }
         }
 
+        public static void EditMember(int memberID, string gmail, DateTime? date, 
+                                      string name, string surname, int roleId, int statusId)
+        {
+            using (var dc = new DataContext())
+            {
+                var mem = (from m in dc.Members where m.MemberId == memberID select m).First();
+                mem.Gmail = gmail ?? mem.Gmail;
+                mem.DateOfBirth = date ?? mem.DateOfBirth;
+                mem.Name = name ?? mem.Name;
+                mem.Surname = surname ?? mem.Surname;
+                mem.RoleId = roleId;
+                mem.Status = (Enumerations.MemberStatus)statusId;
+
+                dc.SaveChanges();
+            }
+        }
+
         public static bool CheckMemberPassword(int memberID, string password)
         {
             using (var dc = new DataContext())

@@ -1,12 +1,13 @@
-﻿@model MVC.Models.MemberAddModel
+﻿@model MVC.Models.MemberEditModel
 
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "EditMember";
 }
 
-<h2>Napravi člana</h2>
+<h2>Promeni člana</h2>
 
-@using (Html.BeginForm("Add", "Member", FormMethod.Post))
+
+@using (Html.BeginForm("EditMember", "Member", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -18,22 +19,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Gmail, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Gmail, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RepeatPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RepeatPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RepeatPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -56,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datefield" } })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -70,21 +55,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoleChoice, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoleIdString, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.RoleIdString, Model.RoleChoice,"---Izaberite ulogu---", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.RoleIdString, Model.RoleChoice, "---Izaberite ulogu---", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RoleIdString, "", new { @class = "text-danger" })
             </div>
         </div>
 
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Napravi člana" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
+                <input type="submit" value="Sačuvaj" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
             </div>
         </div>
     </div>
 }
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="~/Scripts/datepicker.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

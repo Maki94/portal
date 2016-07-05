@@ -27,10 +27,14 @@
             <li><a href="#info" class="sel">O meni</a></li>
             <li><a href="#projects">Projekti</a></li>
             <li><a href="#contact">Kontakt</a></li>
-            @{ if (MemberSession.GetMemberId() == Model.Id)
+            @if (MemberSession.GetMemberId() == Model.Id)
                 {
                     <li><a class="izmeni-profil-btn" href="@Url.Action("Edit", "Member")">Izmeni profil</a></li> 
-                } }
+                }
+            @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator)
+                {
+                    <li><a class="izmeni-clana-btn" href="@Url.Action("EditMember", "Member", new { id = Model.Id })">Izmeni člana</a></li>
+                }
         </ul>
     </nav>
 
@@ -96,6 +100,9 @@
     $(function () {
         $('#profiletabs ul li a').on('click', function (e) {
             if ($(this).hasClass('izmeni-profil-btn')) {
+                return;
+            }
+            if ($(this).hasClass('izmeni-clana-btn')) {
                 return;
             }
             e.preventDefault();

@@ -262,6 +262,7 @@
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Content\PollList.less" />
     <Content Include="Views\Frator\Add.cshtml" />
+    <Content Include="Views\Member\EditMember.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

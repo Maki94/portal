@@ -11,8 +11,6 @@ namespace Data
         public enum Role
         {
             Clan = 1,
-            Blagajnik,
-            Sekretar,
             HR,
             FR,
             Administrator,
@@ -24,12 +22,6 @@ namespace Data
             AddMember,
             UploadDefaultPicture,
             FRator
-        }
-
-        public enum OwnerType
-        {
-            member,
-            company,
         }
 
         public enum FeedbackType

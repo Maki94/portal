@@ -33,9 +33,9 @@ namespace Data
             context.SaveChanges();
 
             // dodajemo administratoru permisiju da vidi About page
-            roles[5].Permissions.Add(permissions[0]);
-            roles[5].Permissions.Add(permissions[1]);
-            roles[5].Permissions.Add(permissions[2]);
+            roles[3].Permissions.Add(permissions[0]);
+            roles[3].Permissions.Add(permissions[1]);
+            roles[3].Permissions.Add(permissions[2]);
 
             var members = new List<Member>
             {
@@ -50,7 +50,7 @@ namespace Data
                     Password = "Admin@123",
                     Gmail = "milosjajac@gmail.com",
                     Phone = "0641234123",
-                    Role = roles[5],
+                    Role = roles[3],
                     LastChatParticipant = 2,
                     Skype = "jajac94",
                     Facebook = "https://www.facebook.com/milos.jajac",
@@ -67,7 +67,7 @@ namespace Data
                     Password = "Admin@123",
                     Gmail = "nikolamitic@gmail.com",
                     Phone = "0691231231",
-                    Role = roles[5],
+                    Role = roles[3],
                     LastChatParticipant = 1,
                     Skype = "mitic94",
                     Facebook = "https://www.facebook.com/mitic.nikolca",
@@ -85,7 +85,7 @@ namespace Data
                     Password = "Admin@123",
                     Gmail = "maki@gmail.com",
                     Phone = "0651231231",
-                    Role = roles[5],
+                    Role = roles[3],
                     LastChatParticipant = 1,
                     Skype = "marko94",
                     Facebook = "https://www.facebook.com/mihajlovic.maki",

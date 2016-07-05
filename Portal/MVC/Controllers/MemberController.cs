@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Data.Entities;
 using MVC.Models;
 using System.IO;
+using Data;
 
 namespace MVC.Controllers
 {
@@ -78,6 +79,20 @@ namespace MVC.Controllers
             }
 
             return RedirectToAction("Profile", new { id = memberId });
+        }
+
+        public ActionResult EditMember(int id)
+        {
+            return View(new MemberEditModel(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditMember(int id, MemberEditModel model)
+        {
+            Members.EditMember(id, model.Gmail, model.Date, model.Name, model.Surname, 
+                               Int32.Parse(model.RoleIdString), (int)Enum.Parse(typeof(Enumerations.MemberStatus), model.StatusIdString));
+
+            return RedirectToAction("Profile", new { id = id });
         }
 
         //[AuthorizeMember(Permission = (int)Data.Enumerations.Permission.AddMember)]

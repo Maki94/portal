@@ -89,8 +89,10 @@ aside a:hover {
 }
 #profile-img {
   width: 200px;
+  height: 200px;
+  min-height: 200px;
   min-width: 200px;
-  max-height:200px;
+  max-height: 200px;
   max-width: 200px;
 }
 #member-profile-div {
@@ -420,6 +422,12 @@ aside a:hover {
   background: #ff9999 !important;
 }
 #member-profile-div .izmeni-profil-btn:hover {
+  background: #ff4d4d !important;
+}
+#member-profile-div .izmeni-clana-btn {
+  background: #ff9999 !important;
+}
+#member-profile-div .izmeni-clana-btn:hover {
   background: #ff4d4d !important;
 }
 #member-profile-div #profiletabs ul {

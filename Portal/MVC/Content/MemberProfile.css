@@ -321,6 +321,12 @@ a:hover {
 .izmeni-profil-btn:hover {
   background: #ff4d4d !important;
 }
+.izmeni-clana-btn {
+  background: #ff9999 !important;
+}
+.izmeni-clana-btn:hover {
+  background: #ff4d4d !important;
+}
 #profiletabs ul {
   list-style: none;
   display: block;

@@ -20,9 +20,12 @@
                     </div>
                     <div class="mdl-cell mdl-cell--6-col"></div>
                     <div class="mdl-cell mdl-cell--1-col">
-                        <a href="@Url.Action("Add", "Member")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                            <i class="material-icons">add</i>
-                        </a>
+                        @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.HR)
+                        {
+                            <a href="@Url.Action("Add", "Member")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                                <i class="material-icons">add</i>
+                            </a>
+                        }
                     </div>
                 </div>
 
