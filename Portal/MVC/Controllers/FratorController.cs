@@ -60,7 +60,23 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Add(CompanyAddModel model)
         {
-            // TODO ovde ubaci snimanej kompanije u bazu
+            Enumerations.CompanyType type = Enumerations.CompanyType.money;
+            foreach (int i in Enum.GetValues(typeof(Enumerations.CompanyType)))
+            {
+                if (((Enumerations.CompanyType)i).ToString().CompareTo(model.Type) == 0)
+                {
+                    type = (Enumerations.CompanyType)i;
+                }
+            }
+            Enumerations.CompanyField field = Enumerations.CompanyField.AutoIndustrija;
+            foreach (int i in Enum.GetValues(typeof(Enumerations.CompanyField)))
+            {
+                if (((Enumerations.CompanyField)i).ToString().CompareTo(model.Field) == 0)
+                {
+                    field = (Enumerations.CompanyField)i;
+                }
+            }
+            Data.Entities.Companys.AddCompany(model.Name, model.Address, model.City, model.Description, model.Email, model.Phone, model.Website, field, type);
             return RedirectToAction("Index");
         }
 

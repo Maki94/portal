@@ -37,7 +37,10 @@ namespace MVC.Controllers
 
         public ActionResult SavePdfFile(string padavanId, string text)
         {
-            Data.Entities.MPs.SavePDF(MemberSession.GetMemberId(), int.Parse(padavanId), text);
+            if (padavanId != "")
+            {
+                Data.Entities.MPs.SavePDF(MemberSession.GetMemberId(), int.Parse(padavanId), text);
+            }
             return RedirectToAction("Index");
         }
     }
