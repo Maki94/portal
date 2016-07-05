@@ -114,3 +114,6 @@ h1 {
 .popup p:last-child {
   margin: 0;
 }
+.uploadBtn {
+  padding-top: 6px;
+}

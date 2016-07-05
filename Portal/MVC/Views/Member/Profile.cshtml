@@ -19,6 +19,10 @@
             <li><a href="#info" class="sel">O meni</a></li>
             <li><a href="#projects">Projekti</a></li>
             <li><a href="#contact">Kontakt</a></li>
+            @{ if (MemberSession.GetMemberId() == Model.Id)
+                {
+                    <li><a class="izmeni-profil-btn" href="@Url.Action("Edit", "Member")">Izmeni profil</a></li> 
+                } }
         </ul>
     </nav>
 
@@ -83,6 +87,9 @@
 <script type="text/javascript">
     $(function () {
         $('#profiletabs ul li a').on('click', function (e) {
+            if ($(this).hasClass('izmeni-profil-btn')) {
+                return;
+            }
             e.preventDefault();
             var newcontent = $(this).attr('href');
 

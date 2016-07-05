@@ -19,7 +19,8 @@ namespace MVC.Models
         [Display(Name = "Sajt")]
         public string Website { get; set; }
 
-        public byte[] Logo { get; set; }
+        [ValidateFile(ErrorMessage = "Izaberite JPG/PNG/GIF sliku manju od 1MB")]
+        public HttpPostedFileBase Logo { get; set; }
 
         [Required(ErrorMessage = "Morate izabrati datum početka.")]
         [Display(Name = "Datum početka")]

@@ -17,17 +17,16 @@
             var base64 = Convert.ToBase64String(b.Image);
             imgSrc = $"data:image/gif;base64,{base64}";
         }
-        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-badge-id="@b.BadgeId">
             <figure class="mdl-card__media">
                 <img src="@imgSrc"/>
             </figure>
             <div class="mdl-card__title">
-                <span>@Html.DisplayName(b.Name)</span>
+                <h1 class="member-list-title mdl-card__title-text">@Html.DisplayName(b.Name)</h1>
             </div>
-            <div class="mdl-card__supporting-text">
+            @*<div class="mdl-card__supporting-text">
                 <span>@Html.DisplayName(b.Description)</span>
-                
-            </div>
+            </div>*@
             <span class="badge-remove-sign-wrapper" style="float: right; position:absolute; bottom:5px; right:5px" data-badgeId="@b.BadgeId">
                 <i class="badge-remove-sign fa fa-remove fa-3x"></i>
             </span>
@@ -39,7 +38,7 @@
 <script>
     $('.badge-remove-sign-wrapper').bind('click', function () {
         if (confirm('Da li sigurno zelite da obrisete ovaj bedz?')) {
-            var id = this.dataset.badgeId;
+            var id = $(this).closest('.mdl-card').data('badge-id');
             $.post("@Url.Action("Delete","Badge")", { "badgeId": id }, function (data) {
 
             });

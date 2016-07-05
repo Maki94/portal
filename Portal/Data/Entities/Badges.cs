@@ -68,7 +68,7 @@ namespace Data.Entities
                 List<MemberBadge> mb = GetAllMemberBadgesOfMember(memberId);
                 List<Badge> b = new List<Badge>();
 
-                foreach (MemberBadge m in mb)
+                foreach (MemberBadge m in mb.Where(x => !x.IsDeleted))
                 {
                     b.Add(GetBadgeAt(m.BadgeId));
                 }
@@ -84,7 +84,5 @@ namespace Data.Entities
                 return (from mb in dc.MemberBadges where mb.MemberId == memberId select mb).ToList();
             }
         }
-
-
     }
 }

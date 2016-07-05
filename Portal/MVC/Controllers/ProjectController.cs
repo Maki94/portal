@@ -1,6 +1,7 @@
 ﻿using Data.Entities;
 using MVC.Models;
 using System;
+using System.IO;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -32,7 +33,24 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Add(ProjectAddModel model)
         {
-            int id = Int32.Parse(model.TeamIdString);
+            if (ModelState.IsValid)
+            {
+                int id = Int32.Parse(model.TeamIdString);
+                byte[] array = null;
+                if (model.Logo != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        model.Logo.InputStream.Position = 0;
+                        model.Logo.InputStream.CopyTo(ms);
+                        array = ms.GetBuffer();
+                    }
+                }
+
+                Projects.AddProject(model.Name, model.Website, array, model.StartDate,
+                                    model.FinishDate, model.Description, model.Place, id);
+            }
+
             return RedirectToAction("AllProjects");
         }
     }

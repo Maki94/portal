@@ -11,7 +11,8 @@ namespace Data.Entities
 {
     public class Projects
     {
-        public static Project AddProject(string name, string description)
+        public static Project AddProject(string name, string website, byte[] logo, DateTime startdate,
+                                         DateTime finishdate, string description, string place, int teamId)
         {
             using (var dc = new DataContext())
             {
@@ -19,7 +20,14 @@ namespace Data.Entities
                 Project p = new Project
                 {
                     Name = name,
+                    Website = website,
+                    Logo = logo,
+                    StartDate = startdate,
+                    FinishDate = finishdate,
+                    State = Enumerations.ProjectState.Aktivan,
                     Description = description,
+                    Place = place,
+                    TeamId = teamId
                 };
 
                 dc.Projects.Add(p);

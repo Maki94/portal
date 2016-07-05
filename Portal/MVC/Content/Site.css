@@ -29,6 +29,9 @@ aside a:hover {
   height: 250px;
   background: url('http://placehold.it/350x150') center / cover;
 }
+.mdl-card__media {
+  background-color: transparent;
+}
 .demo-card-wide.mdl-card {
   width: 512px;
 }
@@ -414,6 +417,12 @@ aside a:hover {
   display: block;
   margin-bottom: 4px;
   height: 50px;
+}
+#member-profile-div .izmeni-profil-btn {
+  background: #ff9999 !important;
+}
+#member-profile-div .izmeni-profil-btn:hover {
+  background: #ff4d4d !important;
 }
 #member-profile-div #profiletabs ul {
   list-style: none;
@@ -1411,6 +1420,9 @@ h1 {
 }
 .popup p:last-child {
   margin: 0;
+}
+.uploadBtn {
+  padding-top: 6px;
 }
 .ui-timepicker-wrapper {
   overflow-y: auto;
