@@ -9,8 +9,11 @@
     <div class="mdl-tabs__tab-bar">
         <a href="#vesti-panel" class="mdl-tabs__tab">Vesti</a>
         <a href="#moje-kompanije-panel" class="mdl-tabs__tab is-active">Moje kompanije</a>
+        @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.FR)
+        {
         <a href="#kompanije-panel" class="mdl-tabs__tab">Kompanije</a>
         <a href="#delegiranje-panel" class="mdl-tabs__tab">Delegiranje</a>
+        }
     </div>
     @if (Model.Show != null)
     {

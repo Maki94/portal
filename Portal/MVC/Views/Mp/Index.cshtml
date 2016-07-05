@@ -7,8 +7,11 @@
     <div class="mdl-tabs__tab-bar">
        @* <a href="#tree-panel" class="mdl-tabs__tab is-active">Stablo</a>*@
         <a href="#add-report-panel" class="mdl-tabs__tab is-active">Postavi izvestaj</a>
-        <a href="#report-panel" class="mdl-tabs__tab">Izvestaji</a>
-        <a href="#add-padavan-panel" class="mdl-tabs__tab">Dodaj Padavana</a>
+            @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.HR)
+            {
+            <a href="#report-panel" class="mdl-tabs__tab">Izvestaji</a>
+            <a href="#add-padavan-panel" class="mdl-tabs__tab">Dodaj Padavana</a>
+            }
     </div>
     @*<div class="mdl-tabs__panel is-active" id="tree-panel">
     <div id="familytree-wrapper">

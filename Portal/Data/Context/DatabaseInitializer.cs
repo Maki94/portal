@@ -67,7 +67,7 @@ namespace Data
                     Password = "Admin@123",
                     Gmail = "nikolamitic@gmail.com",
                     Phone = "0691231231",
-                    Role = roles[3],
+                    Role = roles[2],
                     LastChatParticipant = 1,
                     Skype = "mitic94",
                     Facebook = "https://www.facebook.com/mitic.nikolca",
@@ -85,11 +85,28 @@ namespace Data
                     Password = "Admin@123",
                     Gmail = "maki@gmail.com",
                     Phone = "0651231231",
-                    Role = roles[3],
+                    Role = roles[1],
                     LastChatParticipant = 1,
                     Skype = "marko94",
                     Facebook = "https://www.facebook.com/mihajlovic.maki",
                     Status = Enumerations.MemberStatus.Full
+                },
+                                new Member
+                {
+                    Name = "Strahinja",
+                    Surname = "Mijajlović",
+                    Nickname = "strale",
+                    Faculty = "Elfak",
+                    DateOfBirth = new DateTime(1994, 7, 13),
+                    JoinDate = DateTime.Now,
+                    Password = "Admin@123",
+                    Gmail = "strale@gmail.com",
+                    Phone = "0651231231",
+                    Role = roles[0],
+                    LastChatParticipant = 1,
+                    Skype = "strale94",
+                    Facebook = "https://www.facebook.com.strale",
+                    Status = Enumerations.MemberStatus.Baby
                 }
             };
 
