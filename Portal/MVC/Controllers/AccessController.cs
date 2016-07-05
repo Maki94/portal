@@ -1,7 +1,11 @@
-﻿using Data.Entities;
+﻿using Data.DTOs;
+using Data.Entities;
 using MVC.Models;
 using System;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,9 +45,40 @@ namespace MVC.Controllers
             }
         }
 
-        public void SendFeedback(string type, string text)
+        public async void SendFeedback(string type, string text)
         {
-            
+            await SendRequestEmail(text, (Data.Enumerations.FeedbackType)int.Parse(type));
+        }
+
+        public async Task SendRequestEmail(string text, Data.Enumerations.FeedbackType type, byte[] pdf = null)
+        {
+            MemberDTO user = MVC.Models.CompanyModel.createMemberDTO(Data.Entities.Members.GetMemberAt(MemberSession.GetMemberId()));
+            //MemoryStream stream = new MemoryStream(pdf);
+
+
+            var body = "<p>Request From: {0} ({1})</p><p>Comment: {2}</p>";
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("mnjs2016@googlegroups.com"));
+            message.From = new MailAddress(user.Gmail);
+            message.Subject = "Leave Request";
+            message.Body = string.Format(body, user.Name + " " + user.Surname, user.Gmail, type.ToString(), text);
+            message.IsBodyHtml = true;
+            //message.Attachments.Add(new Attachment(stream, "Request.pdf", System.Net.Mime.MediaTypeNames.Application.Pdf));
+
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "mn.jsSWE@gmail.com",
+                    Password = "projekat"
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+            }
         }
 
         [AllowAnonymous]
