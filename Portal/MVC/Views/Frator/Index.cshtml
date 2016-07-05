@@ -373,6 +373,19 @@
         @Url.Action("Add", "Frator");
     });*@
 
+    function filterResults() {
+        var term = $('#searchCompanyText').val();
+        $.post("@Url.Action("SearchCompanies", "Frator")", { "term": term }, function (data) {
+            $('#lista-kompanija').children().each(function () {
+                var id = parseInt($(this).data('company-id'));
+                if (data.indexOf(id) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    }
 
     $(window).bind('load', function () {
         var data = [];
