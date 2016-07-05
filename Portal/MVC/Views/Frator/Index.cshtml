@@ -33,38 +33,38 @@
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="kompanija-sajt" value=@Model.Show.Website readonly>
-                                    <label class="mdl-textfield__label" for="kompanija-sajt">Sajt...</label>
+                                    <label class="mdl-textfield__label" for="kompanija-sajt">Sajt</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield">
                                     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="kompanija-telefon" value=@Model.Show.Phone readonly>
-                                    <label class="mdl-textfield__label" for="kompanija-telefon">Telefon...</label>
+                                    <label class="mdl-textfield__label" for="kompanija-telefon">Telefon</label>
                                     <span class="mdl-textfield__error">To nije broj!</span>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="kompanija-email" value=@Model.Show.Email readonly>
-                                    <label class="mdl-textfield__label" for="kompanija-email">Email...</label>
+                                    <label class="mdl-textfield__label" for="kompanija-email">Email</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="div-expand mdl-textfield mdl-js-textfield">
                                     <textarea class="mdl-textfield__input" type="text" rows="3" id="kompanija-opis" readonly>@Model.Show.Description</textarea>
-                                    <label class="mdl-textfield__label" for="kompanija-opis">Opis...</label>
+                                    <label class="mdl-textfield__label" for="kompanija-opis">Opis</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="kompanija-delatnost" value=@Model.Show.Field readonly>
-                                    <label class="mdl-textfield__label" for="kompanija-delatnost">Delatnost...</label>
+                                    <label class="mdl-textfield__label" for="kompanija-delatnost">Delatnost</label>
                                 </div>
                             </li>
                             <li class="li-shrink mdl-list__item">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="kompanija-tip" value=@Model.Show.Field readonly>
-                                    <label class="mdl-textfield__label" for="kompanija-tip">Tip...</label>
+                                    <label class="mdl-textfield__label" for="kompanija-tip">Tip</label>
                                 </div>
                             </li>
                         </ul>
@@ -200,7 +200,7 @@
                                                 </p>
                                             }
                                             &nbsp;&nbsp;&nbsp;
-                                            <p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>
+                                            @*<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>*@
                                         </li>
                                     }
                                 </ul>
@@ -459,7 +459,7 @@
                         '<p class="ChatLog__message">' + message + '</p>' +
                         '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true">0</i></a></p>' +
                         '&nbsp;&nbsp;&nbsp;' +
-                        '<p><a class="mdl-list__item-secondary-action" href="#"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a></p>' +
+                        '<p><a class="mdl-list__item-secondary-action" href="#"></a></p>' +
                         '</li>');
                 });
             }
