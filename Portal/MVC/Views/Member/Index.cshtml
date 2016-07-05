@@ -6,12 +6,10 @@
     ViewBag.Title = "Index";
 }
 
+
 <div class="mdl-grid">
-    @*<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
-        <h1>Vazne vesti</h1>
-    </div>*@
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet right">
-         @{
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+        @{
             var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
             if (Model.Avatar != null)
             {
@@ -20,12 +18,13 @@
             }
         }
         <a href="@Url.Action("Profile", "Member", new {@id = MemberSession.GetMemberId().ToString()})">
-            <img id="profile-img" src="@imgSrc" alt="default avatar" >
+            <img id="profile-img" src="@imgSrc" alt="default avatar">
         </a>
-    </div>
-</div>
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+
+
+
+
+
         <h3>
             Danas je rođendan
         </h3>
@@ -33,42 +32,42 @@
         {
             foreach (MemberDTO p in Model.Birthtdays)
             {
-            <h5>
-                <a>
-                    @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new { id = p.MemberId }, null)
-                </a>
-            </h5>
+                <h5>
+                    <a>
+                        @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new {id = p.MemberId}, null)
+                    </a>
+                </h5>
             }
         }
         <h3>
             Godišnjice članstava
         </h3>
-        
+
         @if (Model.Anniversary.Any())
         {
             foreach (MemberDTO p in Model.Anniversary)
             {
-                    <h5>
-                        <a>
-                            @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new { id = p.MemberId }, null)
-                        </a>
-                    </h5>
+                <h5>
+                    <a>
+                        @Html.ActionLink(p.Name + " " + p.Surname, "Profile", "Member", new {id = p.MemberId}, null)
+                    </a>
+                </h5>
             }
         }
 
         <h3>
             Aktivni projekti
         </h3>
-        
+
         @if (Model.CurrentProject.Any())
         {
             foreach (ProjectDTO p in Model.CurrentProject)
             {
-                    <h5>
-                        <a>
-                            @Html.ActionLink(p.Name, "Details", "Project", new { id = p.ProjectId }, null)
-                        </a>
-                    </h5>
+                <h5>
+                    <a>
+                        @Html.ActionLink(p.Name, "Details", "Project", new {id = p.ProjectId}, null)
+                    </a>
+                </h5>
             }
         }
 
