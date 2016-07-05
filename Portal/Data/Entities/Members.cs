@@ -134,7 +134,8 @@ namespace Data.Entities
                         Nickname = m.Nickname ?? "",
                         Faculty = m.Faculty ?? "",
                         Role = (Enumerations.Role)m.Role.RoleId,
-                        Status = m.Status
+                        Status = m.Status,
+                        Avatar = m.Avatar
                     });
                 }
 
