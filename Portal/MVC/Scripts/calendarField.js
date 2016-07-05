@@ -39,6 +39,8 @@
         //div.setAttribute("data-toggle", "modal");
         //div.addClass('mdl-cell mdl-cell--1-col');
 
+        if (self.Label === "0")
+            self.Label = "";
         div.setAttribute("data-label", self.Label);
         return div;
     };

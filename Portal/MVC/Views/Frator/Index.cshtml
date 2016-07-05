@@ -296,64 +296,80 @@
         </div>
 
         <div class="mdl-tabs__panel" id="delegiranje-panel">
-            <form action="#" id="frator-delegiranje-form">
                 <ul class="div-expand mdl-list">
-
-                    <li class="mdl-list__item">
-                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="frator-delegiranje-aktivno">
-                            <input type="checkbox" id="frator-delegiranje-aktivno" class="mdl-checkbox__input">
-                            <span class="mdl-checkbox__label">Aktivna</span>
-                        </label>
-                    </li>
-
                     <li class="mdl-list__item">
                         <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="frator-delegiranje-clan">
+                            <input class="mdl-textfield__input" type="text" id="frator-delegiranje-clan" list="datalist-delegiranje-clan" required>
                             <label class="mdl-textfield__label" for="frator-delegiranje-clan">Clan...</label>
                         </div>
                     </li>
 
                     <li class="mdl-list__item">
-                        <ul id="delegiranje-kompanija-add-wrapper" class="div-expand mdl-list">
-                            <li class="mdl-list__item">
-                                <div id="delegiranje-kompanija-add" class="icon material-icons">add</div>
-                                <div class="mdl-tooltip mdl-tooltip--large" for="delegiranje-kompanija-add">
-                                    Kompanija
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="div-expand event-edit-wrapper mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="frator-delegiranje-kompanija" list="datalist-delegiranje-companies" required>
+                            <label class="mdl-textfield__label" for="frator-delegiranje-kompanija">Kompanija...</label>
+                        </div>
                     </li>
+
                     <li class="mdl-list__item">
-                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        <button id="delegiranje-button-sacuvaj" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                             Sacuvaj Izmene
                         </button>
                     </li>
                 </ul>
-            </form>
         </div>
     }
 </div>
+<datalist id="datalist-delegiranje-clan">
+    @foreach (var m in Data.Entities.Members.GetAllMemberThumbnails())
+    {
+        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name + " " + m.Surname)"></option>
+    }
+</datalist>
+<datalist id="datalist-delegiranje-companies">
+    @foreach (var m in Data.Entities.Companys.GetAll())
+    {
+        <option data-id="@Html.DisplayName(m.CompanyId.ToString())" value="@Html.DisplayName(m.Name)"></option>
+    }
+</datalist>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript">
+    var delegiranjeButtonSsacuvaj = document.getElementById("delegiranje-button-sacuvaj");
+    var clanZaDelegiranje = "";
+    var kompanijaZaDelegiranje = "";
 
-    $('#dodaj-kompaniju-btn').on('click', function () {
-        @Url.Action("Add", "Frator");
+    $(function() { // napuni padavanId
+        $('#frator-delegiranje-clan').on('input', function() { // choose new Receiver
+            var opt = $('option[value="' + $(this).val() + '"]');
+            if (opt.length && parseInt(opt.attr("data-id"))) {
+                clanZaDelegiranje = opt.attr("data-id");
+            }
+        });
+        $('#frator-delegiranje-kompanija').on('input', function () { // choose new Receiver
+            var opt = $('option[value="' + $(this).val() + '"]');
+            if (opt.length && parseInt(opt.attr("data-id"))) {
+                kompanijaZaDelegiranje = opt.attr("data-id");
+            }
+        });
     });
 
-    function filterResults() {
-        var term = $('#searchCompanyText').val();
-        $.post("@Url.Action("SearchCompanies", "Frator")", { "term": term }, function (data) {
-            $('#lista-kompanija').children().each(function () {
-                var id = parseInt($(this).data('company-id'));
-                if (data.indexOf(id) !== -1) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
+    delegiranjeButtonSsacuvaj.addEventListener("click", function() {
+        if (clanZaDelegiranje !== null && kompanijaZaDelegiranje !== null) {
+            var url = '@Url.Action("Delegiraj", "Frator")';
+            url += '?clanId=' + clanZaDelegiranje;
+            url += '&kompanijaId=' + kompanijaZaDelegiranje;
+
+            $.post(url, function () {
+                document.getElementById("frator-delegiranje-clan").value = "";
+                document.getElementById("frator-delegiranje-kompanija").value = "";
             });
-        });
-    }
+        }
+    });
+    @*$('#dodaj-kompaniju-btn').on('click', function () {
+        @Url.Action("Add", "Frator");
+    });*@
+
 
     $(window).bind('load', function () {
         var data = [];

@@ -4,6 +4,7 @@ using MVC.Models;
 using System;
 using System.IO;
 using System.Web.Mvc;
+using Data.Entities;
 
 namespace MVC.Controllers
 {
@@ -42,6 +43,11 @@ namespace MVC.Controllers
                 Data.Entities.MPs.SavePDF(MemberSession.GetMemberId(), int.Parse(padavanId), text);
             }
             return RedirectToAction("Index");
+        }
+
+        public void AddMasterPadavan(string masterId, string padavanId)
+        {
+            MPs.AddMasterTo(int.Parse(masterId), int.Parse(padavanId));
         }
     }
 }
