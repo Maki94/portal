@@ -11,8 +11,7 @@
         <h1>Vazne vesti</h1>
     </div>*@
     <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet right">
-        @*<img src="http://placehold.it/250x150">*@
-        @{
+         @{
             var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
             if (Model.Avatar != null)
             {
@@ -21,7 +20,7 @@
             }
         }
         <a href="@Url.Action("Profile", "Member", new {@id = MemberSession.GetMemberId().ToString()})">
-            <img id="profile-img" src="@imgSrc" alt="default avatar"> <p>Profile</p>
+            <img id="profile-img" src="@imgSrc" alt="default avatar" >
         </a>
     </div>
 </div>

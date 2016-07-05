@@ -39,7 +39,10 @@
 <datalist id="messenger-users">
     @foreach (var m in Model.MemberThumbnails)
     {
-        <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name)"></option>
+        if (m.MemberId != MemberSession.GetMemberId())
+        {
+            <option data-id="@Html.DisplayName(m.MemberId.ToString())" value="@Html.DisplayName(m.Name)"></option>
+        }
     }
 </datalist>
 
