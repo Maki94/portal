@@ -19,6 +19,33 @@ namespace Data.Entities
             }
         }
 
+        public static List<int> SearchCompanies(string keyword = "")
+        {
+            using (var dc = new DataContext())
+            {
+                List<string> searchTerms = new List<string>();
+                searchTerms = keyword.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList().ConvertAll(m => m.ToLower());
+
+                // trazimo da li ime, prezime ili nadimak clana sadrzi
+                // neku od reci koje su unete kao search parametar
+                List<Company> companies = new List<Company>();
+                if (searchTerms.Count == 0)
+                {
+                    companies = (from m in dc.Companies select m).ToList();
+                }
+                else
+                {
+                   companies = (from m in dc.Companies
+                                where searchTerms.Any(s => m.Name.Contains(s))
+                                select m).ToList();
+                }
+
+                List<int> companyIds = companies.Select(m => m.CompanyId).ToList();
+
+                return companyIds;
+            }
+        }
+
         public static List<Company> GetDelegateTo(int id)
         {
             using (var dc = new DataContext())
