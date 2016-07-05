@@ -64,12 +64,12 @@ namespace MVC.Controllers
             //MemoryStream stream = new MemoryStream(pdf);
 
 
-            var body = "<p>Request From: {0} ({1})</p><p>Comment: {2}</p>";
+            var body = "<p>Feedback from: {0} ({1})</p><p>Type: {2}</p><p>Text: {3}</p>";
             var message = new MailMessage();
             message.To.Add(new MailAddress("mnjs2016@googlegroups.com"));
             message.From = new MailAddress("mn.jsSWE@gmail.com");
             message.Subject = "Feedback";
-            message.Body = string.Format(body, user.Name + " " + user.Surname, user.Gmail, type.ToString(), text);
+            message.Body = string.Format(body, user.Name + " " + user.Surname, user.Gmail.ToString(), type.ToString(), text);
             message.IsBodyHtml = true;
             //message.Attachments.Add(new Attachment(stream, "Request.pdf", System.Net.Mime.MediaTypeNames.Application.Pdf));
 

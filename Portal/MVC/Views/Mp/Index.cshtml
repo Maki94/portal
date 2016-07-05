@@ -5,55 +5,55 @@
 }
 <div class="mdl-tabs mdl-js-tabs">
     <div class="mdl-tabs__tab-bar">
-        <a href="#tree-panel" class="mdl-tabs__tab is-active">Stablo</a>
+       @* <a href="#tree-panel" class="mdl-tabs__tab is-active">Stablo</a>*@
+        <a href="#add-report-panel" class="mdl-tabs__tab is-active">Postavi izvestaj</a>
         <a href="#report-panel" class="mdl-tabs__tab">Izvestaji</a>
-        <a href="#add-report-panel" class="mdl-tabs__tab">Postavi izvestaj</a>
         <a href="#add-padavan-panel" class="mdl-tabs__tab">Dodaj Padavana</a>
     </div>
-    <div class="mdl-tabs__panel is-active" id="tree-panel">
-        <div id="familytree-wrapper">
+    @*<div class="mdl-tabs__panel is-active" id="tree-panel">
+    <div id="familytree-wrapper">
 
-            <div class="familytree">
-                @*<ul>
-                    <li>
-                        <a href="#">Parent</a>
-                        <ul>
-                            <li>
-                                <a href="#">Child</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Grand Child</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Child</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Grand Child</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Grand Child</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Great Grand Child</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Great Grand Child</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Great Grand Child</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Grand Child</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>*@
+        <div class="familytree">
+           <ul>
+                <li>
+                    <a href="#">Parent</a>
+                    <ul>
+                        <li>
+                            <a href="#">Child</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Grand Child</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Child</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Grand Child</a>
+                                </li>
+                                <li>
+                                    <a href="#">Grand Child</a>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Great Grand Child</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Great Grand Child</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Great Grand Child</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Grand Child</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
                 <ul>
                     <li>
                         
@@ -99,6 +99,29 @@
                 </ul>
             </div>
         </div>
+    </div>*@
+    <div class="mdl-tabs__panel is-active" id="add-report-panel">
+        <form action="#">
+            <ul id="add-report-panel-list-item" class="mdl-list">
+                <li class="mdl-list__item">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="master-list" list="messenger-users" required>
+                        <label class="mdl-textfield__label" for="master-list">Izaberi padawana...</label>
+                    </div>
+                </li>
+                <li class="mdl-list__item">
+                    <div id="mp-report-opis-wrapper" class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows="10" id="mp-report-opis" required></textarea>
+                        <label class="mdl-textfield__label" for="mp-report-opis">Izvestaj...</label>
+                    </div>
+                </li>
+                <li class="mdl-list__item">
+                    <button id="postavi-report-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                        Postavi
+                    </button>
+                </li>
+            </ul>
+        </form>
     </div>
     @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.HR)
     {
@@ -129,7 +152,7 @@
                             <td class="mdl-data-table__cell--non-numeric">@Html.DisplayName(r.Master.Name + " " + r.Master.Surname)</td>
                             <td class="mdl-data-table__cell--non-numeric">@Html.DisplayName(r.Padawan.Name + " " + r.Padawan.Surname)</td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("DisplayPDF", "Mp", new { id = rep.ReportId })">
+                                <a class="mdl-button mdl-button--colored mdl-js-button" href="@Url.Action("DisplayPDF", "Mp", new { id = rep.ReportId, form = r.Master.Name + " " + r.Master.Surname, to = r.Padawan.Name + " " + r.Padawan.Surname})">
                                     LINK
                                 </a>
                             </td>
@@ -139,31 +162,7 @@
                 }
             </tbody>
         </table>
-    </div>
-    }
-    <div class="mdl-tabs__panel" id="add-report-panel">
-        <form action="#">
-            <ul id="add-report-panel-list-item" class="mdl-list">
-                <li class="mdl-list__item">
-                    <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="master-list" list="messenger-users" required>
-                        <label class="mdl-textfield__label" for="master-list">Izaberi novog clana...</label>
-                    </div>
-                </li>
-                <li class="mdl-list__item">
-                    <div id="mp-report-opis-wrapper" class="mdl-textfield mdl-js-textfield">
-                        <textarea class="mdl-textfield__input" type="text" rows="10" id="mp-report-opis" required></textarea>
-                        <label class="mdl-textfield__label" for="mp-report-opis">MessageId lines...</label>
-                    </div>
-                </li>
-                <li class="mdl-list__item">
-                    <button id="postavi-report-button"class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-                        Postavi
-                    </button>
-                </li>
-            </ul>
-        </form>
-    </div>
+    </div>    
     <div class="mdl-tabs__panel" id="add-padavan-panel">
         <form action="#">
             <ul id="add-padavan-panel-list-item" class="mdl-list">
@@ -187,6 +186,7 @@
             </ul>
         </form>
     </div>
+    }
 </div>
 
 
