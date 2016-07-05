@@ -176,7 +176,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BadgeController.cs" />
     <Compile Include="Controllers\AccessController.cs" />
-    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FratorController.cs" />
     <Compile Include="Controllers\MeetingController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -305,14 +304,10 @@
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Views\Access\UploadDefaultPicture.cshtml" />
     <Content Include="Views\Access\ChangePassword.cshtml" />
-    <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Messenger\Index.cshtml" />
     <Content Include="Views\Mp\Index.cshtml" />
     <Content Include="Views\Frator\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Event\Add.cshtml" />
-    <None Include="Views\Event\Edit.cshtml" />
-    <None Include="Views\Event\Profile.cshtml" />
     <Content Include="Views\Mp\Izvestaj.cshtml" />
     <Content Include="Views\Frator\Profile.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
