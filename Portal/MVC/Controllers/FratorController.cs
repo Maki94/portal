@@ -57,6 +57,13 @@ namespace MVC.Controllers
             return View(new CompanyAddModel());
         }
 
+        [HttpPost]
+        public ActionResult Add(CompanyAddModel model)
+        {
+            // TODO ovde ubaci snimanej kompanije u bazu
+            return RedirectToAction("Index");
+        }
+
         public string GetContact(int id)
         {
             var cp = Companys.GetContactPerson(id);

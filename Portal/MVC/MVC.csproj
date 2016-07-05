@@ -255,13 +255,13 @@
     <Content Include="Views\Project\AllProjects.cshtml" />
     <Content Include="Content\ProjectList.less" />
     <Content Include="Content\MemberList.less" />
-    <Content Include="Views\Frator\Add.cshtml" />
     <Content Include="Content\MemberProfile.less" />
     <Content Include="Views\Project\Details.cshtml" />
     <Content Include="Content\ProjectDetails.less" />
     <Content Include="Views\Project\Add.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Content\PollList.less" />
+    <Content Include="Views\Frator\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -294,6 +294,7 @@
                 </div>
             </div>
         </div>
+
         <div class="mdl-tabs__panel" id="delegiranje-panel">
             <form action="#" id="frator-delegiranje-form">
                 <ul class="div-expand mdl-list">
@@ -335,6 +336,10 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script type="text/javascript">
+
+    $('#dodaj-kompaniju-btn').on('click', function () {
+        @Url.Action("Add", "Frator");
+    });
 
     function filterResults() {
         var term = $('#searchCompanyText').val();
