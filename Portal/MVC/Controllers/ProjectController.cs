@@ -1,4 +1,6 @@
-﻿using MVC.Models;
+﻿using Data.Entities;
+using MVC.Models;
+using System;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -20,6 +22,18 @@ namespace MVC.Controllers
         {
             ProjectModel model = ProjectModel.Load(id);
             return View(model);
+        }
+
+        public ActionResult Add()
+        {
+            return View(new ProjectAddModel());
+        }
+
+        [HttpPost]
+        public ActionResult Add(ProjectAddModel model)
+        {
+            int id = Int32.Parse(model.TeamIdString);
+            return RedirectToAction("AllProjects");
         }
     }
 }

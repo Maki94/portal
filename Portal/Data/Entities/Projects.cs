@@ -84,14 +84,6 @@ namespace Data.Entities
             }
         }
 
-        public static Project AddProject()
-        {
-            using (var dc = new DataContext())
-            {
-                return new Project();
-            }
-        }
-
         public static bool DeleteProject(int projectId)
         {
             using (var dc = new DataContext())
