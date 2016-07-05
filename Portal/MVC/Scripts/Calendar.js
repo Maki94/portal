@@ -57,7 +57,7 @@ function Calendar(wrapperId) {
                     self.CalederFields[index].Label = ++firstDay;
                 }
                 else if ((printNull && firstDayString !== days[j]) || (firstDay >= lastDay - 1)) {
-                    self.CalederFields[index].Label = 0;
+                    self.CalederFields[index].Label = "";
                     self.CalederFields[index].Init(firstDay, self._currentMonth, self._currentYear);
                     self.CalederFields[index].ClearCurrentDay();
                 } else {

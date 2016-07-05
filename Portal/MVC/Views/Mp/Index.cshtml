@@ -212,8 +212,11 @@
 </datalist>
 <script>
     var submitButton = document.getElementById("postavi-report-button");
+    var mpPostaviButton = document.getElementById("mp-postavi-button");
     var padavanId = "";
-    
+    var mpPostaviMasterId = "";
+    var mpPostaviPadavanId = "";
+
     $(function() { // napuni padavanId
         $('#master-list').on('input', function() { // choose new Receiver
             var opt = $('option[value="' + $(this).val() + '"]');
@@ -221,7 +224,20 @@
                 padavanId = opt.attr("data-id");
             }
         });
+        $('#mp-master').on('input', function () { // choose new Receiver
+            var opt = $('option[value="' + $(this).val() + '"]');
+            if (opt.length && parseInt(opt.attr("data-id"))) {
+                mpPostaviMasterId = opt.attr("data-id");
+            }
+        });
+        $('#mp-padavan').on('input', function () { // choose new Receiver
+            var opt = $('option[value="' + $(this).val() + '"]');
+            if (opt.length && parseInt(opt.attr("data-id"))) {
+                mpPostaviPadavanId = opt.attr("data-id");
+            }
+        });
     });
+
     submitButton.addEventListener("click", function() {
         var url = '@Url.Action("SavePdfFile", "Mp")';
         var message = document.getElementById('mp-report-opis').value;
@@ -231,6 +247,16 @@
         $.post(url, function (data) { 
             location.reload();
         });
+    });
+    mpPostaviButton.addEventListener("click", function() {
+        var url = '@Url.Action("AddMasterPadavan", "Mp")';
+        url += '?masterId=' + mpPostaviMasterId;
+        url += '&padavanId=' + mpPostaviPadavanId;
+        if (mpPostaviPadavanId !== mpPostaviMasterId) {
+        $.post(url, function(data) {
+            location.reload();
+        });
+        }
     });
     
 </script>

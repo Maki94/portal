@@ -1,9 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Data;
 using Data.Entities;
 using MVC.Models;
-using System;
 
 namespace MVC.Controllers
 {
@@ -60,7 +61,24 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Add(CompanyAddModel model)
         {
-            // TODO ovde ubaci snimanej kompanije u bazu
+            var type = Enumerations.CompanyType.money;
+            foreach (int i in Enum.GetValues(typeof (Enumerations.CompanyType)))
+            {
+                if (((Enumerations.CompanyType) i).ToString().CompareTo(model.Type) == 0)
+                {
+                    type = (Enumerations.CompanyType) i;
+                }
+            }
+            var field = Enumerations.CompanyField.AutoIndustrija;
+            foreach (int i in Enum.GetValues(typeof (Enumerations.CompanyField)))
+            {
+                if (((Enumerations.CompanyField) i).ToString().CompareTo(model.Field) == 0)
+                {
+                    field = (Enumerations.CompanyField) i;
+                }
+            }
+            Companys.AddCompany(model.Name, model.Address, model.City, model.Description, model.Email, model.Phone,
+                model.Website, field, type);
             return RedirectToAction("Index");
         }
 
@@ -72,6 +90,7 @@ namespace MVC.Controllers
             var json = jsonSerialiser.Serialize(c);
             return json;
         }
+
         [HttpPost]
         public void SaveComment(string text, string tip, string projekat, string companyId)
         {
@@ -81,15 +100,15 @@ namespace MVC.Controllers
             int idp;
             int.TryParse(projekat, out idp);
 
-            Enumerations.CommentType type = Enumerations.CommentType.Classic;
-            foreach(int i in Enum.GetValues(typeof(Enumerations.CommentType)))
+            var type = Enumerations.CommentType.Classic;
+            foreach (int i in Enum.GetValues(typeof (Enumerations.CommentType)))
             {
-                if(((Enumerations.CommentType)i).ToString().CompareTo(tip)==0)
+                if (((Enumerations.CommentType) i).ToString().CompareTo(tip) == 0)
                 {
-                    type = (Enumerations.CommentType)i;
+                    type = (Enumerations.CommentType) i;
                 }
             }
-            Data.Entities.Comments.AddComment(MemberSession.GetMemberId(), idc, idp, type, text);
+            Comments.AddComment(MemberSession.GetMemberId(), idc, idp, type, text);
         }
 
         public ActionResult AddContact(string name, string note, string email, string phone, string companyId)
@@ -97,17 +116,25 @@ namespace MVC.Controllers
             int idc;
             int.TryParse(companyId, out idc);
 
-            Data.Entities.Companys.AddContactPerson(idc, email, name, phone, note);
+            Companys.AddContactPerson(idc, email, name, phone, note);
             return RedirectToAction("Index");
         }
 
         public string GetCompany(int id)
         {
-            Data.DataClasses.Company cp = Data.Entities.Companys.GetCompanyAt(id);
-            var c = MVC.Models.CompanyModel.createCompanyDTO(cp);
+            var cp = Companys.GetCompanyAt(id);
+            var c = CompanyModel.createCompanyDTO(cp);
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(c);
             return json;
+        }
+
+        public void Delegiraj(string clanId, string kompanijaId)
+        {
+            var idc = new List<int> {int.Parse(kompanijaId)};
+
+            Companys.DelegateTo(int.Parse(clanId), idc);
+            Console.WriteLine(clanId, kompanijaId);
         }
     }
 }

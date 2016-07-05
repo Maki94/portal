@@ -285,7 +285,7 @@ namespace Data
 
             var company = new List<Company>
             {
-                new Company { Address = "a", City = "a", Description = "a", Email = "a", Field = Enumerations.CompanyField.AutoIndustrija, Name = "a", Phone = "123", Type = Enumerations.CompanyType.money, Website = "a"},
+                new Company { Address = "Spanskih boraca", City = "Beograd", Description = "", Email = "info@microsoft.com", Field = Enumerations.CompanyField.IT, Name = "Microsoft", Phone = "011225886", Type = Enumerations.CompanyType.money, Website = "microsoft.rs"},
                 new Company { Address = "b", City = "b", Description = "b", Email = "b", Field = Enumerations.CompanyField.Bank, Name = "b", Phone = "456", Type = Enumerations.CompanyType.money, Website = "b"},
                 new Company { Address = "c", City = "c", Description = "c", Email = "c", Field = Enumerations.CompanyField.IT, Name = "c", Phone = "789", Type = Enumerations.CompanyType.money, Website = "c"},
                 new Company { Address = "d", City = "d", Description = "d", Email = "d", Field = Enumerations.CompanyField.Bank, Name = "d", Phone = "101", Type = Enumerations.CompanyType.money, Website = "d" },

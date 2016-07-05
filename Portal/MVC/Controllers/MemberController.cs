@@ -31,17 +31,14 @@ namespace MVC.Controllers
 
         public ActionResult GetAvatar(int id)
         {
-            /*
-            var mem = Members.GetMemberAt(id);
-            var image = mem.Avatar == null || mem.Avatar.Length == 0
-                ? DefaultPictures.GetPictureByName("Avatar")
-                : mem.Avatar;
-            var base64 = Convert.ToBase64String(image);
-            var imgSrc = $"data:image/gif;base64,{base64}";
-            return Content(imgSrc);
-            */
-
             var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
+            var mem = Members.GetMemberAt(id);
+            if (mem.Avatar != null && mem.Avatar.Length != 0)
+            {
+                var image = mem.Avatar;
+                var base64 = Convert.ToBase64String(image);
+                imgSrc = $"data:image/gif;base64,{base64}";
+            }
             return Content(imgSrc);
         }
 

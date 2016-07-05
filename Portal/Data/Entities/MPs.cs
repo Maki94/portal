@@ -73,5 +73,23 @@ namespace Data.Entities
             }
 
         }
+
+        public static void AddMasterTo(int masterId, int padawanId, DataContext dc = null)
+        {
+            using (dc = dc ?? new DataContext())
+            {
+                Member padawan = Data.Entities.Members.GetMemberAt(padawanId);
+
+                MemberMaster mm = new MemberMaster
+                {
+                    StartDate = DateTime.Now,
+                    MasterId = masterId,
+                    Member = padawan
+                };
+
+                dc.MemberMaster.Add(mm);
+                dc.SaveChanges();
+            }
+        }
     }
 }
