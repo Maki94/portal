@@ -37,25 +37,30 @@ namespace Data.Entities
 
         public static void SavePDF(int idm, int idp, string text, DataContext dc =null)
         {
-            byte[] bytes;
-            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
-            {
-                using (iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4.Rotate()))
-                {
-                    using (iTextSharp.text.pdf.PdfWriter w = iTextSharp.text.pdf.PdfWriter.GetInstance(doc, ms))
-                    {
-                        doc.Open();
-                        doc.NewPage();
-                        doc.Add(new iTextSharp.text.Paragraph(text));
-                        doc.Close();
-                        bytes = ms.ToArray();
-                    }
-                }
-            }
+            
             using (dc = dc ?? new DataContext())
             {
                 MemberMaster mm = dc.MemberMaster.Where(x => x.MasterId == idm && x.MemberId == idp).First();
-                
+                Member master = Members.GetMemberAt(idm);
+                Member padawan = Members.GetMemberAt(idp);
+
+                byte[] bytes;
+                using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                {
+                    using (iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4.Rotate()))
+                    {
+                        using (iTextSharp.text.pdf.PdfWriter w = iTextSharp.text.pdf.PdfWriter.GetInstance(doc, ms))
+                        {
+                            doc.Open();
+                            doc.NewPage();
+                            doc.Add(new iTextSharp.text.Paragraph(text));
+                            doc.AddTitle(master.Name + " " + master.Surname + " report about " + padawan.Name + " " + padawan.Surname + " " + DateTime.Now.ToShortDateString());
+                            doc.Close();
+                            bytes = ms.ToArray();
+                        }
+                    }
+                }
+
                 Report r = new Report
                 {
                     Text = bytes,

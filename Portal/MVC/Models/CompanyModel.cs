@@ -85,7 +85,8 @@ namespace MVC.Models
             {
                 MemberId = member.MemberId,
                 Name = member.Name,
-                Surname = member.Surname
+                Surname = member.Surname,
+                Gmail = member.Gmail
             };
         }
 

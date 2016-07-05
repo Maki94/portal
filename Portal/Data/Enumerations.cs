@@ -34,8 +34,9 @@ namespace Data
 
         public enum FeedbackType
         {
-            dobro,
-            lose,
+            Pohvala,
+            Bug,
+            Funkcionalnost
         }
 
         public enum MemberStatus

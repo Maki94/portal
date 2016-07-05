@@ -67,7 +67,7 @@ namespace MVC.Models
             return new MemberMasterDTO
             {
                 Padawan = MVC.Models.CompanyModel.createMemberDTO(mm.Member),
-                Master = MVC.Models.CompanyModel.createMemberDTO(Data.Entities.Members.GetMemberAt(mm.MemberId)),
+                Master = MVC.Models.CompanyModel.createMemberDTO(Data.Entities.Members.GetMemberAt(mm.MasterId)),
                 Reports = createReportsDTO(mm.Reports),
                 MemberMasterId = mm.MemberMasterId
             };
