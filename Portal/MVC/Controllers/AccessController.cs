@@ -41,6 +41,11 @@ namespace MVC.Controllers
             }
         }
 
+        public void SendFeedback(string type, string text)
+        {
+            
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Index(MemberLoginModel model)
