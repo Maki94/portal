@@ -1305,6 +1305,9 @@ aside a:hover {
 #kontakt-kompanija li {
   margin-left: 10%;
 }
+.frator-grid {
+  margin-right: 0px;
+}
 .badge-img-wrapper {
   background-color: transparent;
 }
@@ -1424,7 +1427,7 @@ h1 {
 .uploadBtn {
   padding-top: 6px;
 }
-#badges{
+#badges .mdl-grid {
   margin-right: 0px;
 }
 .ui-timepicker-wrapper {

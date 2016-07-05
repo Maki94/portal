@@ -15,7 +15,7 @@
     @if (Model.Show != null)
     {
         <div id="moje-kompanije-panel" class="mdl-tabs__panel is-active">
-            <div class="div-expand mdl-grid">
+            <div class="div-expand mdl-grid frator-grid">
                 <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
                     <form action="#">
                         <ul class="div-expand mdl-list">
@@ -261,43 +261,33 @@
     
     @if (MemberSession.GetRole() == Data.Enumerations.Role.Administrator || MemberSession.GetRole() == Data.Enumerations.Role.FR)
     {
-        
-
         <div class="mdl-tabs__panel" id="kompanije-panel">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
-                <div class="mdl-cell mdl-cell--3-col">
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-                        <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-                        <span class="mdl-switch__label">Aktivna</span>
-                    </label>
-                </div>
-                <div class="mdl-cell mdl-cell--3-col">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                        <label class="mdl-button mdl-js-button mdl-button--icon" for="frator-kompanija-pretraga">
-                            <i class="material-icons">search</i>
-                        </label>
-                        <div class="mdl-textfield__expandable-holder">
-                            <input class="mdl-textfield__input" type="text" id="frator-kompanija-pretraga">
+            <div class="mdl-grid frator-grid">
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="form-group">
+                        <i class="company-search-icon material-icons">search</i>
+                        <div class="company-search-bar-div col-md-10">
+                            <input class="form-control" type="text" id="searchCompanyText">
                         </div>
                     </div>
                 </div>
-                <div class="mdl-cell mdl-cell--3-col mdl-cell--0-col-phone"></div>
 
-                <div class="mdl-cell mdl-cell--11-col"></div>
-                    <div class="mdl-cell mdl-cell--1-col">
-                        <a href="@Url.Action("Add", "Frator")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                            <i class="material-icons">add</i>
-                        </a>
-                    </div>
+                <div class="mdl-cell mdl-cell--7-col">
+
+                </div>
+                <div class="mdl-cell mdl-cell--1-col">
+                    <a href="@Url.Action("Add", "Frator")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
             </div>
-            <div class="mdl-grid">
+            <div class="mdl-grid frator-grid">
                 <div class="mdl-cell mdl-cell--3-col">
-                    <ul class="frator-kompanije-list">
+                    <ul class="frator-kompanije-list" id="lista-kompanija">
                         @foreach (CompanyDTO c in Model.AllCompany)
                         {
-                            <li>
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">@c.Name</a>
+                            <li class="company-list-item" data-company-id="@c.CompanyId">
+                                <a class="company-list-name mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="@Url.Action("Profile", "Frator", new { id = c.CompanyId })">@c.Name</a>
                             </li>
                         }
                     </ul>
@@ -342,6 +332,47 @@
         </div>
     }
 </div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+    function filterResults() {
+        var term = $('#searchCompanyText').val();
+        $.post("@Url.Action("SearchCompanies", "Frator")", { "term": term }, function (data) {
+            $('#lista-kompanija').children().each(function () {
+                var id = parseInt($(this).data('company-id'));
+                if (data.indexOf(id) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    }
+
+    $(window).bind('load', function () {
+        var data = [];
+        var elements = $("#lista-kompanija").find('.company-list-name');
+        for (var i = 0; i < elements.length; i++) {
+            data.push(elements[i].innerHTML);
+        }
+        $("#searchCompanyText").autocomplete({
+            source: data,
+            delay: 0,
+            minLength: 1,
+
+            select: function (e, ui) {
+                $("#searchCompanyText").val(ui.item.label);
+                filterResults();
+            },
+        });
+    });
+
+    $('#searchCompanyText').bind('keyup', filterResults);
+
+
+</script>
+
 <script src="https://use.fontawesome.com/c256757c6a.js"></script>
 <script>
     var komapnijaKontakti = document.getElementById("kompanija-kontakti");

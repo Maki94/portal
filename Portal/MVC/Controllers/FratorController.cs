@@ -28,6 +28,13 @@ namespace MVC.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public JsonResult SearchCompanies(string term)
+        {
+            var resultIds = Companys.SearchCompanies(term);
+            return Json(resultIds);
+        }
+
         public ActionResult Profile(int id)
         {
             return RedirectToAction("Index", new {id});
