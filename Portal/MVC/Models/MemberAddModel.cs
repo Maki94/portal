@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MVC.Models
 {
@@ -24,7 +25,7 @@ namespace MVC.Models
         [Display(Name = "Potvrdite lozinku")]
         [StringLength(255, ErrorMessage = "Lozinka mora biti izmedju 5 i 255 karaktera.", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [System.ComponentModel.DataAnnotations.Compare("Password")]
         public string RepeatPassword { get; set; }
 
         [Required(ErrorMessage = "Morate uneti ime.")]
@@ -35,15 +36,16 @@ namespace MVC.Models
         [Display(Name = "Prezime")]
         public string Surname { get; set; }
 
-        public List<Role> Roles { get; set; }
-        
+        [Required(ErrorMessage = "Morate izabrati ulogu.")]
+        public string RoleIdString { get; set; }
+
         [Required(ErrorMessage = "Morate izabrati ulogu.")]
         [Display(Name = "Uloga")]
-        public int RoleId { get; set; }
+        public SelectList RoleChoice { get; set; }
 
         [Required(ErrorMessage = "Morate izabrati datum uclanjenja.")]
         [Display(Name = "Datum uclanjenja")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         // status?
@@ -51,7 +53,17 @@ namespace MVC.Models
 
         public MemberAddModel()
         {
-            Roles = Data.Entities.Roles.GetAllRoles();
+            List<Role> roles = Data.Entities.Roles.GetAllRoles();
+            List<SelectListItem> roleitems = new List<SelectListItem>();
+            foreach (var r in roles)
+            {
+                roleitems.Add(new SelectListItem()
+                {
+                    Value = r.RoleId.ToString(),
+                    Text = r.Name
+                });
+            }
+            RoleChoice = new SelectList(roleitems, "Value", "Text");
             Date = DateTime.Now;
         }
     }

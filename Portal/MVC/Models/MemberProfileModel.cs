@@ -26,6 +26,8 @@ namespace MVC.Models
 
         public string Gmail { get; set; }
 
+        public byte[] Avatar { get; set; }
+
         [Display(Name = "Clanarina do")]
         public DateTime? FeePayedUntil { get; set; }
 
@@ -52,7 +54,7 @@ namespace MVC.Models
                 Id = m.MemberId,
                 Name = m.Name,
                 Surname = m.Surname,
-                //Avatar = m.Avatar ?? DefaultPictures.GetPictureByName("Avatar"),
+                Avatar = m.Avatar,
                 JoinDate = m.JoinDate,
                 Gmail = m.Gmail,
                 FeePayedUntil = m.FeePayedUntil,
@@ -63,8 +65,8 @@ namespace MVC.Models
             List<Project> projectsPomagao = Data.Entities.Projects.GetProjectsOfMember(memberID);
             List<Badge> badges = Data.Entities.Badges.GetAllBadgesOfMember(memberID);
             model.MemberBadges = BadgeListModel.CreateBadgeDTOs(badges);
-            model.MemberTeamProjects = ProjectModel.CreateMemberTeamProjectDTOList(m, projects);
-            model.MemberHelpProjects = ProjectModel.CreateMemberHelpProjectDTOList(m, projectsPomagao);
+            model.MemberTeamProjects = ProjectModel.CreateMemberTeamProjectDTOList(m, projects) ?? new List<MemberProjectDTO>();
+            model.MemberHelpProjects = ProjectModel.CreateMemberHelpProjectDTOList(m, projectsPomagao) ?? new List<MemberProjectDTO>();
 
             return model;
         }

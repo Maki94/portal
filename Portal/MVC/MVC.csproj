@@ -261,6 +261,7 @@
     <Content Include="Content\ProjectDetails.less" />
     <Content Include="Views\Project\Add.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
+    <Content Include="Content\PollList.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

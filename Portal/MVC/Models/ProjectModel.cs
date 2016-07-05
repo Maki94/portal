@@ -60,11 +60,15 @@ namespace MVC.Models
         public static List<MemberProjectDTO> CreateMemberTeamProjectDTOList(Member member, List<Project> projects)
         {
             List<MemberProjectDTO> memberProjectDTOs = new List<MemberProjectDTO>();
-            foreach (var p in projects)
+            if (projects != null)
             {
-                memberProjectDTOs.Add(CreateMemberTeamProjectDTO(member, p));
+                foreach (var p in projects)
+                {
+                    memberProjectDTOs.Add(CreateMemberTeamProjectDTO(member, p));
+                }
+                return memberProjectDTOs;
             }
-            return memberProjectDTOs;
+            return null;
         }
 
         public static MemberProjectDTO CreateMemberHelpProjectDTO(Member member, Project project)

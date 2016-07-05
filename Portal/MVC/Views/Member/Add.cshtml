@@ -4,14 +4,13 @@
     ViewBag.Title = "Add";
 }
 
-<h2>Add</h2>
+<h2>Napravi člana</h2>
 
 @using (Html.BeginForm("Add", "Member", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AddMemberViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -57,35 +56,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datefield" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoleChoice, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.Roles, "RoleId", "Name"), "  -----Izaberite ulogu-----  ")
-                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.RoleIdString, Model.RoleChoice,"---Izaberite ulogu---", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleIdString, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Napravi člana" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script type="text/javascript">
-    $(window).bind('load', function () {
-        $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
-    });
-</script>
+<script type="text/javascript" src="~/Scripts/datepicker.js"></script>

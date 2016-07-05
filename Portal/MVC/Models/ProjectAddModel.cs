@@ -19,6 +19,7 @@ namespace MVC.Models
         [Display(Name = "Sajt")]
         public string Website { get; set; }
 
+        [Display(Name = "Logo")]
         [ValidateFile(ErrorMessage = "Izaberite JPG/PNG/GIF sliku manju od 1MB")]
         public HttpPostedFileBase Logo { get; set; }
 
@@ -39,6 +40,7 @@ namespace MVC.Models
         [Display(Name = "Mesto")]
         public string Place { get; set; }
 
+        [Required(ErrorMessage = "Morate izabrati realizacioni tim.")]
         public string TeamIdString { get; set; }
 
         [Required(ErrorMessage = "Morate izabrati realizacioni tim.")]

@@ -15,6 +15,7 @@ namespace MVC.Models
         [Display(Name = "Fakultet")]
         public string Faculty { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum rodjenja")]
         public DateTime? DateOfBirth { get; set; }
 

@@ -6,10 +6,8 @@
 }
 @{ LoginDTO member = MemberSession.GetMember();}
 
-<h2>Aktivna glasanja</h2>
-
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--11-col"></div>
+<div class="poll-list-header-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--11-col"><h2>Aktivna glasanja</h2></div>
     <div class="mdl-cell mdl-cell--1-col">
         <a href="@Url.Action("Add", "Poll")" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
             <i class="material-icons">add</i>
@@ -25,15 +23,6 @@
                 <b><span class="text-info"> @Html.DisplayFor(x => p.PollDetails.Topic) <span class="text-danger"> - Zavrsava se @Html.DisplayFor(x => p.PollDetails.EndDate) </span></span></b>
                 <span class="poll-details-description mdl-list__item-sub-title"> @Html.DisplayFor(x => p.PollDetails.Description) </span>
             </span>
-
-            <a class="btn btn-success" href="@Url.Action("Edit", "Poll", new { id = p.PollDetails.PollId })">
-                <i class="fa fa-edit" title="Edit" aria-hidden="true"></i>
-                <span class="sr-only">Edit</span>
-            </a>
-            <a class="btn btn-success" href="#" disabled>
-                <i class="fa fa-star-o" title="Settings" aria-hidden="true"></i>
-                <span class="sr-only">Activity</span>
-            </a>
         </div>
         <div class="poll-options-list mdl-list">
             @foreach (var po in p.PollOptions)
@@ -60,7 +49,9 @@
     </div>
 }
 
-<h2>Zavrsena glasanja</h2>
+<div class="poll-list-header-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col"><h2>Zavrsena glasanja</h2></div>
+</div>
 
 @foreach (var p in Model.ClosedPolls)
 {

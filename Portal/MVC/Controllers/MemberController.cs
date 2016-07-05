@@ -94,7 +94,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Add");
             }
 
-            Members.AddMember(m.Gmail, m.Password, m.Name, m.Surname, m.RoleId, m.Date);
+            Members.AddMember(m.Gmail, m.Password, m.Name, m.Surname, Int32.Parse(m.RoleIdString), m.Date);
 
             return RedirectToAction("AllMembers");
         }

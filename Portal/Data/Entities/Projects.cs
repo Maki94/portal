@@ -37,6 +37,33 @@ namespace Data.Entities
             }
         }
 
+        public static List<int> SearchProjects(string keyword = "")
+        {
+            using (var dc = new DataContext())
+            {
+                List<string> searchTerms = new List<string>();
+                searchTerms = keyword.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList().ConvertAll(m => m.ToLower());
+
+                // trazimo da li ime, prezime ili nadimak clana sadrzi
+                // neku od reci koje su unete kao search parametar
+                List<Project> projects = new List<Project>();
+                if (searchTerms.Count == 0)
+                {
+                    projects = (from p in dc.Projects select p).ToList();
+                }
+                else
+                {
+                   projects = (from p in dc.Projects
+                               where searchTerms.Any(s => p.Name.Contains(s))
+                               select p).ToList();
+                }
+
+                List<int> projectIds = projects.Select(p => p.ProjectId).ToList();
+
+                return projectIds;
+            }
+        }
+
         public static Project GetProjectAt(int projectID)
         {
             using (var dc = new DataContext())
@@ -68,11 +95,15 @@ namespace Data.Entities
             using (var dc = new DataContext())
             {
                 Team t = dc.MemberTeams.Where(x => x.MemberId == memberId)
-                                       .Select(x => x.Team).First();
+                                       .Select(x => x.Team).FirstOrDefault();
 
-                return dc.Projects.Include(x => x.Team)
-                                  .Where(x => x.TeamId == t.TeamId)
-                                  .ToList();
+                if (t != null)
+                {
+                    return dc.Projects.Include(x => x.Team)
+                             .Where(x => x.TeamId == t.TeamId)
+                             .ToList();
+                }
+                return null;
             }
         }
 

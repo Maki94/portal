@@ -19,6 +19,13 @@ namespace MVC.Controllers
             return View(new ProjectListModel());
         }
 
+        [HttpPost]
+        public JsonResult SearchProjects(string term)
+        {
+            var resultIds = Projects.SearchProjects(term);
+            return Json(resultIds);
+        }
+
         public ActionResult Details(int id)
         {
             ProjectModel model = ProjectModel.Load(id);
@@ -33,23 +40,20 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Add(ProjectAddModel model)
         {
-            if (ModelState.IsValid)
+            int id = Int32.Parse(model.TeamIdString);
+            byte[] array = null;
+            if (model.Logo != null)
             {
-                int id = Int32.Parse(model.TeamIdString);
-                byte[] array = null;
-                if (model.Logo != null)
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        model.Logo.InputStream.Position = 0;
-                        model.Logo.InputStream.CopyTo(ms);
-                        array = ms.GetBuffer();
-                    }
+                    model.Logo.InputStream.Position = 0;
+                    model.Logo.InputStream.CopyTo(ms);
+                    array = ms.GetBuffer();
                 }
-
-                Projects.AddProject(model.Name, model.Website, array, model.StartDate,
-                                    model.FinishDate, model.Description, model.Place, id);
             }
+
+            Projects.AddProject(model.Name, model.Website, array, model.StartDate,
+                                model.FinishDate, model.Description, model.Place, id);
 
             return RedirectToAction("AllProjects");
         }

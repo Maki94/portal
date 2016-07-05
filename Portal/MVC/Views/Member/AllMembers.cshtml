@@ -9,11 +9,11 @@
     <main class="mdl-layout__content">
         <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
             <main class="mdl-layout__content">
-                <div class="mdl-grid">
+                <div class="member-list-search-add mdl-grid">
                     <div class="mdl-cell mdl-cell--5-col">
                         <div class="form-group">
-                            <i class="material-icons">search</i>
-                            <div class="col-md-10">
+                            <i class="members-search-icon material-icons">search</i>
+                            <div class="members-search-bar-div col-md-10">
                                 <input class="form-control" type="text" id="searchMembersText">
                             </div>
                         </div>
@@ -31,7 +31,15 @@
                     {
                         <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--12-col-phone mdl-shadow--2dp" data-member-id="@m.MemberId">
                             <figure class="mdl-card__media">
-                                <a href="@Url.Action("Profile", "Member", new { id = m.MemberId })"><img class="member-list-avatar" src="http://i.imgur.com/Xqdt97P.png" alt="" /></a>
+                                @{
+                                    var imgSrc = $"http://i.imgur.com/Xqdt97P.png";
+                                    if (m.Avatar != null)
+                                    {
+                                        var base64 = Convert.ToBase64String(m.Avatar);
+                                        imgSrc = $"data:image/gif;base64,{base64}";
+                                    }
+                                }
+                                <a href="@Url.Action("Profile", "Member", new { id = m.MemberId })"><img class="member-list-avatar" src="@imgSrc" alt="" /></a>
                             </figure>
                             <div class="mdl-card__title">
                                 <h1 class="member-list-title mdl-card__title-text">@Html.DisplayName(m.Name) @Html.DisplayName(m.Surname) 

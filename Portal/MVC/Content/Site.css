@@ -1495,12 +1495,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   height: 250px;
   overflow-y: auto;
 }
-.project-list {
+#project-list {
   margin-right: 0px;
 }
 .project-list-avatar {
   width: 100%;
   max-height: 350px;
+}
+.project-list-search-add {
+  margin-right: 0px;
+}
+.projects-search-icon {
+  padding-top: 5px;
+}
+.projects-search-bar-div {
+  padding-left: 0px;
 }
 .member-list {
   margin-right: 0px;
@@ -1511,4 +1520,27 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 .member-list-title {
   margin: auto;
+}
+.member-list-search-add {
+  margin-right: 0px;
+}
+.members-search-icon {
+  padding-top: 5px;
+}
+.members-search-bar-div {
+  padding-left: 0px;
+}
+.poll-list-header-grid {
+  margin-right: 0px;
+}
+.poll-option {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.poll-details {
+  padding-bottom: 0px;
+  padding-top: 3px;
+}
+.poll-options-list {
+  padding-top: 0px;
 }
