@@ -11,6 +11,14 @@ namespace Data.Entities
 {
     public class Teams
     {
+        public static List<Team> GetAllTeams()
+        {
+            using (var dc = new DataContext())
+            {
+                return dc.Teams.Select(x => x).ToList();
+            }
+        }
+
         public static Team AddTeam(string name, DateTime created, DateTime deleted, string googlegroup = null)
         {
             using (var dc = new DataContext())
