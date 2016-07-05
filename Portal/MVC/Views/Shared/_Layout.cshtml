@@ -128,7 +128,7 @@
         url += "&text=" + text;
 
         $.post(url, function (data) {
-
+            dialogFeedbackSend.close();
         });
     });
 
